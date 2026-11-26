@@ -1,32 +1,52 @@
 ---
 import "../styles/global.css";
+import { DIRECTION, LANGUAGE_TAG, LOCALES, localePath, type Locale } from "@handyweb/core";
 import Fonts from "../components/Fonts.astro";
 import ThemeToggle from "../components/ThemeToggle.astro";
+import LanguageSwitcher from "../components/LanguageSwitcher.astro";
 import themeInit from "../scripts/theme-init.js?raw";
+import { useTranslations } from "../i18n/site";
 
 interface Props {
-    lang: "fa" | "en";
+    locale: Locale;
+    /** The locale-neutral path of the page, for example "/" or "/about". */
+    path: string;
     title: string;
     description?: string;
 }
 
-const { lang, title, description } = Astro.props;
-const dir = lang === "fa" ? "rtl" : "ltr";
+const { locale, path, title, description } = Astro.props;
+const t = useTranslations(locale);
+const site = Astro.site ?? new URL("https://handyweb.ir");
+const canonical = new URL(localePath(locale, path), site).href;
+const alternates = LOCALES.map((l) => ({
+    hreflang: LANGUAGE_TAG[l],
+    href: new URL(localePath(l, path), site).href,
+}));
+const xDefault = new URL(localePath("fa", path), site).href;
 ---
 
 <!doctype html>
-<html lang={lang} dir={dir}>
+<html lang={locale} dir={DIRECTION[locale]}>
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
-        {description && <meta name="description" content={description} />}
+        <meta name="description" content={description ?? t("site.description")} />
+        <link rel="canonical" href={canonical} />
+        {alternates.map((a) => (
+            <link rel="alternate" hreflang={a.hreflang} href={a.href} />
+        ))}
+        <link rel="alternate" hreflang="x-default" href={xDefault} />
         <meta name="color-scheme" content="light dark" />
         <script is:inline set:html={themeInit} />
-        <Fonts lang={lang} />
+        <Fonts lang={locale} />
     </head>
     <body class="min-h-dvh bg-bg text-text antialiased">
-        <ThemeToggle />
+        <div class="flex items-center justify-end gap-2 p-4">
+            <LanguageSwitcher locale={locale} path={path} />
+            <ThemeToggle />
+        </div>
         <slot />
     </body>
 </html>

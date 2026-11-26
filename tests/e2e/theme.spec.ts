@@ -20,20 +20,20 @@ test.describe("theme", () => {
     test("follows the system theme on the first visit", async ({ page }) => {
         await page.emulateMedia({ colorScheme: "dark" });
         await page.addInitScript(recordThemeAtBody);
-        await page.goto("/");
+        await page.goto("/fa/");
         expect(await themeAtBody(page)).toBe("dark");
     });
 
     test("keeps the chosen theme across navigation with no flash", async ({ page }) => {
         await page.emulateMedia({ colorScheme: "light" });
         await page.addInitScript(recordThemeAtBody);
-        await page.goto("/");
+        await page.goto("/fa/");
         const toggle = page.locator("[data-theme-toggle]");
         await toggle.click(); // system -> light
         await toggle.click(); // light -> dark
         await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
-        await page.goto("/about");
+        await page.goto("/en/about/");
         expect(await themeAtBody(page)).toBe("dark");
         await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 
@@ -52,7 +52,7 @@ test.describe("theme", () => {
             });
         });
         await page.emulateMedia({ colorScheme: "light" });
-        await page.goto("/");
+        await page.goto("/fa/");
         await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
         await page.locator("[data-theme-toggle]").click();
         await page.locator("[data-theme-toggle]").click();
@@ -66,7 +66,7 @@ test("loads every font and asset from the site itself", async ({ page, baseURL }
     page.on("request", (request) => {
         if (!request.url().startsWith(baseURL as string)) foreign.push(request.url());
     });
-    await page.goto("/");
+    await page.goto("/fa/");
     await page.evaluate(() => document.fonts.ready);
     expect(foreign).toEqual([]);
     const loaded = await page.evaluate(() =>

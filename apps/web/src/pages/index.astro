@@ -1,11 +1,26 @@
 ---
-import Base from "../layouts/Base.astro";
+/*
+ * The bare root (D4). Hosts that read public/_redirects answer with a 301 to
+ * /fa/ before this page is served. Other hosts serve this page, which sends
+ * the visitor on with a meta refresh. No script decides the language.
+ */
+import { useTranslations } from "../i18n/site";
+
+const t = useTranslations("fa");
+const target = "/fa/";
 ---
 
-<Base lang="fa" title="HandyWeb">
-    <main class="mx-auto max-w-3xl p-4">
-        <h1 class="text-3xl font-bold">HandyWeb</h1>
-        <p class="text-muted">ابزارهای کاربردی وب، روی دستگاه شما. 1234 ۱۲۳۴ HandyWeb.</p>
-        <a href="/about">about</a>
-    </main>
-</Base>
+<!doctype html>
+<html lang="fa" dir="rtl">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>{t("redirect.title")}</title>
+        <meta http-equiv="refresh" content={`0; url=${target}`} />
+        <meta name="robots" content="noindex" />
+        <link rel="canonical" href={new URL(target, Astro.site).href} />
+    </head>
+    <body>
+        <a href={target}>{t("redirect.body")}</a>
+    </body>
+</html>

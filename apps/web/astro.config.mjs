@@ -7,7 +7,7 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineConfig({
     site: "https://handyweb.ir",
     output: "static",
-    trailingSlash: "ignore",
+    trailingSlash: "always",
     integrations: [react()],
     build: {
         // Never inline CSS into the HTML. The CSP allows styles from 'self' only.

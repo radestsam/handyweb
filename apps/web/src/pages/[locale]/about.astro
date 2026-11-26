@@ -1,0 +1,18 @@
+---
+import type { Locale } from "@handyweb/core";
+import Base from "../../layouts/Base.astro";
+import { useTranslations } from "../../i18n/site";
+import { localeStaticPaths } from "../../i18n/static-paths";
+
+export const getStaticPaths = localeStaticPaths;
+
+const locale = Astro.params.locale as Locale;
+const t = useTranslations(locale);
+---
+
+<Base locale={locale} path="/about" title={t("about.title")}>
+    <main id="main" class="mx-auto max-w-3xl p-4">
+        <h1 class="text-3xl font-bold">{t("about.title")}</h1>
+        <p>{t("about.body")}</p>
+    </main>
+</Base>

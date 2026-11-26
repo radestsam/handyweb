@@ -1,0 +1,38 @@
+---
+import { localePath, otherLocale, type Locale } from "@handyweb/core";
+import { useTranslations } from "../i18n/site";
+
+interface Props {
+    locale: Locale;
+    path: string;
+}
+
+const { locale, path } = Astro.props;
+const target = otherLocale(locale);
+const t = useTranslations(locale);
+---
+
+<a
+    href={localePath(target, path)}
+    hreflang={target}
+    lang={target}
+    aria-label={t("lang.switchLabel")}
+    data-locale-switch={target}
+    class="rounded-md px-2 py-1 text-sm hover:bg-surface-2"
+>
+    {t("lang.switch")}
+</a>
+
+<script>
+    // The last chosen language is the second allowed preference key (D5). It
+    // only marks the choice. It never redirects a visitor.
+    for (const link of document.querySelectorAll<HTMLAnchorElement>("[data-locale-switch]")) {
+        link.addEventListener("click", () => {
+            try {
+                localStorage.setItem("handyweb:locale", link.dataset.localeSwitch ?? "");
+            } catch {
+                // Storage is blocked. Nothing to remember.
+            }
+        });
+    }
+</script>

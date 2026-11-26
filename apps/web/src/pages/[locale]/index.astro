@@ -1,0 +1,22 @@
+---
+import type { Locale } from "@handyweb/core";
+import Base from "../../layouts/Base.astro";
+import Ltr from "../../components/Ltr.astro";
+import { useTranslations } from "../../i18n/site";
+import { localeStaticPaths } from "../../i18n/static-paths";
+
+export const getStaticPaths = localeStaticPaths;
+
+const locale = Astro.params.locale as Locale;
+const t = useTranslations(locale);
+---
+
+<Base locale={locale} path="/" title={t("site.name")}>
+    <main id="main" class="mx-auto max-w-3xl p-4">
+        <h1 class="text-3xl font-bold">{t("site.name")}</h1>
+        <p class="text-muted">{t("site.tagline")}</p>
+        <p class="mt-4" data-testid="hash-sample">
+            SHA-256: <Ltr as="code">e3b0c44298fc1c149afbf4c8996fb924</Ltr>
+        </p>
+    </main>
+</Base>

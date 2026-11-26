@@ -1,0 +1,3 @@
+# Cloudflare Pages and Netlify read this file. Other hosts: see
+# docs/infrastructure.md for the same rule in their own format.
+/ /fa/ 301

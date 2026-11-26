@@ -44,7 +44,7 @@ make test-e2e
 
 | Path             | What it holds                                        |
 | ---------------- | ---------------------------------------------------- |
-| `apps/web`       | The Astro site                                       |
+| `apps/web`       | The Astro site: routes, layouts                      |
 | `packages/core`  | i18n                                                 |
 | `packages/tools` | Every tool: metadata, logic, tests, UI, translations |
 | `tests/`         | Browser tests: end-to-end                            |
@@ -71,6 +71,8 @@ Dependabot proposes weekly updates for npm packages and GitHub Actions.
 ## Languages
 
 Persian (`fa`, right to left) is the default language. English (`en`, left to right) is the second. Site strings are in `apps/web/src/i18n/site.ts`, with a typed `t(key)`. Show code, hashes, URLs, and file names with the `Ltr` component, so they stay left to right on Persian pages.
+
+Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes to `/fa/` (`apps/web/public/_redirects` on the host, and a meta refresh in the page). Each page lists its other-language version with `hreflang`. The language switcher stores the last choice in `handyweb:locale`. It never redirects a visitor.
 
 ## Deviations From the Starter Kit
 
