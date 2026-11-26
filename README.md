@@ -47,7 +47,7 @@ make test-e2e
 | `apps/web`       | The Astro site: routes, layouts, static pages, generated tool pages                   |
 | `packages/core`  | Types, registry helpers, runtime, worker protocol, file helpers, i18n, shared tool UI |
 | `packages/tools` | Every tool: metadata, logic, tests, UI, translations                                  |
-| `tests/`         | Browser tests: end-to-end, accessibility                                              |
+| `tests/`         | Browser tests: end-to-end, privacy, accessibility                                     |
 
 The dependency direction is `apps/web` to `packages/tools` to `packages/core`. ESLint stops an import in the other direction.
 
@@ -99,7 +99,8 @@ No tool is published yet.
 2. Add the metadata to `packages/tools/src/catalog.ts` and the loader to `packages/tools/src/loaders.ts`. `catalog.ts` imports only `meta.ts` files.
 3. Run heavy work through the runtime in `packages/core/src/runtime`, or in a worker with `packages/core/src/worker`.
 4. Build the UI from the shared components in `packages/core/src/ui`. Every string has a Persian and an English version.
-5. Run `make test` and `make test-e2e`. `packages/tools/src/registry.test.ts` checks the catalog, the categories, and the loaders.
+5. Give the tool an `example` input in `meta.ts`. The privacy tests run every published tool with it.
+6. Run `make test` and `make test-e2e`. `packages/tools/src/registry.test.ts` checks the catalog, the categories, and the loaders.
 
 ### Tool Pages
 
@@ -108,6 +109,14 @@ Each published tool gets a page per language at `/<locale>/tools/<slug>/`. An al
 ### Source Links
 
 Each tool page links to the source folder of the tool at the release tag `v<version>`. `<version>` is the `version` field of the root `package.json`. The link is set in `apps/web/src/release.ts`. Tag each release `v<version>` on the commit that is deployed, so every link opens the code that the site runs.
+
+## Privacy
+
+- A tool marked `local` never sends its input, its output, or a file name over the network.
+- The site has no analytics, trackers, remote fonts, or third-party scripts.
+- The only browser storage keys are `handyweb:theme` and `handyweb:locale`. The site stores no user content.
+
+`tests/privacy/tools.spec.ts` opens every published tool in both languages and runs it with its example input. It fails on a request to another origin, on a request that contains the input or the result, and on any other stored data.
 
 ## Deviations From the Starter Kit
 
