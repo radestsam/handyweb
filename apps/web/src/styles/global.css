@@ -92,6 +92,17 @@
         letter-spacing: -0.02em;
     }
 
+    /* Taps act at once. The browser does not wait for a double-tap zoom. */
+    a,
+    button,
+    label,
+    summary,
+    input,
+    textarea,
+    select {
+        touch-action: manipulation;
+    }
+
     /* Room for the bottom tab bar on phones, including the home indicator. */
     @media (max-width: 47.99rem) {
         body {
@@ -156,6 +167,32 @@
             animation-iteration-count: 1 !important;
             transition-duration: 0.01ms !important;
             scroll-behavior: auto !important;
+        }
+    }
+}
+
+/*
+ * iOS zooms the page when a field with text under 16px gets focus. On touch
+ * screens, fields use at least 16px. This rule is not in a layer, so it wins
+ * over the text size utilities.
+ */
+@media (pointer: coarse) {
+    input:not([type="checkbox"], [type="radio"], [type="range"]),
+    textarea,
+    select {
+        font-size: max(1rem, 1em);
+    }
+}
+
+/* The page gutter grows into the side safe areas of a phone in landscape. */
+@layer utilities {
+    .px-safe {
+        padding-inline: max(1.25rem, env(safe-area-inset-left), env(safe-area-inset-right));
+    }
+
+    @media (min-width: 40rem) {
+        .px-safe {
+            padding-inline: max(2rem, env(safe-area-inset-left), env(safe-area-inset-right));
         }
     }
 }

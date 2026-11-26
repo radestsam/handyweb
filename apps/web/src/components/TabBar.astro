@@ -16,12 +16,12 @@ const { locale, path } = Astro.props;
 const t = useTranslations(locale);
 const current = path.endsWith("/") ? path : `${path}/`;
 const tab =
-    "flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-xs text-muted no-underline transition-opacity active:opacity-60 aria-[current=page]:text-primary-text";
+    "flex min-h-14 flex-1 flex-col items-center justify-center gap-0.5 py-1.5 text-xs text-muted no-underline select-none transition-opacity [-webkit-touch-callout:none] active:opacity-60 aria-[current=page]:font-semibold aria-[current=page]:text-primary-text";
 ---
 
 <nav
     aria-label={t("nav.tabs")}
-    class="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
+    class="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] ps-[env(safe-area-inset-left)] pe-[env(safe-area-inset-right)] backdrop-blur md:hidden"
 >
     <ul class="mx-auto flex max-w-md">
         <li class="flex flex-1">

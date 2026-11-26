@@ -4,7 +4,8 @@ import { cx } from "./cx";
 /**
  * Mutually exclusive choices on native radio buttons. A raised thumb slides to
  * the chosen option, so the change is visible. It measures the chosen label,
- * so it works in both directions and at any width.
+ * so it works in both directions and at any width. On phones the track fills
+ * the row and the options share it equally, like a native segmented control.
  */
 export function Segmented<T extends string>({
     legend,
@@ -35,11 +36,11 @@ export function Segmented<T extends string>({
     }, [value, options]);
 
     return (
-        <fieldset className="flex min-w-0 flex-col">
+        <fieldset className="flex w-full min-w-0 flex-col sm:w-auto">
             <legend className="mb-2 text-xs font-semibold text-muted">{legend}</legend>
             <div
                 ref={track}
-                className="relative inline-flex w-fit max-w-full flex-wrap rounded-full border border-border bg-surface-2 p-1"
+                className="relative grid w-full auto-cols-fr grid-flow-col rounded-full border border-border bg-surface-2 p-1 sm:inline-grid sm:w-fit sm:auto-cols-auto"
             >
                 {thumb && (
                     <span
@@ -55,7 +56,7 @@ export function Segmented<T extends string>({
                             key={option.value}
                             data-active={active}
                             className={cx(
-                                "relative z-10 inline-flex min-h-9 cursor-pointer items-center rounded-full px-4 text-sm transition-colors duration-200 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
+                                "relative z-10 flex min-h-10 cursor-pointer items-center justify-center rounded-full px-2 text-center text-sm whitespace-nowrap select-none sm:min-h-9 sm:px-4 transition-colors duration-200 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
                                 active ? "font-semibold text-text" : "text-muted hover:text-text",
                                 // Before the first measurement, mark the choice without the thumb.
                                 active && !thumb && "bg-surface",

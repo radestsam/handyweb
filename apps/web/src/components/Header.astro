@@ -22,10 +22,10 @@ const current = path.endsWith("/") ? path : `${path}/`;
 ---
 
 <header class="sticky top-0 z-40 border-b border-border bg-bg/90 backdrop-blur supports-[backdrop-filter]:bg-bg/80">
-    <div class="mx-auto flex h-16 max-w-6xl items-center gap-6 px-5 sm:px-8">
+    <div class="mx-auto flex h-16 max-w-6xl items-center gap-4 px-safe lg:gap-6">
         <a
             href={localePath(locale, "/")}
-            class="inline-flex items-center gap-2.5 text-lg font-bold text-text no-underline"
+            class="inline-flex shrink-0 items-center gap-2.5 text-lg font-bold text-text no-underline"
         >
             <Logo />
             <span>{t("site.name")}</span>
@@ -37,7 +37,7 @@ const current = path.endsWith("/") ? path : `${path}/`;
                         <a
                             href={link.href}
                             aria-current={current.startsWith(link.path) ? "page" : undefined}
-                            class="rounded-full px-3 py-1.5 text-sm text-muted no-underline hover:text-text aria-[current=page]:bg-primary-soft aria-[current=page]:text-primary-text"
+                            class="rounded-full px-3 py-1.5 text-sm whitespace-nowrap text-muted no-underline hover:text-text aria-[current=page]:bg-primary-soft aria-[current=page]:text-primary-text"
                         >
                             {link.label}
                         </a>
@@ -52,8 +52,8 @@ const current = path.endsWith("/") ? path : `${path}/`;
                 class="hidden h-10 items-center gap-2 rounded-full border border-border px-3.5 text-sm text-muted hover:border-text/30 hover:text-text md:inline-flex"
             >
                 <Icon name="search" class="size-4" />
-                <span>{t("nav.search")}</span>
-                <kbd class="ms-3 rounded border border-border px-1.5 font-sans text-xs">/</kbd>
+                <span class="max-lg:sr-only">{t("nav.search")}</span>
+                <kbd class="lg:ms-3 rounded border border-border px-1.5 font-sans text-xs">/</kbd>
             </button>
             <LanguageSwitcher locale={locale} path={path} />
             <ThemeToggle locale={locale} />

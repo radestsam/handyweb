@@ -21,7 +21,7 @@ const { locale, path, title, description } = Astro.props;
     title={title.includes("HandyWeb") ? title : `${title} | HandyWeb`}
     description={description}
 >
-    <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
+    <main id="main" class="mx-auto max-w-6xl px-safe pt-8 sm:pt-12">
         <Breadcrumbs locale={locale} items={[{ label: title }]} />
         <h1 class="mt-6 text-2xl font-bold">{title}</h1>
         <div class="prose-hw mt-8 max-w-[68ch]">

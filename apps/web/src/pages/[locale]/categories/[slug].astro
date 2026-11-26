@@ -36,7 +36,7 @@ const t = useTranslations(locale);
     }
     description={`${category.description[locale]} ${locale === "fa" ? "رایگان، و همه در مرورگر خودتان؛ چیزی به سرور فرستاده نمی‌شود." : "Free, and all in your browser: nothing is sent to a server."}`}
 >
-    <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
+    <main id="main" class="mx-auto max-w-6xl px-safe pt-8 sm:pt-12">
         <Breadcrumbs
             locale={locale}
             items={[{ label: t("nav.tools"), path: "/tools" }, { label: category.title[locale] }]}

@@ -1,0 +1,16 @@
+---
+/*
+ * Text where a Latin term with a hyphen or a dot (SHA-256, UTF-8) never breaks
+ * across two lines. A break at the hyphen splits the term, and in an RTL line
+ * the two halves read in the wrong order.
+ */
+interface Props {
+    text: string;
+}
+
+const parts = Astro.props.text.split(/([A-Za-z0-9]+(?:[-.][A-Za-z0-9]+)+)/);
+---
+
+{parts.map((part, index) =>
+    index % 2 === 1 ? <span class="whitespace-nowrap">{part}</span> : part,
+)}

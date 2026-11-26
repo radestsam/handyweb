@@ -3,6 +3,7 @@ import { localePath, type Locale, type ToolDefinition } from "@handyweb/core";
 import Base from "../../../layouts/Base.astro";
 import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import PrivacyBadge from "../../../components/tool/PrivacyBadge.astro";
+import Unbroken from "../../../components/Unbroken.astro";
 import ToolIsland from "../../../components/tool/ToolIsland";
 import { useTranslations } from "../../../i18n/site";
 import { toolSourceUrl } from "../../../release";
@@ -110,7 +111,7 @@ const jsonLd: unknown[] = [
         jsonLd={jsonLd}
         description={tool.description[locale]}
     >
-        <main id="main" class="mx-auto max-w-6xl px-5 pt-5 sm:px-8 sm:pt-12">
+        <main id="main" class="mx-auto max-w-6xl px-safe pt-5 sm:pt-12">
             <Breadcrumbs
                 locale={locale}
                 items={[
@@ -122,7 +123,7 @@ const jsonLd: unknown[] = [
                 ]}
             />
             <h1 class="mt-4 max-w-[32ch] text-xl font-bold sm:mt-6 sm:text-2xl">
-                {tool.title[locale]}
+                <Unbroken text={tool.title[locale]} />
             </h1>
             <p class="mt-2 max-w-[60ch] text-sm text-muted sm:mt-3 sm:text-base">
                 {tool.description[locale]}
@@ -131,7 +132,10 @@ const jsonLd: unknown[] = [
                 <PrivacyBadge tool={tool} locale={locale} />
             </div>
 
-            <section class="panel mt-6 p-4 sm:mt-10 sm:p-8" data-tool-root={tool.id}>
+            <section
+                class="panel mt-6 -mx-5 rounded-none border-x-0 px-4 py-5 sm:mx-0 sm:mt-10 sm:rounded-[1.25rem] sm:border-x sm:p-8"
+                data-tool-root={tool.id}
+            >
                 <ToolIsland
                     client:only="react"
                     toolId={tool.id}
@@ -149,7 +153,7 @@ const jsonLd: unknown[] = [
 
             {tool.guide && (
                 <section
-                    class="prose-hw mt-16 max-w-[60ch] border-t border-border pt-8"
+                    class="prose-hw mt-12 max-w-[60ch] border-t border-border pt-8 sm:mt-16"
                     aria-labelledby="how"
                 >
                     <h2 id="how">{labels.how}</h2>
@@ -195,7 +199,10 @@ const jsonLd: unknown[] = [
             )}
 
             {related.length > 0 && (
-                <section class="mt-16 border-t border-border pt-8" aria-labelledby="related">
+                <section
+                    class="mt-12 border-t border-border pt-8 sm:mt-16"
+                    aria-labelledby="related"
+                >
                     <h2 id="related" class="text-lg font-bold">
                         {relatedLabel}
                     </h2>
@@ -206,7 +213,9 @@ const jsonLd: unknown[] = [
                                     href={localePath(locale, `/tools/${item.slug}`)}
                                     class="flex min-h-12 flex-col justify-center rounded-xl bg-surface-2 px-4 py-3 text-text no-underline transition-colors hover:bg-border/50 active:bg-border/70"
                                 >
-                                    <span class="font-semibold">{item.title[locale]}</span>
+                                    <span class="font-semibold">
+                                        <Unbroken text={item.title[locale]} />
+                                    </span>
                                     <span class="text-sm text-muted">
                                         {item.description[locale]}
                                     </span>

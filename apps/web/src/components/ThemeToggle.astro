@@ -68,6 +68,11 @@ const labels = {
         const dark = choice === "dark" || (choice === "system" && media.matches);
         root.dataset.theme = dark ? "dark" : "light";
         root.dataset.themeChoice = choice;
+        // The browser bar on phones follows the page, also when the visitor
+        // chose a theme that differs from the system.
+        for (const meta of document.querySelectorAll<HTMLMetaElement>("meta[name='theme-color']")) {
+            meta.content = dark ? "#0d1015" : "#f6f7f9";
+        }
         for (const button of document.querySelectorAll<HTMLElement>("[data-theme-toggle]")) {
             const labels = JSON.parse(button.dataset.labels ?? "{}") as Record<Choice, string>;
             button.setAttribute("aria-label", labels[choice] ?? choice);
