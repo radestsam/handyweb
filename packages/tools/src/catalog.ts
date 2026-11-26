@@ -3,6 +3,7 @@ import { base64Meta } from "./encoding/base64/meta";
 import { jsonFormatterMeta } from "./developer/json-formatter/meta";
 import { hashMeta } from "./crypto/hash/meta";
 import { persianNormalizerMeta } from "./persian/persian-normalizer/meta";
+import { jalaliConverterMeta } from "./persian/jalali-converter/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -13,4 +14,5 @@ export const catalog: readonly ToolDefinition[] = [
     jsonFormatterMeta,
     hashMeta,
     persianNormalizerMeta,
+    jalaliConverterMeta,
 ];

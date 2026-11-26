@@ -30,10 +30,12 @@ describe("search ranking", () => {
     });
 
     it("finds Persian text typed with an Arabic keyboard", () => {
+        expect(top("تاريخ")).toBe("jalali-converter");
         expect(top("ي عربي")).toBe("persian-normalizer");
     });
 
     it("needs every word to match", () => {
+        expect(rank(entries, "base64 jalali")).toEqual([]);
         expect(rank(entries, "   ")).toEqual([]);
     });
 });

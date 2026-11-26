@@ -98,3 +98,24 @@ test.describe("persian normalizer", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("1404/09/05 و 12");
     });
 });
+
+test.describe("jalali converter", () => {
+    test("converts Persian-digit input and shows the weekday", async ({ page }) => {
+        await page.goto("/fa/tools/jalali-converter/");
+        await page.locator("[data-tool-input]").fill("۱۴۰۴/۰۱/۰۱");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("2025/03/21");
+        await expect(page.locator("[data-tool-long]")).toContainText("جمعه");
+    });
+
+    test("rejects Esfand 30 in a common year", async ({ page }) => {
+        await page.goto("/en/tools/jalali-converter/");
+        await page.locator("[data-tool-input]").fill("1404/12/30");
+        await expect(page.getByRole("alert")).toContainText("Esfand 1404 has 29 days.");
+    });
+
+    test("the preset converts Gregorian to Jalali", async ({ page }) => {
+        await page.goto("/en/tools/jalali-converter/?preset=to-jalali");
+        await page.locator("[data-tool-input]").fill("2025-11-26");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("1404/09/05");
+    });
+});

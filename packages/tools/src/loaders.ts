@@ -9,4 +9,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "json-formatter": () => import("./developer/json-formatter/ui"),
     hash: () => import("./crypto/hash/ui"),
     "persian-normalizer": () => import("./persian/persian-normalizer/ui"),
+    "jalali-converter": () => import("./persian/jalali-converter/ui"),
 };
