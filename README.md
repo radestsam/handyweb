@@ -45,7 +45,7 @@ make test-e2e
 | Path             | What it holds                                        |
 | ---------------- | ---------------------------------------------------- |
 | `apps/web`       | The Astro site: routes, layouts, static pages        |
-| `packages/core`  | i18n                                                 |
+| `packages/core`  | Types, registry helpers, i18n                        |
 | `packages/tools` | Every tool: metadata, logic, tests, UI, translations |
 | `tests/`         | Browser tests: end-to-end, accessibility             |
 
@@ -83,6 +83,16 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | `/<locale>/privacy/`    | What the site stores and sends (nothing but the two preference keys) |
 | `/<locale>/opensource/` | License and dependencies                                             |
 | `/<locale>/contribute/` | How to help                                                          |
+
+## Tools
+
+No tool is published yet.
+
+### Add a Tool
+
+1. Create `packages/tools/src/<category>/<id>/` with `meta.ts` and the tool code.
+2. Add the metadata to `packages/tools/src/catalog.ts` and the loader to `packages/tools/src/loaders.ts`. `catalog.ts` imports only `meta.ts` files.
+3. Run `make test` and `make test-e2e`. `packages/tools/src/registry.test.ts` checks the catalog, the categories, and the loaders.
 
 ## Deviations From the Starter Kit
 
