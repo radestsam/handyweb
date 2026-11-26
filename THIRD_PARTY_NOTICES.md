@@ -15,15 +15,16 @@ The full license text of each font is in its package: `node_modules/@fontsource-
 
 `scripts/check-notices.mjs` fails the build when a package in a `dependencies` field is missing here.
 
-| Package                          | License                           | Ships to visitors                  |
-| -------------------------------- | --------------------------------- | ---------------------------------- |
-| `astro`                          | MIT                               | Yes: the island runtime            |
-| `@astrojs/react`                 | MIT                               | Yes: the React renderer of islands |
-| `react`                          | MIT                               | Yes                                |
-| `react-dom`                      | MIT                               | Yes                                |
-| `tailwindcss`                    | MIT                               | Yes: the generated CSS             |
-| `@tailwindcss/vite`              | MIT                               | No: build step only                |
-| `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                |
-| `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                |
+| Package                          | License                           | Ships to visitors                              |
+| -------------------------------- | --------------------------------- | ---------------------------------------------- |
+| `astro`                          | MIT                               | Yes: the island runtime                        |
+| `@astrojs/react`                 | MIT                               | Yes: the React renderer of islands             |
+| `react`                          | MIT                               | Yes                                            |
+| `react-dom`                      | MIT                               | Yes                                            |
+| `tailwindcss`                    | MIT                               | Yes: the generated CSS                         |
+| `@tailwindcss/vite`              | MIT                               | No: build step only                            |
+| `hash-wasm`                      | MIT                               | Yes: streaming SHA-256 for files (WebAssembly) |
+| `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                            |
+| `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                            |
 
 Development tools (TypeScript, ESLint, Prettier, Vitest, Playwright, and others) are not shipped to visitors. Their licenses are in `node_modules/`.
