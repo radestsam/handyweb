@@ -22,21 +22,11 @@ const text = {
     fa: {
         title: "ابزارهای آنلاین رایگان، روی دستگاه خودتان",
         lead: "کدگذاری، هش فایل، تبدیل تاریخ و یکسان‌سازی نوشته فارسی را در مرورگر خودتان انجام دهید. چیزی به سرور فرستاده نمی‌شود.",
-        label: "جستجوی ابزار",
-        placeholder: "چه کاری می‌خواهید انجام دهید؟",
-        hint: "برای نمونه «تاریخ»، «Base64» یا «هش فایل». Enter نخستین یافته را باز می‌کند.",
-        empty: "ابزاری با این نام پیدا نشد. نام دیگری بنویسید یا",
-        all: "همه ابزارها را ببینید",
         privacy: "چطور ورودی شما روی دستگاهتان می‌ماند",
     },
     en: {
         title: "Free online tools that run on your own device",
         lead: "Encode text, hash files, convert Persian dates, and clean up Persian text in your browser. Nothing is sent to a server.",
-        label: "Find a tool",
-        placeholder: "What do you want to do?",
-        hint: "For example “date”, “Base64”, or “file hash”. Press Enter to open the first match.",
-        empty: "No tool matches that. Try another word or",
-        all: "see all tools",
         privacy: "How your input stays on your device",
     },
 }[locale];
@@ -62,75 +52,17 @@ const text = {
     ]}
 >
     <main id="main" class="mx-auto max-w-6xl px-5 sm:px-8">
-        <section class="pt-12 pb-14 sm:pt-20 sm:pb-20" aria-labelledby="hero-title">
+        <section class="pt-12 pb-12 sm:pt-20 sm:pb-16" aria-labelledby="hero-title">
             <h1 id="hero-title" class="max-w-[30ch] text-xl font-bold sm:text-2xl">
                 {text.title}
             </h1>
             <p class="mt-3 max-w-[60ch] text-muted">{text.lead}</p>
-
-            <div class="mt-10 sm:mt-14">
-                <label for="tool-filter" class="sr-only">
-                    {text.label}
-                </label>
-                <input
-                    id="tool-filter"
-                    type="search"
-                    autocomplete="off"
-                    enterkeyhint="go"
-                    placeholder={text.placeholder}
-                    aria-describedby="tool-filter-hint"
-                    data-tool-filter
-                    class="w-full border-0 border-b-2 border-border bg-transparent pb-3 text-display font-semibold tracking-tight text-text outline-none placeholder:font-normal placeholder:text-muted/70 focus:border-primary"
-                />
-                <p id="tool-filter-hint" class="mt-3 text-sm text-muted">
-                    {text.hint}
-                </p>
-            </div>
         </section>
 
         <ToolList locale={locale} groups={groups} />
-
-        <p role="status" class="py-8 text-muted" data-tool-empty hidden>
-            {text.empty} <a href={localePath(locale, "/tools")}>{text.all}</a>.
-        </p>
 
         <p class="mt-16 text-sm">
             <a href={localePath(locale, "/privacy")}>{text.privacy}</a>
         </p>
     </main>
 </Base>
-
-<script>
-    import { normalizeForSearch } from "@handyweb/core/i18n";
-
-    // Filters the tool rows in place. The query never leaves the page.
-    const input = document.querySelector<HTMLInputElement>("[data-tool-filter]");
-    const empty = document.querySelector<HTMLElement>("[data-tool-empty]");
-    const groups = [...document.querySelectorAll<HTMLElement>("[data-tool-group]")];
-
-    input?.addEventListener("input", () => {
-        const words = normalizeForSearch(input.value).split(" ").filter(Boolean);
-        let shown = 0;
-        for (const group of groups) {
-            let inGroup = 0;
-            for (const row of group.querySelectorAll<HTMLElement>("[data-tool-row]")) {
-                const haystack = row.dataset.haystack ?? "";
-                const match = words.every((word) => haystack.includes(word));
-                row.hidden = !match;
-                if (match) inGroup++;
-            }
-            group.hidden = inGroup === 0;
-            shown += inGroup;
-        }
-        if (empty) empty.hidden = shown > 0;
-    });
-
-    input?.addEventListener("keydown", (event) => {
-        if (event.key !== "Enter") return;
-        const first = document.querySelector<HTMLAnchorElement>("[data-tool-row]:not([hidden]) a");
-        if (first && input.value.trim() !== "") {
-            event.preventDefault();
-            window.location.href = first.href;
-        }
-    });
-</script>

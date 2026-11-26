@@ -1,15 +1,8 @@
 ---
 /*
- * Tools grouped by category, as quiet rows rather than cards. Each row carries
- * its normalized search text, so the home page can filter the list in place.
+ * Tools grouped by category, as quiet rows rather than cards.
  */
-import {
-    localePath,
-    normalizeForSearch,
-    type Locale,
-    type ToolCategory,
-    type ToolDefinition,
-} from "@handyweb/core";
+import { localePath, type Locale, type ToolCategory, type ToolDefinition } from "@handyweb/core";
 
 interface Props {
     locale: Locale;
@@ -19,16 +12,6 @@ interface Props {
 }
 
 const { locale, groups, headings = true } = Astro.props;
-const haystack = (tool: ToolDefinition) =>
-    normalizeForSearch(
-        [
-            tool.title.fa,
-            tool.title.en,
-            ...tool.keywords.fa,
-            ...tool.keywords.en,
-            ...tool.aliases.map((a) => a.replace(/-/g, " ")),
-        ].join(" | "),
-    );
 const count = (n: number) =>
     locale === "fa"
         ? `${new Intl.NumberFormat("fa-IR").format(n)} ابزار`
@@ -54,7 +37,7 @@ const count = (n: number) =>
             )}
             <ul class="border-t border-border" data-tool-list>
                 {tools.map((tool) => (
-                    <li class="border-b border-border" data-tool-row data-haystack={haystack(tool)}>
+                    <li class="border-b border-border" data-tool-row>
                         <a
                             href={localePath(locale, `/tools/${tool.slug}`)}
                             class="group grid gap-1 rounded-lg px-2 py-4 text-text no-underline transition-colors duration-150 hover:bg-surface-2 active:bg-border/40 sm:grid-cols-[minmax(14rem,2fr)_3fr] sm:gap-8 sm:py-5"
