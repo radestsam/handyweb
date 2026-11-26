@@ -42,12 +42,12 @@ make test-e2e
 
 ## Repository Layout
 
-| Path             | What it holds                                           |
-| ---------------- | ------------------------------------------------------- |
-| `apps/web`       | The Astro site: routes, layouts, static pages           |
-| `packages/core`  | Types, registry helpers, runtime, worker protocol, i18n |
-| `packages/tools` | Every tool: metadata, logic, tests, UI, translations    |
-| `tests/`         | Browser tests: end-to-end, accessibility                |
+| Path             | What it holds                                                         |
+| ---------------- | --------------------------------------------------------------------- |
+| `apps/web`       | The Astro site: routes, layouts, static pages                         |
+| `packages/core`  | Types, registry helpers, runtime, worker protocol, file helpers, i18n |
+| `packages/tools` | Every tool: metadata, logic, tests, UI, translations                  |
+| `tests/`         | Browser tests: end-to-end, accessibility                              |
 
 The dependency direction is `apps/web` to `packages/tools` to `packages/core`. ESLint stops an import in the other direction.
 
