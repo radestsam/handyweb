@@ -44,10 +44,10 @@ make test-e2e
 
 | Path             | What it holds                                        |
 | ---------------- | ---------------------------------------------------- |
-| `apps/web`       | The Astro site: routes, layouts                      |
+| `apps/web`       | The Astro site: routes, layouts, static pages        |
 | `packages/core`  | i18n                                                 |
 | `packages/tools` | Every tool: metadata, logic, tests, UI, translations |
-| `tests/`         | Browser tests: end-to-end                            |
+| `tests/`         | Browser tests: end-to-end, accessibility             |
 
 The dependency direction is `apps/web` to `packages/tools` to `packages/core`. ESLint stops an import in the other direction.
 
@@ -73,6 +73,16 @@ Dependabot proposes weekly updates for npm packages and GitHub Actions.
 Persian (`fa`, right to left) is the default language. English (`en`, left to right) is the second. Site strings are in `apps/web/src/i18n/site.ts`, with a typed `t(key)`. Show code, hashes, URLs, and file names with the `Ltr` component, so they stay left to right on Persian pages.
 
 Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes to `/fa/` (`apps/web/public/_redirects` on the host, and a meta refresh in the page). Each page lists its other-language version with `hreflang`. The language switcher stores the last choice in `handyweb:locale`. It never redirects a visitor.
+
+## Pages
+
+| Path                    | Page                                                                 |
+| ----------------------- | -------------------------------------------------------------------- |
+| `/<locale>/`            | Home                                                                 |
+| `/<locale>/about/`      | About the project                                                    |
+| `/<locale>/privacy/`    | What the site stores and sends (nothing but the two preference keys) |
+| `/<locale>/opensource/` | License and dependencies                                             |
+| `/<locale>/contribute/` | How to help                                                          |
 
 ## Deviations From the Starter Kit
 

@@ -1,0 +1,32 @@
+---
+import { localePath, type Locale } from "@handyweb/core";
+import { useTranslations } from "../i18n/site";
+
+interface Props {
+    locale: Locale;
+    /** The trail after "Home". The last item is the current page. */
+    items: Array<{ label: string; path?: string }>;
+}
+
+const { locale, items } = Astro.props;
+const t = useTranslations(locale);
+const trail = [{ label: t("nav.home"), path: "/" }, ...items];
+---
+
+<nav aria-label={t("nav.breadcrumbs")} class="text-sm text-muted">
+    <ol class="flex flex-wrap items-center gap-1">
+        {trail.map((item, index) => {
+            const last = index === trail.length - 1;
+            return (
+                <li class="inline-flex items-center gap-1">
+                    {last || item.path === undefined ? (
+                        <span aria-current={last ? "page" : undefined}>{item.label}</span>
+                    ) : (
+                        <a href={localePath(locale, item.path)}>{item.label}</a>
+                    )}
+                    {!last && <span aria-hidden="true">›</span>}
+                </li>
+            );
+        })}
+    </ol>
+</nav>

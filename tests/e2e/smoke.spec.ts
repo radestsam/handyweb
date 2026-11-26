@@ -41,9 +41,9 @@ test("each page links to its counterpart in the other language", async ({ page }
     expect(await page.evaluate(() => localStorage.getItem("handyweb:locale"))).toBe("en");
 });
 
-test("a hash stays left to right inside a Persian page", async ({ page }) => {
-    await page.goto("/fa/");
-    const code = page.locator('[data-testid="hash-sample"] code');
+test("code stays left to right inside a Persian page", async ({ page }) => {
+    await page.goto("/fa/privacy/");
+    const code = page.locator("main code").first();
     await expect(code).toHaveAttribute("dir", "ltr");
     expect(await code.evaluate((el) => getComputedStyle(el).direction)).toBe("ltr");
     expect(await code.evaluate((el) => getComputedStyle(el).unicodeBidi)).toBe("isolate");

@@ -1,0 +1,50 @@
+---
+import type { Locale } from "@handyweb/core";
+import Page from "../../layouts/Page.astro";
+import { localeStaticPaths } from "../../i18n/static-paths";
+
+export const getStaticPaths = localeStaticPaths;
+
+const locale = Astro.params.locale as Locale;
+const title = locale === "fa" ? "مشارکت" : "Contribute";
+const repo = "https://github.com/radestsam/handyweb";
+---
+
+<Page locale={locale} path="/contribute" title={title}>
+    {locale === "fa" ? (
+        <>
+            <p>هر کمکی ارزشمند است: گزارش خطا، پیشنهاد ابزار تازه، بهبود ترجمه یا نوشتن کد.</p>
+            <ul>
+                <li>
+                    گزارش خطا یا پیشنهاد: یک <a href={`${repo}/issues`}>issue در GitHub</a> باز
+                    کنید.
+                </li>
+                <li>
+                    افزودن ابزار: راهنمای فایل CONTRIBUTING.md در <a href={repo}>مخزن کد</a> را
+                    بخوانید.
+                </li>
+                <li>
+                    گزارش آسیب‌پذیری امنیتی: آن را عمومی منتشر نکنید. روش آن در SECURITY.md آمده
+                    است.
+                </li>
+            </ul>
+        </>
+    ) : (
+        <>
+            <p>
+                Every kind of help counts: bug reports, ideas for new tools, better translations, or
+                code.
+            </p>
+            <ul>
+                <li>
+                    To report a bug or suggest a tool, open an{" "}
+                    <a href={`${repo}/issues`}>issue on GitHub</a>.
+                </li>
+                <li>
+                    To add a tool, read CONTRIBUTING.md in the <a href={repo}>repository</a>.
+                </li>
+                <li>To report a security problem, do not post it in public. See SECURITY.md.</li>
+            </ul>
+        </>
+    )}
+</Page>

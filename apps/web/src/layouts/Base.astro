@@ -2,8 +2,8 @@
 import "../styles/global.css";
 import { DIRECTION, LANGUAGE_TAG, LOCALES, localePath, type Locale } from "@handyweb/core";
 import Fonts from "../components/Fonts.astro";
-import ThemeToggle from "../components/ThemeToggle.astro";
-import LanguageSwitcher from "../components/LanguageSwitcher.astro";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
 import themeInit from "../scripts/theme-init.js?raw";
 import { useTranslations } from "../i18n/site";
 
@@ -12,7 +12,7 @@ interface Props {
     /** The locale-neutral path of the page, for example "/" or "/about". */
     path: string;
     title: string;
-    description?: string;
+    description?: string | undefined;
 }
 
 const { locale, path, title, description } = Astro.props;
@@ -42,11 +42,17 @@ const xDefault = new URL(localePath("fa", path), site).href;
         <script is:inline set:html={themeInit} />
         <Fonts lang={locale} />
     </head>
-    <body class="min-h-dvh bg-bg text-text antialiased">
-        <div class="flex items-center justify-end gap-2 p-4">
-            <LanguageSwitcher locale={locale} path={path} />
-            <ThemeToggle />
+    <body class="flex min-h-dvh flex-col bg-bg text-text antialiased">
+        <a
+            href="#main"
+            class="sr-only focus:not-sr-only focus:absolute focus:start-2 focus:top-2 focus:z-50 focus:rounded-md focus:bg-surface focus:px-3 focus:py-2"
+        >
+            {t("nav.skip")}
+        </a>
+        <Header locale={locale} path={path} />
+        <div class="flex-1">
+            <slot />
         </div>
-        <slot />
+        <Footer locale={locale} />
     </body>
 </html>

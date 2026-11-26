@@ -1,0 +1,125 @@
+---
+/*
+ * The privacy page must describe what the code and the hosts actually do
+ * (plan section 9). Update it in the same pull request as any change to
+ * storage, requests, or hosting. The hosting section is filled in at the
+ * launch gate (T2.4).
+ */
+import type { Locale } from "@handyweb/core";
+import Page from "../../layouts/Page.astro";
+import Ltr from "../../components/Ltr.astro";
+import { localeStaticPaths } from "../../i18n/static-paths";
+
+export const getStaticPaths = localeStaticPaths;
+
+const locale = Astro.params.locale as Locale;
+const title = locale === "fa" ? "حریم خصوصی" : "Privacy";
+---
+
+<Page locale={locale} path="/privacy" title={title}>
+    {locale === "fa" ? (
+        <>
+            <p>
+                ابزارهای HandyWeb روی مرورگر خود شما اجرا می‌شوند. متن، فایل و نتیجه‌ای که در یک
+                ابزار وارد می‌کنید روی دستگاه شما می‌ماند و به سرور HandyWeb یا هیچ سرویس دیگری
+                ارسال نمی‌شود.
+            </p>
+            <h2>آنچه جمع‌آوری نمی‌کنیم</h2>
+            <ul>
+                <li>هیچ ابزار تحلیل آمار، ردیاب تبلیغاتی یا ضبط جلسه در سایت وجود ندارد.</li>
+                <li>هیچ کوکی‌ای تنظیم نمی‌شود.</li>
+                <li>ورودی‌ها و نتیجه‌های ابزارها ذخیره نمی‌شوند. با بستن صفحه از بین می‌روند.</li>
+                <li>
+                    قلم‌ها و همه فایل‌های سایت از خود HandyWeb بارگیری می‌شوند، نه از سرویس دیگری.
+                </li>
+            </ul>
+            <h2>آنچه در مرورگر شما ذخیره می‌شود</h2>
+            <p>فقط این دو تنظیم، و فقط وقتی خودتان آن‌ها را تغییر دهید:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>کلید</th>
+                        <th>محتوا</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <Ltr as="code">handyweb:theme</Ltr>
+                        </td>
+                        <td>پوسته انتخابی: روشن یا تیره</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <Ltr as="code">handyweb:locale</Ltr>
+                        </td>
+                        <td>آخرین زبانی که انتخاب کرده‌اید</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>
+                برای پاک کردن آن‌ها، داده‌های سایت <Ltr>handyweb.ir</Ltr> را از تنظیمات مرورگر پاک
+                کنید.
+            </p>
+            <h2>میزبانی</h2>
+            <p>
+                مانند هر وب‌سایتی، شرکت میزبان هنگام بارگیری صفحه‌ها اطلاعات اتصال مانند نشانی IP و
+                زمان درخواست را دریافت می‌کند. نام شرکت‌های میزبان و پیوند سیاست حریم خصوصی آن‌ها
+                پیش از راه‌اندازی عمومی در این بخش آورده می‌شود.
+            </p>
+        </>
+    ) : (
+        <>
+            <p>
+                HandyWeb tools run in your own browser. The text, files, and results that you use in
+                a tool stay on your device. They are not sent to a HandyWeb server or to any other
+                service.
+            </p>
+            <h2>What We Do Not Collect</h2>
+            <ul>
+                <li>
+                    The site has no analytics, no advertising trackers, and no session recording.
+                </li>
+                <li>The site sets no cookies.</li>
+                <li>
+                    Tool inputs and results are not stored. They are gone when you close the page.
+                </li>
+                <li>
+                    Fonts and every other file load from HandyWeb itself, not from another service.
+                </li>
+            </ul>
+            <h2>What Your Browser Stores</h2>
+            <p>Only these two settings, and only when you change them:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Key</th>
+                        <th>Content</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <Ltr as="code">handyweb:theme</Ltr>
+                        </td>
+                        <td>Your theme: light or dark</td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <Ltr as="code">handyweb:locale</Ltr>
+                        </td>
+                        <td>The last language you chose</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>To remove them, clear the site data of handyweb.ir in your browser settings.</p>
+            <h2>Hosting</h2>
+            <p>
+                Like every website, the hosting company receives connection data, such as your IP
+                address and the time of the request, when it serves a page. The names of the hosting
+                companies and links to their privacy policies will be listed here before the public
+                launch.
+            </p>
+        </>
+    )}
+</Page>

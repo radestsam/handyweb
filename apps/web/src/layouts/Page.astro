@@ -1,0 +1,25 @@
+---
+/* A text page: breadcrumbs, a title, and prose. */
+import type { Locale } from "@handyweb/core";
+import Base from "./Base.astro";
+import Breadcrumbs from "../components/Breadcrumbs.astro";
+
+interface Props {
+    locale: Locale;
+    path: string;
+    title: string;
+    description?: string | undefined;
+}
+
+const { locale, path, title, description } = Astro.props;
+---
+
+<Base locale={locale} path={path} title={title} description={description}>
+    <main id="main" class="mx-auto max-w-3xl px-4 py-6">
+        <Breadcrumbs locale={locale} items={[{ label: title }]} />
+        <h1 class="mt-4 text-3xl font-bold">{title}</h1>
+        <div class="prose-hw mt-6">
+            <slot />
+        </div>
+    </main>
+</Base>

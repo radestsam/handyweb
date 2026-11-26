@@ -9,6 +9,11 @@ import { join, relative } from "node:path";
 const ROOTS = ["apps/web/src", "packages/core/src", "packages/tools/src"];
 const EXTENSIONS = /\.(astro|tsx|ts|css)$/;
 
+// Class lists in markup: class="...", className="...", class:list={[...]},
+// and template strings inside them. Only these are checked for utilities, so
+// prose such as "right-to-left" does not count.
+const CLASS_ATTRIBUTE = /\b(?:class|className|class:list)=(?:"([^"]*)"|'([^']*)'|\{([^}]*)\})/g;
+
 // Tailwind utilities, matched as whole class tokens.
 const UTILITY =
     /(?<![\w-])-?(?:ml|mr|pl|pr|left|right|border-l|border-r|rounded-l|rounded-r|rounded-tl|rounded-tr|rounded-bl|rounded-br|scroll-ml|scroll-mr|scroll-pl|scroll-pr)-[\w./[\]-]+|(?<![\w-])(?:text-left|text-right|float-left|float-right|clear-left|clear-right|border-l|border-r)(?![\w-])/g;
@@ -30,13 +35,19 @@ for (const root of ROOTS) {
         const lines = readFileSync(file, "utf8").split("\n");
         lines.forEach((line, index) => {
             if (line.includes("logical-css-ignore")) return;
-            const pattern = file.endsWith(".css") ? PROPERTY : UTILITY;
-            for (const match of line.matchAll(pattern)) {
-                console.error(
-                    `${relative(".", file)}:${index + 1}: physical direction "${match[0]}"`,
-                );
-                failed++;
-            }
+            const targets = file.endsWith(".css")
+                ? [[line, PROPERTY]]
+                : [...line.matchAll(CLASS_ATTRIBUTE)].map((m) => [
+                      m[1] ?? m[2] ?? m[3] ?? "",
+                      UTILITY,
+                  ]);
+            for (const [text, pattern] of targets)
+                for (const match of text.matchAll(pattern)) {
+                    console.error(
+                        `${relative(".", file)}:${index + 1}: physical direction "${match[0]}"`,
+                    );
+                    failed++;
+                }
         });
     }
 }

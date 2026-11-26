@@ -1,16 +1,43 @@
 ---
 /*
  * Cycles the theme: system, light, dark. The choice is the one allowed
- * preference key `handyweb:theme` (D5). T0.8 moves this into the header.
+ * preference key `handyweb:theme` (D5).
  */
+import type { Locale } from "@handyweb/core";
+import { useTranslations } from "../i18n/site";
+
+interface Props {
+    locale: Locale;
+}
+
+const t = useTranslations(Astro.props.locale);
+const labels = {
+    system: t("theme.system"),
+    light: t("theme.light"),
+    dark: t("theme.dark"),
+};
 ---
 
 <button
     type="button"
     data-theme-toggle
-    class="rounded-md border border-border bg-surface px-3 py-1.5 text-sm"
+    data-labels={JSON.stringify(labels)}
+    title={t("theme.button")}
+    class="inline-flex items-center gap-1.5 rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm hover:bg-surface-2"
 >
-    <span data-theme-label>Theme</span>
+    <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        class="size-4"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+    >
+        <circle cx="12" cy="12" r="9"></circle>
+        <path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"></path>
+    </svg>
+    <span>{t("theme.label")}:</span>
+    <span data-theme-label>{labels.system}</span>
 </button>
 
 <script>
@@ -43,8 +70,10 @@
         const dark = choice === "dark" || (choice === "system" && media.matches);
         root.dataset.theme = dark ? "dark" : "light";
         root.dataset.themeChoice = choice;
-        for (const label of document.querySelectorAll("[data-theme-label]")) {
-            label.textContent = choice;
+        for (const button of document.querySelectorAll<HTMLElement>("[data-theme-toggle]")) {
+            const labels = JSON.parse(button.dataset.labels ?? "{}") as Record<Choice, string>;
+            const label = button.querySelector("[data-theme-label]");
+            if (label) label.textContent = labels[choice] ?? choice;
         }
     }
 

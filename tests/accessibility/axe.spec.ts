@@ -1,0 +1,66 @@
+import AxeBuilder from "@axe-core/playwright";
+import { expect, test } from "@playwright/test";
+
+// Every static page, in both languages and both themes, must have no axe
+// violations at WCAG 2.2 AA. Tool pages are added by the registry (T0.10).
+const PAGES = ["/", "/about/", "/privacy/", "/opensource/", "/contribute/"];
+const LOCALES = ["fa", "en"] as const;
+const THEMES = ["light", "dark"] as const;
+
+for (const locale of LOCALES) {
+    for (const path of PAGES) {
+        for (const theme of THEMES) {
+            test(`/${locale}${path} has no axe violations (${theme})`, async ({ page }) => {
+                await page.addInitScript((value) => {
+                    localStorage.setItem("handyweb:theme", value);
+                }, theme);
+                await page.goto(`/${locale}${path}`);
+                await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+                const results = await new AxeBuilder({ page })
+                    .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
+                    .analyze();
+                expect(
+                    results.violations.map((v) => `${v.id}: ${v.help} (${v.nodes.length})`),
+                ).toEqual([]);
+            });
+        }
+    }
+}
+
+test("a keyboard user reaches the skip link first and lands on main", async ({
+    page,
+    browserName,
+}) => {
+    test.skip(browserName === "webkit", "WebKit skips links on Tab unless the OS setting is on.");
+    await page.goto("/en/about/");
+    await page.keyboard.press("Tab");
+    const skip = page.locator('a[href="#main"]');
+    await expect(skip).toBeFocused();
+    await expect(skip).toBeVisible();
+    await page.keyboard.press("Enter");
+    await expect(page).toHaveURL(/#main$/);
+});
+
+test("every interactive control in the header is reachable by Tab", async ({
+    page,
+    browserName,
+}) => {
+    test.skip(browserName === "webkit", "WebKit skips links on Tab unless the OS setting is on.");
+    await page.goto("/fa/");
+    const reached = new Set<string>();
+    for (let i = 0; i < 12; i++) {
+        await page.keyboard.press("Tab");
+        const id = await page.evaluate(() => {
+            const el = document.activeElement as HTMLElement | null;
+            return el?.dataset.themeToggle !== undefined
+                ? "theme"
+                : el?.dataset.localeSwitch
+                  ? "locale"
+                  : (el?.getAttribute("href") ?? "");
+        });
+        reached.add(id);
+    }
+    expect(reached).toContain("theme");
+    expect(reached).toContain("locale");
+    expect(reached).toContain("/fa/about/");
+});

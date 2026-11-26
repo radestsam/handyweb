@@ -1,0 +1,47 @@
+---
+import type { Locale } from "@handyweb/core";
+import Page from "../../layouts/Page.astro";
+import { localeStaticPaths } from "../../i18n/static-paths";
+
+export const getStaticPaths = localeStaticPaths;
+
+const locale = Astro.params.locale as Locale;
+const title = locale === "fa" ? "متن‌باز" : "Open Source";
+const repo = "https://github.com/radestsam/handyweb";
+---
+
+<Page locale={locale} path="/opensource" title={title}>
+    {locale === "fa" ? (
+        <>
+            <p>
+                کد منبع HandyWeb با مجوز Apache 2.0 منتشر شده است. می‌توانید آن را بخوانید، اجرا
+                کنید، تغییر دهید و دوباره منتشر کنید.
+            </p>
+            <p>
+                مخزن کد: <a href={repo}>github.com/radestsam/handyweb</a>
+            </p>
+            <h2>اجزای دیگران</h2>
+            <p>
+                HandyWeb از قلم‌های Noto Sans و Estedad (هر دو با مجوز SIL Open Font License 1.1) و
+                چند کتابخانه متن‌باز استفاده می‌کند. فهرست کامل در فایل THIRD_PARTY_NOTICES.md مخزن
+                آمده است.
+            </p>
+        </>
+    ) : (
+        <>
+            <p>
+                The HandyWeb source code is published under the Apache 2.0 license. You can read it,
+                run it, change it, and publish it again.
+            </p>
+            <p>
+                Repository: <a href={repo}>github.com/radestsam/handyweb</a>
+            </p>
+            <h2>Third-Party Components</h2>
+            <p>
+                HandyWeb uses the Noto Sans and Estedad fonts (both under the SIL Open Font License
+                1.1) and a few open-source libraries. The full list is in the THIRD_PARTY_NOTICES.md
+                file of the repository.
+            </p>
+        </>
+    )}
+</Page>

@@ -1,6 +1,6 @@
 ---
 import type { Locale } from "@handyweb/core";
-import Base from "../../layouts/Base.astro";
+import Page from "../../layouts/Page.astro";
 import { useTranslations } from "../../i18n/site";
 import { localeStaticPaths } from "../../i18n/static-paths";
 
@@ -10,9 +10,39 @@ const locale = Astro.params.locale as Locale;
 const t = useTranslations(locale);
 ---
 
-<Base locale={locale} path="/about" title={t("about.title")}>
-    <main id="main" class="mx-auto max-w-3xl p-4">
-        <h1 class="text-3xl font-bold">{t("about.title")}</h1>
-        <p>{t("about.body")}</p>
-    </main>
-</Base>
+<Page locale={locale} path="/about" title={t("about.title")}>
+    {locale === "fa" ? (
+        <>
+            <p>
+                HandyWeb مجموعه‌ای رایگان و متن‌باز از ابزارهای کاربردی وب است: ابزارهای متن،
+                کدگذاری، رمزنگاری، برنامه‌نویسی، تاریخ و ابزارهای ویژه زبان فارسی.
+            </p>
+            <h2>اصول ما</h2>
+            <ul>
+                <li>رایگان، بدون ثبت‌نام و بدون تبلیغات.</li>
+                <li>پردازش روی دستگاه شما. ورودی ابزارها به هیچ سروری ارسال نمی‌شود.</li>
+                <li>بدون ابزار تحلیل آمار و بدون ردیاب.</li>
+                <li>فارسی در اولویت: راست‌به‌چپ، تقویم جلالی و ابزارهای ویژه متن فارسی.</li>
+                <li>کد منبع باز است و هر کسی می‌تواند آن را بررسی کند یا بهتر کند.</li>
+            </ul>
+        </>
+    ) : (
+        <>
+            <p>
+                HandyWeb is a free, open-source collection of useful web tools: text, encoding,
+                cryptography, developer, date, and Persian-language tools.
+            </p>
+            <h2>Our Principles</h2>
+            <ul>
+                <li>Free, with no sign-up and no ads.</li>
+                <li>Processing happens on your device. Tool input is never sent to a server.</li>
+                <li>No analytics and no trackers.</li>
+                <li>
+                    Persian first: right-to-left layout, the Jalali calendar, and tools for Persian
+                    text.
+                </li>
+                <li>The source code is open, so anyone can check it or make it better.</li>
+            </ul>
+        </>
+    )}
+</Page>
