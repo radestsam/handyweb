@@ -45,7 +45,7 @@ make test-e2e
 | Path             | What it holds                                        |
 | ---------------- | ---------------------------------------------------- |
 | `apps/web`       | The Astro site                                       |
-| `packages/core`  | Code shared by the site and the tools                |
+| `packages/core`  | i18n                                                 |
 | `packages/tools` | Every tool: metadata, logic, tests, UI, translations |
 | `tests/`         | Browser tests: end-to-end                            |
 
@@ -67,6 +67,10 @@ Dependabot proposes weekly updates for npm packages and GitHub Actions.
 - The fonts (Noto Sans and Estedad) are self-hosted. The site loads nothing from another origin.
 - The theme follows the system until the visitor picks one. The choice is stored in `handyweb:theme`.
 - Layout CSS uses logical properties only (`ms-*`, `me-*`, `start`, `end`). `scripts/check-logical-css.mjs` stops physical ones.
+
+## Languages
+
+Persian (`fa`, right to left) is the default language. English (`en`, left to right) is the second. Site strings are in `apps/web/src/i18n/site.ts`, with a typed `t(key)`. Show code, hashes, URLs, and file names with the `Ltr` component, so they stay left to right on Persian pages.
 
 ## Deviations From the Starter Kit
 

@@ -1,0 +1,17 @@
+---
+/*
+ * Shows code, a hash, a URL, or a file name left to right, also inside a
+ * Persian (RTL) page, isolated from the text around it. Use it for any value
+ * that must never be mirrored.
+ */
+interface Props {
+    as?: "span" | "code" | "bdi" | "div";
+    class?: string;
+}
+
+const { as: Tag = "span", class: className } = Astro.props;
+---
+
+<Tag dir="ltr" class:list={["ltr-isolate", className]}>
+    <slot />
+</Tag>
