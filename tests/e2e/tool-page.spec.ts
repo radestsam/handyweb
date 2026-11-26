@@ -82,3 +82,19 @@ test.describe("json formatter", () => {
         expect(workers.length).toBeGreaterThan(0);
     });
 });
+
+test.describe("persian normalizer", () => {
+    test("shows each change and its count", async ({ page }) => {
+        await page.goto("/fa/tools/persian-normalizer/");
+        await page.locator("[data-tool-input]").fill("كتابـــهاي ١٢ ساله");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("کتابهای ۱۲ ساله");
+        await expect(page.locator("[data-tool-counts] li")).toHaveCount(3);
+        await expect(page.locator("[data-tool-diff] del").first()).toBeVisible();
+    });
+
+    test("the digit preset converts every digit to Latin", async ({ page }) => {
+        await page.goto("/en/tools/persian-normalizer/?preset=digits-to-latin");
+        await page.locator("[data-tool-input]").fill("۱۴۰۴/۰۹/۰۵ و ١٢");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("1404/09/05 و 12");
+    });
+});
