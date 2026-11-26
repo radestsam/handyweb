@@ -31,6 +31,9 @@ const fa = {
     "footer.license": "متن‌باز با مجوز Apache 2.0",
     "footer.local": "ابزارها روی دستگاه شما اجرا می‌شوند. هیچ ورودی‌ای ذخیره یا ارسال نمی‌شود.",
     "theme.button": "تغییر پوسته",
+    "nav.search": "جستجو",
+    "nav.toolsShort": "ابزارها",
+    "nav.tabs": "پیمایش اصلی",
     "about.title": "درباره HandyWeb",
     "about.body":
         "HandyWeb مجموعه‌ای از ابزارهای ساده و کاربردی است که کاملا در مرورگر شما اجرا می‌شوند.",
@@ -66,6 +69,9 @@ const en: Messages = {
     "footer.license": "Open source under the Apache 2.0 license",
     "footer.local": "The tools run on your device. No input is stored or sent.",
     "theme.button": "Change the theme",
+    "nav.search": "Search",
+    "nav.toolsShort": "Tools",
+    "nav.tabs": "Main navigation",
     "about.title": "About HandyWeb",
     "about.body":
         "HandyWeb is a collection of simple, useful tools that run entirely in your browser.",

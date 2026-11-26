@@ -67,6 +67,7 @@ Dependabot proposes weekly updates for npm packages and GitHub Actions.
 - The fonts (Noto Sans and Estedad) are self-hosted. The site loads nothing from another origin.
 - The theme follows the system until the visitor picks one. The choice is stored in `handyweb:theme`.
 - Layout CSS uses logical properties only (`ms-*`, `me-*`, `start`, `end`). `scripts/check-logical-css.mjs` stops physical ones.
+- On phones, a bottom tab bar replaces the header links.
 
 ## Languages
 

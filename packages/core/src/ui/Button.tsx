@@ -5,8 +5,8 @@ type Variant = "primary" | "secondary" | "ghost";
 
 const VARIANTS: Record<Variant, string> = {
     primary: "bg-primary text-primary-fg hover:bg-primary-hover border-transparent",
-    secondary: "bg-surface text-text hover:bg-surface-2 border-border",
-    ghost: "bg-transparent text-text hover:bg-surface-2 border-transparent",
+    secondary: "bg-surface-2 text-text hover:bg-border/60 border-transparent",
+    ghost: "bg-transparent text-muted hover:text-text hover:bg-surface-2 border-transparent",
 };
 
 export function Button({
@@ -19,7 +19,7 @@ export function Button({
         <button
             type={type}
             className={cx(
-                "inline-flex min-h-9 items-center justify-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-medium transition-colors disabled:cursor-not-allowed disabled:opacity-50",
+                "inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border px-5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-40",
                 VARIANTS[variant],
                 className,
             )}

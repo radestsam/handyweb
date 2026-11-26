@@ -45,7 +45,7 @@ const source = toolSourceUrl(tool.category, tool.id);
         title={`${tool.title[locale]} | ${t("site.name")}`}
         description={tool.description[locale]}
     >
-        <main id="main" class="mx-auto max-w-5xl px-4 py-6">
+        <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
             <Breadcrumbs
                 locale={locale}
                 items={[
@@ -56,14 +56,14 @@ const source = toolSourceUrl(tool.category, tool.id);
                     { label: tool.title[locale] },
                 ]}
             />
-            <h1 class="mt-4 text-3xl font-bold">{tool.title[locale]}</h1>
-            <p class="mt-2 max-w-3xl text-muted">{tool.description[locale]}</p>
+            <h1 class="mt-6 max-w-[32ch] text-2xl font-bold">{tool.title[locale]}</h1>
+            <p class="mt-3 max-w-[60ch] text-muted">{tool.description[locale]}</p>
             <div class="mt-4">
                 <PrivacyBadge tool={tool} locale={locale} />
             </div>
 
             <section
-                class="mt-6 rounded-xl border border-border bg-surface p-4 sm:p-6"
+                class="mt-10 border-t border-border pt-8 sm:mt-12 sm:pt-10"
                 data-tool-root={tool.id}
             >
                 <ToolIsland
@@ -82,13 +82,13 @@ const source = toolSourceUrl(tool.category, tool.id);
             </section>
 
             {tool.limitations && (
-                <section class="prose-hw mt-8 max-w-3xl">
+                <section class="prose-hw mt-16 max-w-[60ch] border-t border-border pt-8">
                     <h2>{heading}</h2>
                     <p>{tool.limitations[locale]}</p>
                 </section>
             )}
 
-            <p class="mt-8 text-sm">
+            <p class="mt-10 text-sm">
                 <a href={source}>
                     {locale === "fa" ? "کد منبع این ابزار" : "Source code of this tool"}
                 </a>

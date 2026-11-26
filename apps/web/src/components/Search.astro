@@ -26,30 +26,10 @@ const text = {
 }[locale];
 ---
 
-<button
-    type="button"
-    data-search-open
-    class="inline-flex min-w-36 items-center gap-2 rounded-md border border-border bg-surface px-2.5 py-1.5 text-sm text-muted hover:bg-surface-2"
->
-    <svg
-        aria-hidden="true"
-        viewBox="0 0 24 24"
-        class="size-4"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-    >
-        <circle cx="11" cy="11" r="7"></circle>
-        <path d="m20 20-3.5-3.5" stroke-linecap="round"></path>
-    </svg>
-    <span>{text.button}</span>
-    <kbd class="ms-auto rounded border border-border px-1.5 text-xs">{text.shortcut}</kbd>
-</button>
-
 <dialog
     data-search-dialog
     aria-label={text.label}
-    class="m-auto mt-[10vh] w-[min(40rem,calc(100vw-2rem))] rounded-xl border border-border bg-surface p-0 text-text shadow-xl backdrop:bg-black/50"
+    class="m-auto mt-[8vh] w-[min(40rem,calc(100vw-2rem))] rounded-2xl border border-border bg-surface p-0 text-text backdrop:bg-black/40 backdrop:backdrop-blur-sm"
 >
     <div class="flex flex-col gap-2 p-3">
         <input
@@ -60,7 +40,7 @@ const text = {
             aria-describedby="search-hint"
             placeholder={text.placeholder}
             autocomplete="off"
-            class="min-h-11 w-full rounded-md border border-border bg-bg px-3 text-base"
+            class="min-h-12 w-full rounded-xl bg-surface-2 px-4 text-lg outline-none placeholder:text-muted focus-visible:outline-2 focus-visible:outline-focus"
         />
         <p id="search-hint" class="sr-only">
             {text.hint}

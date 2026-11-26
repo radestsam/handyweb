@@ -39,8 +39,8 @@ export function FileDrop({
             onDragLeave={() => setOver(false)}
             onDrop={onDrop}
             className={cx(
-                "flex cursor-pointer flex-col items-center gap-1 rounded-md border-2 border-dashed p-6 text-center text-sm has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
-                over ? "border-primary bg-surface-2" : "border-border bg-surface",
+                "flex cursor-pointer flex-col items-center gap-1 rounded-xl border-2 border-dashed px-6 py-10 text-center text-sm has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
+                over ? "border-primary bg-primary-soft" : "border-border bg-surface-2",
             )}
         >
             <span className="font-semibold text-primary-text">{UI_STRINGS.chooseFile[locale]}</span>

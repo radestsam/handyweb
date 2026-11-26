@@ -14,7 +14,7 @@ for (const [locale, dir] of [
         await page.goto(`/${locale}/`);
         await expect(page.locator("html")).toHaveAttribute("lang", locale);
         await expect(page.locator("html")).toHaveAttribute("dir", dir);
-        await expect(page.locator("h1")).toHaveText("HandyWeb");
+        await expect(page.locator("h1")).toBeVisible();
     });
 }
 

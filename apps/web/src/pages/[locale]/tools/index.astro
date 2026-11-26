@@ -1,6 +1,7 @@
 ---
-import { localePath, nonEmptyCategories, toolsInCategory, type Locale } from "@handyweb/core";
-import Page from "../../../layouts/Page.astro";
+import { nonEmptyCategories, toolsInCategory, type Locale } from "@handyweb/core";
+import Base from "../../../layouts/Base.astro";
+import ToolList from "../../../components/ToolList.astro";
 import { useTranslations } from "../../../i18n/site";
 import { localeStaticPaths } from "../../../i18n/static-paths";
 import { categories, tools } from "../../../i18n/tools";
@@ -15,24 +16,11 @@ const groups = nonEmptyCategories(categories, tools).map((category) => ({
 }));
 ---
 
-<Page locale={locale} path="/tools" title={t("nav.tools")}>
-    {groups.map(({ category, tools }) => (
-        <section>
-            <h2>
-                <a href={localePath(locale, `/categories/${category.slug}`)}>
-                    {category.title[locale]}
-                </a>
-            </h2>
-            <ul class="!list-none !ps-0" data-tool-list>
-                {tools.map((tool) => (
-                    <li>
-                        <a href={localePath(locale, `/tools/${tool.slug}`)} class="font-semibold">
-                            {tool.title[locale]}
-                        </a>
-                        <p class="text-sm text-muted">{tool.description[locale]}</p>
-                    </li>
-                ))}
-            </ul>
-        </section>
-    ))}
-</Page>
+<Base locale={locale} path="/tools" title={`${t("nav.tools")} | ${t("site.name")}`}>
+    <main id="main" class="mx-auto max-w-6xl px-5 pt-12 sm:px-8 sm:pt-16">
+        <h1 class="text-2xl font-bold">{t("nav.tools")}</h1>
+        <div class="mt-10">
+            <ToolList locale={locale} groups={groups} />
+        </div>
+    </main>
+</Base>

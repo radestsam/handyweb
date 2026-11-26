@@ -1,6 +1,7 @@
 import { defineConfig, devices } from "@playwright/test";
 
-const PORT = 4321;
+// Not 4321: that is the port of `make dev`, and the tests must run on the build.
+const PORT = 4322;
 
 // The Playwright browser CDN refuses downloads from Iran. On such a machine, set
 // PW_CHROMIUM_PATH to a local Chromium-based browser (Chrome, Brave, Edge). Only

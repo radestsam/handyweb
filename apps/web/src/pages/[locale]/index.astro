@@ -1,6 +1,7 @@
 ---
 import { localePath, nonEmptyCategories, toolsInCategory, type Locale } from "@handyweb/core";
 import Base from "../../layouts/Base.astro";
+import ToolList from "../../components/ToolList.astro";
 import { useTranslations } from "../../i18n/site";
 import { localeStaticPaths } from "../../i18n/static-paths";
 import { categories, tools } from "../../i18n/tools";
@@ -9,94 +10,109 @@ export const getStaticPaths = localeStaticPaths;
 
 const locale = Astro.params.locale as Locale;
 const t = useTranslations(locale);
-const featured = tools.filter((tool) => tool.featured);
-const groups = nonEmptyCategories(categories, tools);
+const groups = nonEmptyCategories(categories, tools)
+    .map((category) => ({
+        category,
+        // A tool appears once on the home page: under its own category.
+        tools: toolsInCategory(tools, category.id).filter((tool) => tool.category === category.id),
+    }))
+    .filter((group) => group.tools.length > 0);
+
 const text = {
     fa: {
-        featured: "ابزارهای پرکاربرد",
-        categories: "دسته‌ها",
-        count: (n: number) => `${new Intl.NumberFormat("fa-IR").format(n)} ابزار`,
-        promiseTitle: "ورودی شما روی دستگاه خودتان می‌ماند",
-        promiseBody:
-            "ابزارها در مرورگر شما اجرا می‌شوند. هیچ ورودی، فایل یا نتیجه‌ای به سرور ارسال یا ذخیره نمی‌شود.",
-        promiseMore: "درباره حریم خصوصی",
-        contribute: "HandyWeb متن‌باز است. ابزار تازه‌ای در ذهن دارید؟",
-        contributeLink: "مشارکت کنید",
+        title: "ابزارهای ساده، روی دستگاه خودتان",
+        lead: "متن، فایل و تاریخ را در مرورگر خودتان تبدیل کنید. هیچ چیز به سرور ارسال نمی‌شود.",
+        label: "جستجوی ابزار",
+        placeholder: "چه کاری می‌خواهید انجام دهید؟",
+        hint: "مثلا «تاریخ»، «Base64» یا «هش فایل». با Enter اولین نتیجه باز می‌شود.",
+        empty: "ابزاری با این نام پیدا نشد. نام دیگری را امتحان کنید یا",
+        all: "همه ابزارها را ببینید",
+        privacy: "چطور ورودی شما روی دستگاهتان می‌ماند",
     },
     en: {
-        featured: "Popular Tools",
-        categories: "Categories",
-        count: (n: number) => `${n} ${n === 1 ? "tool" : "tools"}`,
-        promiseTitle: "Your input stays on your device",
-        promiseBody:
-            "The tools run in your browser. No input, file, or result is sent to a server or stored.",
-        promiseMore: "About privacy",
-        contribute: "HandyWeb is open source. Have an idea for a new tool?",
-        contributeLink: "Contribute",
+        title: "Simple tools that run on your own device",
+        lead: "Convert text, files, and dates in your browser. Nothing is sent to a server.",
+        label: "Find a tool",
+        placeholder: "What do you want to do?",
+        hint: "For example “date”, “Base64”, or “file hash”. Press Enter to open the first match.",
+        empty: "No tool matches that. Try another word or",
+        all: "see all tools",
+        privacy: "How your input stays on your device",
     },
 }[locale];
 ---
 
 <Base locale={locale} path="/" title={`${t("site.name")}: ${t("site.tagline")}`}>
-    <main id="main" class="mx-auto max-w-5xl px-4 py-10">
-        <h1 class="text-4xl font-bold">{t("site.name")}</h1>
-        <p class="mt-3 max-w-2xl text-lg text-muted">{t("site.tagline")}</p>
+    <main id="main" class="mx-auto max-w-6xl px-5 sm:px-8">
+        <section class="pt-12 pb-14 sm:pt-20 sm:pb-20" aria-labelledby="hero-title">
+            <h1 id="hero-title" class="max-w-[30ch] text-xl font-bold sm:text-2xl">
+                {text.title}
+            </h1>
+            <p class="mt-3 max-w-[60ch] text-muted">{text.lead}</p>
 
-        <section class="mt-10" aria-labelledby="featured">
-            <h2 id="featured" class="text-xl font-bold">
-                {text.featured}
-            </h2>
-            <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-featured>
-                {featured.map((tool) => (
-                    <li>
-                        <a
-                            href={localePath(locale, `/tools/${tool.slug}`)}
-                            class="flex h-full flex-col gap-1 rounded-xl border border-border bg-surface p-4 text-text no-underline hover:border-primary"
-                        >
-                            <span class="font-semibold">{tool.title[locale]}</span>
-                            <span class="text-sm text-muted">{tool.description[locale]}</span>
-                        </a>
-                    </li>
-                ))}
-            </ul>
+            <div class="mt-10 sm:mt-14">
+                <label for="tool-filter" class="sr-only">
+                    {text.label}
+                </label>
+                <input
+                    id="tool-filter"
+                    type="search"
+                    autocomplete="off"
+                    enterkeyhint="go"
+                    placeholder={text.placeholder}
+                    aria-describedby="tool-filter-hint"
+                    data-tool-filter
+                    class="w-full border-0 border-b-2 border-border bg-transparent pb-3 text-display font-semibold tracking-tight text-text outline-none placeholder:font-normal placeholder:text-muted/70 focus:border-primary"
+                />
+                <p id="tool-filter-hint" class="mt-3 text-sm text-muted">
+                    {text.hint}
+                </p>
+            </div>
         </section>
 
-        <section class="mt-10" aria-labelledby="categories">
-            <h2 id="categories" class="text-xl font-bold">
-                {text.categories}
-            </h2>
-            <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                {groups.map((category) => (
-                    <li>
-                        <a
-                            href={localePath(locale, `/categories/${category.slug}`)}
-                            class="flex h-full flex-col gap-1 rounded-xl border border-border bg-surface p-4 text-text no-underline hover:border-primary"
-                        >
-                            <span class="font-semibold">{category.title[locale]}</span>
-                            <span class="text-sm text-muted">
-                                {text.count(toolsInCategory(tools, category.id).length)}
-                            </span>
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </section>
+        <ToolList locale={locale} groups={groups} />
 
-        <section
-            class="mt-10 rounded-xl border border-border bg-surface p-6"
-            aria-labelledby="promise"
-        >
-            <h2 id="promise" class="text-xl font-bold">
-                {text.promiseTitle}
-            </h2>
-            <p class="mt-2 text-muted">{text.promiseBody}</p>
-            <a class="mt-3 inline-block" href={localePath(locale, "/privacy")}>
-                {text.promiseMore}
-            </a>
-        </section>
+        <p role="status" class="py-8 text-muted" data-tool-empty hidden>
+            {text.empty} <a href={localePath(locale, "/tools")}>{text.all}</a>.
+        </p>
 
-        <p class="mt-8 text-sm text-muted">
-            {text.contribute} <a href={localePath(locale, "/contribute")}>{text.contributeLink}</a>
+        <p class="mt-16 text-sm">
+            <a href={localePath(locale, "/privacy")}>{text.privacy}</a>
         </p>
     </main>
 </Base>
+
+<script>
+    import { normalizeForSearch } from "@handyweb/core/i18n";
+
+    // Filters the tool rows in place. The query never leaves the page.
+    const input = document.querySelector<HTMLInputElement>("[data-tool-filter]");
+    const empty = document.querySelector<HTMLElement>("[data-tool-empty]");
+    const groups = [...document.querySelectorAll<HTMLElement>("[data-tool-group]")];
+
+    input?.addEventListener("input", () => {
+        const words = normalizeForSearch(input.value).split(" ").filter(Boolean);
+        let shown = 0;
+        for (const group of groups) {
+            let inGroup = 0;
+            for (const row of group.querySelectorAll<HTMLElement>("[data-tool-row]")) {
+                const haystack = row.dataset.haystack ?? "";
+                const match = words.every((word) => haystack.includes(word));
+                row.hidden = !match;
+                if (match) inGroup++;
+            }
+            group.hidden = inGroup === 0;
+            shown += inGroup;
+        }
+        if (empty) empty.hidden = shown > 0;
+    });
+
+    input?.addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+        const first = document.querySelector<HTMLAnchorElement>("[data-tool-row]:not([hidden]) a");
+        if (first && input.value.trim() !== "") {
+            event.preventDefault();
+            window.location.href = first.href;
+        }
+    });
+</script>

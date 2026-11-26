@@ -13,26 +13,29 @@ const links = [
     { href: localePath(locale, "/privacy"), label: t("nav.privacy") },
     { href: localePath(locale, "/opensource"), label: t("nav.opensource") },
     { href: localePath(locale, "/contribute"), label: t("nav.contribute") },
+    { href: "https://github.com/radestsam/handyweb", label: t("nav.source") },
 ];
 ---
 
-<footer class="mt-16 border-t border-border bg-surface">
-    <div class="mx-auto flex max-w-5xl flex-col gap-4 px-4 py-8 text-sm">
+<footer class="mt-24 border-t border-border">
+    <div class="mx-auto flex max-w-6xl flex-col gap-6 px-5 py-10 text-sm sm:px-8 md:flex-row md:items-start md:justify-between">
+        <div class="max-w-md text-muted">
+            <p>{t("footer.local")}</p>
+            <p class="mt-1">{t("footer.license")}</p>
+        </div>
         <nav aria-label={t("nav.footer")}>
-            <ul class="flex flex-wrap gap-x-4 gap-y-2">
+            <ul class="flex flex-wrap gap-x-5 gap-y-2">
                 {links.map((link) => (
                     <li>
-                        <a href={link.href}>{link.label}</a>
+                        <a
+                            href={link.href}
+                            class="text-muted no-underline hover:text-text hover:underline"
+                        >
+                            {link.label}
+                        </a>
                     </li>
                 ))}
-                <li>
-                    <a href="https://github.com/radestsam/handyweb" rel="noopener">
-                        {t("nav.source")}
-                    </a>
-                </li>
             </ul>
         </nav>
-        <p class="text-muted">{t("footer.local")}</p>
-        <p class="text-muted">{t("footer.license")}</p>
     </div>
 </footer>

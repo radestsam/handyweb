@@ -21,7 +21,7 @@ export function TextArea({
     const hintId = `${id}-hint`;
     return (
         <div className="flex flex-col gap-1.5">
-            <label htmlFor={id} className="text-sm font-semibold">
+            <label htmlFor={id} className="text-sm font-semibold text-muted">
                 {label}
             </label>
             <textarea
@@ -32,7 +32,7 @@ export function TextArea({
                 autoComplete="off"
                 aria-describedby={hint ? hintId : undefined}
                 className={cx(
-                    "min-h-40 w-full resize-y rounded-md border border-border bg-surface p-3 text-base text-text",
+                    "min-h-44 w-full resize-y rounded-xl border border-transparent bg-surface-2 p-4 text-base text-text outline-none placeholder:text-muted focus-visible:border-focus read-only:bg-transparent read-only:border-border",
                     code && "font-mono text-sm break-all",
                     className,
                 )}

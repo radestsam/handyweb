@@ -16,16 +16,16 @@ export function Segmented<T extends string>({
     const name = useId();
     return (
         <fieldset className="flex flex-col gap-1.5">
-            <legend className="mb-1.5 text-sm font-semibold">{legend}</legend>
-            <div className="inline-flex w-fit rounded-md border border-border bg-surface p-0.5">
+            <legend className="mb-2 text-sm font-semibold text-muted">{legend}</legend>
+            <div className="inline-flex w-fit max-w-full flex-wrap rounded-full bg-surface-2 p-1">
                 {options.map((option) => (
                     <label
                         key={option.value}
                         className={cx(
-                            "cursor-pointer rounded px-3 py-1.5 text-sm has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
+                            "inline-flex min-h-9 cursor-pointer items-center rounded-full px-4 text-sm transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
                             option.value === value
-                                ? "bg-primary text-primary-fg"
-                                : "text-text hover:bg-surface-2",
+                                ? "bg-surface font-semibold text-text shadow-[0_0_0_1px_var(--hw-border)]"
+                                : "text-muted hover:text-text",
                         )}
                     >
                         <input

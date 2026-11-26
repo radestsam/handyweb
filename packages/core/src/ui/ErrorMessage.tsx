@@ -7,7 +7,7 @@ export function ErrorMessage({ error, locale }: { error: ToolError; locale: Loca
     return (
         <div
             role="alert"
-            className="flex gap-2 rounded-md border border-error bg-error-bg p-3 text-sm text-error"
+            className="flex gap-2 rounded-xl bg-error-bg px-4 py-3 text-sm text-error"
         >
             <svg
                 aria-hidden="true"

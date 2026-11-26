@@ -1,13 +1,15 @@
 ---
 import {
     LOCALES,
-    localePath,
     nonEmptyCategories,
     toolsInCategory,
     type Locale,
     type ToolCategory,
 } from "@handyweb/core";
-import Page from "../../../layouts/Page.astro";
+import Base from "../../../layouts/Base.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import ToolList from "../../../components/ToolList.astro";
+import { useTranslations } from "../../../i18n/site";
 import { categories, tools } from "../../../i18n/tools";
 
 export function getStaticPaths() {
@@ -21,24 +23,28 @@ export function getStaticPaths() {
 
 const locale = Astro.params.locale as Locale;
 const { category } = Astro.props as { category: ToolCategory };
-const list = toolsInCategory(tools, category.id);
+const t = useTranslations(locale);
 ---
 
-<Page
+<Base
     locale={locale}
     path={`/categories/${category.slug}`}
-    title={category.title[locale]}
+    title={`${category.title[locale]} | ${t("site.name")}`}
     description={category.description[locale]}
 >
-    <p>{category.description[locale]}</p>
-    <ul class="!list-none !ps-0" data-tool-list>
-        {list.map((tool) => (
-            <li>
-                <a href={localePath(locale, `/tools/${tool.slug}`)} class="font-semibold">
-                    {tool.title[locale]}
-                </a>
-                <p class="text-sm text-muted">{tool.description[locale]}</p>
-            </li>
-        ))}
-    </ul>
-</Page>
+    <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
+        <Breadcrumbs
+            locale={locale}
+            items={[{ label: t("nav.tools"), path: "/tools" }, { label: category.title[locale] }]}
+        />
+        <h1 class="mt-6 text-2xl font-bold">{category.title[locale]}</h1>
+        <p class="mt-2 max-w-[60ch] text-muted">{category.description[locale]}</p>
+        <div class="mt-10">
+            <ToolList
+                locale={locale}
+                groups={[{ category, tools: toolsInCategory(tools, category.id) }]}
+                headings={false}
+            />
+        </div>
+    </main>
+</Base>

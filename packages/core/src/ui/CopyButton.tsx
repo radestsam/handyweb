@@ -28,7 +28,7 @@ export function CopyButton({
 
     return (
         <>
-            <Button onClick={onClick} disabled={disabled === true || text === ""}>
+            <Button variant="primary" onClick={onClick} disabled={disabled === true || text === ""}>
                 {state === "copied" ? UI_STRINGS.copied[locale] : UI_STRINGS.copy[locale]}
             </Button>
             <span role="status" className="sr-only">

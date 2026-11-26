@@ -11,13 +11,13 @@ export function Checkbox({
 }) {
     const id = useId();
     return (
-        <div className="flex items-center gap-2">
+        <div className="flex min-h-9 items-center gap-2.5">
             <input
                 id={id}
                 type="checkbox"
                 checked={checked}
                 onChange={(event) => onChange(event.target.checked)}
-                className="size-4 accent-primary"
+                className="size-[1.125rem] accent-primary"
             />
             <label htmlFor={id} className="text-sm">
                 {label}

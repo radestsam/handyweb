@@ -49,6 +49,8 @@ const pairs: Array<[foreground: string, background: string, minimum: number]> = 
     ["error", "error-bg", TEXT],
     ["success", "bg", TEXT],
     ["success", "surface", TEXT],
+    ["primary-text", "primary-soft", TEXT],
+    ["text", "primary-soft", TEXT],
     ["focus", "bg", UI],
     ["focus", "surface", UI],
 ];

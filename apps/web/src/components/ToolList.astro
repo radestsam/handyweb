@@ -1,0 +1,74 @@
+---
+/*
+ * Tools grouped by category, as quiet rows rather than cards. Each row carries
+ * its normalized search text, so the home page can filter the list in place.
+ */
+import {
+    localePath,
+    normalizeForSearch,
+    type Locale,
+    type ToolCategory,
+    type ToolDefinition,
+} from "@handyweb/core";
+
+interface Props {
+    locale: Locale;
+    groups: Array<{ category: ToolCategory; tools: ToolDefinition[] }>;
+    /** Show the category name above each group. */
+    headings?: boolean;
+}
+
+const { locale, groups, headings = true } = Astro.props;
+const haystack = (tool: ToolDefinition) =>
+    normalizeForSearch(
+        [
+            tool.title.fa,
+            tool.title.en,
+            ...tool.keywords.fa,
+            ...tool.keywords.en,
+            ...tool.aliases.map((a) => a.replace(/-/g, " ")),
+        ].join(" | "),
+    );
+const count = (n: number) =>
+    locale === "fa"
+        ? `${new Intl.NumberFormat("fa-IR").format(n)} ابزار`
+        : `${n} ${n === 1 ? "tool" : "tools"}`;
+---
+
+<div class="flex flex-col gap-12" data-tool-groups>
+    {groups.map(({ category, tools }) => (
+        <section aria-labelledby={`group-${category.id}`} data-tool-group>
+            {headings && (
+                <h2
+                    id={`group-${category.id}`}
+                    class="flex items-baseline gap-3 pb-3 text-sm font-semibold text-muted"
+                >
+                    <a
+                        href={localePath(locale, `/categories/${category.slug}`)}
+                        class="text-text no-underline hover:underline"
+                    >
+                        {category.title[locale]}
+                    </a>
+                    <span class="font-normal">{count(tools.length)}</span>
+                </h2>
+            )}
+            <ul class="border-t border-border" data-tool-list>
+                {tools.map((tool) => (
+                    <li class="border-b border-border" data-tool-row data-haystack={haystack(tool)}>
+                        <a
+                            href={localePath(locale, `/tools/${tool.slug}`)}
+                            class="group grid gap-1 px-1 py-4 text-text no-underline sm:grid-cols-[minmax(14rem,2fr)_3fr] sm:gap-8 sm:py-5"
+                        >
+                            <span class="font-semibold group-hover:text-primary-text">
+                                {tool.title[locale]}
+                            </span>
+                            <span class="text-sm text-muted sm:line-clamp-2">
+                                {tool.description[locale]}
+                            </span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </section>
+    ))}
+</div>

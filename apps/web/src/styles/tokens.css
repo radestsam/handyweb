@@ -17,17 +17,18 @@
     --hw-brand-900: #610100;
     --hw-brand-950: #3a0000;
 
-    /* Light theme */
-    --hw-bg: #fcfaf9;
+    /* Light theme: cool paper, so the brand red reads as a signal, not a mood. */
+    --hw-bg: #ffffff;
     --hw-surface: #ffffff;
-    --hw-surface-2: #f4f0ee;
-    --hw-border: #e2dad6;
-    --hw-text: #1d1816;
-    --hw-text-muted: #5f5550;
+    --hw-surface-2: #f4f5f6;
+    --hw-border: #e3e5e8;
+    --hw-text: #16181b;
+    --hw-text-muted: #5b6068;
     --hw-primary: #bc4a3c;
     --hw-primary-hover: #9e2d22;
     --hw-primary-fg: #ffffff;
-    --hw-primary-text: #bc4a3c;
+    --hw-primary-text: #b0402f;
+    --hw-primary-soft: #fbeeec;
     --hw-error: #b4144e;
     --hw-error-bg: #fdecf1;
     --hw-success: #1f7a46;
@@ -38,20 +39,21 @@
 
 /* The dark theme, chosen by the visitor. */
 :root[data-theme="dark"] {
-    --hw-bg: #14110f;
-    --hw-surface: #1e1a18;
-    --hw-surface-2: #29231f;
-    --hw-border: #3d3531;
-    --hw-text: #f3efed;
-    --hw-text-muted: #b3a9a4;
+    --hw-bg: #121316;
+    --hw-surface: #1b1d21;
+    --hw-surface-2: #23262b;
+    --hw-border: #2e3137;
+    --hw-text: #eceef0;
+    --hw-text-muted: #9ca1a9;
     --hw-primary: #bc4a3c;
     --hw-primary-hover: #9e2d22;
     --hw-primary-fg: #ffffff;
-    --hw-primary-text: #e07a6c;
+    --hw-primary-text: #e8877a;
+    --hw-primary-soft: #2e1d1b;
     --hw-error: #f17993;
     --hw-error-bg: #3a1620;
     --hw-success: #6fcf97;
-    --hw-focus: #e07a6c;
+    --hw-focus: #e8877a;
 
     color-scheme: dark;
 }
@@ -59,20 +61,21 @@
 /* The dark theme, when scripts do not run and the system asks for it. */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme]) {
-        --hw-bg: #14110f;
-        --hw-surface: #1e1a18;
-        --hw-surface-2: #29231f;
-        --hw-border: #3d3531;
-        --hw-text: #f3efed;
-        --hw-text-muted: #b3a9a4;
+        --hw-bg: #121316;
+        --hw-surface: #1b1d21;
+        --hw-surface-2: #23262b;
+        --hw-border: #2e3137;
+        --hw-text: #eceef0;
+        --hw-text-muted: #9ca1a9;
         --hw-primary: #bc4a3c;
         --hw-primary-hover: #9e2d22;
         --hw-primary-fg: #ffffff;
-        --hw-primary-text: #e07a6c;
+        --hw-primary-text: #e8877a;
+        --hw-primary-soft: #2e1d1b;
         --hw-error: #f17993;
         --hw-error-bg: #3a1620;
         --hw-success: #6fcf97;
-        --hw-focus: #e07a6c;
+        --hw-focus: #e8877a;
 
         color-scheme: dark;
     }

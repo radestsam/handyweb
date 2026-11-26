@@ -1,0 +1,58 @@
+---
+/*
+ * The bottom tab bar on phones, like a native app. It stays out of the way of
+ * the home indicator with the safe-area inset. Wider screens use the header.
+ */
+import { localePath, type Locale } from "@handyweb/core";
+import { useTranslations } from "../i18n/site";
+import Icon from "./Icon.astro";
+
+interface Props {
+    locale: Locale;
+    path: string;
+}
+
+const { locale, path } = Astro.props;
+const t = useTranslations(locale);
+const current = path.endsWith("/") ? path : `${path}/`;
+const tab =
+    "flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-xs text-muted no-underline aria-[current=page]:text-primary-text";
+---
+
+<nav
+    aria-label={t("nav.tabs")}
+    class="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-bg/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden"
+>
+    <ul class="mx-auto flex max-w-md">
+        <li class="flex flex-1">
+            <a
+                href={localePath(locale, "/")}
+                class={tab}
+                aria-current={current === "/" ? "page" : undefined}
+            >
+                <Icon name="home" />
+                <span>{t("nav.home")}</span>
+            </a>
+        </li>
+        <li class="flex flex-1">
+            <a
+                href={localePath(locale, "/tools")}
+                class={tab}
+                aria-current={
+                    current.startsWith("/tools/") || current.startsWith("/categories/")
+                        ? "page"
+                        : undefined
+                }
+            >
+                <Icon name="grid" />
+                <span>{t("nav.toolsShort")}</span>
+            </a>
+        </li>
+        <li class="flex flex-1">
+            <button type="button" data-search-open class={tab}>
+                <Icon name="search" />
+                <span>{t("nav.search")}</span>
+            </button>
+        </li>
+    </ul>
+</nav>

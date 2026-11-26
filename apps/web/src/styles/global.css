@@ -12,6 +12,17 @@
     --font-sans: "Noto Sans HW", "Estedad HW", system-ui, sans-serif;
     --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
+    /* Type scale, about 1.2. Body is 17px. The display size is the search. */
+    --text-xs: 0.8125rem;
+    --text-sm: 0.9375rem;
+    --text-base: 1.0625rem;
+    --text-lg: 1.25rem;
+    --text-xl: 1.5rem;
+    --text-2xl: 2.125rem;
+    --text-display: clamp(1.5rem, 1rem + 3vw, 2.75rem);
+
+    --color-primary-soft: var(--hw-primary-soft);
+
     --color-brand-50: var(--hw-brand-50);
     --color-brand-100: var(--hw-brand-100);
     --color-brand-200: var(--hw-brand-200);
@@ -45,16 +56,40 @@
         background-color: var(--hw-bg);
         color: var(--hw-text);
         font-family: var(--font-sans);
+        font-size: 100%;
         -webkit-text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+        font-size: var(--text-base);
     }
 
     /* Persian text with diacritics needs more line height than Latin text. */
     html[lang="fa"] body {
-        line-height: 1.8;
+        line-height: 1.85;
     }
 
     html[lang="en"] body {
         line-height: 1.6;
+    }
+
+    h1,
+    h2,
+    h3 {
+        line-height: 1.3;
+        text-wrap: balance;
+    }
+
+    p {
+        text-wrap: pretty;
+    }
+
+    /* Room for the bottom tab bar on phones, including the home indicator. */
+    @media (max-width: 47.99rem) {
+        body {
+            padding-block-end: calc(4.25rem + env(safe-area-inset-bottom));
+        }
     }
 
     /* Links are underlined, so they never depend on color alone (WCAG 1.4.1).
@@ -84,6 +119,11 @@
         unicode-bidi: isolate;
     }
 
+    /* The native clear button of search fields clashes with the quiet style. */
+    input[type="search"]::-webkit-search-cancel-button {
+        appearance: none;
+    }
+
     code,
     kbd,
     samp,
@@ -110,8 +150,8 @@
     }
 
     .prose-hw h2 {
-        margin-block-start: 2em;
-        font-size: 1.375rem;
+        margin-block-start: 2.25em;
+        font-size: var(--text-lg);
         font-weight: 700;
     }
 

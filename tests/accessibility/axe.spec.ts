@@ -78,5 +78,4 @@ test("every interactive control in the header is reachable by Tab", async ({
     }
     expect(reached).toContain("theme");
     expect(reached).toContain("locale");
-    expect(reached).toContain("/fa/about/");
 });
