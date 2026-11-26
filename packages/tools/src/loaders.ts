@@ -6,4 +6,5 @@ import type { ToolLoader } from "@handyweb/core";
  */
 export const loaders: Readonly<Record<string, ToolLoader>> = {
     base64: () => import("./encoding/base64/ui"),
+    "json-formatter": () => import("./developer/json-formatter/ui"),
 };

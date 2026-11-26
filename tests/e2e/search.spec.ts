@@ -23,6 +23,8 @@ test.describe("search", () => {
     test("the open dialog has no axe violations", async ({ page }) => {
         await page.goto("/fa/");
         await page.locator("[data-search-open]:visible").click();
+        await page.locator("[data-search-input]").fill("json");
+        await expect(page.locator("[data-search-results] li").first()).toBeVisible();
         const results = await new AxeBuilder({ page }).include("[data-search-dialog]").analyze();
         expect(results.violations.map((v) => v.id)).toEqual([]);
     });
@@ -30,5 +32,19 @@ test.describe("search", () => {
 
 test("the home page lists every tool once", async ({ page }) => {
     await page.goto("/fa/");
-    await expect(page.locator("[data-tool-row]")).toHaveCount(1);
+    await expect(page.locator("[data-tool-row]")).toHaveCount(2);
+});
+
+test("the arrow keys move between results", async ({ page }) => {
+    await page.goto("/en/");
+    await page.locator("[data-search-open]:visible").click();
+    await page.locator("[data-search-input]").fill("e");
+    await expect(page.locator("[data-search-results] a").nth(1)).toBeVisible();
+    await page.keyboard.press("ArrowDown");
+    await expect(page.locator("[data-search-results] a").first()).toBeFocused();
+    await page.keyboard.press("ArrowDown");
+    await expect(page.locator("[data-search-results] a").nth(1)).toBeFocused();
+    await page.keyboard.press("ArrowUp");
+    await page.keyboard.press("ArrowUp");
+    await expect(page.locator("[data-search-input]")).toBeFocused();
 });

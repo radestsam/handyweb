@@ -6,7 +6,7 @@ export const base64Meta: ToolDefinition = {
     aliases: ["base64-encoder", "base64-decoder", "base64-encode", "base64-decode"],
     category: "encoding",
     alsoIn: ["developer"],
-    related: [],
+    related: ["json-formatter"],
     tags: ["base64", "encoding"],
     title: { fa: "رمزگذاری و رمزگشایی Base64", en: "Base64 Encoder and Decoder" },
     description: {

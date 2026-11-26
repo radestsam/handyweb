@@ -55,3 +55,30 @@ test("the sitemap lists canonical pages only", async ({ request }) => {
     expect(xml).not.toContain("base64-encoder");
     expect(xml).not.toContain("/categories/pdf/");
 });
+
+test.describe("json formatter", () => {
+    test("shows the line and column of an error", async ({ page }) => {
+        await page.goto("/en/tools/json-formatter/");
+        await page.locator("[data-tool-input]").fill('{\n  "a": 1,\n}');
+        await expect(page.getByRole("alert")).toContainText("line 3, column 1");
+    });
+
+    test("formats a large input in a worker", async ({ page }) => {
+        const workers: string[] = [];
+        page.on("worker", (worker) => workers.push(worker.url()));
+        await page.goto("/en/tools/json-formatter/");
+        const big = JSON.stringify(
+            Array.from({ length: 30_000 }, (_, i) => ({
+                id: i,
+                name: `item ${i}`,
+                tags: ["a", "b"],
+            })),
+        );
+        expect(big.length).toBeGreaterThan(1_000_000);
+        await page.locator("[data-tool-input]").fill(big);
+        await expect(page.locator('[data-tool-status="valid"]')).toBeVisible({ timeout: 20_000 });
+        const output = await page.locator("[data-tool-output]").inputValue();
+        expect(output.startsWith('[\n  {\n    "id": 0,')).toBe(true);
+        expect(workers.length).toBeGreaterThan(0);
+    });
+});

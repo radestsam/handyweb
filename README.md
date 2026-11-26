@@ -92,9 +92,10 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 
 ## Tools
 
-| Tool                       | Category | Source                               | Libraries |
-| -------------------------- | -------- | ------------------------------------ | --------- |
-| Base64 Encoder and Decoder | Encoding | `packages/tools/src/encoding/base64` | None      |
+| Tool                         | Category  | Source                                        | Libraries |
+| ---------------------------- | --------- | --------------------------------------------- | --------- |
+| Base64 Encoder and Decoder   | Encoding  | `packages/tools/src/encoding/base64`          | None      |
+| JSON Formatter and Validator | Developer | `packages/tools/src/developer/json-formatter` | None      |
 
 ### Add a Tool
 
