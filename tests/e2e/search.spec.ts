@@ -2,6 +2,22 @@ import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
 test.describe("search", () => {
+    test("opens with /, finds a tool typed with an Arabic keyboard, and opens it with Enter", async ({
+        page,
+    }) => {
+        const urls: string[] = [];
+        page.on("request", (request) => urls.push(request.url()));
+        await page.goto("/fa/");
+        await page.keyboard.press("/");
+        const input = page.locator("[data-search-input]");
+        await expect(input).toBeFocused();
+        await input.fill("تاريخ");
+        await expect(page.locator("[data-search-results] li").first()).toContainText("تاریخ");
+        await page.keyboard.press("Enter");
+        await page.waitForURL("**/fa/tools/jalali-converter/");
+        expect(urls.some((url) => decodeURIComponent(url).includes("تاريخ"))).toBe(false);
+    });
+
     test("opens with Ctrl+K and the button, and closes with Escape", async ({ page }) => {
         await page.goto("/en/about/");
         await page.keyboard.press("Control+k");
@@ -32,7 +48,7 @@ test.describe("search", () => {
 
 test("the home page lists every tool once", async ({ page }) => {
     await page.goto("/fa/");
-    await expect(page.locator("[data-tool-row]")).toHaveCount(4);
+    await expect(page.locator("[data-tool-row]")).toHaveCount(5);
 });
 
 test("the arrow keys move between results", async ({ page }) => {

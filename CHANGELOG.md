@@ -12,5 +12,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - JSON Formatter and Validator.
 - SHA-256 Hash Generator for text and files.
 - Persian Text Normalizer and Digit Converter.
+- Jalali and Gregorian Date Converter.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

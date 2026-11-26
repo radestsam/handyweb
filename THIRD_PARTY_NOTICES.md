@@ -25,6 +25,7 @@ The full license text of each font is in its package: `node_modules/@fontsource-
 | `@tailwindcss/vite`              | MIT                               | No: build step only                            |
 | `diff`                           | BSD-3-Clause                      | Yes: the change view of the Persian normalizer |
 | `hash-wasm`                      | MIT                               | Yes: streaming SHA-256 for files (WebAssembly) |
+| `jalaali-js`                     | MIT                               | Yes: Jalali and Gregorian conversion           |
 | `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                            |
 | `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                            |
 
