@@ -50,6 +50,8 @@ Thank you for helping. This guide tells you how to set up the project, add a too
 
 4. If the tool adds a package that ships to visitors, add it to `THIRD_PARTY_NOTICES.md` with its license.
 
+See `packages/tools/src/encoding/base64/` for a complete example.
+
 ## Pull Requests
 
 - Work on a short branch and open a pull request to `main`. CI must pass before a merge.

@@ -1,7 +1,8 @@
 import type { ToolDefinition } from "@handyweb/core";
+import { base64Meta } from "./encoding/base64/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
  * read by every page and by the search index, so it must not load tool code.
  */
-export const catalog: readonly ToolDefinition[] = [];
+export const catalog: readonly ToolDefinition[] = [base64Meta];

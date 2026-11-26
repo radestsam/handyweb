@@ -9,7 +9,8 @@ test.describe("search", () => {
         await page.keyboard.press("Escape");
         await expect(page.locator("[data-search-dialog]")).toBeHidden();
         await page.locator("[data-search-open]:visible").click();
-        await expect(page.locator("[data-search-dialog]")).toBeVisible();
+        await page.locator("[data-search-input]").fill("base64");
+        await expect(page.locator("[data-search-results] li")).toHaveCount(1);
     });
 
     test("says when nothing matches", async ({ page }) => {
@@ -25,4 +26,9 @@ test.describe("search", () => {
         const results = await new AxeBuilder({ page }).include("[data-search-dialog]").analyze();
         expect(results.violations.map((v) => v.id)).toEqual([]);
     });
+});
+
+test("the home page lists every tool once", async ({ page }) => {
+    await page.goto("/fa/");
+    await expect(page.locator("[data-tool-row]")).toHaveCount(1);
 });
