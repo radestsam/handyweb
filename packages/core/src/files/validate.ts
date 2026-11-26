@@ -25,7 +25,7 @@ export function checkFileSize(file: { size: number }, maxBytes: number | undefin
         return {
             ok: false,
             code: "empty",
-            message: { fa: "فایل خالی است.", en: "The file is empty." },
+            message: { fa: "فایل تهی است.", en: "The file is empty." },
         };
     }
     if (maxBytes !== undefined && file.size > maxBytes) {
@@ -33,7 +33,7 @@ export function checkFileSize(file: { size: number }, maxBytes: number | undefin
             ok: false,
             code: "too-large",
             message: {
-                fa: `حجم فایل ${formatBytes(file.size, "fa")} است. این ابزار حداکثر ${formatBytes(maxBytes, "fa")} را می‌پذیرد.`,
+                fa: `اندازه فایل ${formatBytes(file.size, "fa")} است. این ابزار تا ${formatBytes(maxBytes, "fa")} را می‌پذیرد.`,
                 en: `The file is ${formatBytes(file.size)}. This tool accepts up to ${formatBytes(maxBytes)}.`,
             },
         };

@@ -155,6 +155,10 @@
         font-weight: 700;
     }
 
+    html[lang="fa"] .prose-hw ol {
+        list-style-type: persian;
+    }
+
     .prose-hw ul {
         list-style: disc;
         padding-inline-start: 1.5em;

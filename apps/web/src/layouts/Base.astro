@@ -15,9 +15,11 @@ interface Props {
     path: string;
     title: string;
     description?: string | undefined;
+    /** Structured data (schema.org) for this page. */
+    jsonLd?: unknown[] | undefined;
 }
 
-const { locale, path, title, description } = Astro.props;
+const { locale, path, title, description, jsonLd = [] } = Astro.props;
 const t = useTranslations(locale);
 const site = Astro.site ?? new URL("https://handyweb.ir");
 const canonical = new URL(localePath(locale, path), site).href;
@@ -40,6 +42,17 @@ const xDefault = new URL(localePath("fa", path), site).href;
             <link rel="alternate" hreflang={a.hreflang} href={a.href} />
         ))}
         <link rel="alternate" hreflang="x-default" href={xDefault} />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="HandyWeb" />
+        <meta property="og:title" content={title} />
+        <meta property="og:description" content={description ?? t("site.description")} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:locale" content={locale === "fa" ? "fa_IR" : "en_US"} />
+        <meta property="og:locale:alternate" content={locale === "fa" ? "en_US" : "fa_IR"} />
+        <meta name="twitter:card" content="summary" />
+        {jsonLd.map((data) => (
+            <script is:inline type="application/ld+json" set:html={JSON.stringify(data)} />
+        ))}
         <meta name="color-scheme" content="light dark" />
         <script is:inline set:html={themeInit} />
         <Fonts lang={locale} />

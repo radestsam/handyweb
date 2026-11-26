@@ -72,6 +72,11 @@ export interface ToolDefinition {
     outputKinds: ToolDataKind[];
     limits?: { maxInputBytes?: number; maxFileBytes?: number };
     limitations?: LocalizedText;
+    /** How to use the tool, and answers to common questions. Shown on the tool page. */
+    guide?: {
+        steps: LocalizedText[];
+        faq: Array<{ question: LocalizedText; answer: LocalizedText }>;
+    };
     /** A typical text input. The shared browser tests run the tool with it. */
     example?: string;
 }

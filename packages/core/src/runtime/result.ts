@@ -38,20 +38,20 @@ export class ToolFailure extends Error {
 
 const GENERIC: Record<Exclude<ToolErrorCode, "invalid-input">, LocalizedText> = {
     "too-large": {
-        fa: "ورودی بزرگ‌تر از حد مجاز این ابزار است.",
+        fa: "ورودی بزرگ‌تر از اندازه‌ای است که این ابزار می‌پذیرد.",
         en: "The input is larger than this tool allows.",
     },
     unsupported: {
-        fa: "مرورگر شما از این عملیات پشتیبانی نمی‌کند.",
+        fa: "مرورگر شما این کار را پشتیبانی نمی‌کند.",
         en: "Your browser does not support this operation.",
     },
-    canceled: { fa: "عملیات لغو شد.", en: "The operation was canceled." },
+    canceled: { fa: "کار به خواست شما ایستاد.", en: "The operation was canceled." },
     timeout: {
-        fa: "عملیات بیش از حد طول کشید و متوقف شد.",
+        fa: "کار بیش از اندازه به درازا کشید و ایستاد.",
         en: "The operation took too long and was stopped.",
     },
     internal: {
-        fa: "خطایی غیرمنتظره رخ داد. ورودی شما جایی ارسال نشد.",
+        fa: "کار با شکست روبه‌رو شد. ورودی شما به جایی فرستاده نشد.",
         en: "An unexpected error occurred. Your input was not sent anywhere.",
     },
 };

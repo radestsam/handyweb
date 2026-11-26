@@ -8,13 +8,19 @@ interface Props {
     locale: Locale;
     path: string;
     title: string;
-    description?: string | undefined;
+    /** A unique meta description for this page. */
+    description: string;
 }
 
 const { locale, path, title, description } = Astro.props;
 ---
 
-<Base locale={locale} path={path} title={title} description={description}>
+<Base
+    locale={locale}
+    path={path}
+    title={title.includes("HandyWeb") ? title : `${title} | HandyWeb`}
+    description={description}
+>
     <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
         <Breadcrumbs locale={locale} items={[{ label: title }]} />
         <h1 class="mt-6 text-2xl font-bold">{title}</h1>

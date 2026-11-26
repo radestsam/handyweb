@@ -6,26 +6,33 @@ import { localeStaticPaths } from "../../i18n/static-paths";
 export const getStaticPaths = localeStaticPaths;
 
 const locale = Astro.params.locale as Locale;
-const title = locale === "fa" ? "مشارکت" : "Contribute";
+const title = locale === "fa" ? "همکاری" : "Contribute";
 const repo = "https://github.com/radestsam/handyweb";
+const description =
+    locale === "fa"
+        ? "به HandyWeb کمک کنید: گزارش نادرستی، پیشنهاد ابزار تازه، بهتر کردن برگردان‌ها یا نوشتن کد."
+        : "Help improve HandyWeb: report a bug, suggest a new tool, improve a translation, or write code.";
 ---
 
-<Page locale={locale} path="/contribute" title={title}>
+<Page locale={locale} path="/contribute" title={title} description={description}>
     {locale === "fa" ? (
         <>
-            <p>هر کمکی ارزشمند است: گزارش خطا، پیشنهاد ابزار تازه، بهبود ترجمه یا نوشتن کد.</p>
+            <p>
+                هر کمکی ارزشمند است: گزارش نادرستی‌ها، پیشنهاد ابزار تازه، بهتر کردن برگردان‌ها یا
+                نوشتن کد.
+            </p>
             <ul>
                 <li>
-                    گزارش خطا یا پیشنهاد: یک <a href={`${repo}/issues`}>issue در GitHub</a> باز
-                    کنید.
+                    برای گزارش یک نادرستی یا پیشنهاد، یک{" "}
+                    <a href={`${repo}/issues`}>issue در GitHub</a> باز کنید.
                 </li>
                 <li>
-                    افزودن ابزار: راهنمای فایل CONTRIBUTING.md در <a href={repo}>مخزن کد</a> را
+                    برای افزودن ابزار، راهنمای CONTRIBUTING.md را در <a href={repo}>انبار کد</a>{" "}
                     بخوانید.
                 </li>
                 <li>
-                    گزارش آسیب‌پذیری امنیتی: آن را عمومی منتشر نکنید. روش آن در SECURITY.md آمده
-                    است.
+                    اگر رخنه‌ای در ایمنی سایت یافتید، آن را همگانی نکنید. راه گزارش آن در
+                    SECURITY.md آمده است.
                 </li>
             </ul>
         </>

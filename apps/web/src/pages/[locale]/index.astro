@@ -20,18 +20,18 @@ const groups = nonEmptyCategories(categories, tools)
 
 const text = {
     fa: {
-        title: "ابزارهای ساده، روی دستگاه خودتان",
-        lead: "متن، فایل و تاریخ را در مرورگر خودتان تبدیل کنید. هیچ چیز به سرور ارسال نمی‌شود.",
+        title: "ابزارهای آنلاین رایگان، روی دستگاه خودتان",
+        lead: "کدگذاری، هش فایل، تبدیل تاریخ و یکسان‌سازی نوشته فارسی را در مرورگر خودتان انجام دهید. چیزی به سرور فرستاده نمی‌شود.",
         label: "جستجوی ابزار",
         placeholder: "چه کاری می‌خواهید انجام دهید؟",
-        hint: "مثلا «تاریخ»، «Base64» یا «هش فایل». با Enter اولین نتیجه باز می‌شود.",
-        empty: "ابزاری با این نام پیدا نشد. نام دیگری را امتحان کنید یا",
+        hint: "برای نمونه «تاریخ»، «Base64» یا «هش فایل». Enter نخستین یافته را باز می‌کند.",
+        empty: "ابزاری با این نام پیدا نشد. نام دیگری بنویسید یا",
         all: "همه ابزارها را ببینید",
         privacy: "چطور ورودی شما روی دستگاهتان می‌ماند",
     },
     en: {
-        title: "Simple tools that run on your own device",
-        lead: "Convert text, files, and dates in your browser. Nothing is sent to a server.",
+        title: "Free online tools that run on your own device",
+        lead: "Encode text, hash files, convert Persian dates, and clean up Persian text in your browser. Nothing is sent to a server.",
         label: "Find a tool",
         placeholder: "What do you want to do?",
         hint: "For example “date”, “Base64”, or “file hash”. Press Enter to open the first match.",
@@ -42,7 +42,25 @@ const text = {
 }[locale];
 ---
 
-<Base locale={locale} path="/" title={`${t("site.name")}: ${t("site.tagline")}`}>
+<Base
+    locale={locale}
+    path="/"
+    title={
+        locale === "fa"
+            ? "HandyWeb: ابزارهای آنلاین رایگان فارسی"
+            : "HandyWeb: Free Online Tools That Run in Your Browser"
+    }
+    jsonLd={[
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "HandyWeb",
+            url: new URL(`/${locale}/`, Astro.site).href,
+            inLanguage: locale === "fa" ? "fa-IR" : "en",
+            description: t("site.description"),
+        },
+    ]}
+>
     <main id="main" class="mx-auto max-w-6xl px-5 sm:px-8">
         <section class="pt-12 pb-14 sm:pt-20 sm:pb-20" aria-labelledby="hero-title">
             <h1 id="hero-title" class="max-w-[30ch] text-xl font-bold sm:text-2xl">

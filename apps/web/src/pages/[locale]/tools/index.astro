@@ -16,7 +16,20 @@ const groups = nonEmptyCategories(categories, tools).map((category) => ({
 }));
 ---
 
-<Base locale={locale} path="/tools" title={`${t("nav.tools")} | ${t("site.name")}`}>
+<Base
+    locale={locale}
+    path="/tools"
+    title={
+        locale === "fa"
+            ? "همه ابزارهای آنلاین رایگان | HandyWeb"
+            : "All Free Online Tools | HandyWeb"
+    }
+    description={
+        locale === "fa"
+            ? "همه ابزارهای آنلاین رایگان HandyWeb در یک جا: کدگذاری، هش، JSON، تبدیل تاریخ شمسی و ابزارهای نوشته فارسی."
+            : "All free HandyWeb online tools in one place: encoding, hashing, JSON, Persian date conversion, and Persian text tools."
+    }
+>
     <main id="main" class="mx-auto max-w-6xl px-5 pt-12 sm:px-8 sm:pt-16">
         <h1 class="text-2xl font-bold">{t("nav.tools")}</h1>
         <div class="mt-10">

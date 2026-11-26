@@ -29,8 +29,12 @@ const t = useTranslations(locale);
 <Base
     locale={locale}
     path={`/categories/${category.slug}`}
-    title={`${category.title[locale]} | ${t("site.name")}`}
-    description={category.description[locale]}
+    title={
+        locale === "fa"
+            ? `ابزارهای ${category.title.fa} | HandyWeb`
+            : `${category.title.en} Tools | HandyWeb`
+    }
+    description={`${category.description[locale]} ${locale === "fa" ? "رایگان، و همه در مرورگر خودتان؛ چیزی به سرور فرستاده نمی‌شود." : "Free, and all in your browser: nothing is sent to a server."}`}
 >
     <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
         <Breadcrumbs

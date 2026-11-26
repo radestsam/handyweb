@@ -21,8 +21,68 @@ const t = useTranslations(locale);
 const category = categoryOf(tool);
 const path = `/tools/${tool.slug}`;
 const canonical = new URL(localePath(locale, path), Astro.site).href;
-const heading = { fa: "محدودیت‌ها", en: "Limitations" }[locale];
+const heading = { fa: "آنچه باید بدانید", en: "Good to Know" }[locale];
 const source = toolSourceUrl(tool.category, tool.id);
+const site = Astro.site ?? new URL("https://handyweb.ir");
+const url = (p: string) => new URL(localePath(locale, p), site).href;
+const labels = {
+    fa: { how: "چگونه به کار ببریم", faq: "پرسش‌های رایج" },
+    en: { how: "How to Use It", faq: "Questions and Answers" },
+}[locale];
+
+// Structured data: the tool as a free web application, its questions, and its place in the site.
+const jsonLd: unknown[] = [
+    {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        name: tool.title[locale],
+        description: tool.description[locale],
+        url: url(path),
+        applicationCategory: "UtilitiesApplication",
+        operatingSystem: "Any",
+        browserRequirements: "Requires JavaScript",
+        inLanguage: locale === "fa" ? "fa-IR" : "en",
+        isAccessibleForFree: true,
+        offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    },
+    {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: [
+            { "@type": "ListItem", position: 1, name: t("nav.home"), item: url("/") },
+            { "@type": "ListItem", position: 2, name: t("nav.tools"), item: url("/tools") },
+            ...(category
+                ? [
+                      {
+                          "@type": "ListItem",
+                          position: 3,
+                          name: category.title[locale],
+                          item: url(`/categories/${category.slug}`),
+                      },
+                  ]
+                : []),
+            {
+                "@type": "ListItem",
+                position: category ? 4 : 3,
+                name: tool.title[locale],
+                item: url(path),
+            },
+        ],
+    },
+    ...(tool.guide && tool.guide.faq.length > 0
+        ? [
+              {
+                  "@context": "https://schema.org",
+                  "@type": "FAQPage",
+                  mainEntity: tool.guide.faq.map((item) => ({
+                      "@type": "Question",
+                      name: item.question[locale],
+                      acceptedAnswer: { "@type": "Answer", text: item.answer[locale] },
+                  })),
+              },
+          ]
+        : []),
+];
 ---
 
 {alias ? (
@@ -43,6 +103,7 @@ const source = toolSourceUrl(tool.category, tool.id);
         locale={locale}
         path={path}
         title={`${tool.title[locale]} | ${t("site.name")}`}
+        jsonLd={jsonLd}
         description={tool.description[locale]}
     >
         <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
@@ -75,14 +136,42 @@ const source = toolSourceUrl(tool.category, tool.id);
                 <noscript>
                     <p class="text-sm">
                         {locale === "fa"
-                            ? "این ابزار برای اجرا روی دستگاه شما به JavaScript نیاز دارد."
+                            ? "این ابزار برای کار روی دستگاه شما به JavaScript نیاز دارد."
                             : "This tool needs JavaScript to run on your device."}
                     </p>
                 </noscript>
             </section>
 
+            {tool.guide && (
+                <section
+                    class="prose-hw mt-16 max-w-[60ch] border-t border-border pt-8"
+                    aria-labelledby="how"
+                >
+                    <h2 id="how">{labels.how}</h2>
+                    <ol class="list-decimal ps-6">
+                        {tool.guide.steps.map((step) => (
+                            <li>{step[locale]}</li>
+                        ))}
+                    </ol>
+                </section>
+            )}
+
+            {tool.guide && tool.guide.faq.length > 0 && (
+                <section class="prose-hw mt-12 max-w-[60ch]" aria-labelledby="faq">
+                    <h2 id="faq">{labels.faq}</h2>
+                    {tool.guide.faq.map((item) => (
+                        <details class="border-b border-border py-3">
+                            <summary class="cursor-pointer font-semibold">
+                                {item.question[locale]}
+                            </summary>
+                            <p class="mt-2 text-muted">{item.answer[locale]}</p>
+                        </details>
+                    ))}
+                </section>
+            )}
+
             {tool.limitations && (
-                <section class="prose-hw mt-16 max-w-[60ch] border-t border-border pt-8">
+                <section class="prose-hw mt-12 max-w-[60ch]">
                     <h2>{heading}</h2>
                     <p>{tool.limitations[locale]}</p>
                 </section>
@@ -90,7 +179,7 @@ const source = toolSourceUrl(tool.category, tool.id);
 
             <p class="mt-10 text-sm">
                 <a href={source}>
-                    {locale === "fa" ? "کد منبع این ابزار" : "Source code of this tool"}
+                    {locale === "fa" ? "کد این ابزار در GitHub" : "Source code of this tool"}
                 </a>
             </p>
         </main>

@@ -49,6 +49,11 @@ export function validateRegistry({ categories, tools, loaders }: Registry): stri
         checkText(`${name} title`, tool.title, fail);
         checkText(`${name} description`, tool.description, fail);
         if (tool.limitations) checkText(`${name} limitations`, tool.limitations, fail);
+        tool.guide?.steps.forEach((step, i) => checkText(`${name} step ${i + 1}`, step, fail));
+        tool.guide?.faq.forEach((item, i) => {
+            checkText(`${name} question ${i + 1}`, item.question, fail);
+            checkText(`${name} answer ${i + 1}`, item.answer, fail);
+        });
         if (tool.keywords.fa.length === 0) fail(`${name}: no Persian keywords.`);
         if (tool.keywords.en.length === 0) fail(`${name}: no English keywords.`);
 

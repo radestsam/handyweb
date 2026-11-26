@@ -12,7 +12,7 @@ export const categories: readonly ToolCategory[] = [
         order: 10,
         title: { fa: "متن", en: "Text" },
         description: {
-            fa: "شمارش، تبدیل، مرتب‌سازی و پاک‌سازی متن.",
+            fa: "شمردن، چیدن، پاک‌سازی و دگرگون کردن نوشته.",
             en: "Count, convert, sort, and clean text.",
         },
     },
@@ -22,7 +22,7 @@ export const categories: readonly ToolCategory[] = [
         order: 20,
         title: { fa: "فارسی", en: "Persian" },
         description: {
-            fa: "یکسان‌سازی نویسه‌ها، اعداد فارسی، نیم‌فاصله و تاریخ جلالی.",
+            fa: "یکسان‌سازی نویسه‌ها، شماره‌های فارسی، نیم‌فاصله و تبدیل تاریخ شمسی و میلادی.",
             en: "Character normalization, Persian digits, ZWNJ, and the Jalali calendar.",
         },
     },
@@ -32,7 +32,7 @@ export const categories: readonly ToolCategory[] = [
         order: 30,
         title: { fa: "کدگذاری", en: "Encoding" },
         description: {
-            fa: "Base64، URL، HTML، یونیکد و قالب‌های دیگر.",
+            fa: "Base64، URL، HTML، یونیکد و گونه‌های دیگر.",
             en: "Base64, URL, HTML, Unicode, and other formats.",
         },
     },
@@ -42,7 +42,7 @@ export const categories: readonly ToolCategory[] = [
         order: 40,
         title: { fa: "هش و رمزنگاری", en: "Hashing and Cryptography" },
         description: {
-            fa: "هش، HMAC، تولید رمز عبور و شناسه‌های تصادفی امن.",
+            fa: "هش، HMAC، ساخت گذرواژه و شناسه‌های ایمن و پیش‌بینی‌ناپذیر.",
             en: "Hashes, HMAC, password generators, and secure random IDs.",
         },
     },
@@ -52,7 +52,7 @@ export const categories: readonly ToolCategory[] = [
         order: 50,
         title: { fa: "برنامه‌نویسی", en: "Developer" },
         description: {
-            fa: "قالب‌بندی و اعتبارسنجی JSON، XML و قالب‌های دیگر.",
+            fa: "آراستن و بررسی درستی JSON، XML و گونه‌های دیگر.",
             en: "Format and validate JSON, XML, and other formats.",
         },
     },
@@ -62,7 +62,7 @@ export const categories: readonly ToolCategory[] = [
         order: 60,
         title: { fa: "تصویر", en: "Images" },
         description: {
-            fa: "تغییر اندازه، برش، تبدیل و فشرده‌سازی تصویر.",
+            fa: "کوچک کردن، بریدن و فشرده‌سازی تصویر.",
             en: "Resize, crop, convert, and compress images.",
         },
     },
@@ -72,7 +72,7 @@ export const categories: readonly ToolCategory[] = [
         order: 70,
         title: { fa: "PDF", en: "PDF" },
         description: {
-            fa: "ادغام، تقسیم و ویرایش صفحه‌های PDF.",
+            fa: "یکی کردن، جدا کردن و ویرایش برگه‌های PDF.",
             en: "Merge, split, and edit PDF pages.",
         },
     },
@@ -92,7 +92,7 @@ export const categories: readonly ToolCategory[] = [
         order: 90,
         title: { fa: "ماشین‌حساب و مبدل", en: "Calculators and Converters" },
         description: {
-            fa: "تبدیل واحد، تاریخ، مبنای عددی و محاسبه‌های روزمره.",
+            fa: "برگرداندن یکاها، تاریخ، پایه شماره‌ها و شمارش‌های روزانه.",
             en: "Unit, date, and number base conversion, and everyday calculations.",
         },
     },
@@ -102,7 +102,7 @@ export const categories: readonly ToolCategory[] = [
         order: 100,
         title: { fa: "شبکه", en: "Network" },
         description: {
-            fa: "محاسبه IP و زیرشبکه و جدول‌های مرجع.",
+            fa: "شمارش نشانی IP و زیرشبکه و جدول‌های راهنما.",
             en: "IP and subnet calculators and reference tables.",
         },
     },
