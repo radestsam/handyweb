@@ -29,6 +29,10 @@ describe("search ranking", () => {
         expect(top("sha256")).toBe("hash");
     });
 
+    it("finds Persian text typed with an Arabic keyboard", () => {
+        expect(top("ي عربي")).toBe("persian-normalizer");
+    });
+
     it("needs every word to match", () => {
         expect(rank(entries, "   ")).toEqual([]);
     });

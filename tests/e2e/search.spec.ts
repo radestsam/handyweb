@@ -32,7 +32,7 @@ test.describe("search", () => {
 
 test("the home page lists every tool once", async ({ page }) => {
     await page.goto("/fa/");
-    await expect(page.locator("[data-tool-row]")).toHaveCount(3);
+    await expect(page.locator("[data-tool-row]")).toHaveCount(4);
 });
 
 test("the arrow keys move between results", async ({ page }) => {

@@ -8,4 +8,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     base64: () => import("./encoding/base64/ui"),
     "json-formatter": () => import("./developer/json-formatter/ui"),
     hash: () => import("./crypto/hash/ui"),
+    "persian-normalizer": () => import("./persian/persian-normalizer/ui"),
 };
