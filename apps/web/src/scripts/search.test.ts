@@ -26,6 +26,7 @@ describe("search ranking", () => {
         expect(top("base64")).toBe("base64");
         expect(top("بیس۶۴")).toBe("base64");
         expect(top("json")).toBe("json-formatter");
+        expect(top("sha256")).toBe("hash");
     });
 
     it("needs every word to match", () => {

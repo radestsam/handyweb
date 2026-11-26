@@ -10,7 +10,8 @@
         "./loaders": "./src/loaders.ts"
     },
     "dependencies": {
-        "@handyweb/core": "0.0.0"
+        "@handyweb/core": "0.0.0",
+        "hash-wasm": "4.13.0"
     },
     "peerDependencies": {
         "react": "19.3.1",
