@@ -12,17 +12,28 @@
         "node": ">=24.22.2 <27"
     },
     "devDependencies": {
+        "@axe-core/playwright": "4.14.0",
+        "@playwright/test": "1.65.1",
         "@types/node": "24.19.2",
         "eslint": "10.15.0",
         "eslint-plugin-astro": "3.2.1",
         "eslint-plugin-react-hooks": "7.1.1",
+        "jsdom": "31.0.1",
+        "prettier": "3.10.1",
+        "prettier-plugin-astro": "1.1.2",
         "typescript": "6.0.3",
-        "typescript-eslint": "8.73.0"
+        "typescript-eslint": "8.73.0",
+        "vite": "8.4.0",
+        "vitest": "5.1.1"
     },
     "type": "module",
     "scripts": {
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
         "lint": "eslint .",
-        "typecheck": "tsc -p packages/core && tsc -p packages/tools && yarn workspace @handyweb/web run check",
+        "typecheck": "tsc -p . && tsc -p packages/core && tsc -p packages/tools && yarn workspace @handyweb/web run check",
+        "test": "vitest run",
+        "test:e2e": "playwright test",
         "dev": "yarn workspace @handyweb/web dev",
         "build": "yarn workspace @handyweb/web build"
     }

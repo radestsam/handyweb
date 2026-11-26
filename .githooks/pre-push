@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Pre-push hook: run the checks that CI runs, before the push rather than after.
+#
+# Finding a failure here costs a few seconds. Finding it in CI costs a round
+# trip and a red commit on the branch.
+#
+# To push anyway: git push --no-verify
+
+set -uo pipefail
+
+FAILED=0
+LOG="$(mktemp)"
+trap 'rm -f "$LOG"' EXIT
+
+run() {
+    local label="$1"
+    shift
+
+    if "$@" >"$LOG" 2>&1; then
+        echo "  ✅ ${label}"
+    else
+        echo "  ❌ ${label}"
+        sed 's/^/     /' "$LOG" | tail -25
+        FAILED=1
+    fi
+}
+
+if [ ! -d ./node_modules ]; then
+    echo "⚠️  Dependencies are not installed. Skipping the checks."
+    exit 0
+fi
+
+echo "Running the checks CI runs..."
+
+run "formatting" yarn -s format:check
+run "lint" yarn -s lint
+run "type check" yarn -s typecheck
+run "unit tests" yarn -s test
+
+if [ "$FAILED" -ne 0 ]; then
+    echo ""
+    echo "Push stopped. Fix the above, or use 'git push --no-verify' to push anyway."
+    exit 1
+fi
+
+echo "All checks passed."
+exit 0

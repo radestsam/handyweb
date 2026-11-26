@@ -1,0 +1,10 @@
+# Files that Prettier must not format. Generated, vendored or owned by
+# another tool.
+node_modules/
+dist/
+.astro/
+coverage/
+playwright-report/
+test-results/
+yarn.lock
+LICENSE

@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# ==============================================================
+# Pre-commit hook: format the staged files with the standard tool of
+# each language, then stage the result.
+#
+# Install it once per clone:
+#
+#   make hooks        (runs: git config core.hooksPath .githooks)
+#
+# | Files                                   | Tool                   |
+# |-----------------------------------------|------------------------|
+# | *.ts *.tsx *.js *.astro *.css *.json    | Prettier               |
+# | *.md *.yml *.yaml                       | Prettier               |
+# | *.sh, .githooks/*                       | shfmt, then shellcheck |
+#
+# A tool that is not installed is skipped with a note. CI runs the same
+# checks, so a skipped tool here still fails the pull request.
+# ==============================================================
+set -euo pipefail
+
+staged() {
+    git diff --cached --name-only --diff-filter=ACM | grep -E "$1" || true
+}
+
+skip() { echo "  -- $1 (not installed; CI checks it)"; }
+
+# format <label> <file list> <command...>: run the command on each file, then
+# stage the file again, so the commit holds the formatted text.
+format() {
+    local label="$1" files="$2"
+    shift 2
+    [ -n "$files" ] || return 0
+    echo "  ${label}"
+    while IFS= read -r file; do
+        [ -f "$file" ] || continue
+        "$@" "$file"
+        git add "$file"
+    done <<<"$files"
+}
+
+FAILED=0
+
+WEB_FILES="$(staged '\.(js|mjs|cjs|ts|tsx|astro|css|json|md|ya?ml)$' | grep -vE '(^|/)yarn\.lock$' || true)"
+if [ -n "$WEB_FILES" ]; then
+    if [ -x ./node_modules/.bin/prettier ]; then
+        format "prettier" "$WEB_FILES" ./node_modules/.bin/prettier --write --log-level warn
+    else
+        skip "prettier"
+    fi
+fi
+
+SH_FILES="$(staged '(\.sh$|^\.githooks/)')"
+if [ -n "$SH_FILES" ]; then
+    if command -v shfmt >/dev/null 2>&1; then
+        format "shfmt" "$SH_FILES" shfmt -w -i 4 -ci -bn
+    else
+        skip "shfmt"
+    fi
+    if command -v shellcheck >/dev/null 2>&1; then
+        # shellcheck disable=SC2086 # one file name per word
+        shellcheck --severity=warning -x $SH_FILES || FAILED=1
+    else
+        skip "shellcheck"
+    fi
+fi
+
+if [ "$FAILED" -ne 0 ]; then
+    echo "Commit stopped. Fix the findings above."
+    exit 1
+fi
+exit 0

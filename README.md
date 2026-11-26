@@ -12,8 +12,32 @@ Live site: https://handyweb.ir (not deployed yet)
 ## Setup
 
 ```bash
-yarn install --frozen-lockfile
-yarn dev
+make install
+make hooks
+make dev
+```
+
+## Commands
+
+| Command         | What it does                                                |
+| --------------- | ----------------------------------------------------------- |
+| `make install`  | Installs the packages with the lockfile                     |
+| `make hooks`    | Turns on the git hooks in `.githooks/`                      |
+| `make dev`      | Starts the development server at http://localhost:4321      |
+| `make build`    | Builds the static site into `apps/web/dist/`                |
+| `make preview`  | Builds, then serves `apps/web/dist/`                        |
+| `make test`     | Runs the unit tests (Vitest)                                |
+| `make test-e2e` | Runs the browser tests (Playwright) on the production build |
+| `make lint`     | Runs the format check, ESLint, and the type check           |
+| `make format`   | Formats every file with Prettier                            |
+
+### Browser Tests in Iran
+
+The Playwright browser download (`npx playwright install`) returns `403` from Iran. Point the tests at a local Chromium-based browser instead. Only the Chromium projects then run. CI runs every browser.
+
+```bash
+export PW_CHROMIUM_PATH="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
+make test-e2e
 ```
 
 ## Repository Layout
@@ -23,6 +47,7 @@ yarn dev
 | `apps/web`       | The Astro site                                       |
 | `packages/core`  | Code shared by the site and the tools                |
 | `packages/tools` | Every tool: metadata, logic, tests, UI, translations |
+| `tests/`         | Browser tests: end-to-end                            |
 
 The dependency direction is `apps/web` to `packages/tools` to `packages/core`. ESLint stops an import in the other direction.
 
