@@ -1,9 +1,24 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
 
-// Every static page, in both languages and both themes, must have no axe
-// violations at WCAG 2.2 AA. Tool pages are added by the registry (T0.10).
-const PAGES = ["/", "/about/", "/privacy/", "/opensource/", "/contribute/"];
+import { catalog } from "@handyweb/tools/catalog";
+import { categories } from "@handyweb/tools/categories";
+
+// Every page, in both languages and both themes, must have no axe violations
+// at WCAG 2.2 AA. Tool and category pages come from the registry.
+const published = catalog.filter((tool) => tool.status === "published");
+const PAGES = [
+    "/",
+    "/about/",
+    "/privacy/",
+    "/opensource/",
+    "/contribute/",
+    "/tools/",
+    ...published.map((tool) => `/tools/${tool.slug}/`),
+    ...categories
+        .filter((c) => published.some((t) => t.category === c.id || t.alsoIn.includes(c.id)))
+        .map((c) => `/categories/${c.slug}/`),
+];
 const LOCALES = ["fa", "en"] as const;
 const THEMES = ["light", "dark"] as const;
 
@@ -16,6 +31,7 @@ for (const locale of LOCALES) {
                 }, theme);
                 await page.goto(`/${locale}${path}`);
                 await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
+                await page.waitForLoadState("networkidle");
                 const results = await new AxeBuilder({ page })
                     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
                     .analyze();

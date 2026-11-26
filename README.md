@@ -44,7 +44,7 @@ make test-e2e
 
 | Path             | What it holds                                                                         |
 | ---------------- | ------------------------------------------------------------------------------------- |
-| `apps/web`       | The Astro site: routes, layouts, static pages                                         |
+| `apps/web`       | The Astro site: routes, layouts, static pages, generated tool pages                   |
 | `packages/core`  | Types, registry helpers, runtime, worker protocol, file helpers, i18n, shared tool UI |
 | `packages/tools` | Every tool: metadata, logic, tests, UI, translations                                  |
 | `tests/`         | Browser tests: end-to-end, accessibility                                              |
@@ -76,13 +76,18 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 
 ## Pages
 
-| Path                    | Page                                                                 |
-| ----------------------- | -------------------------------------------------------------------- |
-| `/<locale>/`            | Home                                                                 |
-| `/<locale>/about/`      | About the project                                                    |
-| `/<locale>/privacy/`    | What the site stores and sends (nothing but the two preference keys) |
-| `/<locale>/opensource/` | License and dependencies                                             |
-| `/<locale>/contribute/` | How to help                                                          |
+| Path                           | Page                                                                 |
+| ------------------------------ | -------------------------------------------------------------------- |
+| `/<locale>/`                   | Home                                                                 |
+| `/<locale>/tools/`             | All tools                                                            |
+| `/<locale>/categories/<slug>/` | One category (only categories with a published tool)                 |
+| `/<locale>/tools/<slug>/`      | One tool                                                             |
+| `/<locale>/about/`             | About the project                                                    |
+| `/<locale>/privacy/`           | What the site stores and sends (nothing but the two preference keys) |
+| `/<locale>/opensource/`        | License and dependencies                                             |
+| `/<locale>/contribute/`        | How to help                                                          |
+
+`/sitemap.xml` lists every canonical page in both languages.
 
 ## Tools
 
@@ -95,6 +100,14 @@ No tool is published yet.
 3. Run heavy work through the runtime in `packages/core/src/runtime`, or in a worker with `packages/core/src/worker`.
 4. Build the UI from the shared components in `packages/core/src/ui`. Every string has a Persian and an English version.
 5. Run `make test` and `make test-e2e`. `packages/tools/src/registry.test.ts` checks the catalog, the categories, and the loaders.
+
+### Tool Pages
+
+Each published tool gets a page per language at `/<locale>/tools/<slug>/`. An alias slug is a redirect page to the canonical one, and the sitemap leaves it out. `?preset=<id>` opens a tool with the options of one of its presets. The tool code loads on demand, so a page never loads the code of another tool.
+
+### Source Links
+
+Each tool page links to the source folder of the tool at the release tag `v<version>`. `<version>` is the `version` field of the root `package.json`. The link is set in `apps/web/src/release.ts`. Tag each release `v<version>` on the commit that is deployed, so every link opens the code that the site runs.
 
 ## Deviations From the Starter Kit
 

@@ -1,0 +1,98 @@
+---
+import { localePath, type Locale, type ToolDefinition } from "@handyweb/core";
+import Base from "../../../layouts/Base.astro";
+import Breadcrumbs from "../../../components/Breadcrumbs.astro";
+import PrivacyBadge from "../../../components/tool/PrivacyBadge.astro";
+import ToolIsland from "../../../components/tool/ToolIsland";
+import { useTranslations } from "../../../i18n/site";
+import { toolSourceUrl } from "../../../release";
+import { categoryOf, toolStaticPaths } from "../../../i18n/tools";
+
+export const getStaticPaths = toolStaticPaths;
+
+interface Props {
+    tool: ToolDefinition;
+    alias: boolean;
+}
+
+const locale = Astro.params.locale as Locale;
+const { tool, alias } = Astro.props;
+const t = useTranslations(locale);
+const category = categoryOf(tool);
+const path = `/tools/${tool.slug}`;
+const canonical = new URL(localePath(locale, path), Astro.site).href;
+const heading = { fa: "محدودیت‌ها", en: "Limitations" }[locale];
+const source = toolSourceUrl(tool.category, tool.id);
+---
+
+{alias ? (
+    <html lang={locale}>
+        <head>
+            <meta charset="utf-8" />
+            <title>{tool.title[locale]}</title>
+            <meta http-equiv="refresh" content={`0; url=${localePath(locale, path)}`} />
+            <meta name="robots" content="noindex" />
+            <link rel="canonical" href={canonical} />
+        </head>
+        <body>
+            <a href={localePath(locale, path)}>{tool.title[locale]}</a>
+        </body>
+    </html>
+) : (
+    <Base
+        locale={locale}
+        path={path}
+        title={`${tool.title[locale]} | ${t("site.name")}`}
+        description={tool.description[locale]}
+    >
+        <main id="main" class="mx-auto max-w-5xl px-4 py-6">
+            <Breadcrumbs
+                locale={locale}
+                items={[
+                    { label: t("nav.tools"), path: "/tools" },
+                    ...(category
+                        ? [{ label: category.title[locale], path: `/categories/${category.slug}` }]
+                        : []),
+                    { label: tool.title[locale] },
+                ]}
+            />
+            <h1 class="mt-4 text-3xl font-bold">{tool.title[locale]}</h1>
+            <p class="mt-2 max-w-3xl text-muted">{tool.description[locale]}</p>
+            <div class="mt-4">
+                <PrivacyBadge tool={tool} locale={locale} />
+            </div>
+
+            <section
+                class="mt-6 rounded-xl border border-border bg-surface p-4 sm:p-6"
+                data-tool-root={tool.id}
+            >
+                <ToolIsland
+                    client:only="react"
+                    toolId={tool.id}
+                    locale={locale}
+                    presets={tool.presets.map(({ id, options }) => ({ id, options }))}
+                />
+                <noscript>
+                    <p class="text-sm">
+                        {locale === "fa"
+                            ? "این ابزار برای اجرا روی دستگاه شما به JavaScript نیاز دارد."
+                            : "This tool needs JavaScript to run on your device."}
+                    </p>
+                </noscript>
+            </section>
+
+            {tool.limitations && (
+                <section class="prose-hw mt-8 max-w-3xl">
+                    <h2>{heading}</h2>
+                    <p>{tool.limitations[locale]}</p>
+                </section>
+            )}
+
+            <p class="mt-8 text-sm">
+                <a href={source}>
+                    {locale === "fa" ? "کد منبع این ابزار" : "Source code of this tool"}
+                </a>
+            </p>
+        </main>
+    </Base>
+)}

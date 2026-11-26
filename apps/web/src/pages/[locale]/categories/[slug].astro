@@ -1,0 +1,44 @@
+---
+import {
+    LOCALES,
+    localePath,
+    nonEmptyCategories,
+    toolsInCategory,
+    type Locale,
+    type ToolCategory,
+} from "@handyweb/core";
+import Page from "../../../layouts/Page.astro";
+import { categories, tools } from "../../../i18n/tools";
+
+export function getStaticPaths() {
+    return LOCALES.flatMap((locale) =>
+        nonEmptyCategories(categories, tools).map((category) => ({
+            params: { locale, slug: category.slug },
+            props: { category },
+        })),
+    );
+}
+
+const locale = Astro.params.locale as Locale;
+const { category } = Astro.props as { category: ToolCategory };
+const list = toolsInCategory(tools, category.id);
+---
+
+<Page
+    locale={locale}
+    path={`/categories/${category.slug}`}
+    title={category.title[locale]}
+    description={category.description[locale]}
+>
+    <p>{category.description[locale]}</p>
+    <ul class="!list-none !ps-0" data-tool-list>
+        {list.map((tool) => (
+            <li>
+                <a href={localePath(locale, `/tools/${tool.slug}`)} class="font-semibold">
+                    {tool.title[locale]}
+                </a>
+                <p class="text-sm text-muted">{tool.description[locale]}</p>
+            </li>
+        ))}
+    </ul>
+</Page>
