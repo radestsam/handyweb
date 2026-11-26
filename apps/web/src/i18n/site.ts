@@ -27,8 +27,7 @@ const fa = {
     "theme.dark": "تیره",
     "nav.main": "منوی اصلی",
     "nav.footer": "پیوندهای پایین برگه",
-    "nav.source": "کد در GitHub",
-    "footer.license": "متن‌باز با پروانه Apache 2.0",
+    "nav.source": "گیت‌هاب",
     "footer.local":
         "ابزارها روی دستگاه خودتان کار می‌کنند. چیزی که وارد می‌کنید جایی نگه داشته یا فرستاده نمی‌شود.",
     "theme.button": "گزینش پوسته",
@@ -69,7 +68,6 @@ const en: Messages = {
     "nav.main": "Main menu",
     "nav.footer": "Footer links",
     "nav.source": "Source code on GitHub",
-    "footer.license": "Open source under the Apache 2.0 license",
     "footer.local": "The tools run on your device. No input is stored or sent.",
     "theme.button": "Change the theme",
     "footer.creditBefore": "Designed, built, and maintained by ",
