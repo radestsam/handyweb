@@ -12,6 +12,7 @@ export const UI_STRINGS = {
         en: "Could not copy. Select the text by hand.",
     },
     clear: { fa: "پاک کردن", en: "Clear" },
+    paste: { fa: "چسباندن", en: "Paste" },
     download: { fa: "دانلود", en: "Download" },
     cancel: { fa: "ایست", en: "Cancel" },
     example: { fa: "نمونه", en: "Example" },

@@ -10,3 +10,7 @@ export * from "./CopyButton";
 export * from "./Ltr";
 export * from "./FileDrop";
 export * from "./Progress";
+export * from "./icons";
+export * from "./Pane";
+export * from "./PaneAction";
+export * from "./PasteButton";
