@@ -1,0 +1,68 @@
+---
+/*
+ * States exactly where the input of a tool goes (plan section 5.3). It is
+ * driven by the tool metadata, never by a generic "100% private" claim.
+ */
+import type { Locale, ToolDefinition } from "@handyweb/core";
+
+interface Props {
+    tool: ToolDefinition;
+    locale: Locale;
+}
+
+const { tool, locale } = Astro.props;
+
+const text = {
+    local: {
+        fa: "پردازش روی دستگاه شما: ورودی به هیچ سروری ارسال نمی‌شود.",
+        en: "Runs on your device: your input is not sent to any server.",
+    },
+    localDownload: {
+        fa: "پردازش روی دستگاه شما. یک بار یک فایل برنامه بارگیری می‌شود، اما ورودی شما ارسال نمی‌شود.",
+        en: "Runs on your device. A program file is downloaded once, but your input is not sent.",
+    },
+    external: {
+        fa: "این ابزار ورودی را پس از اجازه شما به یک سرویس دیگر می‌فرستد.",
+        en: "This tool sends your input to another service after you agree.",
+    },
+};
+
+const kind =
+    tool.privacy === "external-consent-required"
+        ? "external"
+        : tool.networkUse === "none"
+          ? "local"
+          : "localDownload";
+const local = kind !== "external";
+---
+
+<p
+    class:list={[
+        "inline-flex items-start gap-2 rounded-md border px-3 py-2 text-sm",
+        local ? "border-success/40 text-success" : "border-error bg-error-bg text-error",
+    ]}
+    data-privacy={kind}
+>
+    <svg
+        aria-hidden="true"
+        viewBox="0 0 24 24"
+        class="mt-0.5 size-4 shrink-0"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+    >
+        {local ? (
+            <path
+                d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Zm-3 9 2 2 4-4"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+            />
+        ) : (
+            <path
+                d="M12 8v5m0 3v.5M10.3 3.9 2.6 17.2A2 2 0 0 0 4.3 20h15.4a2 2 0 0 0 1.7-2.8L13.7 3.9a2 2 0 0 0-3.4 0Z"
+                stroke-linecap="round"
+            />
+        )}
+    </svg>
+    <span>{text[kind][locale]}</span>
+</p>

@@ -2,6 +2,9 @@
 @import "./tokens.css";
 @import "./fonts.css";
 
+/* Tool UI lives in the workspace packages. Tailwind scans them for classes. */
+@source "../../../../packages";
+
 /* `dark:` utilities follow the data-theme attribute, not only the system. */
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
@@ -65,6 +68,14 @@
     :focus-visible {
         outline: 2px solid var(--hw-focus);
         outline-offset: 2px;
+    }
+
+    /* The placeholder holds the space of a tool until its island renders. The
+       island is rendered on the client only, so no one types into a tool before
+       it works. */
+    astro-island:not([ssr]) ~ .tool-placeholder,
+    astro-island:has(> *) ~ .tool-placeholder {
+        display: none;
     }
 
     /* Values that must never be mirrored in an RTL page. See Ltr.astro. */

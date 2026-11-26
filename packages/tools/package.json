@@ -5,9 +5,19 @@
     "type": "module",
     "exports": {
         ".": "./src/index.ts",
-        "./*": "./src/*"
+        "./catalog": "./src/catalog.ts",
+        "./categories": "./src/categories.ts",
+        "./loaders": "./src/loaders.ts"
     },
     "dependencies": {
         "@handyweb/core": "0.0.0"
+    },
+    "peerDependencies": {
+        "react": "19.3.1",
+        "react-dom": "19.3.1"
+    },
+    "devDependencies": {
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0"
     }
 }

@@ -25,10 +25,15 @@ export default tseslint.config(
     ...tseslint.configs.recommended,
     ...astro.configs.recommended,
     {
-        files: ["**/*.{ts,tsx}"],
+        files: ["apps/web/src/**/*.{ts,tsx}", "packages/*/src/**/*.{ts,tsx}"],
         plugins: { "react-hooks": reactHooks },
         rules: {
             ...reactHooks.configs.recommended.rules,
+        },
+    },
+    {
+        files: ["**/*.{ts,tsx}"],
+        rules: {
             "@typescript-eslint/consistent-type-imports": "error",
         },
     },
