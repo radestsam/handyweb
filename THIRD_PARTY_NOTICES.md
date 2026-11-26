@@ -11,12 +11,19 @@ HandyWeb is licensed under the Apache License 2.0 (see `LICENSE`). It ships the 
 
 The full license text of each font is in its package: `node_modules/@fontsource-variable/<name>/LICENSE`.
 
-## npm Packages Bundled Into the Site
+## npm Packages
 
-| Package          | License |
-| ---------------- | ------- |
-| astro            | MIT     |
-| react, react-dom | MIT     |
-| tailwindcss      | MIT     |
+`scripts/check-notices.mjs` fails the build when a package in a `dependencies` field is missing here.
+
+| Package                          | License                           | Ships to visitors                  |
+| -------------------------------- | --------------------------------- | ---------------------------------- |
+| `astro`                          | MIT                               | Yes: the island runtime            |
+| `@astrojs/react`                 | MIT                               | Yes: the React renderer of islands |
+| `react`                          | MIT                               | Yes                                |
+| `react-dom`                      | MIT                               | Yes                                |
+| `tailwindcss`                    | MIT                               | Yes: the generated CSS             |
+| `@tailwindcss/vite`              | MIT                               | No: build step only                |
+| `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                |
+| `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                |
 
 Development tools (TypeScript, ESLint, Prettier, Vitest, Playwright, and others) are not shipped to visitors. Their licenses are in `node_modules/`.

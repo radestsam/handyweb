@@ -19,17 +19,17 @@ make dev
 
 ## Commands
 
-| Command         | What it does                                                             |
-| --------------- | ------------------------------------------------------------------------ |
-| `make install`  | Installs the packages with the lockfile                                  |
-| `make hooks`    | Turns on the git hooks in `.githooks/`                                   |
-| `make dev`      | Starts the development server at http://localhost:4321                   |
-| `make build`    | Builds the static site into `apps/web/dist/`                             |
-| `make preview`  | Builds, then serves `apps/web/dist/`                                     |
-| `make test`     | Runs the unit tests (Vitest)                                             |
-| `make test-e2e` | Runs the browser tests (Playwright) on the production build              |
-| `make lint`     | Runs the format check, ESLint, the logical CSS check, and the type check |
-| `make format`   | Formats every file with Prettier                                         |
+| Command         | What it does                                                                          |
+| --------------- | ------------------------------------------------------------------------------------- |
+| `make install`  | Installs the packages with the lockfile                                               |
+| `make hooks`    | Turns on the git hooks in `.githooks/`                                                |
+| `make dev`      | Starts the development server at http://localhost:4321                                |
+| `make build`    | Builds the static site into `apps/web/dist/`                                          |
+| `make preview`  | Builds, then serves `apps/web/dist/`                                                  |
+| `make test`     | Runs the unit tests (Vitest)                                                          |
+| `make test-e2e` | Runs the browser tests (Playwright) on the production build                           |
+| `make lint`     | Runs the format check, ESLint, the logical CSS and notices checks, and the type check |
+| `make format`   | Formats every file with Prettier                                                      |
 
 ### Browser Tests in Iran
 
@@ -117,6 +117,10 @@ Each tool page links to the source folder of the tool at the release tag `v<vers
 - The only browser storage keys are `handyweb:theme` and `handyweb:locale`. The site stores no user content.
 
 `tests/privacy/tools.spec.ts` opens every published tool in both languages and runs it with its example input. It fails on a request to another origin, on a request that contains the input or the result, and on any other stored data.
+
+## Contributing
+
+Read `CONTRIBUTING.md` before you open a pull request, and follow `CODE_OF_CONDUCT.md`. Report a security problem privately, as `SECURITY.md` describes. `CHANGELOG.md` lists the changes. `docs/infrastructure.md` describes the build and the hosting, and `docs/offline-operations.md` is the outage runbook. `THIRD_PARTY_NOTICES.md` lists every dependency that ships to the browser. `make lint` checks that it is complete.
 
 ## Deviations From the Starter Kit
 

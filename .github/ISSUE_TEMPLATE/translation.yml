@@ -1,0 +1,22 @@
+name: Translation
+description: Report a wrong or unclear Persian or English text.
+labels: [translation]
+body:
+  - type: input
+    id: page
+    attributes:
+      label: Page or tool
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Current text
+    validations:
+      required: true
+  - type: textarea
+    id: proposed
+    attributes:
+      label: Proposed text
+    validations:
+      required: true
