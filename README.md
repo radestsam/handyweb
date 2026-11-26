@@ -78,7 +78,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 
 | Path                           | Page                                                                 |
 | ------------------------------ | -------------------------------------------------------------------- |
-| `/<locale>/`                   | Home                                                                 |
+| `/<locale>/`                   | Home: the published tools by category                                |
 | `/<locale>/tools/`             | All tools                                                            |
 | `/<locale>/categories/<slug>/` | One category (only categories with a published tool)                 |
 | `/<locale>/tools/<slug>/`      | One tool                                                             |
@@ -117,6 +117,10 @@ Each tool page links to the source folder of the tool at the release tag `v<vers
 - The only browser storage keys are `handyweb:theme` and `handyweb:locale`. The site stores no user content.
 
 `tests/privacy/tools.spec.ts` opens every published tool in both languages and runs it with its example input. It fails on a request to another origin, on a request that contains the input or the result, and on any other stored data.
+
+## Search
+
+Press `/` or `Ctrl+K` (`Cmd+K` on a Mac) to search the tools. The index (`/search-index.json`) is built from the catalog at build time. A query matches tool names, aliases, keywords, and descriptions in both languages. Arabic letters (ي, ك) and Persian or Arabic-Indic digits match their Persian and Latin forms. The search runs in the browser and sends no query anywhere.
 
 ## Contributing
 

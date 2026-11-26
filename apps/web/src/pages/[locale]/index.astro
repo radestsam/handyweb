@@ -1,25 +1,40 @@
 ---
-import { localePath, type Locale } from "@handyweb/core";
+import { localePath, nonEmptyCategories, toolsInCategory, type Locale } from "@handyweb/core";
 import Base from "../../layouts/Base.astro";
 import { useTranslations } from "../../i18n/site";
 import { localeStaticPaths } from "../../i18n/static-paths";
+import { categories, tools } from "../../i18n/tools";
 
 export const getStaticPaths = localeStaticPaths;
 
 const locale = Astro.params.locale as Locale;
 const t = useTranslations(locale);
-const promise =
-    locale === "fa"
-        ? {
-              title: "ورودی شما روی دستگاه خودتان می‌ماند",
-              body: "ابزارها در مرورگر شما اجرا می‌شوند. هیچ ورودی، فایل یا نتیجه‌ای به سرور ارسال یا ذخیره نمی‌شود.",
-              more: "درباره حریم خصوصی",
-          }
-        : {
-              title: "Your input stays on your device",
-              body: "The tools run in your browser. No input, file, or result is sent to a server or stored.",
-              more: "About privacy",
-          };
+const featured = tools.filter((tool) => tool.featured);
+const groups = nonEmptyCategories(categories, tools);
+const text = {
+    fa: {
+        featured: "ابزارهای پرکاربرد",
+        categories: "دسته‌ها",
+        count: (n: number) => `${new Intl.NumberFormat("fa-IR").format(n)} ابزار`,
+        promiseTitle: "ورودی شما روی دستگاه خودتان می‌ماند",
+        promiseBody:
+            "ابزارها در مرورگر شما اجرا می‌شوند. هیچ ورودی، فایل یا نتیجه‌ای به سرور ارسال یا ذخیره نمی‌شود.",
+        promiseMore: "درباره حریم خصوصی",
+        contribute: "HandyWeb متن‌باز است. ابزار تازه‌ای در ذهن دارید؟",
+        contributeLink: "مشارکت کنید",
+    },
+    en: {
+        featured: "Popular Tools",
+        categories: "Categories",
+        count: (n: number) => `${n} ${n === 1 ? "tool" : "tools"}`,
+        promiseTitle: "Your input stays on your device",
+        promiseBody:
+            "The tools run in your browser. No input, file, or result is sent to a server or stored.",
+        promiseMore: "About privacy",
+        contribute: "HandyWeb is open source. Have an idea for a new tool?",
+        contributeLink: "Contribute",
+    },
+}[locale];
 ---
 
 <Base locale={locale} path="/" title={`${t("site.name")}: ${t("site.tagline")}`}>
@@ -27,17 +42,61 @@ const promise =
         <h1 class="text-4xl font-bold">{t("site.name")}</h1>
         <p class="mt-3 max-w-2xl text-lg text-muted">{t("site.tagline")}</p>
 
+        <section class="mt-10" aria-labelledby="featured">
+            <h2 id="featured" class="text-xl font-bold">
+                {text.featured}
+            </h2>
+            <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3" data-featured>
+                {featured.map((tool) => (
+                    <li>
+                        <a
+                            href={localePath(locale, `/tools/${tool.slug}`)}
+                            class="flex h-full flex-col gap-1 rounded-xl border border-border bg-surface p-4 text-text no-underline hover:border-primary"
+                        >
+                            <span class="font-semibold">{tool.title[locale]}</span>
+                            <span class="text-sm text-muted">{tool.description[locale]}</span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </section>
+
+        <section class="mt-10" aria-labelledby="categories">
+            <h2 id="categories" class="text-xl font-bold">
+                {text.categories}
+            </h2>
+            <ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {groups.map((category) => (
+                    <li>
+                        <a
+                            href={localePath(locale, `/categories/${category.slug}`)}
+                            class="flex h-full flex-col gap-1 rounded-xl border border-border bg-surface p-4 text-text no-underline hover:border-primary"
+                        >
+                            <span class="font-semibold">{category.title[locale]}</span>
+                            <span class="text-sm text-muted">
+                                {text.count(toolsInCategory(tools, category.id).length)}
+                            </span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+        </section>
+
         <section
             class="mt-10 rounded-xl border border-border bg-surface p-6"
             aria-labelledby="promise"
         >
             <h2 id="promise" class="text-xl font-bold">
-                {promise.title}
+                {text.promiseTitle}
             </h2>
-            <p class="mt-2 text-muted">{promise.body}</p>
+            <p class="mt-2 text-muted">{text.promiseBody}</p>
             <a class="mt-3 inline-block" href={localePath(locale, "/privacy")}>
-                {promise.more}
+                {text.promiseMore}
             </a>
         </section>
+
+        <p class="mt-8 text-sm text-muted">
+            {text.contribute} <a href={localePath(locale, "/contribute")}>{text.contributeLink}</a>
+        </p>
     </main>
 </Base>

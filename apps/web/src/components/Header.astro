@@ -4,6 +4,7 @@ import { useTranslations } from "../i18n/site";
 import LanguageSwitcher from "./LanguageSwitcher.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import Logo from "./Logo.astro";
+import Search from "./Search.astro";
 
 interface Props {
     locale: Locale;
@@ -13,6 +14,7 @@ interface Props {
 const { locale, path } = Astro.props;
 const t = useTranslations(locale);
 const links = [
+    { href: localePath(locale, "/tools"), label: t("nav.tools"), path: "/tools/" },
     { href: localePath(locale, "/about"), label: t("nav.about"), path: "/about/" },
     { href: localePath(locale, "/privacy"), label: t("nav.privacy"), path: "/privacy/" },
 ];
@@ -44,6 +46,7 @@ const current = path.endsWith("/") ? path : `${path}/`;
             </ul>
         </nav>
         <div class="flex items-center gap-2">
+            <Search locale={locale} />
             <LanguageSwitcher locale={locale} path={path} />
             <ThemeToggle locale={locale} />
         </div>
