@@ -25,6 +25,7 @@ describe("search ranking", () => {
     it("finds tools by English and Persian names", () => {
         expect(top("base64")).toBe("base64");
         expect(top("بیس۶۴")).toBe("base64");
+        expect(top("json")).toBe("json-formatter");
     });
 
     it("needs every word to match", () => {
