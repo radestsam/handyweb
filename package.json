@@ -10,5 +10,20 @@
     "packageManager": "yarn@1.22.22",
     "engines": {
         "node": ">=24.22.2 <27"
+    },
+    "devDependencies": {
+        "@types/node": "24.19.2",
+        "eslint": "10.15.0",
+        "eslint-plugin-astro": "3.2.1",
+        "eslint-plugin-react-hooks": "7.1.1",
+        "typescript": "6.0.3",
+        "typescript-eslint": "8.73.0"
+    },
+    "type": "module",
+    "scripts": {
+        "lint": "eslint .",
+        "typecheck": "tsc -p packages/core && tsc -p packages/tools && yarn workspace @handyweb/web run check",
+        "dev": "yarn workspace @handyweb/web dev",
+        "build": "yarn workspace @handyweb/web build"
     }
 }

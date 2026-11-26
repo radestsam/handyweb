@@ -1,0 +1,13 @@
+{
+    "name": "@handyweb/tools",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "exports": {
+        ".": "./src/index.ts",
+        "./*": "./src/*"
+    },
+    "dependencies": {
+        "@handyweb/core": "0.0.0"
+    }
+}
