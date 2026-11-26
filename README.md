@@ -55,7 +55,7 @@ The dependency direction is `apps/web` to `packages/tools` to `packages/core`. E
 
 `.github/workflows/ci.yml` runs on every push to `main` and on every pull request to `main`. It has three jobs:
 
-- **Lint, Test & Build:** the format check, ESLint, the type check, the unit tests, a package audit, and the static build.
+- **Lint, Test & Build:** the format check, ESLint, the type check, the unit tests, a package audit, and the static build, with the JavaScript budget check (`scripts/check-budget.mjs`).
 - **Browser Tests:** Playwright in Chromium, Firefox, and WebKit, on desktop and mobile viewports.
 - **Lint Scripts & Workflows:** shellcheck and shfmt on `scripts/`, actionlint and zizmor on the workflows.
 

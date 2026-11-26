@@ -24,3 +24,7 @@ if find "$DIST" -name 'entry.mjs' -o -name '_worker.js' | grep -q .; then
 fi
 annotate notice "$(find "$DIST" -type f | wc -l | tr -d ' ') files, $(du -sh "$DIST" | cut -f1) in $DIST"
 endgroup
+
+group "Check the JavaScript budget"
+node scripts/check-budget.mjs "$DIST"
+endgroup
