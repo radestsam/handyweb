@@ -14,12 +14,12 @@ const { tool, locale } = Astro.props;
 
 const text = {
     local: {
-        fa: "روی دستگاه خودتان کار می‌کند: چیزی که وارد می‌کنید به هیچ سروری فرستاده نمی‌شود.",
-        en: "Runs on your device: your input is not sent to any server.",
+        fa: "روی دستگاه خودتان. چیزی به سرور فرستاده نمی‌شود.",
+        en: "Runs on your device. Nothing is uploaded.",
     },
     localDownload: {
-        fa: "روی دستگاه خودتان کار می‌کند. یک فایل برنامه یک بار بارگیری می‌شود، اما ورودی شما فرستاده نمی‌شود.",
-        en: "Runs on your device. A program file is downloaded once, but your input is not sent.",
+        fa: "روی دستگاه خودتان. یک بار برنامه بارگیری می‌شود، ورودی شما نه.",
+        en: "Runs on your device. A program downloads once; your input never leaves.",
     },
     external: {
         fa: "این ابزار ورودی را پس از پذیرش شما به سرویس دیگری می‌فرستد.",
@@ -38,31 +38,19 @@ const local = kind !== "external";
 
 <p
     class:list={[
-        "inline-flex items-start gap-2 text-sm",
-        local ? "text-success" : "rounded-xl bg-error-bg px-4 py-3 text-error",
+        "inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm",
+        local ? "border-border bg-surface text-muted" : "border-error bg-error-bg text-error",
     ]}
     data-privacy={kind}
 >
-    <svg
+    <span
         aria-hidden="true"
-        viewBox="0 0 24 24"
-        class="mt-0.5 size-4 shrink-0"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-    >
-        {local ? (
-            <path
-                d="M12 3 4 6v6c0 4.5 3.4 8.3 8 9 4.6-.7 8-4.5 8-9V6l-8-3Zm-3 9 2 2 4-4"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-            />
-        ) : (
-            <path
-                d="M12 8v5m0 3v.5M10.3 3.9 2.6 17.2A2 2 0 0 0 4.3 20h15.4a2 2 0 0 0 1.7-2.8L13.7 3.9a2 2 0 0 0-3.4 0Z"
-                stroke-linecap="round"
-            />
-        )}
-    </svg>
+        class:list={[
+            "size-2 shrink-0 rounded-full",
+            local
+                ? "bg-success shadow-[0_0_0_3px_color-mix(in_oklab,var(--hw-success)_20%,transparent)]"
+                : "bg-error",
+        ]}
+    ></span>
     <span>{text[kind][locale]}</span>
 </p>

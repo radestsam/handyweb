@@ -131,10 +131,7 @@ const jsonLd: unknown[] = [
                 <PrivacyBadge tool={tool} locale={locale} />
             </div>
 
-            <section
-                class="mt-6 border-t border-border pt-6 sm:mt-12 sm:pt-10"
-                data-tool-root={tool.id}
-            >
+            <section class="panel mt-6 p-4 sm:mt-10 sm:p-8" data-tool-root={tool.id}>
                 <ToolIsland
                     client:only="react"
                     toolId={tool.id}

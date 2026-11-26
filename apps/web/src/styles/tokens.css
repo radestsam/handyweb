@@ -18,12 +18,12 @@
     --hw-brand-950: #3a0000;
 
     /* Light theme: cool paper, so the brand red reads as a signal, not a mood. */
-    --hw-bg: #ffffff;
+    --hw-bg: #f6f7f9;
     --hw-surface: #ffffff;
-    --hw-surface-2: #f4f5f6;
-    --hw-border: #e3e5e8;
-    --hw-text: #16181b;
-    --hw-text-muted: #5b6068;
+    --hw-surface-2: #eef0f3;
+    --hw-border: #e3e6eb;
+    --hw-text: #13161b;
+    --hw-text-muted: #5d6573;
     --hw-primary: #bc4a3c;
     --hw-primary-hover: #9e2d22;
     --hw-primary-fg: #ffffff;
@@ -33,18 +33,20 @@
     --hw-error-bg: #fdecf1;
     --hw-success: #1f7a46;
     --hw-focus: #bc4a3c;
+    --hw-glow: rgb(188 74 60 / 0.18);
+    --hw-grid: rgb(19 22 27 / 0.09);
 
     color-scheme: light;
 }
 
 /* The dark theme, chosen by the visitor. */
 :root[data-theme="dark"] {
-    --hw-bg: #121316;
-    --hw-surface: #1b1d21;
-    --hw-surface-2: #23262b;
-    --hw-border: #2e3137;
-    --hw-text: #eceef0;
-    --hw-text-muted: #9ca1a9;
+    --hw-bg: #0d1015;
+    --hw-surface: #141920;
+    --hw-surface-2: #1b212a;
+    --hw-border: #222a34;
+    --hw-text: #e7ebf0;
+    --hw-text-muted: #8f99a7;
     --hw-primary: #bc4a3c;
     --hw-primary-hover: #9e2d22;
     --hw-primary-fg: #ffffff;
@@ -54,6 +56,8 @@
     --hw-error-bg: #3a1620;
     --hw-success: #6fcf97;
     --hw-focus: #e8877a;
+    --hw-glow: rgb(232 135 122 / 0.22);
+    --hw-grid: rgb(231 235 240 / 0.08);
 
     color-scheme: dark;
 }
@@ -61,12 +65,12 @@
 /* The dark theme, when scripts do not run and the system asks for it. */
 @media (prefers-color-scheme: dark) {
     :root:not([data-theme]) {
-        --hw-bg: #121316;
-        --hw-surface: #1b1d21;
-        --hw-surface-2: #23262b;
-        --hw-border: #2e3137;
-        --hw-text: #eceef0;
-        --hw-text-muted: #9ca1a9;
+        --hw-bg: #0d1015;
+        --hw-surface: #141920;
+        --hw-surface-2: #1b212a;
+        --hw-border: #222a34;
+        --hw-text: #e7ebf0;
+        --hw-text-muted: #8f99a7;
         --hw-primary: #bc4a3c;
         --hw-primary-hover: #9e2d22;
         --hw-primary-fg: #ffffff;
@@ -76,6 +80,8 @@
         --hw-error-bg: #3a1620;
         --hw-success: #6fcf97;
         --hw-focus: #e8877a;
+        --hw-glow: rgb(232 135 122 / 0.22);
+        --hw-grid: rgb(231 235 240 / 0.08);
 
         color-scheme: dark;
     }

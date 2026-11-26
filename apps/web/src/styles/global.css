@@ -22,6 +22,7 @@
     --text-display: clamp(1.5rem, 1rem + 3vw, 2.75rem);
 
     --color-primary-soft: var(--hw-primary-soft);
+    --color-glow: var(--hw-glow);
 
     --color-brand-50: var(--hw-brand-50);
     --color-brand-100: var(--hw-brand-100);
@@ -85,6 +86,12 @@
         text-wrap: pretty;
     }
 
+    /* Tight tracking reads precise in Latin. Persian is never tracked: letter
+       spacing breaks the joins between its letters. */
+    html[lang="en"] :is(h1, h2) {
+        letter-spacing: -0.02em;
+    }
+
     /* Room for the bottom tab bar on phones, including the home indicator. */
     @media (max-width: 47.99rem) {
         body {
@@ -103,6 +110,7 @@
     :focus-visible {
         outline: 2px solid var(--hw-focus);
         outline-offset: 2px;
+        box-shadow: 0 0 0 6px var(--hw-glow);
     }
 
     /* The placeholder holds the space of a tool until its island renders. The
@@ -201,5 +209,77 @@
         background: var(--hw-surface-2);
         padding: 0.1em 0.35em;
         font-size: 0.9em;
+    }
+}
+
+/* The instrument surfaces. */
+@layer components {
+    /* The hero sits on a faint measuring grid that fades out at the edges. */
+    .hero-grid {
+        position: relative;
+        isolation: isolate;
+    }
+
+    .hero-grid::before {
+        content: "";
+        position: absolute;
+        inset: -3rem 0 0;
+        z-index: -1;
+        background-image: radial-gradient(var(--hw-grid) 1px, transparent 1px);
+        background-size: 22px 22px;
+        mask-image: radial-gradient(ellipse 70% 80% at 50% 35%, #000 25%, transparent 75%);
+        pointer-events: none;
+    }
+
+    /* One scan of light under the hero on load: the work finishing on the device. */
+    .hero-beam {
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--hw-primary) 50%, transparent);
+        opacity: 0;
+        transform-origin: left;
+        animation: hero-beam 1400ms cubic-bezier(0.2, 0.7, 0.2, 1) 200ms 1 forwards;
+    }
+
+    html[dir="rtl"] .hero-beam {
+        transform-origin: right;
+    }
+
+    @keyframes hero-beam {
+        0% {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        40% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0.35;
+            transform: scaleX(1);
+        }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .hero-beam {
+            animation: none;
+            opacity: 0.35;
+        }
+    }
+
+    /* The tool workspace: one panel with a lit top edge. */
+    .panel {
+        border: 1px solid var(--hw-border);
+        border-radius: 1.25rem;
+        background: var(--hw-surface);
+        box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 0.9),
+            0 1px 2px rgb(19 22 27 / 0.04),
+            0 12px 32px -16px rgb(19 22 27 / 0.12);
+    }
+
+    :root[data-theme="dark"] .panel {
+        background: linear-gradient(to bottom, #18202a, var(--hw-surface) 8rem);
+        box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 0.06),
+            0 16px 40px -20px rgb(0 0 0 / 0.6);
     }
 }

@@ -32,7 +32,7 @@ export function TextArea({
                 autoComplete="off"
                 aria-describedby={hint ? hintId : undefined}
                 className={cx(
-                    "min-h-44 w-full resize-y rounded-xl border border-transparent bg-surface-2 p-4 text-base text-text outline-none placeholder:font-sans placeholder:tracking-normal placeholder:text-muted focus-visible:border-focus read-only:bg-transparent read-only:border-border",
+                    "min-h-44 w-full resize-y rounded-xl border border-transparent bg-surface-2 p-4 text-base text-text outline-none placeholder:font-sans placeholder:tracking-normal placeholder:text-muted focus-visible:border-focus focus-visible:shadow-[0_0_0_4px_var(--hw-glow)] read-only:bg-transparent read-only:border-border",
                     code && "font-mono text-sm break-all",
                     className,
                 )}
