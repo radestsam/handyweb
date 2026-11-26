@@ -1,0 +1,24 @@
+# Dependencies and build output
+node_modules/
+dist/
+.astro/
+coverage/
+playwright-report/
+test-results/
+*.tsbuildinfo
+
+# Local settings and secrets
+.env
+.env.*
+!.env.example
+!.env.deploy.example
+
+# Agent files (starter kit): local to each clone
+TASKS.md
+notes/
+
+# Editors and OS
+.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json

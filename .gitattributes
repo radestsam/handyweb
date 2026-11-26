@@ -1,0 +1,12 @@
+* text=auto eol=lf
+
+*.astro diff=html
+*.css diff=css
+*.html diff=html
+*.md diff=markdown
+*.woff2 binary
+*.png binary
+*.ico binary
+
+/.github export-ignore
+CHANGELOG.md export-ignore
