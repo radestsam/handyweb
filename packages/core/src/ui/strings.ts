@@ -20,4 +20,6 @@ export const UI_STRINGS = {
     working: { fa: "در حال پردازش…", en: "Working…" },
     errorTitle: { fa: "کار انجام نشد", en: "Error" },
     characters: { fa: "نویسه", en: "characters" },
+    inputHere: { fa: "نوشته را اینجا بنویسید یا بچسبانید", en: "Type or paste here" },
+    outputHere: { fa: "پاسخ اینجا نشان داده می‌شود", en: "The result appears here" },
 } as const satisfies Record<string, LocalizedText>;

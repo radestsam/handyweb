@@ -119,6 +119,15 @@
         unicode-bidi: isolate;
     }
 
+    /* FAQ: the chevron turns when the answer is open. */
+    details.faq > summary::-webkit-details-marker {
+        display: none;
+    }
+
+    details.faq[open] > summary svg {
+        transform: rotate(180deg);
+    }
+
     /* The native clear button of search fields clashes with the quiet style. */
     input[type="search"]::-webkit-search-cancel-button {
         appearance: none;
@@ -153,6 +162,11 @@
         margin-block-start: 2.25em;
         font-size: var(--text-lg);
         font-weight: 700;
+    }
+
+    .prose-hw ol {
+        list-style: decimal;
+        padding-inline-start: 1.5em;
     }
 
     html[lang="fa"] .prose-hw ol {

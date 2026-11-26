@@ -19,7 +19,7 @@ export function Button({
         <button
             type={type}
             className={cx(
-                "inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border px-5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-40",
+                "inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full border px-5 text-sm font-semibold transition-[color,background-color,transform] duration-150 active:scale-[0.97] disabled:cursor-not-allowed disabled:active:scale-100 disabled:opacity-40",
                 VARIANTS[variant],
                 className,
             )}

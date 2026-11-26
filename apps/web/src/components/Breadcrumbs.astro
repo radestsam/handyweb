@@ -20,11 +20,23 @@ const trail = [{ label: t("nav.home"), path: "/" }, ...items];
             return (
                 <li class="inline-flex items-center gap-1">
                     {last || item.path === undefined ? (
-                        <span aria-current={last ? "page" : undefined}>{item.label}</span>
+                        <span
+                            aria-current={last ? "page" : undefined}
+                            class:list={[last && trail.length > 2 && "max-sm:sr-only"]}
+                        >
+                            {item.label}
+                        </span>
                     ) : (
                         <a href={localePath(locale, item.path)}>{item.label}</a>
                     )}
-                    {!last && <span aria-hidden="true">›</span>}
+                    {!last && (
+                        <span
+                            aria-hidden="true"
+                            class:list={[index === trail.length - 2 && "max-sm:hidden"]}
+                        >
+                            ›
+                        </span>
+                    )}
                 </li>
             );
         })}

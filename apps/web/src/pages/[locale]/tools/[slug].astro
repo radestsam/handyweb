@@ -6,7 +6,7 @@ import PrivacyBadge from "../../../components/tool/PrivacyBadge.astro";
 import ToolIsland from "../../../components/tool/ToolIsland";
 import { useTranslations } from "../../../i18n/site";
 import { toolSourceUrl } from "../../../release";
-import { categoryOf, toolStaticPaths } from "../../../i18n/tools";
+import { categoryOf, toolStaticPaths, tools } from "../../../i18n/tools";
 
 export const getStaticPaths = toolStaticPaths;
 
@@ -24,6 +24,10 @@ const canonical = new URL(localePath(locale, path), Astro.site).href;
 const heading = { fa: "آنچه باید بدانید", en: "Good to Know" }[locale];
 const source = toolSourceUrl(tool.category, tool.id);
 const site = Astro.site ?? new URL("https://handyweb.ir");
+const related = tool.related
+    .map((id) => tools.find((other) => other.id === id))
+    .filter((other): other is ToolDefinition => other !== undefined);
+const relatedLabel = { fa: "ابزارهای نزدیک", en: "Related Tools" }[locale];
 const url = (p: string) => new URL(localePath(locale, p), site).href;
 const labels = {
     fa: { how: "چگونه به کار ببریم", faq: "پرسش‌های رایج" },
@@ -106,7 +110,7 @@ const jsonLd: unknown[] = [
         jsonLd={jsonLd}
         description={tool.description[locale]}
     >
-        <main id="main" class="mx-auto max-w-6xl px-5 pt-8 sm:px-8 sm:pt-12">
+        <main id="main" class="mx-auto max-w-6xl px-5 pt-5 sm:px-8 sm:pt-12">
             <Breadcrumbs
                 locale={locale}
                 items={[
@@ -117,14 +121,18 @@ const jsonLd: unknown[] = [
                     { label: tool.title[locale] },
                 ]}
             />
-            <h1 class="mt-6 max-w-[32ch] text-2xl font-bold">{tool.title[locale]}</h1>
-            <p class="mt-3 max-w-[60ch] text-muted">{tool.description[locale]}</p>
+            <h1 class="mt-4 max-w-[32ch] text-xl font-bold sm:mt-6 sm:text-2xl">
+                {tool.title[locale]}
+            </h1>
+            <p class="mt-2 max-w-[60ch] text-sm text-muted sm:mt-3 sm:text-base">
+                {tool.description[locale]}
+            </p>
             <div class="mt-4">
                 <PrivacyBadge tool={tool} locale={locale} />
             </div>
 
             <section
-                class="mt-10 border-t border-border pt-8 sm:mt-12 sm:pt-10"
+                class="mt-6 border-t border-border pt-6 sm:mt-12 sm:pt-10"
                 data-tool-root={tool.id}
             >
                 <ToolIsland
@@ -148,7 +156,7 @@ const jsonLd: unknown[] = [
                     aria-labelledby="how"
                 >
                     <h2 id="how">{labels.how}</h2>
-                    <ol class="list-decimal ps-6">
+                    <ol class="steps">
                         {tool.guide.steps.map((step) => (
                             <li>{step[locale]}</li>
                         ))}
@@ -160,11 +168,23 @@ const jsonLd: unknown[] = [
                 <section class="prose-hw mt-12 max-w-[60ch]" aria-labelledby="faq">
                     <h2 id="faq">{labels.faq}</h2>
                     {tool.guide.faq.map((item) => (
-                        <details class="border-b border-border py-3">
-                            <summary class="cursor-pointer font-semibold">
-                                {item.question[locale]}
+                        <details class="faq border-b border-border">
+                            <summary class="flex min-h-12 cursor-pointer list-none items-center justify-between gap-4 py-3 font-semibold">
+                                <span>{item.question[locale]}</span>
+                                <svg
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    class="size-4 shrink-0 text-muted transition-transform duration-200"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="m6 9 6 6 6-6" />
+                                </svg>
                             </summary>
-                            <p class="mt-2 text-muted">{item.answer[locale]}</p>
+                            <p class="pb-4 text-muted">{item.answer[locale]}</p>
                         </details>
                     ))}
                 </section>
@@ -174,6 +194,29 @@ const jsonLd: unknown[] = [
                 <section class="prose-hw mt-12 max-w-[60ch]">
                     <h2>{heading}</h2>
                     <p>{tool.limitations[locale]}</p>
+                </section>
+            )}
+
+            {related.length > 0 && (
+                <section class="mt-16 border-t border-border pt-8" aria-labelledby="related">
+                    <h2 id="related" class="text-lg font-bold">
+                        {relatedLabel}
+                    </h2>
+                    <ul class="mt-4 grid gap-2 sm:grid-cols-2">
+                        {related.map((item) => (
+                            <li>
+                                <a
+                                    href={localePath(locale, `/tools/${item.slug}`)}
+                                    class="flex min-h-12 flex-col justify-center rounded-xl bg-surface-2 px-4 py-3 text-text no-underline transition-colors hover:bg-border/50 active:bg-border/70"
+                                >
+                                    <span class="font-semibold">{item.title[locale]}</span>
+                                    <span class="text-sm text-muted">
+                                        {item.description[locale]}
+                                    </span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
                 </section>
             )}
 

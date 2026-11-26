@@ -16,7 +16,7 @@ const { locale, path } = Astro.props;
 const t = useTranslations(locale);
 const current = path.endsWith("/") ? path : `${path}/`;
 const tab =
-    "flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-xs text-muted no-underline aria-[current=page]:text-primary-text";
+    "flex flex-1 flex-col items-center justify-center gap-0.5 py-2 text-xs text-muted no-underline transition-opacity active:opacity-60 aria-[current=page]:text-primary-text";
 ---
 
 <nav

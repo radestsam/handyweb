@@ -22,7 +22,7 @@ export function Segmented<T extends string>({
                     <label
                         key={option.value}
                         className={cx(
-                            "inline-flex min-h-9 cursor-pointer items-center rounded-full px-4 text-sm transition-colors has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
+                            "inline-flex min-h-9 cursor-pointer items-center rounded-full px-4 text-sm transition-colors active:bg-border/50 has-[:focus-visible]:outline-2 has-[:focus-visible]:outline-focus",
                             option.value === value
                                 ? "bg-surface font-semibold text-text shadow-[0_0_0_1px_var(--hw-border)]"
                                 : "text-muted hover:text-text",
