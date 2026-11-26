@@ -19,7 +19,14 @@ const entries: SearchEntry[] = catalog.map((tool) => ({
     text: normalizeForSearch(`${tool.description.fa} | ${tool.description.en}`),
 }));
 
+const top = (query: string) => rank(entries, query)[0]?.slug;
+
 describe("search ranking", () => {
+    it("finds tools by English and Persian names", () => {
+        expect(top("base64")).toBe("base64");
+        expect(top("بیس۶۴")).toBe("base64");
+    });
+
     it("needs every word to match", () => {
         expect(rank(entries, "   ")).toEqual([]);
     });
