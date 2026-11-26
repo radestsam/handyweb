@@ -1,18 +1,11 @@
 ---
-import { coreVersion } from "@handyweb/core";
-import { catalog } from "@handyweb/tools";
+import Base from "../layouts/Base.astro";
 ---
 
-<html lang="fa" dir="rtl">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>HandyWeb</title>
-    </head>
-    <body>
-        <h1>HandyWeb</h1>
-        <p>
-            core {coreVersion}, tools: {catalog.length}
-        </p>
-    </body>
-</html>
+<Base lang="fa" title="HandyWeb">
+    <main class="mx-auto max-w-3xl p-4">
+        <h1 class="text-3xl font-bold">HandyWeb</h1>
+        <p class="text-muted">ابزارهای کاربردی وب، روی دستگاه شما. 1234 ۱۲۳۴ HandyWeb.</p>
+        <a href="/about">about</a>
+    </main>
+</Base>

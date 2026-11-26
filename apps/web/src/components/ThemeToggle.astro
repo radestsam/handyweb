@@ -1,0 +1,65 @@
+---
+/*
+ * Cycles the theme: system, light, dark. The choice is the one allowed
+ * preference key `handyweb:theme` (D5). T0.8 moves this into the header.
+ */
+---
+
+<button
+    type="button"
+    data-theme-toggle
+    class="m-4 rounded-md border border-border bg-surface px-3 py-1.5 text-sm"
+>
+    <span data-theme-label>Theme</span>
+</button>
+
+<script>
+    const KEY = "handyweb:theme";
+    const ORDER = ["system", "light", "dark"] as const;
+    type Choice = (typeof ORDER)[number];
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const root = document.documentElement;
+
+    function read(): Choice {
+        try {
+            const value = localStorage.getItem(KEY);
+            return value === "light" || value === "dark" ? value : "system";
+        } catch {
+            return "system";
+        }
+    }
+
+    function write(choice: Choice): void {
+        try {
+            if (choice === "system") localStorage.removeItem(KEY);
+            else localStorage.setItem(KEY, choice);
+        } catch {
+            // Storage is blocked. The choice lasts until the next page load.
+        }
+    }
+
+    function apply(choice: Choice): void {
+        const dark = choice === "dark" || (choice === "system" && media.matches);
+        root.dataset.theme = dark ? "dark" : "light";
+        root.dataset.themeChoice = choice;
+        for (const label of document.querySelectorAll("[data-theme-label]")) {
+            label.textContent = choice;
+        }
+    }
+
+    let current: Choice = (root.dataset.themeChoice as Choice | undefined) ?? read();
+    apply(current);
+
+    media.addEventListener("change", () => {
+        if (current === "system") apply(current);
+    });
+
+    for (const button of document.querySelectorAll("[data-theme-toggle]")) {
+        button.addEventListener("click", () => {
+            current = ORDER[(ORDER.indexOf(current) + 1) % ORDER.length] ?? "system";
+            write(current);
+            apply(current);
+        });
+    }
+</script>

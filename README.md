@@ -19,17 +19,17 @@ make dev
 
 ## Commands
 
-| Command         | What it does                                                |
-| --------------- | ----------------------------------------------------------- |
-| `make install`  | Installs the packages with the lockfile                     |
-| `make hooks`    | Turns on the git hooks in `.githooks/`                      |
-| `make dev`      | Starts the development server at http://localhost:4321      |
-| `make build`    | Builds the static site into `apps/web/dist/`                |
-| `make preview`  | Builds, then serves `apps/web/dist/`                        |
-| `make test`     | Runs the unit tests (Vitest)                                |
-| `make test-e2e` | Runs the browser tests (Playwright) on the production build |
-| `make lint`     | Runs the format check, ESLint, and the type check           |
-| `make format`   | Formats every file with Prettier                            |
+| Command         | What it does                                                             |
+| --------------- | ------------------------------------------------------------------------ |
+| `make install`  | Installs the packages with the lockfile                                  |
+| `make hooks`    | Turns on the git hooks in `.githooks/`                                   |
+| `make dev`      | Starts the development server at http://localhost:4321                   |
+| `make build`    | Builds the static site into `apps/web/dist/`                             |
+| `make preview`  | Builds, then serves `apps/web/dist/`                                     |
+| `make test`     | Runs the unit tests (Vitest)                                             |
+| `make test-e2e` | Runs the browser tests (Playwright) on the production build              |
+| `make lint`     | Runs the format check, ESLint, the logical CSS check, and the type check |
+| `make format`   | Formats every file with Prettier                                         |
 
 ### Browser Tests in Iran
 
@@ -60,6 +60,13 @@ The dependency direction is `apps/web` to `packages/tools` to `packages/core`. E
 - **Lint Scripts & Workflows:** shellcheck and shfmt on `scripts/`, actionlint and zizmor on the workflows.
 
 Dependabot proposes weekly updates for npm packages and GitHub Actions.
+
+## Design
+
+- Color tokens are in `apps/web/src/styles/tokens.css`. `tokens.test.ts` checks the contrast of every text and background pair in both themes.
+- The fonts (Noto Sans and Estedad) are self-hosted. The site loads nothing from another origin.
+- The theme follows the system until the visitor picks one. The choice is stored in `handyweb:theme`.
+- Layout CSS uses logical properties only (`ms-*`, `me-*`, `start`, `end`). `scripts/check-logical-css.mjs` stops physical ones.
 
 ## Deviations From the Starter Kit
 

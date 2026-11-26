@@ -1,0 +1,79 @@
+/*
+ * Color tokens. The scale comes from the brand color #bc4a3c (OKLCH 0.559
+ * 0.150 29.6) at a fixed hue. src/styles/tokens.test.ts checks the contrast of
+ * every text and background pair below in both themes. Change a value here,
+ * then run `make test`.
+ */
+:root {
+    --hw-brand-50: #fef2f0;
+    --hw-brand-100: #fee2dd;
+    --hw-brand-200: #ffc4ba;
+    --hw-brand-300: #fe9c8d;
+    --hw-brand-400: #ed7665;
+    --hw-brand-500: #d15d4e;
+    --hw-brand-600: #bc4a3c;
+    --hw-brand-700: #9e2d22;
+    --hw-brand-800: #830e07;
+    --hw-brand-900: #610100;
+    --hw-brand-950: #3a0000;
+
+    /* Light theme */
+    --hw-bg: #fcfaf9;
+    --hw-surface: #ffffff;
+    --hw-surface-2: #f4f0ee;
+    --hw-border: #e2dad6;
+    --hw-text: #1d1816;
+    --hw-text-muted: #5f5550;
+    --hw-primary: #bc4a3c;
+    --hw-primary-hover: #9e2d22;
+    --hw-primary-fg: #ffffff;
+    --hw-primary-text: #bc4a3c;
+    --hw-error: #b4144e;
+    --hw-error-bg: #fdecf1;
+    --hw-success: #1f7a46;
+    --hw-focus: #bc4a3c;
+
+    color-scheme: light;
+}
+
+/* The dark theme, chosen by the visitor. */
+:root[data-theme="dark"] {
+    --hw-bg: #14110f;
+    --hw-surface: #1e1a18;
+    --hw-surface-2: #29231f;
+    --hw-border: #3d3531;
+    --hw-text: #f3efed;
+    --hw-text-muted: #b3a9a4;
+    --hw-primary: #bc4a3c;
+    --hw-primary-hover: #9e2d22;
+    --hw-primary-fg: #ffffff;
+    --hw-primary-text: #e07a6c;
+    --hw-error: #f17993;
+    --hw-error-bg: #3a1620;
+    --hw-success: #6fcf97;
+    --hw-focus: #e07a6c;
+
+    color-scheme: dark;
+}
+
+/* The dark theme, when scripts do not run and the system asks for it. */
+@media (prefers-color-scheme: dark) {
+    :root:not([data-theme]) {
+        --hw-bg: #14110f;
+        --hw-surface: #1e1a18;
+        --hw-surface-2: #29231f;
+        --hw-border: #3d3531;
+        --hw-text: #f3efed;
+        --hw-text-muted: #b3a9a4;
+        --hw-primary: #bc4a3c;
+        --hw-primary-hover: #9e2d22;
+        --hw-primary-fg: #ffffff;
+        --hw-primary-text: #e07a6c;
+        --hw-error: #f17993;
+        --hw-error-bg: #3a1620;
+        --hw-success: #6fcf97;
+        --hw-focus: #e07a6c;
+
+        color-scheme: dark;
+    }
+}

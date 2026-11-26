@@ -1,0 +1,83 @@
+@import "tailwindcss";
+@import "./tokens.css";
+@import "./fonts.css";
+
+/* `dark:` utilities follow the data-theme attribute, not only the system. */
+@custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
+
+@theme inline {
+    --font-sans: "Noto Sans HW", "Estedad HW", system-ui, sans-serif;
+    --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+
+    --color-brand-50: var(--hw-brand-50);
+    --color-brand-100: var(--hw-brand-100);
+    --color-brand-200: var(--hw-brand-200);
+    --color-brand-300: var(--hw-brand-300);
+    --color-brand-400: var(--hw-brand-400);
+    --color-brand-500: var(--hw-brand-500);
+    --color-brand-600: var(--hw-brand-600);
+    --color-brand-700: var(--hw-brand-700);
+    --color-brand-800: var(--hw-brand-800);
+    --color-brand-900: var(--hw-brand-900);
+    --color-brand-950: var(--hw-brand-950);
+
+    --color-bg: var(--hw-bg);
+    --color-surface: var(--hw-surface);
+    --color-surface-2: var(--hw-surface-2);
+    --color-border: var(--hw-border);
+    --color-text: var(--hw-text);
+    --color-muted: var(--hw-text-muted);
+    --color-primary: var(--hw-primary);
+    --color-primary-hover: var(--hw-primary-hover);
+    --color-primary-fg: var(--hw-primary-fg);
+    --color-primary-text: var(--hw-primary-text);
+    --color-error: var(--hw-error);
+    --color-error-bg: var(--hw-error-bg);
+    --color-success: var(--hw-success);
+    --color-focus: var(--hw-focus);
+}
+
+@layer base {
+    html {
+        background-color: var(--hw-bg);
+        color: var(--hw-text);
+        font-family: var(--font-sans);
+        -webkit-text-size-adjust: 100%;
+    }
+
+    /* Persian text with diacritics needs more line height than Latin text. */
+    html[lang="fa"] body {
+        line-height: 1.8;
+    }
+
+    html[lang="en"] body {
+        line-height: 1.6;
+    }
+
+    a {
+        color: var(--hw-primary-text);
+    }
+
+    :focus-visible {
+        outline: 2px solid var(--hw-focus);
+        outline-offset: 2px;
+    }
+
+    code,
+    kbd,
+    samp,
+    pre {
+        font-family: var(--font-mono);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
+        }
+    }
+}

@@ -30,7 +30,7 @@
     "scripts": {
         "format": "prettier --write .",
         "format:check": "prettier --check .",
-        "lint": "eslint .",
+        "lint": "eslint . && node scripts/check-logical-css.mjs",
         "typecheck": "tsc -p . && tsc -p packages/core && tsc -p packages/tools && yarn workspace @handyweb/web run check",
         "test": "vitest run",
         "test:e2e": "playwright test",

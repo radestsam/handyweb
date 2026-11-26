@@ -1,0 +1,17 @@
+---
+/*
+ * Preloads the font file of the page's main script (D13). The @font-face rules
+ * are in src/styles/fonts.css. Vite gives both the same hashed file name.
+ */
+import notoLatin from "@fontsource-variable/noto-sans/files/noto-sans-latin-wght-normal.woff2?url";
+import estedadArabic from "@fontsource-variable/estedad/files/estedad-arabic-wght-normal.woff2?url";
+
+interface Props {
+    lang: "fa" | "en";
+}
+
+const { lang } = Astro.props;
+const preload = lang === "fa" ? estedadArabic : notoLatin;
+---
+
+<link rel="preload" href={preload} as="font" type="font/woff2" crossorigin />
