@@ -1,0 +1,6 @@
+# Starter kit rule: pin every action by commit SHA. A tag such as @v4 can move.
+rules:
+  unpinned-uses:
+    config:
+      policies:
+        "*": hash-pin

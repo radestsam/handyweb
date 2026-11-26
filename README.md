@@ -51,6 +51,16 @@ make test-e2e
 
 The dependency direction is `apps/web` to `packages/tools` to `packages/core`. ESLint stops an import in the other direction.
 
+## Continuous Integration
+
+`.github/workflows/ci.yml` runs on every push to `main` and on every pull request to `main`. It has three jobs:
+
+- **Lint, Test & Build:** the format check, ESLint, the type check, the unit tests, a package audit, and the static build.
+- **Browser Tests:** Playwright in Chromium, Firefox, and WebKit, on desktop and mobile viewports.
+- **Lint Scripts & Workflows:** shellcheck and shfmt on `scripts/`, actionlint and zizmor on the workflows.
+
+Dependabot proposes weekly updates for npm packages and GitHub Actions.
+
 ## Deviations From the Starter Kit
 
 This product follows `radestsam/ai-starter-kit`. The differences are below. Recorded on 2026-11-26.

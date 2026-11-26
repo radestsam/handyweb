@@ -1,0 +1,40 @@
+# Weekly update pull requests for every ecosystem the project ships.
+#
+# Every ecosystem waits seven days after a release before Dependabot proposes it
+# (`cooldown`). A malicious or broken release is usually pulled or reported in
+# that time. Security updates ignore the cooldown, so a fix for a published
+# advisory is not delayed.
+#
+# Minor and patch updates of one ecosystem arrive as a single pull request, so
+# the review is one diff and one CI run. A major version gets its own pull
+# request, because it can break the build.
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      npm-minor-and-patch:
+        update-types: [minor, patch]
+    ignore:
+      # Node moves to a new major only by hand, together with NODE_VERSION in
+      # the workflows and .nvmrc.
+      - dependency-name: "@types/node"
+        update-types: [version-update:semver-major]
+      # typescript-eslint and @astrojs/check support TypeScript below 6.1 only.
+      - dependency-name: typescript
+        update-types: [version-update:semver-major, version-update:semver-minor]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    cooldown:
+      default-days: 7
+    groups:
+      actions-minor-and-patch:
+        update-types: [minor, patch]
