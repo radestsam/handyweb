@@ -53,7 +53,7 @@ test("the sitemap lists canonical pages only", async ({ request }) => {
     expect(xml).toContain("<loc>https://handyweb.ir/en/categories/encoding/</loc>");
     expect(xml).toContain('hreflang="x-default" href="https://handyweb.ir/fa/tools/base64/"');
     expect(xml).not.toContain("base64-encoder");
-    expect(xml).not.toContain("/categories/pdf/");
+    expect(xml).toContain("<loc>https://handyweb.ir/en/categories/pdf/</loc>");
 });
 
 test.describe("json formatter", () => {
@@ -1697,5 +1697,40 @@ test.describe("qr generator presets", () => {
             hidden: false,
         });
         await expect(page.locator("[data-tool-qr]")).toBeVisible();
+    });
+});
+
+test.describe("pdf merger", () => {
+    test("merges files in the chosen order", async ({ page }) => {
+        const { makePdf, pageWidths } = await import("../support/pdf");
+        await page.goto("/en/tools/pdf-merge/");
+        await page.locator('input[type="file"]').setInputFiles([
+            { name: "a.pdf", mimeType: "application/pdf", buffer: await makePdf(2, 0) },
+            { name: "b.pdf", mimeType: "application/pdf", buffer: await makePdf(1, 10) },
+        ]);
+        await expect(page.locator("[data-tool-files] li")).toHaveCount(2);
+        await expect(page.locator("[data-tool-total-pages]")).toHaveText("3 pages");
+        await page.getByRole("button", { name: "Move up: b.pdf" }).click();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("3");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("b-merged.pdf");
+        const { readFile } = await import("node:fs/promises");
+        const bytes = await readFile((await file.path()) as string);
+        expect(await pageWidths(bytes)).toEqual([110, 100, 101]);
+    });
+
+    test("does not add a file that is not a PDF", async ({ page }) => {
+        const { makePdf } = await import("../support/pdf");
+        await page.goto("/fa/tools/pdf-merge/");
+        await page.locator('input[type="file"]').setInputFiles([
+            { name: "a.pdf", mimeType: "application/pdf", buffer: await makePdf(1) },
+            { name: "notes.pdf", mimeType: "application/pdf", buffer: Buffer.from("hello") },
+        ]);
+        await expect(page.locator("[data-tool-files] li")).toHaveCount(1);
+        await expect(page.locator("[data-tool-skipped] li")).toContainText("notes.pdf");
+        await expect(page.locator("[data-tool-run]")).toBeDisabled();
     });
 });

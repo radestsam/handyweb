@@ -18,6 +18,8 @@ export const UI_STRINGS = {
     example: { fa: "نمونه", en: "Example" },
     chooseFile: { fa: "گزینش فایل", en: "Choose a file" },
     dropFile: { fa: "یا فایل را اینجا رها کنید", en: "or drop a file here" },
+    chooseFiles: { fa: "گزینش فایل‌ها", en: "Choose files" },
+    dropFiles: { fa: "یا فایل‌ها را اینجا رها کنید", en: "or drop files here" },
     working: { fa: "در حال پردازش…", en: "Working…" },
     errorTitle: { fa: "کار انجام نشد", en: "Error" },
     characters: { fa: "نویسه", en: "characters" },

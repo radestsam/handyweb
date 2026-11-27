@@ -21,6 +21,22 @@ export default defineConfig({
             // <script>. The CSP allows scripts from 'self' only, plus the one
             // hashed theme script.
             assetsInlineLimit: 0,
+            rollupOptions: {
+                output: {
+                    // The PDF library and the packages that only it uses go into
+                    // one named chunk. Only PDF tools load it, and
+                    // scripts/check-budget.mjs gives it its own budget.
+                    manualChunks(id) {
+                        if (
+                            /[\\/]node_modules[\\/](@cantoo[\\/]pdf-lib|fflate|culori|node-html-better-parser|html-entities)[\\/]/.test(
+                                id,
+                            )
+                        )
+                            return "pdf-lib";
+                        return undefined;
+                    },
+                },
+            },
         },
     },
 });
