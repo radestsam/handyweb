@@ -80,4 +80,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "image-blur": () => import("./image/image-blur/ui"),
     "image-pixelate": () => import("./image/image-pixelate/ui"),
     "image-watermark": () => import("./image/image-watermark/ui"),
+    "favicon-generator": () => import("./image/favicon-generator/ui"),
 };

@@ -74,6 +74,7 @@ import { imageCompareMeta } from "./image/image-compare/meta";
 import { imageBlurMeta } from "./image/image-blur/meta";
 import { imagePixelateMeta } from "./image/image-pixelate/meta";
 import { imageWatermarkMeta } from "./image/image-watermark/meta";
+import { faviconGeneratorMeta } from "./image/favicon-generator/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -155,4 +156,5 @@ export const catalog: readonly ToolDefinition[] = [
     imageBlurMeta,
     imagePixelateMeta,
     imageWatermarkMeta,
+    faviconGeneratorMeta,
 ];
