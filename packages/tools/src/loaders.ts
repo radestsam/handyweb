@@ -89,4 +89,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "vat-calculator": () => import("./calculators/vat-calculator/ui"),
     "date-difference": () => import("./calculators/date-difference/ui"),
     "aspect-ratio": () => import("./calculators/aspect-ratio/ui"),
+    "image-resolution": () => import("./calculators/image-resolution/ui"),
 };

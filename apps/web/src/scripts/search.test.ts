@@ -112,6 +112,7 @@ describe("search ranking", () => {
         expect(top("محاسبه ارزش افزوده")).toBe("vat-calculator");
         expect(top("فاصله دو تاریخ")).toBe("date-difference");
         expect(top("aspect ratio")).toBe("aspect-ratio");
+        expect(top("dpi calculator")).toBe("image-resolution");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
