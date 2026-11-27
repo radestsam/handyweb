@@ -114,6 +114,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | HTML Entity Encoder and Decoder                       | Encoding                 | `packages/tools/src/encoding/html-entities`      | None                                                       |
 | Unicode Escape and Unescape                           | Encoding                 | `packages/tools/src/encoding/unicode-escape`     | None                                                       |
 | Unicode Character Inspector                           | Text                     | `packages/tools/src/text/unicode-explorer`       | None (names generated from the Unicode Character Database) |
+| Text Diff Checker                                     | Text                     | `packages/tools/src/text/text-diff`              | `diff` (comparison and patch)                              |
 
 ### Add a Tool
 

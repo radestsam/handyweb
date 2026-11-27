@@ -34,7 +34,7 @@ The passphrase words come from the EFF large wordlist by the Electronic Frontier
 | `react-dom`                      | MIT                               | Yes                                            |
 | `tailwindcss`                    | MIT                               | Yes: the generated CSS                         |
 | `@tailwindcss/vite`              | MIT                               | No: build step only                            |
-| `diff`                           | BSD-3-Clause                      | Yes: the change view of the Persian normalizer |
+| `diff`                           | BSD-3-Clause                      | Yes: the Persian normalizer and the text diff  |
 | `hash-wasm`                      | MIT                               | Yes: streaming SHA-256 for files (WebAssembly) |
 | `jalaali-js`                     | MIT                               | Yes: Jalali and Gregorian conversion           |
 | `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package) | Yes: the font files                            |
