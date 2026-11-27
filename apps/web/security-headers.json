@@ -1,0 +1,41 @@
+{
+    "$comment": "The source of truth for the HTTP headers of the site (T2.1). scripts/generate-headers.mjs reads this file after the build and writes dist/_headers, the nginx snippets in apps/web/dist-headers/, and a CSP <meta> tag in each page. The generator adds the SHA-256 hash of each inline script of the build to script-src. Read docs/security-headers.md before you change a value.",
+    "csp": {
+        "default-src": ["'self'"],
+        "script-src": ["'self'", "'wasm-unsafe-eval'"],
+        "style-src": ["'self'"],
+        "img-src": ["'self'", "data:", "blob:"],
+        "font-src": ["'self'"],
+        "connect-src": ["'self'"],
+        "media-src": ["'self'", "blob:"],
+        "worker-src": ["'self'"],
+        "manifest-src": ["'self'"],
+        "frame-src": ["'self'"],
+        "object-src": ["'none'"],
+        "base-uri": ["'none'"],
+        "form-action": ["'none'"],
+        "frame-ancestors": ["'none'"]
+    },
+    "toolOverrides": {
+        "$comment": "The preview frames of these tools are srcdoc frames, and a srcdoc frame keeps the policy of its page. Their own meta policy is stricter (no network). 'unsafe-inline' turns off the script hashes, so the hashes are not added on these pages.",
+        "html-preview": {
+            "script-src": ["'self'", "'unsafe-inline'", "'wasm-unsafe-eval'"],
+            "style-src": ["'self'", "'unsafe-inline'"]
+        },
+        "markdown-editor": {
+            "style-src": ["'self'", "'unsafe-inline'"]
+        }
+    },
+    "headers": {
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains",
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "0",
+        "Referrer-Policy": "no-referrer",
+        "Permissions-Policy": "camera=(self), microphone=(), geolocation=(), payment=(), usb=()"
+    },
+    "cache": {
+        "/_astro/*": "public, max-age=31536000, immutable",
+        "/sw.js": "no-cache"
+    }
+}

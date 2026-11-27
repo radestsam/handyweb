@@ -22,6 +22,9 @@ group "Check the output"
 if find "$DIST" -name 'entry.mjs' -o -name '_worker.js' | grep -q .; then
     fail "The build wrote a server entry point. The site must be static."
 fi
+[ -f "$DIST/_headers" ] || fail "$DIST/_headers is missing. The build runs scripts/generate-headers.mjs."
+grep -q 'http-equiv="Content-Security-Policy"' "$DIST/index.html" ||
+    fail "$DIST/index.html has no CSP meta tag."
 annotate notice "$(find "$DIST" -type f | wc -l | tr -d ' ') files, $(du -sh "$DIST" | cut -f1) in $DIST"
 endgroup
 

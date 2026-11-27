@@ -35,7 +35,7 @@ Dependabot (`.github/dependabot.yml`) proposes npm and Actions updates weekly, a
 
 Not deployed yet. The launch gate (T2.1 to T2.4) adds the hosts, DNS, and security headers here.
 
-The headers must allow the service worker and the manifest: `worker-src 'self'` and `manifest-src 'self'` in the Content-Security-Policy. Serve `/sw.js` with `Cache-Control: no-cache`, so that browsers find a new build quickly.
+The headers come from `apps/web/security-headers.json`. The build writes `dist/_headers` (Cloudflare Pages), nginx snippets in `apps/web/dist-headers/`, and a CSP meta tag in each page. See `security-headers.md`.
 
 ## Browser Storage
 
