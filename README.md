@@ -92,53 +92,54 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 
 ## Tools
 
-| Tool                                                  | Category                 | Source                                           | Libraries                                                  |
-| ----------------------------------------------------- | ------------------------ | ------------------------------------------------ | ---------------------------------------------------------- |
-| Base64 Encoder and Decoder                            | Encoding                 | `packages/tools/src/encoding/base64`             | None                                                       |
-| JSON Formatter and Validator                          | Developer                | `packages/tools/src/developer/json-formatter`    | None                                                       |
-| XML Formatter and Validator                           | Developer                | `packages/tools/src/developer/xml-formatter`     | None                                                       |
-| YAML Formatter and Validator                          | Developer                | `packages/tools/src/developer/yaml-formatter`    | `yaml`                                                     |
-| JSON and YAML Converter                               | Developer                | `packages/tools/src/developer/json-yaml`         | `yaml`                                                     |
-| SQL Formatter                                         | Developer                | `packages/tools/src/developer/sql-formatter`     | `sql-formatter`                                            |
-| HTML Formatter                                        | Developer                | `packages/tools/src/developer/html-formatter`    | `js-beautify`                                              |
-| CSS Formatter                                         | Developer                | `packages/tools/src/developer/css-formatter`     | `js-beautify`                                              |
-| JavaScript Formatter                                  | Developer                | `packages/tools/src/developer/js-formatter`      | `js-beautify`                                              |
-| JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`          | None                                                       |
-| JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`         | None                                                       |
-| JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`       | None                                                       |
-| UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`    | None                                                       |
-| Regex Tester                                          | Developer                | `packages/tools/src/developer/regex-tester`      | None                                                       |
-| Unix Timestamp Converter                              | Developer                | `packages/tools/src/developer/unix-timestamp`    | `jalaali-js` (Jalali dates)                                |
-| Number Base Converter                                 | Developer                | `packages/tools/src/developer/number-base`       | None                                                       |
-| QR Code Generator                                     | QR Codes and Barcodes    | `packages/tools/src/qr/qr-generator`             | `uqr` (QR encoding)                                        |
-| SHA-256 and SHA-512 Hash Generator for Text and Files | Hashing and Cryptography | `packages/tools/src/crypto/hash`                 | `hash-wasm` (file hashing)                                 |
-| HMAC Generator and Verifier                           | Hashing and Cryptography | `packages/tools/src/crypto/hmac`                 | None                                                       |
-| Password and Passphrase Generator                     | Hashing and Cryptography | `packages/tools/src/crypto/password-generator`   | None (EFF large wordlist, generated)                       |
-| Random Token and Bytes Generator                      | Hashing and Cryptography | `packages/tools/src/crypto/random-token`         | None                                                       |
-| Persian Text Normalizer and Digit Converter           | Persian                  | `packages/tools/src/persian/persian-normalizer`  | `diff` (change view)                                       |
-| Jalali and Gregorian Date Converter                   | Persian                  | `packages/tools/src/persian/jalali-converter`    | `jalaali-js`                                               |
-| Number to Persian Words                               | Persian                  | `packages/tools/src/persian/number-to-words`     | None                                                       |
-| Persian Half-Space (ZWNJ) Fixer                       | Persian                  | `packages/tools/src/persian/zwnj-fixer`          | `diff` (change view)                                       |
-| Persian Punctuation Fixer                             | Persian                  | `packages/tools/src/persian/punctuation-fixer`   | `diff` (change view)                                       |
-| Persian Text Direction Fixer                          | Persian                  | `packages/tools/src/persian/direction-fixer`     | None                                                       |
-| Word and Character Counter                            | Text                     | `packages/tools/src/text/text-counter`           | None                                                       |
-| Case Converter                                        | Text                     | `packages/tools/src/text/case-converter`         | None                                                       |
-| Remove Duplicate Lines                                | Text                     | `packages/tools/src/text/remove-duplicate-lines` | None                                                       |
-| Sort Lines Alphabetically                             | Text                     | `packages/tools/src/text/sort-lines`             | None                                                       |
-| Text Cleaner                                          | Text                     | `packages/tools/src/text/text-cleaner`           | None                                                       |
-| URL Encoder and Decoder                               | Encoding                 | `packages/tools/src/encoding/url-encoding`       | None                                                       |
-| HTML Entity Encoder and Decoder                       | Encoding                 | `packages/tools/src/encoding/html-entities`      | None                                                       |
-| Unicode Escape and Unescape                           | Encoding                 | `packages/tools/src/encoding/unicode-escape`     | None                                                       |
-| Unicode Character Inspector                           | Text                     | `packages/tools/src/text/unicode-explorer`       | None (names generated from the Unicode Character Database) |
-| Text Diff Checker                                     | Text                     | `packages/tools/src/text/text-diff`              | `diff` (comparison and patch)                              |
-| Reverse Text                                          | Text                     | `packages/tools/src/text/reverse-text`           | None                                                       |
-| Text Repeater                                         | Text                     | `packages/tools/src/text/text-repeater`          | None                                                       |
-| Text Splitter and Joiner                              | Text                     | `packages/tools/src/text/split-join`             | None                                                       |
-| Find and Replace                                      | Text                     | `packages/tools/src/text/find-replace`           | None                                                       |
-| Slug Generator                                        | Text                     | `packages/tools/src/text/slug-generator`         | None                                                       |
-| Lorem Ipsum Generator                                 | Text                     | `packages/tools/src/text/lorem-ipsum`            | None                                                       |
-| Email, URL, and Phone Extractor                       | Text                     | `packages/tools/src/text/text-extractor`         | None                                                       |
-| JSON String Escaper and Unescaper                     | Developer                | `packages/tools/src/developer/json-string`       | None                                                       |
+| Tool                                                  | Category                 | Source                                               | Libraries                                                  |
+| ----------------------------------------------------- | ------------------------ | ---------------------------------------------------- | ---------------------------------------------------------- |
+| Base64 Encoder and Decoder                            | Encoding                 | `packages/tools/src/encoding/base64`                 | None                                                       |
+| JSON Formatter and Validator                          | Developer                | `packages/tools/src/developer/json-formatter`        | None                                                       |
+| XML Formatter and Validator                           | Developer                | `packages/tools/src/developer/xml-formatter`         | None                                                       |
+| YAML Formatter and Validator                          | Developer                | `packages/tools/src/developer/yaml-formatter`        | `yaml`                                                     |
+| JSON and YAML Converter                               | Developer                | `packages/tools/src/developer/json-yaml`             | `yaml`                                                     |
+| SQL Formatter                                         | Developer                | `packages/tools/src/developer/sql-formatter`         | `sql-formatter`                                            |
+| HTML Formatter                                        | Developer                | `packages/tools/src/developer/html-formatter`        | `js-beautify`                                              |
+| CSS Formatter                                         | Developer                | `packages/tools/src/developer/css-formatter`         | `js-beautify`                                              |
+| JavaScript Formatter                                  | Developer                | `packages/tools/src/developer/js-formatter`          | `js-beautify`                                              |
+| JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`              | None                                                       |
+| JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`             | None                                                       |
+| JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator` | `@cfworker/json-schema`                                    |
+| JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`           | None                                                       |
+| UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`        | None                                                       |
+| Regex Tester                                          | Developer                | `packages/tools/src/developer/regex-tester`          | None                                                       |
+| Unix Timestamp Converter                              | Developer                | `packages/tools/src/developer/unix-timestamp`        | `jalaali-js` (Jalali dates)                                |
+| Number Base Converter                                 | Developer                | `packages/tools/src/developer/number-base`           | None                                                       |
+| QR Code Generator                                     | QR Codes and Barcodes    | `packages/tools/src/qr/qr-generator`                 | `uqr` (QR encoding)                                        |
+| SHA-256 and SHA-512 Hash Generator for Text and Files | Hashing and Cryptography | `packages/tools/src/crypto/hash`                     | `hash-wasm` (file hashing)                                 |
+| HMAC Generator and Verifier                           | Hashing and Cryptography | `packages/tools/src/crypto/hmac`                     | None                                                       |
+| Password and Passphrase Generator                     | Hashing and Cryptography | `packages/tools/src/crypto/password-generator`       | None (EFF large wordlist, generated)                       |
+| Random Token and Bytes Generator                      | Hashing and Cryptography | `packages/tools/src/crypto/random-token`             | None                                                       |
+| Persian Text Normalizer and Digit Converter           | Persian                  | `packages/tools/src/persian/persian-normalizer`      | `diff` (change view)                                       |
+| Jalali and Gregorian Date Converter                   | Persian                  | `packages/tools/src/persian/jalali-converter`        | `jalaali-js`                                               |
+| Number to Persian Words                               | Persian                  | `packages/tools/src/persian/number-to-words`         | None                                                       |
+| Persian Half-Space (ZWNJ) Fixer                       | Persian                  | `packages/tools/src/persian/zwnj-fixer`              | `diff` (change view)                                       |
+| Persian Punctuation Fixer                             | Persian                  | `packages/tools/src/persian/punctuation-fixer`       | `diff` (change view)                                       |
+| Persian Text Direction Fixer                          | Persian                  | `packages/tools/src/persian/direction-fixer`         | None                                                       |
+| Word and Character Counter                            | Text                     | `packages/tools/src/text/text-counter`               | None                                                       |
+| Case Converter                                        | Text                     | `packages/tools/src/text/case-converter`             | None                                                       |
+| Remove Duplicate Lines                                | Text                     | `packages/tools/src/text/remove-duplicate-lines`     | None                                                       |
+| Sort Lines Alphabetically                             | Text                     | `packages/tools/src/text/sort-lines`                 | None                                                       |
+| Text Cleaner                                          | Text                     | `packages/tools/src/text/text-cleaner`               | None                                                       |
+| URL Encoder and Decoder                               | Encoding                 | `packages/tools/src/encoding/url-encoding`           | None                                                       |
+| HTML Entity Encoder and Decoder                       | Encoding                 | `packages/tools/src/encoding/html-entities`          | None                                                       |
+| Unicode Escape and Unescape                           | Encoding                 | `packages/tools/src/encoding/unicode-escape`         | None                                                       |
+| Unicode Character Inspector                           | Text                     | `packages/tools/src/text/unicode-explorer`           | None (names generated from the Unicode Character Database) |
+| Text Diff Checker                                     | Text                     | `packages/tools/src/text/text-diff`                  | `diff` (comparison and patch)                              |
+| Reverse Text                                          | Text                     | `packages/tools/src/text/reverse-text`               | None                                                       |
+| Text Repeater                                         | Text                     | `packages/tools/src/text/text-repeater`              | None                                                       |
+| Text Splitter and Joiner                              | Text                     | `packages/tools/src/text/split-join`                 | None                                                       |
+| Find and Replace                                      | Text                     | `packages/tools/src/text/find-replace`               | None                                                       |
+| Slug Generator                                        | Text                     | `packages/tools/src/text/slug-generator`             | None                                                       |
+| Lorem Ipsum Generator                                 | Text                     | `packages/tools/src/text/lorem-ipsum`                | None                                                       |
+| Email, URL, and Phone Extractor                       | Text                     | `packages/tools/src/text/text-extractor`             | None                                                       |
+| JSON String Escaper and Unescaper                     | Developer                | `packages/tools/src/developer/json-string`           | None                                                       |
 
 ### Add a Tool
 
