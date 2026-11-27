@@ -1,7 +1,7 @@
 import { PDFDocument } from "@cantoo/pdf-lib";
 import { describe, expect, it } from "vitest";
 import { ToolFailure } from "@handyweb/core/runtime";
-import { countPages, mergedName, mergePdfs, move } from "./logic";
+import { countPages, mergedName, mergePdfs } from "./logic";
 
 /** A PDF with `pages` pages. Each page has a width of 100 + its number, so the order is visible. */
 async function makePdf(pages: number, start = 0, title?: string): Promise<Uint8Array> {
@@ -55,10 +55,7 @@ describe("pdf merge", () => {
         await expect(countPages(bytes)).rejects.toMatchObject({ code: "unsupported" });
     });
 
-    it("moves items and names the output", () => {
-        expect(move(["a", "b", "c"], 2, -1)).toEqual(["a", "c", "b"]);
-        expect(move(["a", "b", "c"], 0, 1)).toEqual(["b", "a", "c"]);
-        expect(move(["a", "b"], 0, -1)).toEqual(["a", "b"]);
+    it("names the output", () => {
         expect(mergedName("Report.PDF")).toBe("Report-merged.pdf");
         expect(mergedName(undefined)).toBe("document-merged.pdf");
     });

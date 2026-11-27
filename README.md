@@ -125,6 +125,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | SVG Viewer and SVG to PNG                             | Images                   | `packages/tools/src/image/svg-viewer`                  | `dompurify`                                                 |
 | SVG Optimizer                                         | Images                   | `packages/tools/src/image/svg-optimizer`               | `dompurify`                                                 |
 | PDF Merger                                            | PDF                      | `packages/tools/src/pdf/pdf-merge`                     | `@cantoo/pdf-lib` (loads only when a PDF is opened)         |
+| Images to PDF                                         | PDF                      | `packages/tools/src/pdf/images-to-pdf`                 | `@cantoo/pdf-lib` (loads only when the PDF is made)         |
 | Unit Converter                                        | Calculators              | `packages/tools/src/calculators/unit-converter`        | None                                                        |
 | Percentage Calculator                                 | Calculators              | `packages/tools/src/calculators/percentage-calculator` | None                                                        |
 | Discount Calculator                                   | Calculators              | `packages/tools/src/calculators/discount-calculator`   | None                                                        |

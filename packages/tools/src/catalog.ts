@@ -78,6 +78,7 @@ import { faviconGeneratorMeta } from "./image/favicon-generator/meta";
 import { svgViewerMeta } from "./image/svg-viewer/meta";
 import { svgOptimizerMeta } from "./image/svg-optimizer/meta";
 import { pdfMergeMeta } from "./pdf/pdf-merge/meta";
+import { imagesToPdfMeta } from "./pdf/images-to-pdf/meta";
 import { unitConverterMeta } from "./calculators/unit-converter/meta";
 import { percentageCalculatorMeta } from "./calculators/percentage-calculator/meta";
 import { discountCalculatorMeta } from "./calculators/discount-calculator/meta";
@@ -182,6 +183,7 @@ export const catalog: readonly ToolDefinition[] = [
     svgViewerMeta,
     svgOptimizerMeta,
     pdfMergeMeta,
+    imagesToPdfMeta,
     unitConverterMeta,
     percentageCalculatorMeta,
     discountCalculatorMeta,
