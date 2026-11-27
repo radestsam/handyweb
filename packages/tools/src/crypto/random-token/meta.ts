@@ -6,7 +6,7 @@ export const randomTokenMeta: ToolDefinition = {
     aliases: ["random-bytes", "random-token-generator", "api-key-generator", "secret-generator"],
     category: "crypto",
     alsoIn: ["developer"],
-    related: ["password-generator", "hmac"],
+    related: ["password-generator", "hmac", "uuid-generator"],
     tags: ["random", "token", "bytes", "secret"],
     title: {
         fa: "ساخت توکن و بایت تصادفی",

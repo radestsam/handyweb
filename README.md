@@ -98,6 +98,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | JSON Formatter and Validator                          | Developer                | `packages/tools/src/developer/json-formatter`    | None                                                       |
 | XML Formatter and Validator                           | Developer                | `packages/tools/src/developer/xml-formatter`     | None                                                       |
 | JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`       | None                                                       |
+| UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`    | None                                                       |
 | SHA-256 and SHA-512 Hash Generator for Text and Files | Hashing and Cryptography | `packages/tools/src/crypto/hash`                 | `hash-wasm` (file hashing)                                 |
 | HMAC Generator and Verifier                           | Hashing and Cryptography | `packages/tools/src/crypto/hmac`                 | None                                                       |
 | Password and Passphrase Generator                     | Hashing and Cryptography | `packages/tools/src/crypto/password-generator`   | None (EFF large wordlist, generated)                       |

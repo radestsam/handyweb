@@ -44,6 +44,8 @@ describe("search ranking", () => {
         expect(top("hmac")).toBe("hmac");
         expect(top("password generator")).toBe("password-generator");
         expect(top("random bytes")).toBe("random-token");
+        expect(top("uuid")).toBe("uuid-generator");
+        expect(top("ulid")).toBe("uuid-generator");
         expect(top("کلید api")).toBe("random-token");
         expect(top("رمز عبور قوی")).toBe("password-generator");
         expect(top("webhook signature")).toBe("hmac");
