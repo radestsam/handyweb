@@ -137,6 +137,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | QR Code and Barcode Reader                            | QR Codes and Barcodes    | `packages/tools/src/qr/code-reader`                    | `jsqr` (QR reading where the browser has no barcode reader) |
 | IP Subnet Calculator (CIDR)                           | Network                  | `packages/tools/src/network/ip-calculator`             | None                                                        |
 | MAC Address Formatter                                 | Network                  | `packages/tools/src/network/mac-formatter`             | None                                                        |
+| HTTP Status Code Reference                            | Network                  | `packages/tools/src/network/http-status`               | None                                                        |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`                | None                                                        |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`               | None                                                        |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator`   | `@cfworker/json-schema`                                     |
@@ -235,7 +236,7 @@ Press `/` or `Ctrl+K` (`Cmd+K` on a Mac) to search the tools. The index (`/searc
 
 ## Contributing
 
-Read `CONTRIBUTING.md` before you open a pull request, and follow `CODE_OF_CONDUCT.md`. Report a security problem privately, as `SECURITY.md` describes. `CHANGELOG.md` lists the changes. `docs/infrastructure.md` describes the build and the hosting, and `docs/offline-operations.md` is the outage runbook. `THIRD_PARTY_NOTICES.md` lists every dependency that ships to the browser. `make lint` checks that it is complete.
+Read `CONTRIBUTING.md` before you open a pull request, and follow `CODE_OF_CONDUCT.md`. Report a security problem privately, as `SECURITY.md` describes. `CHANGELOG.md` lists the changes. `docs/infrastructure.md` describes the build and the hosting, and `docs/offline-operations.md` is the outage runbook, and `docs/reference-data.md` lists the sources of the data tables. `THIRD_PARTY_NOTICES.md` lists every dependency that ships to the browser. `make lint` checks that it is complete.
 
 ## Deviations From the Starter Kit
 
