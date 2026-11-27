@@ -1495,3 +1495,15 @@ test.describe("image resolution", () => {
         await expect(page.locator('[data-resolution="need"]')).toContainText("2,480 × 3,508");
     });
 });
+
+test.describe("css units", () => {
+    test("converts px to rem with a custom root size", async ({ page }) => {
+        await page.goto("/en/tools/css-units/");
+        await page.locator("[data-tool-input]").fill("24");
+        await expect(page.locator('[data-css="rem"]')).toContainText("1.5rem");
+        await page.locator("summary", { hasText: /^Context$/ }).click();
+        await page.getByLabel("Root font size (px)").fill("10");
+        await expect(page.locator('[data-css="rem"]')).toContainText("2.4rem");
+        await expect(page.locator('[data-css="pt"]')).toContainText("18pt");
+    });
+});
