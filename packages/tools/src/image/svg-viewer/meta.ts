@@ -6,7 +6,7 @@ export const svgViewerMeta: ToolDefinition = {
     aliases: ["svg-preview", "view-svg", "svg-to-png", "svg-sanitizer"],
     category: "image",
     alsoIn: ["developer"],
-    related: ["favicon-generator", "image-converter"],
+    related: ["svg-optimizer", "favicon-generator", "image-converter"],
     tags: ["svg", "preview", "png", "sanitize"],
     title: { fa: "نمایش امن SVG و تبدیل به PNG", en: "SVG Viewer and SVG to PNG" },
     description: {

@@ -104,6 +104,7 @@ describe("search ranking", () => {
         expect(top("واترمارک")).toBe("image-watermark");
         expect(top("favicon")).toBe("favicon-generator");
         expect(top("svg to png")).toBe("svg-viewer");
+        expect(top("minify svg")).toBe("svg-optimizer");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
