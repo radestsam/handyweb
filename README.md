@@ -135,6 +135,8 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | URL Encoder and Decoder                               | Encoding                 | `packages/tools/src/encoding/url-encoding`           | None                                                       |
 | HTML Entity Encoder and Decoder                       | Encoding                 | `packages/tools/src/encoding/html-entities`          | None                                                       |
 | Unicode Escape and Unescape                           | Encoding                 | `packages/tools/src/encoding/unicode-escape`         | None                                                       |
+| Text to Hex Converter                                 | Encoding                 | `packages/tools/src/encoding/hex`                    | None                                                       |
+| Text to Binary Converter                              | Encoding                 | `packages/tools/src/encoding/binary`                 | None                                                       |
 | Unicode Character Inspector                           | Text                     | `packages/tools/src/text/unicode-explorer`           | None (names generated from the Unicode Character Database) |
 | Text Diff Checker                                     | Text                     | `packages/tools/src/text/text-diff`                  | `diff` (comparison and patch)                              |
 | Reverse Text                                          | Text                     | `packages/tools/src/text/reverse-text`               | None                                                       |
