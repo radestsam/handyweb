@@ -95,3 +95,16 @@ test("image-color-picker runs locally and stores nothing", async ({ page, reques
     expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo"]);
     await expectCleanStorage(page, ["secret-holiday-photo"]);
 });
+
+test("image-palette runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    await page.goto("/en/tools/image-palette/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-holiday-photo.png",
+        mimeType: "image/png",
+        buffer: makePng(40, 20),
+    });
+    await expect(page.locator("[data-tool-output]")).toHaveValue(/^#[0-9a-f]{6}(,#[0-9a-f]{6})*$/);
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo"]);
+    await expectCleanStorage(page, ["secret-holiday-photo"]);
+});

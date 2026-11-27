@@ -1179,3 +1179,19 @@ test.describe("image color picker", () => {
         near(await rgb(), [180, 120, 128]);
     });
 });
+
+test.describe("image palette", () => {
+    test("finds the colors and changes the count", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-palette/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.png",
+            mimeType: "image/png",
+            buffer: makePng(64, 64, true, 4),
+        });
+        await expect(page.locator("[data-tool-palette] li")).toHaveCount(8);
+        await page.getByRole("radio", { name: "5" }).check({ force: true });
+        await expect(page.locator("[data-tool-palette] li")).toHaveCount(5);
+        await expect(page.locator("pre")).toContainText("--color-5:");
+    });
+});

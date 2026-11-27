@@ -6,7 +6,7 @@ export const imageColorPickerMeta: ToolDefinition = {
     aliases: ["color-picker-from-image", "image-eyedropper", "pick-color-from-image"],
     category: "image",
     alsoIn: ["developer"],
-    related: ["color-converter"],
+    related: ["color-converter", "image-palette"],
     tags: ["image", "color", "picker", "hex"],
     title: { fa: "گرفتن رنگ از تصویر", en: "Image Color Picker" },
     description: {
