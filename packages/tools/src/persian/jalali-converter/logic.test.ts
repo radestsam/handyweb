@@ -76,6 +76,8 @@ describe("leap years", () => {
         );
     });
 
+    // About 73,000 Intl calls. The test takes less than 1 s on an idle machine, but
+    // more than the 5 s default when the machine is busy.
     it("agrees with the Intl Persian calendar every day for 200 years", () => {
         const format = new Intl.DateTimeFormat("en-u-ca-persian-nu-latn", {
             timeZone: "UTC",
@@ -111,7 +113,7 @@ describe("leap years", () => {
             }
             expect(jalaliToGregorian(jalali)).toEqual(gregorian);
         }
-    });
+    }, 60_000);
 });
 
 describe("parseDate", () => {
