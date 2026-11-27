@@ -111,6 +111,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Cron Expression Parser                                | Developer                | `packages/tools/src/developer/cron-parser`           | None                                                       |
 | HTTP Header Parser                                    | Developer                | `packages/tools/src/developer/http-header-parser`    | None                                                       |
 | User-Agent Parser                                     | Developer                | `packages/tools/src/developer/user-agent-parser`     | None                                                       |
+| File Type Detector                                    | Developer                | `packages/tools/src/developer/file-signature`        | None                                                       |
 | JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`           | None                                                       |
 | UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`        | None                                                       |
 | Regex Tester                                          | Developer                | `packages/tools/src/developer/regex-tester`          | None                                                       |

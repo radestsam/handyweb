@@ -63,4 +63,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "subtitle-converter": () => import("./text/subtitle-converter/ui"),
     "aes-gcm": () => import("./crypto/aes-gcm/ui"),
     totp: () => import("./crypto/totp/ui"),
+    "file-signature": () => import("./developer/file-signature/ui"),
 };

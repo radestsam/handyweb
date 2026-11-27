@@ -57,6 +57,7 @@ import { gzipMeta } from "./encoding/gzip/meta";
 import { subtitleConverterMeta } from "./text/subtitle-converter/meta";
 import { aesGcmMeta } from "./crypto/aes-gcm/meta";
 import { totpMeta } from "./crypto/totp/meta";
+import { fileSignatureMeta } from "./developer/file-signature/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -121,4 +122,5 @@ export const catalog: readonly ToolDefinition[] = [
     subtitleConverterMeta,
     aesGcmMeta,
     totpMeta,
+    fileSignatureMeta,
 ];
