@@ -39,6 +39,9 @@ import { directionFixerMeta } from "./persian/direction-fixer/meta";
 import { yamlFormatterMeta } from "./developer/yaml-formatter/meta";
 import { jsonYamlMeta } from "./developer/json-yaml/meta";
 import { sqlFormatterMeta } from "./developer/sql-formatter/meta";
+import { htmlFormatterMeta } from "./developer/html-formatter/meta";
+import { cssFormatterMeta } from "./developer/css-formatter/meta";
+import { jsFormatterMeta } from "./developer/js-formatter/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -85,4 +88,7 @@ export const catalog: readonly ToolDefinition[] = [
     yamlFormatterMeta,
     jsonYamlMeta,
     sqlFormatterMeta,
+    htmlFormatterMeta,
+    cssFormatterMeta,
+    jsFormatterMeta,
 ];

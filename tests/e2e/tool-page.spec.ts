@@ -699,3 +699,19 @@ test.describe("sql formatter", () => {
         await expect(page.getByRole("alert")).toContainText("line 1");
     });
 });
+
+test.describe("web formatters", () => {
+    test("formats CSS, JavaScript, and HTML", async ({ page }) => {
+        await page.goto("/en/tools/css-formatter/");
+        await page.locator("[data-tool-input]").fill("a{color:red}");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a {\n  color: red\n}\n");
+        await page.goto("/en/tools/js-formatter/");
+        await page.locator("[data-tool-input]").fill("if(a){b()}");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("if (a) {\n  b()\n}\n");
+        await page.goto("/fa/tools/html-formatter/");
+        await page.locator("[data-tool-input]").fill("<ul><li>یک</li><li>دو</li></ul>");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "<ul>\n  <li>یک</li>\n  <li>دو</li>\n</ul>\n",
+        );
+    });
+});
