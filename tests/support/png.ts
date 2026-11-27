@@ -20,8 +20,8 @@ function chunk(type: string, data: Buffer): Buffer {
     return Buffer.concat([length, body, crc]);
 }
 
-/** An RGBA PNG with a color gradient. */
-export function makePng(width: number, height: number, pixels = true): Buffer {
+/** An RGBA PNG with a color gradient: red is x times step, green is y times step. */
+export function makePng(width: number, height: number, pixels = true, step = 1): Buffer {
     const header = Buffer.alloc(13);
     header.writeUInt32BE(width, 0);
     header.writeUInt32BE(height, 4);
@@ -30,7 +30,8 @@ export function makePng(width: number, height: number, pixels = true): Buffer {
     if (pixels) {
         for (let y = 0; y < height; y++) {
             const row = Buffer.alloc(1 + width * 4);
-            for (let x = 0; x < width; x++) row.set([x % 256, y % 256, 128, 255], 1 + x * 4);
+            for (let x = 0; x < width; x++)
+                row.set([(x * step) % 256, (y * step) % 256, 128, 255], 1 + x * 4);
             rows.push(row);
         }
     }

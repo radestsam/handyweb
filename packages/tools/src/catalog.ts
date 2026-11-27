@@ -62,6 +62,8 @@ import { pemDecoderMeta } from "./crypto/pem-decoder/meta";
 import { htmlPreviewMeta } from "./developer/html-preview/meta";
 import { markdownEditorMeta } from "./developer/markdown-editor/meta";
 import { imageResizeMeta } from "./image/image-resize/meta";
+import { imageRotateMeta } from "./image/image-rotate/meta";
+import { imageFlipMeta } from "./image/image-flip/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -131,4 +133,6 @@ export const catalog: readonly ToolDefinition[] = [
     htmlPreviewMeta,
     markdownEditorMeta,
     imageResizeMeta,
+    imageRotateMeta,
+    imageFlipMeta,
 ];

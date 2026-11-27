@@ -34,3 +34,23 @@ for (const locale of ["fa", "en"] as const) {
         expect(errors).toEqual([]);
     });
 }
+
+for (const slug of ["image-rotate", "image-flip"]) {
+    test(`${slug} runs locally and stores nothing`, async ({ page, requests, baseURL }) => {
+        await page.goto(`/en/tools/${slug}/`);
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "secret-holiday-photo.png",
+            mimeType: "image/png",
+            buffer: makePng(40, 20),
+        });
+        if (slug === "image-rotate") await page.locator("[data-tool-rotate-right]").click();
+        else await page.getByLabel("Flip horizontally").check();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            slug === "image-rotate" ? "20x40" : "40x20",
+        );
+        await page.waitForLoadState("networkidle");
+        expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo"]);
+        await expectCleanStorage(page, ["secret-holiday-photo"]);
+    });
+}
