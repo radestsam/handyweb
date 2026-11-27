@@ -50,5 +50,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - JSON Schema Validator.
 - Color Converter, with WCAG contrast.
 - URL Parser and Inspector, with warning signs for deceptive links.
+- Cron Expression Parser.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
