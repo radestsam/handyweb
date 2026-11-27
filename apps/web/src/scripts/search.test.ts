@@ -56,6 +56,9 @@ describe("search ranking", () => {
         expect(top("join lines")).toBe("split-join");
         expect(top("find and replace")).toBe("find-replace");
         expect(top("json escape")).toBe("json-string");
+        expect(top("slug")).toBe("slug-generator");
+        expect(top("لورم ایپسوم")).toBe("lorem-ipsum");
+        expect(top("email extractor")).toBe("text-extractor");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");

@@ -36,5 +36,8 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Reverse Text, Text Repeater, and Text Splitter and Joiner.
 - Find and Replace, with plain text and regex modes.
 - JSON String Escaper and Unescaper.
+- Slug Generator, with Latin and Persian slugs.
+- Lorem Ipsum Generator, with Persian placeholder text.
+- Email, URL, and Phone Extractor.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

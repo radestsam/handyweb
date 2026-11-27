@@ -123,6 +123,9 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Text Repeater                                         | Text                     | `packages/tools/src/text/text-repeater`          | None                                                       |
 | Text Splitter and Joiner                              | Text                     | `packages/tools/src/text/split-join`             | None                                                       |
 | Find and Replace                                      | Text                     | `packages/tools/src/text/find-replace`           | None                                                       |
+| Slug Generator                                        | Text                     | `packages/tools/src/text/slug-generator`         | None                                                       |
+| Lorem Ipsum Generator                                 | Text                     | `packages/tools/src/text/lorem-ipsum`            | None                                                       |
+| Email, URL, and Phone Extractor                       | Text                     | `packages/tools/src/text/text-extractor`         | None                                                       |
 | JSON String Escaper and Unescaper                     | Developer                | `packages/tools/src/developer/json-string`       | None                                                       |
 
 ### Add a Tool
