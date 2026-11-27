@@ -202,3 +202,26 @@ test.describe("text cleaner", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("سلام");
     });
 });
+
+test.describe("url encoding", () => {
+    test("encodes a URL part and a full URL", async ({ page }) => {
+        await page.goto("/en/tools/url-encoding/");
+        await page.locator("[data-tool-input]").fill("سلام & x");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "%D8%B3%D9%84%D8%A7%D9%85%20%26%20x",
+        );
+        await page.getByText("Full URL", { exact: true }).click();
+        await page.locator("[data-tool-input]").fill("https://x.ir/سلام?a=1&b=2");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "https://x.ir/%D8%B3%D9%84%D8%A7%D9%85?a=1&b=2",
+        );
+    });
+
+    test("the decode preset reads a Persian link and reports a broken escape", async ({ page }) => {
+        await page.goto("/fa/tools/url-encoding/?preset=decode");
+        await page.locator("[data-tool-input]").fill("https://x.ir/%D8%B3%D9%84%D8%A7%D9%85");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("https://x.ir/سلام");
+        await page.locator("[data-tool-input]").fill("a%2");
+        await expect(page.getByRole("alert")).toContainText("جایگاه 2");
+    });
+});

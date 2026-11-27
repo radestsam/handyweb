@@ -18,5 +18,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Remove Duplicate Lines.
 - Sort Lines Alphabetically, with Persian alphabetical order and natural number order.
 - Text Cleaner, with a Persian preset.
+- URL Encoder and Decoder, for one part of a URL or a full URL.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

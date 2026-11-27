@@ -104,6 +104,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Remove Duplicate Lines                      | Text                     | `packages/tools/src/text/remove-duplicate-lines` | None                       |
 | Sort Lines Alphabetically                   | Text                     | `packages/tools/src/text/sort-lines`             | None                       |
 | Text Cleaner                                | Text                     | `packages/tools/src/text/text-cleaner`           | None                       |
+| URL Encoder and Decoder                     | Encoding                 | `packages/tools/src/encoding/url-encoding`       | None                       |
 
 ### Add a Tool
 
