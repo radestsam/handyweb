@@ -1365,3 +1365,35 @@ test.describe("favicon generator", () => {
         expect(readImageHeader(first)).toMatchObject({ format: "png", width: 16, height: 16 });
     });
 });
+
+test.describe("svg viewer", () => {
+    test("removes a script, loads nothing, and exports a PNG", async ({ page }) => {
+        const dialogs: string[] = [];
+        page.on("dialog", (dialog) => {
+            dialogs.push(dialog.message());
+            void dialog.dismiss();
+        });
+        const external: string[] = [];
+        page.on("requestfinished", (request) => {
+            if (!/^(http:\/\/localhost|blob:|data:)/.test(request.url()))
+                external.push(request.url());
+        });
+        await page.goto("/en/tools/svg-viewer/");
+        await page
+            .locator("[data-tool-input]")
+            .fill(
+                '<svg xmlns="http://www.w3.org/2000/svg" width="40" height="20" onload="alert(1)"><script>alert(2)</script><image href="https://example.com/t.png" width="1" height="1"/><rect width="40" height="20" fill="red"/></svg>',
+            );
+        await expect(page.locator("[data-svg-risks]")).toContainText("Script");
+        await expect(page.locator("[data-svg-preview]")).toBeVisible();
+        await expect(page.locator("[data-tool-output]")).not.toHaveValue(
+            /script|onload|example\.com/,
+        );
+        const download = page.waitForEvent("download");
+        await page.locator("[data-svg-png]").click();
+        expect((await download).suggestedFilename()).toBe("image-512x256.png");
+        await page.waitForTimeout(300);
+        expect(dialogs).toEqual([]);
+        expect(external).toEqual([]);
+    });
+});
