@@ -75,6 +75,8 @@ describe("search ranking", () => {
         expect(top("hex to rgb")).toBe("color-converter");
         expect(top("url parser")).toBe("url-parser");
         expect(top("cron")).toBe("cron-parser");
+        expect(top("security headers")).toBe("http-header-parser");
+        expect(top("user agent")).toBe("user-agent-parser");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");

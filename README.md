@@ -109,6 +109,8 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Color Converter                                       | Developer                | `packages/tools/src/developer/color-converter`       | None                                                       |
 | URL Parser and Inspector                              | Developer                | `packages/tools/src/developer/url-parser`            | None                                                       |
 | Cron Expression Parser                                | Developer                | `packages/tools/src/developer/cron-parser`           | None                                                       |
+| HTTP Header Parser                                    | Developer                | `packages/tools/src/developer/http-header-parser`    | None                                                       |
+| User-Agent Parser                                     | Developer                | `packages/tools/src/developer/user-agent-parser`     | None                                                       |
 | JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`           | None                                                       |
 | UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`        | None                                                       |
 | Regex Tester                                          | Developer                | `packages/tools/src/developer/regex-tester`          | None                                                       |
