@@ -187,3 +187,18 @@ test.describe("line tools", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("a\nc\nb");
     });
 });
+
+test.describe("text cleaner", () => {
+    test("removes extra spaces and invisible characters, keeps ZWNJ", async ({ page }) => {
+        await page.goto("/en/tools/text-cleaner/");
+        await page.locator("[data-tool-input]").fill("  کتاب‌ها  را​  ببین  \n\n\n\nend");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("کتاب‌ها را ببین\n\nend");
+        await expect(page.locator("[data-tool-counts]")).toContainText("Zero-width characters");
+    });
+
+    test("the Persian preset removes direction marks", async ({ page }) => {
+        await page.goto("/fa/tools/text-cleaner/?preset=persian");
+        await page.locator("[data-tool-input]").fill("‏سلام‏");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام");
+    });
+});

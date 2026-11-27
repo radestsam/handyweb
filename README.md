@@ -103,6 +103,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Case Converter                              | Text                     | `packages/tools/src/text/case-converter`         | None                       |
 | Remove Duplicate Lines                      | Text                     | `packages/tools/src/text/remove-duplicate-lines` | None                       |
 | Sort Lines Alphabetically                   | Text                     | `packages/tools/src/text/sort-lines`             | None                       |
+| Text Cleaner                                | Text                     | `packages/tools/src/text/text-cleaner`           | None                       |
 
 ### Add a Tool
 

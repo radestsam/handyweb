@@ -8,6 +8,7 @@ import { textCounterMeta } from "./text/text-counter/meta";
 import { caseConverterMeta } from "./text/case-converter/meta";
 import { removeDuplicateLinesMeta } from "./text/remove-duplicate-lines/meta";
 import { sortLinesMeta } from "./text/sort-lines/meta";
+import { textCleanerMeta } from "./text/text-cleaner/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -23,4 +24,5 @@ export const catalog: readonly ToolDefinition[] = [
     caseConverterMeta,
     removeDuplicateLinesMeta,
     sortLinesMeta,
+    textCleanerMeta,
 ];
