@@ -7,7 +7,17 @@ const PORT = 4322;
 // PW_CHROMIUM_PATH to a local Chromium-based browser (Chrome, Brave, Edge). Only
 // the Chromium projects then run. CI downloads every browser and runs them all.
 const localChromium = process.env.PW_CHROMIUM_PATH;
-const chromiumUse = localChromium ? { launchOptions: { executablePath: localChromium } } : {};
+// Brave blocks most local() fonts on web pages (fingerprinting protection).
+// The flag turns that off, so the fallback font test sees what Chrome sees.
+// Other Chromium browsers ignore it.
+const chromiumUse = localChromium
+    ? {
+          launchOptions: {
+              executablePath: localChromium,
+              args: ["--disable-features=BraveFarbling"],
+          },
+      }
+    : {};
 
 const allProjects = [
     { name: "chromium", use: { ...devices["Desktop Chrome"], ...chromiumUse } },

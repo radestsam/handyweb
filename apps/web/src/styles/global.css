@@ -9,7 +9,9 @@
 @custom-variant dark (&:where([data-theme="dark"], [data-theme="dark"] *));
 
 @theme inline {
-    --font-sans: "Noto Sans HW", "Estedad HW", system-ui, sans-serif;
+    --font-sans:
+        "Noto Sans HW", "Estedad HW", "Noto Sans HW Fallback", "Estedad HW Fallback Tahoma",
+        "Estedad HW Fallback Geeza", "Estedad HW Fallback Naskh", system-ui, sans-serif;
     --font-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
 
     /* Type scale, about 1.2. Body is 17px. The display size is the search. */

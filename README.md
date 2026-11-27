@@ -33,7 +33,7 @@ make dev
 
 ### Browser Tests in Iran
 
-The Playwright browser download (`npx playwright install`) returns `403` from Iran. Point the tests at a local Chromium-based browser instead. Only the Chromium projects then run. CI runs every browser.
+The Playwright browser download (`npx playwright install`) returns `403` from Iran. Point the tests at a local Chromium-based browser instead. Only the Chromium projects then run. CI runs every browser. For Brave, the config turns off the fingerprinting protection that blocks system fonts, so the fallback font test works.
 
 ```bash
 export PW_CHROMIUM_PATH="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
@@ -65,6 +65,7 @@ Dependabot proposes weekly updates for npm packages and GitHub Actions.
 
 - Color tokens are in `apps/web/src/styles/tokens.css`. `tokens.test.ts` checks the contrast of every text and background pair in both themes.
 - The fonts (Noto Sans and Estedad) are self-hosted. The site loads nothing from another origin.
+- Until the fonts load, the text uses system fonts (Arial, Helvetica, or Roboto for Latin; Tahoma, Geeza Pro, or Noto Naskh Arabic for Persian) with `size-adjust` and metric overrides, so the font swap moves almost nothing. `tests/e2e/fonts.spec.ts` measures the layout shift. It skips on a machine without these fonts.
 - The theme follows the system until the visitor picks one. The choice is stored in `handyweb:theme`.
 - Layout CSS uses logical properties only (`ms-*`, `me-*`, `start`, `end`). `scripts/check-logical-css.mjs` stops physical ones.
 - On phones, a bottom tab bar replaces the header links.

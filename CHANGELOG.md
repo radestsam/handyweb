@@ -7,6 +7,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 ### Added
 
 - Static site with Persian (RTL) and English (LTR) pages, light and dark themes, and self-hosted Noto Sans and Estedad fonts.
+- Metric-matched system font fallbacks, so the page does not move when the web fonts load.
 - Tool registry, runtime, worker protocol, and file helpers.
 - Base64 Encoder and Decoder.
 - JSON Formatter and Validator.
