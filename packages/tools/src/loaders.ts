@@ -16,4 +16,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "sort-lines": () => import("./text/sort-lines/ui"),
     "text-cleaner": () => import("./text/text-cleaner/ui"),
     "url-encoding": () => import("./encoding/url-encoding/ui"),
+    "html-entities": () => import("./encoding/html-entities/ui"),
 };

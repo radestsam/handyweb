@@ -225,3 +225,33 @@ test.describe("url encoding", () => {
         await expect(page.getByRole("alert")).toContainText("جایگاه 2");
     });
 });
+
+test.describe("html entities", () => {
+    test("encodes special characters and keeps Persian text", async ({ page }) => {
+        await page.goto("/en/tools/html-entities/");
+        await page.locator("[data-tool-input]").fill('<b>سلام & "x"</b>');
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "&lt;b&gt;سلام &amp; &quot;x&quot;&lt;/b&gt;",
+        );
+        await page.getByLabel("Encode non-ASCII characters (such as Persian letters)").check();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "&lt;b&gt;&#1587;&#1604;&#1575;&#1605; &amp; &quot;x&quot;&lt;/b&gt;",
+        );
+    });
+
+    test("the decode preset decodes references and runs no script", async ({ page }) => {
+        const dialogs: string[] = [];
+        page.on("dialog", (dialog) => {
+            dialogs.push(dialog.message());
+            void dialog.dismiss();
+        });
+        await page.goto("/fa/tools/html-entities/?preset=decode");
+        await page
+            .locator("[data-tool-input]")
+            .fill("&#1587;&#x644;&#1575;&#1605; &copy; <img src=x onerror=alert(1)>");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "سلام © <img src=x onerror=alert(1)>",
+        );
+        expect(dialogs).toEqual([]);
+    });
+});
