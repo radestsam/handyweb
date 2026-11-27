@@ -1471,3 +1471,16 @@ test.describe("date difference", () => {
         await expect(page.locator('[data-date="days"]')).toContainText("۳۰");
     });
 });
+
+test.describe("aspect ratio", () => {
+    test("simplifies a size and finds the other side", async ({ page }) => {
+        await page.goto("/en/tools/aspect-ratio/");
+        await page.locator("[data-tool-input]").fill("1366");
+        await page.getByLabel("Height", { exact: true }).first().fill("768");
+        await expect(page.locator('[data-ratio="simple"]')).toHaveText("683:384");
+        await expect(page.locator('[data-ratio="near"]')).toHaveText("16:9");
+        await page.getByRole("button", { name: "4:5" }).click();
+        await page.getByLabel("Size").fill("1080");
+        await expect(page.locator('[data-ratio="other"]')).toHaveText("1,350");
+    });
+});
