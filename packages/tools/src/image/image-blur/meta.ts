@@ -6,7 +6,7 @@ export const imageBlurMeta: ToolDefinition = {
     aliases: ["blur-image", "blur-photo", "blur-background", "blur-face"],
     category: "image",
     alsoIn: [],
-    related: ["image-resize", "image-metadata"],
+    related: ["image-pixelate", "image-resize", "image-metadata"],
     tags: ["image", "blur", "privacy"],
     title: { fa: "محو کردن تصویر", en: "Image Blur Tool" },
     description: {

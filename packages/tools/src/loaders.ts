@@ -78,4 +78,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "image-palette": () => import("./image/image-palette/ui"),
     "image-compare": () => import("./image/image-compare/ui"),
     "image-blur": () => import("./image/image-blur/ui"),
+    "image-pixelate": () => import("./image/image-pixelate/ui"),
 };
