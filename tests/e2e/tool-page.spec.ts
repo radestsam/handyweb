@@ -997,3 +997,30 @@ test.describe("markdown editor", () => {
         expect(dialogs).toEqual([]);
     });
 });
+
+test.describe("image resize", () => {
+    test("applies the EXIF orientation and refuses a huge image before decoding", async ({
+        page,
+    }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-resize/");
+        // A 5 x 3 JPEG with EXIF orientation 6 shows as 3 x 5.
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "turned.jpg",
+            mimeType: "image/jpeg",
+            buffer: Buffer.from(
+                "/9j/4QAiRXhpZgAATU0AKgAAAAgAAQESAAMAAAABAAYAAAAAAAD/4AAQSkZJRgABAQAASABIAAD/4QBMRXhpZgAATU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAABaADAAQAAAABAAAAAwAAAAD/7QA4UGhvdG9zaG9wIDMuMAA4QklNBAQAAAAAAAA4QklNBCUAAAAAABDUHYzZjwCyBOmACZjs+EJ+/8AAEQgAAwAFAwEiAAIRAQMRAf/EAB8AAAEFAQEBAQEBAAAAAAAAAAABAgMEBQYHCAkKC//EALUQAAIBAwMCBAMFBQQEAAABfQECAwAEEQUSITFBBhNRYQcicRQygZGhCCNCscEVUtHwJDNicoIJChYXGBkaJSYnKCkqNDU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6g4SFhoeIiYqSk5SVlpeYmZqio6Slpqeoqaqys7S1tre4ubrCw8TFxsfIycrS09TV1tfY2drh4uPk5ebn6Onq8fLz9PX29/j5+v/EAB8BAAMBAQEBAQEBAQEAAAAAAAABAgMEBQYHCAkKC//EALURAAIBAgQEAwQHBQQEAAECdwABAgMRBAUhMQYSQVEHYXETIjKBCBRCkaGxwQkjM1LwFWJy0QoWJDThJfEXGBkaJicoKSo1Njc4OTpDREVGR0hJSlNUVVZXWFlaY2RlZmdoaWpzdHV2d3h5eoKDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uLj5OXm5+jp6vLz9PX29/j5+v/bAEMAAgICAgICAwICAwUDAwMFBgUFBQUGCAYGBgYGCAoICAgICAgKCgoKCgoKCgwMDAwMDA4ODg4ODw8PDw8PDw8PD//bAEMBAgICBAQEBwQEBxALCQsQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEP/dAAQAAf/aAAwDAQACEQMRAD8A+e6KKK/Gz/Sw/9k=",
+                "base64",
+            ),
+        });
+        await expect(page.locator("[data-tool-source-size]")).toContainText("3 × 5");
+        await page.getByRole("button", { name: "Another image" }).click();
+        // The header says 10000 x 10000 (100 megapixels); there are no pixels.
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "huge.png",
+            mimeType: "image/png",
+            buffer: makePng(10_000, 10_000, false),
+        });
+        await expect(page.getByRole("alert")).toContainText("50 megapixels");
+    });
+});

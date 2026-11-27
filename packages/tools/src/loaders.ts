@@ -67,4 +67,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "pem-decoder": () => import("./crypto/pem-decoder/ui"),
     "html-preview": () => import("./developer/html-preview/ui"),
     "markdown-editor": () => import("./developer/markdown-editor/ui"),
+    "image-resize": () => import("./image/image-resize/ui"),
 };

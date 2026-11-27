@@ -89,6 +89,7 @@ describe("search ranking", () => {
         expect(top("csr decoder")).toBe("pem-decoder");
         expect(top("html preview")).toBe("html-preview");
         expect(top("markdown")).toBe("markdown-editor");
+        expect(top("کوچک کردن عکس")).toBe("image-resize");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
