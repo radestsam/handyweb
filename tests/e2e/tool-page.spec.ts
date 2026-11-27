@@ -776,3 +776,18 @@ test.describe("color converter", () => {
         await expect(page.getByText("On white:")).toBeVisible();
     });
 });
+
+test.describe("url parser", () => {
+    test("splits a URL and flags a credentials trick", async ({ page }) => {
+        await page.goto("/en/tools/url-parser/");
+        await page
+            .locator("[data-tool-input]")
+            .fill("https://google.com@evil.example/login?next=https://x.example/");
+        await expect(page.locator('[data-part="host"]')).toHaveText("evil.example");
+        await expect(page.locator("[data-tool-flags]")).toHaveAttribute(
+            "data-tool-flags",
+            "credentials redirect-param",
+        );
+        await expect(page.locator("[data-tool-params]")).toContainText("next");
+    });
+});

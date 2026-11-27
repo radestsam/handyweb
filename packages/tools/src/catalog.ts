@@ -46,6 +46,7 @@ import { jsonCsvMeta } from "./developer/json-csv/meta";
 import { jsonDiffMeta } from "./developer/json-diff/meta";
 import { jsonSchemaValidatorMeta } from "./developer/json-schema-validator/meta";
 import { colorConverterMeta } from "./developer/color-converter/meta";
+import { urlParserMeta } from "./developer/url-parser/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -99,4 +100,5 @@ export const catalog: readonly ToolDefinition[] = [
     jsonDiffMeta,
     jsonSchemaValidatorMeta,
     colorConverterMeta,
+    urlParserMeta,
 ];
