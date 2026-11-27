@@ -48,5 +48,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - JSON and CSV Converter, with an Excel-friendly download.
 - JSON Diff.
 - JSON Schema Validator.
+- Color Converter, with WCAG contrast.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
