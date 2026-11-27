@@ -8,3 +8,8 @@ playwright-report/
 test-results/
 yarn.lock
 LICENSE
+
+# Agent instruction files. Each clone keeps its own, outside Git
+# (.git/info/exclude).
+AGENTS.md
+CLAUDE.md
