@@ -138,6 +138,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Text to Hex Converter                                 | Encoding                 | `packages/tools/src/encoding/hex`                    | None                                                       |
 | Text to Binary Converter                              | Encoding                 | `packages/tools/src/encoding/binary`                 | None                                                       |
 | File to Base64 and Data URI                           | Encoding                 | `packages/tools/src/encoding/base64-file`            | None                                                       |
+| Gzip and Deflate Compressor                           | Encoding                 | `packages/tools/src/encoding/gzip`                   | None (`CompressionStream` of the browser)                  |
 | Unicode Character Inspector                           | Text                     | `packages/tools/src/text/unicode-explorer`           | None (names generated from the Unicode Character Database) |
 | Text Diff Checker                                     | Text                     | `packages/tools/src/text/text-diff`                  | `diff` (comparison and patch)                              |
 | Reverse Text                                          | Text                     | `packages/tools/src/text/reverse-text`               | None                                                       |
