@@ -6,7 +6,7 @@ export const imageConverterMeta: ToolDefinition = {
     aliases: ["convert-image", "image-format-converter", "jpg-png-converter", "webp-converter"],
     category: "image",
     alsoIn: [],
-    related: ["image-resize", "base64-file"],
+    related: ["image-compressor", "image-resize", "base64-file"],
     tags: ["image", "convert", "png", "jpg", "webp"],
     title: { fa: "تبدیل فرمت تصویر", en: "Image Converter" },
     description: {

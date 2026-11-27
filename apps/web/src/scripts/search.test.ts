@@ -94,6 +94,7 @@ describe("search ranking", () => {
         expect(top("mirror image")).toBe("image-flip");
         expect(top("برش عکس")).toBe("image-crop");
         expect(top("webp to png")).toBe("image-converter");
+        expect(top("کم کردن حجم عکس")).toBe("image-compressor");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
