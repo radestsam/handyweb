@@ -27,6 +27,8 @@ describe("search ranking", () => {
         expect(top("بیس۶۴")).toBe("base64");
         expect(top("json")).toBe("json-formatter");
         expect(top("sha256")).toBe("hash");
+        expect(top("word count")).toBe("text-counter");
+        expect(top("شمارش کلمات")).toBe("text-counter");
     });
 
     it("finds Persian text typed with an Arabic keyboard", () => {

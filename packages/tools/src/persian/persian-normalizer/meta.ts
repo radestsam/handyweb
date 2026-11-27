@@ -11,7 +11,7 @@ export const persianNormalizerMeta: ToolDefinition = {
     ],
     category: "persian",
     alsoIn: ["text"],
-    related: ["jalali-converter"],
+    related: ["jalali-converter", "text-counter"],
     tags: ["persian", "normalize", "digits"],
     title: {
         fa: "یکسان‌سازی متن فارسی و تبدیل اعداد",

@@ -99,6 +99,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | SHA-256 Hash Generator for Text and Files   | Hashing and Cryptography | `packages/tools/src/crypto/hash`                | `hash-wasm` (file hashing) |
 | Persian Text Normalizer and Digit Converter | Persian                  | `packages/tools/src/persian/persian-normalizer` | `diff` (change view)       |
 | Jalali and Gregorian Date Converter         | Persian                  | `packages/tools/src/persian/jalali-converter`   | `jalaali-js`               |
+| Word and Character Counter                  | Text                     | `packages/tools/src/text/text-counter`          | None                       |
 
 ### Add a Tool
 
