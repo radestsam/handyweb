@@ -42,6 +42,8 @@ The passphrase words come from the EFF large wordlist by the Electronic Frontier
 | `nearley`                        | MIT                                                                 | Yes: the parser runtime of `sql-formatter`                                    |
 | `js-beautify`                    | MIT                                                                 | Yes: HTML, CSS, and JavaScript formatting (only the browser beautifier files) |
 | `@cfworker/json-schema`          | MIT                                                                 | Yes: JSON Schema validation (no generated code, so no `eval`)                 |
+| `marked`                         | MIT                                                                 | Yes: Markdown to HTML                                                         |
+| `dompurify`                      | MPL-2.0 OR Apache-2.0 (used under Apache-2.0)                       | Yes: HTML sanitizing of the Markdown output                                   |
 | `uqr`                            | MIT (includes the QR Code generator library by Project Nayuki, MIT) | Yes: QR code encoding                                                         |
 | `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                           |
 | `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                           |

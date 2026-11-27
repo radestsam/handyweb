@@ -61,5 +61,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - File Type Detector.
 - Certificate and CSR Decoder.
 - HTML Previewer in a sandboxed frame.
+- Markdown Editor and Preview, with sanitized HTML.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

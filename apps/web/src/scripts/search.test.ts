@@ -88,6 +88,7 @@ describe("search ranking", () => {
         expect(top("magic number")).toBe("file-signature");
         expect(top("csr decoder")).toBe("pem-decoder");
         expect(top("html preview")).toBe("html-preview");
+        expect(top("markdown")).toBe("markdown-editor");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");

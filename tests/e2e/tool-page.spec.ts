@@ -982,3 +982,18 @@ test.describe("html preview", () => {
         await expect(page.locator("[data-tool-frame]")).toHaveAttribute("sandbox", "");
     });
 });
+
+test.describe("markdown editor", () => {
+    test("previews Markdown and removes scripts", async ({ page }) => {
+        const dialogs: string[] = [];
+        page.on("dialog", (dialog) => {
+            dialogs.push(dialog.message());
+            void dialog.dismiss();
+        });
+        await page.goto("/fa/tools/markdown-editor/");
+        await page.locator("[data-tool-input]").fill("# سلام\n\n<script>alert(1)</script>");
+        await expect(page.frameLocator("[data-tool-frame]").locator("h1")).toHaveText("سلام");
+        await expect(page.locator("[data-tool-output]")).not.toHaveValue(/script/);
+        expect(dialogs).toEqual([]);
+    });
+});
