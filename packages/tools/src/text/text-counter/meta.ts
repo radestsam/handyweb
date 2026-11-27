@@ -12,7 +12,7 @@ export const textCounterMeta: ToolDefinition = {
     ],
     category: "text",
     alsoIn: ["persian"],
-    related: ["persian-normalizer"],
+    related: ["persian-normalizer", "case-converter"],
     tags: ["text", "count", "words", "characters"],
     title: {
         fa: "شمارش واژه، نویسه و زمان خواندن",

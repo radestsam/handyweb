@@ -28,6 +28,8 @@ describe("search ranking", () => {
         expect(top("json")).toBe("json-formatter");
         expect(top("sha256")).toBe("hash");
         expect(top("word count")).toBe("text-counter");
+        expect(top("title case")).toBe("case-converter");
+        expect(top("حروف بزرگ")).toBe("case-converter");
         expect(top("شمارش کلمات")).toBe("text-counter");
     });
 

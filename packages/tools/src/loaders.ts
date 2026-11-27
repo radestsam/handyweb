@@ -11,4 +11,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "persian-normalizer": () => import("./persian/persian-normalizer/ui"),
     "jalali-converter": () => import("./persian/jalali-converter/ui"),
     "text-counter": () => import("./text/text-counter/ui"),
+    "case-converter": () => import("./text/case-converter/ui"),
 };

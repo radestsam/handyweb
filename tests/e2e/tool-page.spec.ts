@@ -142,3 +142,25 @@ test.describe("text counter", () => {
         await expect(page.locator('[data-stat="words"]')).toHaveText("۳");
     });
 });
+
+test.describe("case converter", () => {
+    test("uses Chicago title case by default", async ({ page }) => {
+        await page.goto("/en/tools/case-converter/");
+        await page
+            .locator("[data-tool-input]")
+            .fill("how to set up a server: a step-by-step guide");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "How to Set Up a Server: A Step-by-Step Guide",
+        );
+        await page.getByText("Sentence", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "How to set up a server: a step-by-step guide",
+        );
+    });
+
+    test("the uppercase preset keeps Persian text", async ({ page }) => {
+        await page.goto("/fa/tools/case-converter/?preset=uppercase");
+        await page.locator("[data-tool-input]").fill("سلام hello");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام HELLO");
+    });
+});
