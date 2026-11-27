@@ -96,4 +96,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "color-contrast": () => import("./calculators/color-contrast/ui"),
     "time-zone-converter": () => import("./calculators/time-zone-converter/ui"),
     "barcode-generator": () => import("./qr/barcode-generator/ui"),
+    "code-reader": () => import("./qr/code-reader/ui"),
 };

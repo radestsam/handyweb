@@ -17,6 +17,7 @@
         "hash-wasm": "4.13.0",
         "jalaali-js": "2.0.1",
         "js-beautify": "2.0.3",
+        "jsqr": "1.4.0",
         "marked": "18.2.1",
         "sql-formatter": "15.9.0",
         "uqr": "0.1.3",

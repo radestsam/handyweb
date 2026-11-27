@@ -6,7 +6,7 @@ export const barcodeGeneratorMeta: ToolDefinition = {
     aliases: ["barcode-maker", "ean13-generator", "code128-generator", "upc-generator"],
     category: "qr",
     alsoIn: [],
-    related: ["qr-generator"],
+    related: ["qr-generator", "code-reader"],
     tags: ["barcode", "ean", "code128", "upc"],
     title: { fa: "ساخت بارکد", en: "Barcode Generator" },
     description: {
