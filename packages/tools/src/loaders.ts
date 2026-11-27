@@ -93,4 +93,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "css-units": () => import("./calculators/css-units/ui"),
     "roman-numerals": () => import("./calculators/roman-numerals/ui"),
     "binary-calculator": () => import("./calculators/binary-calculator/ui"),
+    "color-contrast": () => import("./calculators/color-contrast/ui"),
 };

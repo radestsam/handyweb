@@ -87,6 +87,7 @@ import { imageResolutionMeta } from "./calculators/image-resolution/meta";
 import { cssUnitsMeta } from "./calculators/css-units/meta";
 import { romanNumeralsMeta } from "./calculators/roman-numerals/meta";
 import { binaryCalculatorMeta } from "./calculators/binary-calculator/meta";
+import { colorContrastMeta } from "./calculators/color-contrast/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -181,4 +182,5 @@ export const catalog: readonly ToolDefinition[] = [
     cssUnitsMeta,
     romanNumeralsMeta,
     binaryCalculatorMeta,
+    colorContrastMeta,
 ];

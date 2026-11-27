@@ -1529,3 +1529,18 @@ test.describe("binary calculator", () => {
         await expect(page.locator('[data-binary="binary"]')).toHaveText("1100");
     });
 });
+
+test.describe("color contrast", () => {
+    test("fails a light gray and fixes it with the suggestion", async ({ page }) => {
+        await page.goto("/en/tools/color-contrast/");
+        await page.locator("[data-tool-input]").fill("#777777");
+        await expect(page.locator('[data-contrast="ratio"]')).toHaveText("4.47:1");
+        await page
+            .locator('[data-contrast="suggestion"]')
+            .getByRole("button", { name: "Use it" })
+            .click();
+        await expect(page.locator('[data-contrast="suggestion"]')).toHaveCount(0);
+        const ratio = Number((await page.locator("[data-tool-output]").inputValue()) || 0);
+        expect(ratio).toBeGreaterThanOrEqual(4.5);
+    });
+});
