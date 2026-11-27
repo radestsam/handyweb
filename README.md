@@ -92,15 +92,17 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 
 ## Tools
 
-| Tool                                        | Category                 | Source                                          | Libraries                  |
-| ------------------------------------------- | ------------------------ | ----------------------------------------------- | -------------------------- |
-| Base64 Encoder and Decoder                  | Encoding                 | `packages/tools/src/encoding/base64`            | None                       |
-| JSON Formatter and Validator                | Developer                | `packages/tools/src/developer/json-formatter`   | None                       |
-| SHA-256 Hash Generator for Text and Files   | Hashing and Cryptography | `packages/tools/src/crypto/hash`                | `hash-wasm` (file hashing) |
-| Persian Text Normalizer and Digit Converter | Persian                  | `packages/tools/src/persian/persian-normalizer` | `diff` (change view)       |
-| Jalali and Gregorian Date Converter         | Persian                  | `packages/tools/src/persian/jalali-converter`   | `jalaali-js`               |
-| Word and Character Counter                  | Text                     | `packages/tools/src/text/text-counter`          | None                       |
-| Case Converter                              | Text                     | `packages/tools/src/text/case-converter`        | None                       |
+| Tool                                        | Category                 | Source                                           | Libraries                  |
+| ------------------------------------------- | ------------------------ | ------------------------------------------------ | -------------------------- |
+| Base64 Encoder and Decoder                  | Encoding                 | `packages/tools/src/encoding/base64`             | None                       |
+| JSON Formatter and Validator                | Developer                | `packages/tools/src/developer/json-formatter`    | None                       |
+| SHA-256 Hash Generator for Text and Files   | Hashing and Cryptography | `packages/tools/src/crypto/hash`                 | `hash-wasm` (file hashing) |
+| Persian Text Normalizer and Digit Converter | Persian                  | `packages/tools/src/persian/persian-normalizer`  | `diff` (change view)       |
+| Jalali and Gregorian Date Converter         | Persian                  | `packages/tools/src/persian/jalali-converter`    | `jalaali-js`               |
+| Word and Character Counter                  | Text                     | `packages/tools/src/text/text-counter`           | None                       |
+| Case Converter                              | Text                     | `packages/tools/src/text/case-converter`         | None                       |
+| Remove Duplicate Lines                      | Text                     | `packages/tools/src/text/remove-duplicate-lines` | None                       |
+| Sort Lines Alphabetically                   | Text                     | `packages/tools/src/text/sort-lines`             | None                       |
 
 ### Add a Tool
 
