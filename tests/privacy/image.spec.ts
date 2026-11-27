@@ -128,3 +128,19 @@ test("image-compare runs locally and stores nothing", async ({ page, requests, b
     expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-before", "secret-after"]);
     await expectCleanStorage(page, ["secret-before", "secret-after"]);
 });
+
+test("image-blur runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    await page.goto("/en/tools/image-blur/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-holiday-photo.png",
+        mimeType: "image/png",
+        buffer: makePng(40, 20),
+    });
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue(
+        "secret-holiday-photo-blurred.png",
+    );
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo"]);
+    await expectCleanStorage(page, ["secret-holiday-photo"]);
+});
