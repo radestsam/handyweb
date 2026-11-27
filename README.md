@@ -121,6 +121,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Favicon Generator                                     | Images                   | `packages/tools/src/image/favicon-generator`         | None                                                       |
 | SVG Viewer and SVG to PNG                             | Images                   | `packages/tools/src/image/svg-viewer`                | `dompurify`                                                |
 | SVG Optimizer                                         | Images                   | `packages/tools/src/image/svg-optimizer`             | `dompurify`                                                |
+| Unit Converter                                        | Calculators              | `packages/tools/src/calculators/unit-converter`      | None                                                       |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`              | None                                                       |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`             | None                                                       |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator` | `@cfworker/json-schema`                                    |
