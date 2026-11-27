@@ -89,6 +89,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Binary and Hex Calculator.
 - Color Contrast Checker (WCAG).
 - Time Zone Converter (uses the time zone data of the browser).
+- Barcode Generator (Code 128, EAN-13, EAN-8, UPC-A).
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

@@ -1556,3 +1556,40 @@ test.describe("time zone converter", () => {
         await expect(page.locator('[data-tz="Asia/Tehran"]')).toContainText("UTC+03:30");
     });
 });
+
+test.describe("barcode generator", () => {
+    test("adds the EAN check digit, and a barcode reader decodes it", async ({ page }) => {
+        await page.goto("/en/tools/barcode-generator/?preset=ean13");
+        await page.locator("[data-tool-input]").fill("400638133393");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("4006381333931");
+        for (const [format, text] of [
+            ["EAN-13", "4006381333931"],
+            ["Code 128", "HW-2026-001"],
+        ] as const) {
+            await page.getByRole("radio", { name: format }).check({ force: true });
+            await page.locator("[data-tool-input]").fill(text);
+            // Chromium has a barcode reader (BarcodeDetector); it checks the bars independently.
+            const decoded = await page
+                .locator("[data-barcode-image]")
+                .evaluate(async (img: HTMLImageElement) => {
+                    await img.decode();
+                    const Detector = (
+                        window as unknown as {
+                            BarcodeDetector?: new (o: object) => {
+                                detect: (
+                                    i: ImageBitmapSource,
+                                ) => Promise<Array<{ rawValue: string }>>;
+                            };
+                        }
+                    ).BarcodeDetector;
+                    if (!Detector) return null;
+                    const bitmap = await createImageBitmap(img);
+                    const found = await new Detector({ formats: ["ean_13", "code_128"] }).detect(
+                        bitmap,
+                    );
+                    return found[0]?.rawValue ?? "";
+                });
+            if (decoded !== null) expect(decoded).toBe(text);
+        }
+    });
+});

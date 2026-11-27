@@ -89,6 +89,7 @@ import { romanNumeralsMeta } from "./calculators/roman-numerals/meta";
 import { binaryCalculatorMeta } from "./calculators/binary-calculator/meta";
 import { colorContrastMeta } from "./calculators/color-contrast/meta";
 import { timeZoneConverterMeta } from "./calculators/time-zone-converter/meta";
+import { barcodeGeneratorMeta } from "./qr/barcode-generator/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -185,4 +186,5 @@ export const catalog: readonly ToolDefinition[] = [
     binaryCalculatorMeta,
     colorContrastMeta,
     timeZoneConverterMeta,
+    barcodeGeneratorMeta,
 ];

@@ -95,4 +95,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "binary-calculator": () => import("./calculators/binary-calculator/ui"),
     "color-contrast": () => import("./calculators/color-contrast/ui"),
     "time-zone-converter": () => import("./calculators/time-zone-converter/ui"),
+    "barcode-generator": () => import("./qr/barcode-generator/ui"),
 };
