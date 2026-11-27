@@ -874,3 +874,25 @@ test.describe("gzip", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("hello hello hello hello");
     });
 });
+
+test.describe("subtitle converter", () => {
+    test("converts SRT to VTT with a shift", async ({ page }) => {
+        await page.goto("/en/tools/subtitle-converter/");
+        await page.getByLabel("Time shift (seconds)").fill("1.5");
+        await page.locator("[data-tool-input]").fill("1\n00:00:01,000 --> 00:00:02,000\nسلام\n");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "WEBVTT\n\n00:00:02.500 --> 00:00:03.500\nسلام\n",
+        );
+    });
+
+    test("repairs a Windows-1256 file", async ({ page }) => {
+        await page.goto("/fa/tools/subtitle-converter/");
+        const header = Buffer.from("1\r\n00:00:01,000 --> 00:00:02,000\r\n");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "movie.srt",
+            mimeType: "application/x-subrip",
+            buffer: Buffer.concat([header, Buffer.from([0xd3, 0xe1, 0xc7, 0xe3])]),
+        });
+        await expect(page.locator("[data-tool-input]")).toHaveValue(/سلام/);
+    });
+});

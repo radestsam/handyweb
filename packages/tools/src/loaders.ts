@@ -60,4 +60,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     binary: () => import("./encoding/binary/ui"),
     "base64-file": () => import("./encoding/base64-file/ui"),
     gzip: () => import("./encoding/gzip/ui"),
+    "subtitle-converter": () => import("./text/subtitle-converter/ui"),
 };

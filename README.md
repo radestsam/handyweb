@@ -148,6 +148,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Slug Generator                                        | Text                     | `packages/tools/src/text/slug-generator`             | None                                                       |
 | Lorem Ipsum Generator                                 | Text                     | `packages/tools/src/text/lorem-ipsum`                | None                                                       |
 | Email, URL, and Phone Extractor                       | Text                     | `packages/tools/src/text/text-extractor`             | None                                                       |
+| Subtitle Converter (SRT and VTT)                      | Text                     | `packages/tools/src/text/subtitle-converter`         | None                                                       |
 | JSON String Escaper and Unescaper                     | Developer                | `packages/tools/src/developer/json-string`           | None                                                       |
 
 ### Add a Tool
