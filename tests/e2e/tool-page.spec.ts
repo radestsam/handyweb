@@ -485,3 +485,22 @@ test.describe("regex tester", () => {
         await expect(page.getByRole("alert")).toContainText("الگو درست نیست");
     });
 });
+
+test.describe("unix timestamp", () => {
+    test("reads milliseconds and shows ISO and Jalali dates", async ({ page }) => {
+        await page.goto("/en/tools/unix-timestamp/");
+        await page.locator("[data-tool-input]").fill("1732700000000");
+        await expect(page.locator("[data-tool-detected]")).toContainText("milliseconds");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("2024-11-27T09:33:20.000Z");
+        await expect(page.locator('[data-row="unixSeconds"]')).toHaveText("1732700000");
+        await expect(page.locator('[data-row="jalaliTime"]')).toContainText("1403");
+    });
+
+    test("turns a Jalali date into a timestamp", async ({ page }) => {
+        await page.goto("/fa/tools/unix-timestamp/");
+        await page.getByText("UTC", { exact: true }).click();
+        await page.locator("[data-tool-input]").fill("۱۴۰۴/۰۹/۰۶ ۱۰:۳۰");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("2025-11-27T10:30:00.000Z");
+        await expect(page.locator('[data-row="unixSeconds"]')).toHaveText("1764239400");
+    });
+});

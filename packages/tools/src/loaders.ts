@@ -27,4 +27,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "uuid-generator": () => import("./developer/uuid-generator/ui"),
     "text-diff": () => import("./text/text-diff/ui"),
     "regex-tester": () => import("./developer/regex-tester/ui"),
+    "unix-timestamp": () => import("./developer/unix-timestamp/ui"),
 };

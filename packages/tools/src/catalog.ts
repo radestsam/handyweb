@@ -21,6 +21,7 @@ import { randomTokenMeta } from "./crypto/random-token/meta";
 import { uuidGeneratorMeta } from "./developer/uuid-generator/meta";
 import { textDiffMeta } from "./text/text-diff/meta";
 import { regexTesterMeta } from "./developer/regex-tester/meta";
+import { unixTimestampMeta } from "./developer/unix-timestamp/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -49,4 +50,5 @@ export const catalog: readonly ToolDefinition[] = [
     uuidGeneratorMeta,
     textDiffMeta,
     regexTesterMeta,
+    unixTimestampMeta,
 ];

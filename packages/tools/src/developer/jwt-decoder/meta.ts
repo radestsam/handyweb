@@ -6,7 +6,7 @@ export const jwtDecoderMeta: ToolDefinition = {
     aliases: ["jwt-parser", "decode-jwt", "jwt-reader"],
     category: "developer",
     alsoIn: ["crypto"],
-    related: ["base64", "json-formatter"],
+    related: ["base64", "json-formatter", "unix-timestamp"],
     tags: ["jwt", "token", "decode"],
     title: {
         fa: "رمزگشایی توکن JWT",

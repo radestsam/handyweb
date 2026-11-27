@@ -30,5 +30,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - UUID and ULID Generator, with an inspector for the version and the time.
 - Text Diff Checker, by lines, words, or characters, with a unified patch.
 - Regex Tester, with a time limit and a warning for slow patterns.
+- Unix Timestamp Converter, with Jalali dates.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
