@@ -15,6 +15,7 @@ import { unicodeEscapeMeta } from "./encoding/unicode-escape/meta";
 import { unicodeExplorerMeta } from "./text/unicode-explorer/meta";
 import { xmlFormatterMeta } from "./developer/xml-formatter/meta";
 import { jwtDecoderMeta } from "./developer/jwt-decoder/meta";
+import { hmacMeta } from "./crypto/hmac/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -37,4 +38,5 @@ export const catalog: readonly ToolDefinition[] = [
     unicodeExplorerMeta,
     xmlFormatterMeta,
     jwtDecoderMeta,
+    hmacMeta,
 ];
