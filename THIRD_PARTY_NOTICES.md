@@ -13,11 +13,14 @@ The full license text of each font is in its package: `node_modules/@fontsource-
 
 ## Data
 
-| Component                  | Version    | License            | Source                       | Shipped files                                                          |
-| -------------------------- | ---------- | ------------------ | ---------------------------- | ---------------------------------------------------------------------- |
-| Unicode Character Database | Unicode 15 | Unicode License V3 | https://www.unicode.org/ucd/ | Character names in `packages/tools/src/text/unicode-explorer/names.ts` |
+| Component                  | Version    | License            | Source                       | Shipped files                                                               |
+| -------------------------- | ---------- | ------------------ | ---------------------------- | --------------------------------------------------------------------------- |
+| Unicode Character Database | Unicode 15 | Unicode License V3 | https://www.unicode.org/ucd/ | Character names in `packages/tools/src/text/unicode-explorer/names.ts`      |
+| EFF large wordlist         | 2016-07-18 | CC BY 3.0 US       | https://www.eff.org/dice     | Passphrase words in `packages/tools/src/crypto/password-generator/words.ts` |
 
 The character names of the Unicode Character Inspector come from the Unicode Character Database. Copyright © 1991-2023 Unicode, Inc. The license is at https://www.unicode.org/license.txt.
+
+The passphrase words come from the EFF large wordlist by the Electronic Frontier Foundation, under the Creative Commons Attribution 3.0 US license: https://creativecommons.org/licenses/by/3.0/us/.
 
 ## npm Packages
 

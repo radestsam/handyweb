@@ -346,3 +346,28 @@ test.describe("hmac", () => {
         );
     });
 });
+
+test.describe("password generator", () => {
+    test("makes a password of the chosen length and a new one on request", async ({ page }) => {
+        await page.goto("/en/tools/password-generator/");
+        const input = page.locator("[data-tool-input]");
+        const output = page.locator("[data-tool-output]");
+        await input.fill("32");
+        await expect(output).toHaveValue(/^.{32}$/);
+        const first = await output.inputValue();
+        await page.getByRole("button", { name: "Generate again" }).click();
+        await expect(output).not.toHaveValue(first);
+        await page.getByLabel("Symbols (!#$…)").uncheck();
+        await expect(output).toHaveValue(/^[A-Za-z0-9]{32}$/);
+    });
+
+    test("the passphrase preset uses words", async ({ page }) => {
+        await page.goto("/fa/tools/password-generator/?preset=passphrase");
+        await page.locator("[data-tool-input]").fill("4");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^[a-z-]+(-[a-z-]+){3}$/);
+        await expect(page.locator("[data-tool-strength]")).toHaveAttribute(
+            "data-tool-strength",
+            "fair",
+        );
+    });
+});
