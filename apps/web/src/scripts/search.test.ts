@@ -31,6 +31,8 @@ describe("search ranking", () => {
         expect(top("title case")).toBe("case-converter");
         expect(top("remove duplicates")).toBe("remove-duplicate-lines");
         expect(top("مرتب سازی")).toBe("sort-lines");
+        expect(top("remove extra spaces")).toBe("text-cleaner");
+        expect(top("حذف فاصله اضافه")).toBe("text-cleaner");
         expect(top("حروف بزرگ")).toBe("case-converter");
         expect(top("شمارش کلمات")).toBe("text-counter");
     });

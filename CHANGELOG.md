@@ -17,5 +17,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Case Converter (UPPERCASE, lowercase, Title Case, Sentence case).
 - Remove Duplicate Lines.
 - Sort Lines Alphabetically, with Persian alphabetical order and natural number order.
+- Text Cleaner, with a Persian preset.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
