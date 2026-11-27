@@ -371,3 +371,23 @@ test.describe("password generator", () => {
         );
     });
 });
+
+test.describe("random token", () => {
+    test("makes tokens of the chosen alphabet and count", async ({ page }) => {
+        await page.goto("/en/tools/random-token/");
+        await page.locator("[data-tool-input]").fill("16");
+        await page.getByText("Hex", { exact: true }).click();
+        await page.getByLabel("How many").fill("3");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            /^[0-9a-f]{16}\n[0-9a-f]{16}\n[0-9a-f]{16}$/,
+        );
+        await expect(page.locator("[data-tool-bits]")).toContainText("64");
+    });
+
+    test("the bytes preset writes Base64url", async ({ page }) => {
+        await page.goto("/fa/tools/random-token/?preset=bytes");
+        await page.locator("[data-tool-input]").fill("16");
+        await page.getByText("Base64url", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^[A-Za-z0-9_-]{22}$/);
+    });
+});
