@@ -24,6 +24,9 @@ import { regexTesterMeta } from "./developer/regex-tester/meta";
 import { unixTimestampMeta } from "./developer/unix-timestamp/meta";
 import { numberBaseMeta } from "./developer/number-base/meta";
 import { qrGeneratorMeta } from "./qr/qr-generator/meta";
+import { reverseTextMeta } from "./text/reverse-text/meta";
+import { textRepeaterMeta } from "./text/text-repeater/meta";
+import { splitJoinMeta } from "./text/split-join/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -55,4 +58,7 @@ export const catalog: readonly ToolDefinition[] = [
     unixTimestampMeta,
     numberBaseMeta,
     qrGeneratorMeta,
+    reverseTextMeta,
+    textRepeaterMeta,
+    splitJoinMeta,
 ];

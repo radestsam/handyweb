@@ -30,4 +30,7 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "unix-timestamp": () => import("./developer/unix-timestamp/ui"),
     "number-base": () => import("./developer/number-base/ui"),
     "qr-generator": () => import("./qr/qr-generator/ui"),
+    "reverse-text": () => import("./text/reverse-text/ui"),
+    "text-repeater": () => import("./text/text-repeater/ui"),
+    "split-join": () => import("./text/split-join/ui"),
 };
