@@ -46,5 +46,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - SQL Formatter for six dialects.
 - HTML, CSS, and JavaScript Formatters.
 - JSON and CSV Converter, with an Excel-friendly download.
+- JSON Diff.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
