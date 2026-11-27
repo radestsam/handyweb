@@ -29,6 +29,8 @@ describe("search ranking", () => {
         expect(top("sha256")).toBe("hash");
         expect(top("word count")).toBe("text-counter");
         expect(top("title case")).toBe("case-converter");
+        expect(top("remove duplicates")).toBe("remove-duplicate-lines");
+        expect(top("مرتب سازی")).toBe("sort-lines");
         expect(top("حروف بزرگ")).toBe("case-converter");
         expect(top("شمارش کلمات")).toBe("text-counter");
     });

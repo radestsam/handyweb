@@ -164,3 +164,26 @@ test.describe("case converter", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("سلام HELLO");
     });
 });
+
+test.describe("line tools", () => {
+    test("removes duplicate lines and shows the count", async ({ page }) => {
+        await page.goto("/en/tools/remove-duplicate-lines/");
+        await page.locator("[data-tool-input]").fill("b\na\n b\nA");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("b\na\nA");
+        await expect(page.locator("[data-tool-removed]")).toHaveText("1 duplicate line removed");
+        await page.getByLabel("Ignore letter case").check();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("b\na");
+    });
+
+    test("sorts Persian lines in Persian order with natural numbers", async ({ page }) => {
+        await page.goto("/fa/tools/sort-lines/");
+        await page.locator("[data-tool-input]").fill("گل\nفصل ۱۰\nپدر\nفصل ۲");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("پدر\nفصل ۲\nفصل ۱۰\nگل");
+    });
+
+    test("the reverse preset flips the order", async ({ page }) => {
+        await page.goto("/en/tools/sort-lines/?preset=reverse");
+        await page.locator("[data-tool-input]").fill("b\nc\na");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a\nc\nb");
+    });
+});
