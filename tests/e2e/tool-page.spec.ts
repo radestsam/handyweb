@@ -669,3 +669,21 @@ test.describe("punctuation and direction", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("من C++ بلدم");
     });
 });
+
+test.describe("yaml tools", () => {
+    test("formats YAML and reports an error line", async ({ page }) => {
+        await page.goto("/en/tools/yaml-formatter/");
+        await page.locator("[data-tool-input]").fill("a:\n      b: 1\n");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a:\n  b: 1\n");
+        await page.locator("[data-tool-input]").fill("a: [1, 2\nb: 3\n");
+        await expect(page.getByRole("alert")).toContainText("line");
+    });
+
+    test("converts YAML to JSON and swaps back", async ({ page }) => {
+        await page.goto("/fa/tools/json-yaml/?preset=yaml-to-json");
+        await page.locator("[data-tool-input]").fill("name: سارا\n");
+        await expect(page.locator("[data-tool-output]")).toHaveValue('{\n  "name": "سارا"\n}');
+        await page.getByRole("button", { name: "جابه‌جایی ورودی و خروجی" }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("name: سارا\n");
+    });
+});

@@ -42,4 +42,6 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "zwnj-fixer": () => import("./persian/zwnj-fixer/ui"),
     "punctuation-fixer": () => import("./persian/punctuation-fixer/ui"),
     "direction-fixer": () => import("./persian/direction-fixer/ui"),
+    "yaml-formatter": () => import("./developer/yaml-formatter/ui"),
+    "json-yaml": () => import("./developer/json-yaml/ui"),
 };

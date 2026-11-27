@@ -42,5 +42,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Number to Persian Words, with decimals, ordinals, and Rial or Toman.
 - Persian Half-Space (ZWNJ) Fixer.
 - Persian Punctuation Fixer and Persian Text Direction Fixer.
+- YAML Formatter and Validator, and JSON and YAML Converter.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
