@@ -67,6 +67,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Image Cropper with aspect ratios.
 - Image Converter (PNG, JPEG, WebP).
 - Image Compressor, with a warning when the result is larger.
+- Image Metadata Viewer and Remover (lossless, checked by reading the output again).
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

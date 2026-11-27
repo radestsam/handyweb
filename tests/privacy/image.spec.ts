@@ -66,3 +66,18 @@ for (const slug of [
         await expectCleanStorage(page, ["secret-holiday-photo"]);
     });
 }
+
+test("image-metadata runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    const { RICH_JPEG } = await import("../../packages/tools/src/image/image-metadata/fixtures");
+    await page.goto("/en/tools/image-metadata/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-holiday-photo.jpg",
+        mimeType: "image/jpeg",
+        buffer: Buffer.from(RICH_JPEG),
+    });
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue("0");
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo", "SN12345"]);
+    await expectCleanStorage(page, ["secret-holiday-photo"]);
+});

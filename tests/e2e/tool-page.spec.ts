@@ -1115,3 +1115,39 @@ test.describe("image compressor", () => {
         await expect(page.locator("[data-tool-larger]")).toHaveCount(0);
     });
 });
+
+test.describe("image metadata", () => {
+    test("warns about GPS, removes metadata, and the clean file still opens", async ({ page }) => {
+        const { RICH_JPEG } =
+            await import("../../packages/tools/src/image/image-metadata/fixtures");
+        const { readMetadata } =
+            await import("../../packages/tools/src/image/image-metadata/logic");
+        await page.goto("/fa/tools/image-metadata/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "photo.jpg",
+            mimeType: "image/jpeg",
+            buffer: Buffer.from(RICH_JPEG),
+        });
+        await expect(page.locator("[data-tool-gps]")).toContainText("35.69000, 51.38333");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-verified]")).toBeVisible();
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "دانلود" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("photo-clean.jpg");
+        const { readFile } = await import("node:fs/promises");
+        const clean = new Uint8Array(await readFile((await file.path()) as string));
+        expect(readMetadata(clean).exif?.gps).toBeNull();
+        // The browser can still open the clean file.
+        const size = await page.evaluate(
+            async (data) => {
+                const bitmap = await createImageBitmap(
+                    new Blob([new Uint8Array(data)], { type: "image/jpeg" }),
+                );
+                return [bitmap.width, bitmap.height];
+            },
+            [...clean],
+        );
+        expect(size).toEqual([3, 5]);
+    });
+});
