@@ -125,6 +125,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Percentage Calculator                                 | Calculators              | `packages/tools/src/calculators/percentage-calculator` | None                                                       |
 | Discount Calculator                                   | Calculators              | `packages/tools/src/calculators/discount-calculator`   | None                                                       |
 | VAT Calculator                                        | Calculators              | `packages/tools/src/calculators/vat-calculator`        | None                                                       |
+| Date Difference Calculator                            | Calculators              | `packages/tools/src/calculators/date-difference`       | None                                                       |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`                | None                                                       |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`               | None                                                       |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator`   | `@cfworker/json-schema`                                    |

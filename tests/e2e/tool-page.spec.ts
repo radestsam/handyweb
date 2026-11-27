@@ -1459,3 +1459,15 @@ test.describe("vat calculator", () => {
         await expect(page.locator('[data-vat="vat"]')).toHaveText("100,000");
     });
 });
+
+test.describe("date difference", () => {
+    test("counts Jalali days and keeps the days when the calendar changes", async ({ page }) => {
+        await page.goto("/fa/tools/date-difference/");
+        await page.locator("[data-tool-input]").fill("۱۴۰۳/۱۲/۰۱");
+        await page.getByLabel("تا تاریخ").fill("1404/01/01");
+        await expect(page.locator('[data-date="days"]')).toContainText("۳۰");
+        await page.getByRole("radio", { name: "میلادی" }).check({ force: true });
+        await expect(page.locator("[data-tool-input]")).toHaveValue("2025/02/19");
+        await expect(page.locator('[data-date="days"]')).toContainText("۳۰");
+    });
+});
