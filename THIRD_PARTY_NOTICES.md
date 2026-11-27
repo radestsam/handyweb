@@ -11,6 +11,14 @@ HandyWeb is licensed under the Apache License 2.0 (see `LICENSE`). It ships the 
 
 The full license text of each font is in its package: `node_modules/@fontsource-variable/<name>/LICENSE`.
 
+## Data
+
+| Component                  | Version    | License            | Source                       | Shipped files                                                          |
+| -------------------------- | ---------- | ------------------ | ---------------------------- | ---------------------------------------------------------------------- |
+| Unicode Character Database | Unicode 15 | Unicode License V3 | https://www.unicode.org/ucd/ | Character names in `packages/tools/src/text/unicode-explorer/names.ts` |
+
+The character names of the Unicode Character Inspector come from the Unicode Character Database. Copyright © 1991-2023 Unicode, Inc. The license is at https://www.unicode.org/license.txt.
+
 ## npm Packages
 
 `scripts/check-notices.mjs` fails the build when a package in a `dependencies` field is missing here.

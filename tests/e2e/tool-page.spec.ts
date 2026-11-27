@@ -202,3 +202,84 @@ test.describe("text cleaner", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("سلام");
     });
 });
+
+test.describe("url encoding", () => {
+    test("encodes a URL part and a full URL", async ({ page }) => {
+        await page.goto("/en/tools/url-encoding/");
+        await page.locator("[data-tool-input]").fill("سلام & x");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "%D8%B3%D9%84%D8%A7%D9%85%20%26%20x",
+        );
+        await page.getByText("Full URL", { exact: true }).click();
+        await page.locator("[data-tool-input]").fill("https://x.ir/سلام?a=1&b=2");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "https://x.ir/%D8%B3%D9%84%D8%A7%D9%85?a=1&b=2",
+        );
+    });
+
+    test("the decode preset reads a Persian link and reports a broken escape", async ({ page }) => {
+        await page.goto("/fa/tools/url-encoding/?preset=decode");
+        await page.locator("[data-tool-input]").fill("https://x.ir/%D8%B3%D9%84%D8%A7%D9%85");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("https://x.ir/سلام");
+        await page.locator("[data-tool-input]").fill("a%2");
+        await expect(page.getByRole("alert")).toContainText("جایگاه 2");
+    });
+});
+
+test.describe("html entities", () => {
+    test("encodes special characters and keeps Persian text", async ({ page }) => {
+        await page.goto("/en/tools/html-entities/");
+        await page.locator("[data-tool-input]").fill('<b>سلام & "x"</b>');
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "&lt;b&gt;سلام &amp; &quot;x&quot;&lt;/b&gt;",
+        );
+        await page.getByLabel("Encode non-ASCII characters (such as Persian letters)").check();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "&lt;b&gt;&#1587;&#1604;&#1575;&#1605; &amp; &quot;x&quot;&lt;/b&gt;",
+        );
+    });
+
+    test("the decode preset decodes references and runs no script", async ({ page }) => {
+        const dialogs: string[] = [];
+        page.on("dialog", (dialog) => {
+            dialogs.push(dialog.message());
+            void dialog.dismiss();
+        });
+        await page.goto("/fa/tools/html-entities/?preset=decode");
+        await page
+            .locator("[data-tool-input]")
+            .fill("&#1587;&#x644;&#1575;&#1605; &copy; <img src=x onerror=alert(1)>");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "سلام © <img src=x onerror=alert(1)>",
+        );
+        expect(dialogs).toEqual([]);
+    });
+});
+
+test.describe("unicode tools", () => {
+    test("escapes Persian text and decodes it again", async ({ page }) => {
+        await page.goto("/en/tools/unicode-escape/");
+        await page.locator("[data-tool-input]").fill("سلام 😀");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "\\u0633\\u0644\\u0627\\u0645 \\uD83D\\uDE00",
+        );
+        await page.getByRole("button", { name: "Swap input and output" }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام 😀");
+    });
+
+    test("the decode preset reports half of a surrogate pair", async ({ page }) => {
+        await page.goto("/fa/tools/unicode-escape/?preset=decode");
+        await page.locator("[data-tool-input]").fill("ok \\uD83D");
+        await expect(page.getByRole("alert")).toContainText("surrogate");
+    });
+
+    test("the inspector names Arabic yeh and highlights ZWNJ", async ({ page }) => {
+        await page.goto("/en/tools/unicode-explorer/");
+        await page.locator("[data-tool-input]").fill("علي می‌رود");
+        const table = page.locator("[data-tool-table]");
+        await expect(table).toContainText("ARABIC LETTER YEH");
+        await expect(table).toContainText("ARABIC LETTER FARSI YEH");
+        await expect(table.locator("tr[data-invisible]")).toHaveCount(2);
+        await expect(page.locator('[data-stat="codePoints"]')).toHaveText("10");
+    });
+});

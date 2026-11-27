@@ -15,4 +15,8 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "remove-duplicate-lines": () => import("./text/remove-duplicate-lines/ui"),
     "sort-lines": () => import("./text/sort-lines/ui"),
     "text-cleaner": () => import("./text/text-cleaner/ui"),
+    "url-encoding": () => import("./encoding/url-encoding/ui"),
+    "html-entities": () => import("./encoding/html-entities/ui"),
+    "unicode-escape": () => import("./encoding/unicode-escape/ui"),
+    "unicode-explorer": () => import("./text/unicode-explorer/ui"),
 };
