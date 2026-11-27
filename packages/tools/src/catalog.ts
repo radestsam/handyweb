@@ -22,6 +22,7 @@ import { uuidGeneratorMeta } from "./developer/uuid-generator/meta";
 import { textDiffMeta } from "./text/text-diff/meta";
 import { regexTesterMeta } from "./developer/regex-tester/meta";
 import { unixTimestampMeta } from "./developer/unix-timestamp/meta";
+import { numberBaseMeta } from "./developer/number-base/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -51,4 +52,5 @@ export const catalog: readonly ToolDefinition[] = [
     textDiffMeta,
     regexTesterMeta,
     unixTimestampMeta,
+    numberBaseMeta,
 ];

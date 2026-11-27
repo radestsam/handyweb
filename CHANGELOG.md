@@ -31,5 +31,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Text Diff Checker, by lines, words, or characters, with a unified patch.
 - Regex Tester, with a time limit and a warning for slow patterns.
 - Unix Timestamp Converter, with Jalali dates.
+- Number Base Converter, for bases 2 to 36 with exact large numbers.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

@@ -49,6 +49,8 @@ describe("search ranking", () => {
         expect(top("diff checker")).toBe("text-diff");
         expect(top("regex")).toBe("regex-tester");
         expect(top("epoch")).toBe("unix-timestamp");
+        expect(top("binary to decimal")).toBe("number-base");
+        expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
         expect(top("مقایسه متن")).toBe("text-diff");
         expect(top("کلید api")).toBe("random-token");

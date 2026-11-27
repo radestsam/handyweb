@@ -28,4 +28,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "text-diff": () => import("./text/text-diff/ui"),
     "regex-tester": () => import("./developer/regex-tester/ui"),
     "unix-timestamp": () => import("./developer/unix-timestamp/ui"),
+    "number-base": () => import("./developer/number-base/ui"),
 };
