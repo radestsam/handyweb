@@ -1636,3 +1636,15 @@ test.describe("ip calculator", () => {
         await expect(page.locator('[data-ip="addresses"]')).toContainText("2^64");
     });
 });
+
+test.describe("mac formatter", () => {
+    test("formats many addresses and reads the local bit", async ({ page }) => {
+        await page.goto("/en/tools/mac-formatter/");
+        await page.locator("[data-tool-input]").fill("da-a1-19-00-00-01\nnot a mac");
+        await page.getByRole("radio", { name: "001A.2B3C" }).check({ force: true });
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "DAA1.1900.0001\n# not a mac (not valid)",
+        );
+        await expect(page.locator('[data-mac="origin"]')).toContainText("Local or random");
+    });
+});
