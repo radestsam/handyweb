@@ -38,5 +38,10 @@
         "test:e2e": "playwright test",
         "dev": "yarn workspace @handyweb/web dev",
         "build": "yarn workspace @handyweb/web build"
+    },
+    "resolutions": {
+        "**/js-beautify/glob": "14.0.6",
+        "**/js-beautify/glob/minimatch": "11.0.9",
+        "**/js-beautify/editorconfig/minimatch": "11.0.9"
     }
 }
