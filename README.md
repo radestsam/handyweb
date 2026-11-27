@@ -180,7 +180,22 @@ Each tool page links to the source folder of the tool at the release tag `v<vers
 - The site has no analytics, trackers, remote fonts, or third-party scripts.
 - The only browser storage keys are `handyweb:theme` and `handyweb:locale`. The site stores no user content.
 
-`tests/privacy/tools.spec.ts` opens every published tool in both languages and runs it with its example input. It fails on a request to another origin, on a request that contains the input or the result, and on any other stored data.
+`tests/privacy/tools.spec.ts` opens every published tool in both languages and runs it with its example input. It fails on a request to another origin, on a request that contains the input or the result, and on any other stored data. The one exception is the static file cache of the service worker (see "Offline Use"): it may hold only files of the site, with no query string and no tool input or output in the URL.
+
+## Offline Use
+
+The site is a Progressive Web App. Each language has a manifest (`/fa/manifest.webmanifest` and `/en/manifest.webmanifest`), so a phone or a desktop browser can install it.
+
+The production build also writes a service worker to `dist/sw.js` (`apps/web/integrations/service-worker.mjs`). It works as follows:
+
+- When it installs, it saves the start pages, the CSS, the main fonts, the icons, and the scripts of the start pages.
+- It saves each page and each tool file when you open it. A tool that you opened once works without a network.
+- It saves only GET requests to the site itself. It never saves a request with a query string.
+- Pages come from the network first, so a new build shows at once. Without a network, the cached copy shows. A page that you never opened shows the start page of its language.
+- Hashed files under `/_astro/` come from the cache first, because they never change.
+- A new build gets a new cache name, and the worker removes the old cache.
+
+The development server does not register the worker. `tests/e2e/offline.spec.ts` checks that a tool works offline after one visit (Chromium only).
 
 ## Search
 
