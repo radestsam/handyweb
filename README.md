@@ -122,6 +122,8 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Reverse Text                                          | Text                     | `packages/tools/src/text/reverse-text`           | None                                                       |
 | Text Repeater                                         | Text                     | `packages/tools/src/text/text-repeater`          | None                                                       |
 | Text Splitter and Joiner                              | Text                     | `packages/tools/src/text/split-join`             | None                                                       |
+| Find and Replace                                      | Text                     | `packages/tools/src/text/find-replace`           | None                                                       |
+| JSON String Escaper and Unescaper                     | Developer                | `packages/tools/src/developer/json-string`       | None                                                       |
 
 ### Add a Tool
 

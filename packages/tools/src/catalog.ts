@@ -27,6 +27,8 @@ import { qrGeneratorMeta } from "./qr/qr-generator/meta";
 import { reverseTextMeta } from "./text/reverse-text/meta";
 import { textRepeaterMeta } from "./text/text-repeater/meta";
 import { splitJoinMeta } from "./text/split-join/meta";
+import { findReplaceMeta } from "./text/find-replace/meta";
+import { jsonStringMeta } from "./developer/json-string/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -61,4 +63,6 @@ export const catalog: readonly ToolDefinition[] = [
     reverseTextMeta,
     textRepeaterMeta,
     splitJoinMeta,
+    findReplaceMeta,
+    jsonStringMeta,
 ];
