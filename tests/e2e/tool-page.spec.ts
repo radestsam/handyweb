@@ -1507,3 +1507,15 @@ test.describe("css units", () => {
         await expect(page.locator('[data-css="pt"]')).toContainText("18pt");
     });
 });
+
+test.describe("roman numerals", () => {
+    test("converts both ways and refuses a non-standard numeral", async ({ page }) => {
+        await page.goto("/fa/tools/roman-numerals/");
+        await page.locator("[data-tool-input]").fill("۱۹۹۴");
+        await expect(page.locator('[data-roman="roman"]')).toHaveText("MCMXCIV");
+        await page.locator("[data-tool-input]").fill("mmxxvi");
+        await expect(page.locator('[data-roman="number"]')).toHaveText("۲۰۲۶");
+        await page.locator("[data-tool-input]").fill("IIII");
+        await expect(page.getByRole("alert")).toBeVisible();
+    });
+});

@@ -85,6 +85,7 @@ import { dateDifferenceMeta } from "./calculators/date-difference/meta";
 import { aspectRatioMeta } from "./calculators/aspect-ratio/meta";
 import { imageResolutionMeta } from "./calculators/image-resolution/meta";
 import { cssUnitsMeta } from "./calculators/css-units/meta";
+import { romanNumeralsMeta } from "./calculators/roman-numerals/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -177,4 +178,5 @@ export const catalog: readonly ToolDefinition[] = [
     aspectRatioMeta,
     imageResolutionMeta,
     cssUnitsMeta,
+    romanNumeralsMeta,
 ];
