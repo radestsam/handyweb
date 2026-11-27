@@ -32,5 +32,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Regex Tester, with a time limit and a warning for slow patterns.
 - Unix Timestamp Converter, with Jalali dates.
 - Number Base Converter, for bases 2 to 36 with exact large numbers.
+- QR Code Generator, with PNG and SVG download.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

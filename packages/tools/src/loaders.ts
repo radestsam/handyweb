@@ -29,4 +29,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "regex-tester": () => import("./developer/regex-tester/ui"),
     "unix-timestamp": () => import("./developer/unix-timestamp/ui"),
     "number-base": () => import("./developer/number-base/ui"),
+    "qr-generator": () => import("./qr/qr-generator/ui"),
 };

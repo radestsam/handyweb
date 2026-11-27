@@ -523,3 +523,27 @@ test.describe("number base", () => {
         await expect(page.getByRole("alert")).toContainText("2");
     });
 });
+
+test.describe("qr generator", () => {
+    test("draws a QR code for a URL and saves a PNG", async ({ page }) => {
+        await page.goto("/en/tools/qr-generator/");
+        await page.locator("[data-tool-input]").fill("https://handyweb.ir/");
+        await expect(page.locator("[data-tool-qr]")).toBeVisible();
+        await expect(page.locator("[data-tool-version]")).toContainText("Version 2");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^<svg /);
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download PNG" }).click();
+        expect((await download).suggestedFilename()).toBe("qr-code.png");
+    });
+
+    test("warns about inverted colors in Persian", async ({ page }) => {
+        await page.goto("/fa/tools/qr-generator/");
+        await page.locator("[data-tool-input]").fill("سلام");
+        await page.getByLabel("رنگ نقطه‌ها").fill("#ffffff");
+        await page.getByLabel("رنگ زمینه").fill("#000000");
+        await expect(page.locator("[data-tool-warning]")).toHaveAttribute(
+            "data-tool-warning",
+            "inverted",
+        );
+    });
+});

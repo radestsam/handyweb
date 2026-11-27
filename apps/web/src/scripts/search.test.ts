@@ -50,6 +50,8 @@ describe("search ranking", () => {
         expect(top("regex")).toBe("regex-tester");
         expect(top("epoch")).toBe("unix-timestamp");
         expect(top("binary to decimal")).toBe("number-base");
+        expect(top("qr code")).toBe("qr-generator");
+        expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
         expect(top("مقایسه متن")).toBe("text-diff");
