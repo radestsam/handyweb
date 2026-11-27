@@ -35,7 +35,7 @@ for (const locale of ["fa", "en"] as const) {
     });
 }
 
-for (const slug of ["image-rotate", "image-flip", "image-crop"]) {
+for (const slug of ["image-rotate", "image-flip", "image-crop", "image-converter"]) {
     test(`${slug} runs locally and stores nothing`, async ({ page, requests, baseURL }) => {
         await page.goto(`/en/tools/${slug}/`);
         await page.locator('input[type="file"]').setInputFiles({
@@ -45,13 +45,15 @@ for (const slug of ["image-rotate", "image-flip", "image-crop"]) {
         });
         if (slug === "image-rotate") await page.locator("[data-tool-rotate-right]").click();
         else if (slug === "image-flip") await page.getByLabel("Flip horizontally").check();
-        else await page.locator('[data-crop-field="width"]').fill("10");
+        else if (slug === "image-crop") await page.locator('[data-crop-field="width"]').fill("10");
         await page.locator("[data-tool-run]").click();
-        await expect(page.locator("[data-tool-output]")).toHaveValue(
-            { "image-rotate": "20x40", "image-flip": "40x20", "image-crop": "0,0,10x20" }[
-                slug
-            ] as string,
-        );
+        const expected: Record<string, RegExp> = {
+            "image-rotate": /^20x40$/,
+            "image-flip": /^40x20$/,
+            "image-crop": /^0,0,10x20$/,
+            "image-converter": /^secret-holiday-photo\.png$/,
+        };
+        await expect(page.locator("[data-tool-output]")).toHaveValue(expected[slug] as RegExp);
         await page.waitForLoadState("networkidle");
         expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo"]);
         await expectCleanStorage(page, ["secret-holiday-photo"]);

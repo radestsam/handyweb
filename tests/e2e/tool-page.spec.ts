@@ -1081,3 +1081,20 @@ test.describe("image crop", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("0,0,50x50");
     });
 });
+
+test.describe("image converter", () => {
+    test("the png-to-jpg preset writes a JPEG", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-converter/?preset=png-to-jpg");
+        await page
+            .locator('input[type="file"]')
+            .setInputFiles({ name: "logo.png", mimeType: "image/png", buffer: makePng(60, 40) });
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("logo.jpg");
+        const head = await page.locator("section img").evaluate(async (img: HTMLImageElement) => {
+            const bytes = new Uint8Array(await (await fetch(img.src)).arrayBuffer());
+            return [...bytes.slice(0, 3)];
+        });
+        expect(head).toEqual([0xff, 0xd8, 0xff]);
+    });
+});

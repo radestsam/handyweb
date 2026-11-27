@@ -65,6 +65,7 @@ import { imageResizeMeta } from "./image/image-resize/meta";
 import { imageRotateMeta } from "./image/image-rotate/meta";
 import { imageFlipMeta } from "./image/image-flip/meta";
 import { imageCropMeta } from "./image/image-crop/meta";
+import { imageConverterMeta } from "./image/image-converter/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -137,4 +138,5 @@ export const catalog: readonly ToolDefinition[] = [
     imageRotateMeta,
     imageFlipMeta,
     imageCropMeta,
+    imageConverterMeta,
 ];
