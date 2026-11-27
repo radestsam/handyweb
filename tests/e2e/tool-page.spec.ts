@@ -841,3 +841,24 @@ test.describe("hex and binary", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("Hi");
     });
 });
+
+test.describe("base64 file", () => {
+    test("encodes a file to a Data URI", async ({ page }) => {
+        await page.goto("/en/tools/base64-file/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "hello.txt",
+            mimeType: "text/plain",
+            buffer: Buffer.from("hello"),
+        });
+        await expect(page.getByText("data:text/plain;base64,aGVsbG8=")).toBeVisible();
+    });
+
+    test("decodes a Data URI and downloads the file", async ({ page }) => {
+        await page.goto("/fa/tools/base64-file/?preset=decode");
+        await page.locator("[data-tool-input]").fill("data:text/plain;base64,aGVsbG8=");
+        await expect(page.locator("[data-tool-decoded]")).toContainText("text/plain");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "دانلود فایل" }).click();
+        expect((await download).suggestedFilename()).toBe("file.bin");
+    });
+});

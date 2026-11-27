@@ -58,4 +58,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "user-agent-parser": () => import("./developer/user-agent-parser/ui"),
     hex: () => import("./encoding/hex/ui"),
     binary: () => import("./encoding/binary/ui"),
+    "base64-file": () => import("./encoding/base64-file/ui"),
 };
