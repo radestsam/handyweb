@@ -255,3 +255,31 @@ test.describe("html entities", () => {
         expect(dialogs).toEqual([]);
     });
 });
+
+test.describe("unicode tools", () => {
+    test("escapes Persian text and decodes it again", async ({ page }) => {
+        await page.goto("/en/tools/unicode-escape/");
+        await page.locator("[data-tool-input]").fill("سلام 😀");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "\\u0633\\u0644\\u0627\\u0645 \\uD83D\\uDE00",
+        );
+        await page.getByRole("button", { name: "Swap input and output" }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام 😀");
+    });
+
+    test("the decode preset reports half of a surrogate pair", async ({ page }) => {
+        await page.goto("/fa/tools/unicode-escape/?preset=decode");
+        await page.locator("[data-tool-input]").fill("ok \\uD83D");
+        await expect(page.getByRole("alert")).toContainText("surrogate");
+    });
+
+    test("the inspector names Arabic yeh and highlights ZWNJ", async ({ page }) => {
+        await page.goto("/en/tools/unicode-explorer/");
+        await page.locator("[data-tool-input]").fill("علي می‌رود");
+        const table = page.locator("[data-tool-table]");
+        await expect(table).toContainText("ARABIC LETTER YEH");
+        await expect(table).toContainText("ARABIC LETTER FARSI YEH");
+        await expect(table.locator("tr[data-invisible]")).toHaveCount(2);
+        await expect(page.locator('[data-stat="codePoints"]')).toHaveText("10");
+    });
+});

@@ -17,4 +17,6 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "text-cleaner": () => import("./text/text-cleaner/ui"),
     "url-encoding": () => import("./encoding/url-encoding/ui"),
     "html-entities": () => import("./encoding/html-entities/ui"),
+    "unicode-escape": () => import("./encoding/unicode-escape/ui"),
+    "unicode-explorer": () => import("./text/unicode-explorer/ui"),
 };

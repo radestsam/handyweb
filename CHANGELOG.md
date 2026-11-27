@@ -20,5 +20,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Text Cleaner, with a Persian preset.
 - URL Encoder and Decoder, for one part of a URL or a full URL.
 - HTML Entity Encoder and Decoder.
+- Unicode Escape and Unescape.
+- Unicode Character Inspector.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
