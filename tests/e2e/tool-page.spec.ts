@@ -1439,3 +1439,14 @@ test.describe("percentage calculator", () => {
         await expect(change).toContainText("۲۵");
     });
 });
+
+test.describe("discount calculator", () => {
+    test("stacks two discounts", async ({ page }) => {
+        await page.goto("/en/tools/discount-calculator/");
+        await page.locator("[data-tool-input]").fill("100");
+        await page.getByLabel("Second discount (optional)").fill("10");
+        await expect(page.locator('[data-discount="final"]')).toHaveText("72");
+        await expect(page.locator('[data-discount="total"]')).toHaveText("28%");
+        await expect(page.locator('[data-discount="reverse"]')).toHaveText("20%");
+    });
+});

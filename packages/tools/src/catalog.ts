@@ -79,6 +79,7 @@ import { svgViewerMeta } from "./image/svg-viewer/meta";
 import { svgOptimizerMeta } from "./image/svg-optimizer/meta";
 import { unitConverterMeta } from "./calculators/unit-converter/meta";
 import { percentageCalculatorMeta } from "./calculators/percentage-calculator/meta";
+import { discountCalculatorMeta } from "./calculators/discount-calculator/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -165,4 +166,5 @@ export const catalog: readonly ToolDefinition[] = [
     svgOptimizerMeta,
     unitConverterMeta,
     percentageCalculatorMeta,
+    discountCalculatorMeta,
 ];
