@@ -459,3 +459,29 @@ test.describe("text diff", () => {
         await expect(page.locator("[data-tool-diff]")).toContainText("unchanged lines");
     });
 });
+
+test.describe("regex tester", () => {
+    test("highlights matches and lists groups", async ({ page }) => {
+        await page.goto("/en/tools/regex-tester/");
+        await page.getByLabel("Pattern (regex)").fill("(?<year>\\d{4})-(\\d{2})");
+        await page.locator("[data-tool-input]").fill("1404-09 and 2025-11");
+        await expect(page.locator("[data-tool-count]")).toHaveText("2");
+        await expect(page.locator("[data-tool-highlight] mark").first()).toHaveText("1404-09");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("0\t1404-09\n12\t2025-11");
+    });
+
+    test("stops a catastrophic pattern and warns about it", async ({ page }) => {
+        await page.goto("/en/tools/regex-tester/");
+        await page.getByLabel("Pattern (regex)").fill("^(a+)+$");
+        await expect(page.locator("[data-tool-risk]")).toBeVisible();
+        await page.locator("[data-tool-input]").fill(`${"a".repeat(40)}!`);
+        await expect(page.getByRole("alert")).toContainText("stopped", { timeout: 10_000 });
+    });
+
+    test("shows an invalid pattern in Persian", async ({ page }) => {
+        await page.goto("/fa/tools/regex-tester/");
+        await page.getByLabel("الگو (regex)").fill("(abc");
+        await page.locator("[data-tool-input]").fill("abc");
+        await expect(page.getByRole("alert")).toContainText("الگو درست نیست");
+    });
+});
