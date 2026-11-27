@@ -24,6 +24,7 @@ import {
     digestsMatch,
     encodeDigest,
     hashText,
+    isLegacy,
     type Algorithm,
     type OutputEncoding,
 } from "./logic";
@@ -54,6 +55,7 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
     const job = useRef<AbortController | null>(null);
     const t = (key: keyof typeof strings) => strings[key][locale];
     const compareId = useId();
+    const algorithmId = useId();
 
     // Text: hash on every change. Web Crypto is fast for text of this size.
     useEffect(() => {
@@ -140,12 +142,24 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
     return (
         <div className="flex flex-col gap-6">
             <div className="flex flex-wrap items-end gap-x-6 gap-y-4">
-                <Segmented<Algorithm>
-                    legend={t("algorithm")}
-                    value={algorithm}
-                    onChange={changeAlgorithm}
-                    options={ALGORITHMS.map((value) => ({ value, label: value }))}
-                />
+                <div className="flex flex-col gap-1.5">
+                    <label htmlFor={algorithmId} className="text-xs font-semibold text-muted">
+                        {t("algorithm")}
+                    </label>
+                    <select
+                        id={algorithmId}
+                        value={algorithm}
+                        onChange={(event) => changeAlgorithm(event.target.value as Algorithm)}
+                        className="min-h-11 rounded-xl border border-border bg-surface-2/60 px-3 text-base text-text outline-none focus-visible:border-focus focus-visible:shadow-[0_0_0_4px_var(--hw-glow)]"
+                        data-tool-algorithm=""
+                    >
+                        {ALGORITHMS.map((value) => (
+                            <option key={value} value={value}>
+                                {isLegacy(value) ? `${value} (${t("legacy")})` : value}
+                            </option>
+                        ))}
+                    </select>
+                </div>
                 <Segmented<Source>
                     legend={t("source")}
                     value={source}
@@ -165,6 +179,16 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
                     ]}
                 />
             </div>
+
+            {isLegacy(algorithm) && (
+                <p
+                    role="note"
+                    className="-mt-2 rounded-2xl border border-primary/40 bg-primary-soft px-4 py-3 text-sm"
+                    data-tool-legacy
+                >
+                    ⚠ {t("legacyWarning")}
+                </p>
+            )}
 
             {source === "text" ? (
                 <Pane

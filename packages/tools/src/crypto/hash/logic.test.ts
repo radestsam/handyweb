@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from "vitest";
-import { digestsMatch, encodeDigest, hashBlob, hashText, type Algorithm } from "./logic";
+import { digestsMatch, encodeDigest, hashBlob, hashText, isLegacy, type Algorithm } from "./logic";
 
 // FIPS 180-2 / NIST example vectors for SHA-256.
 const VECTORS: Array<[string, string]> = [
@@ -107,5 +107,33 @@ describe("SHA-384 and SHA-512", () => {
         const bytes = new Uint8Array([0xab]);
         expect(digestsMatch(bytes, "sha512:ab")).toBe(true);
         expect(digestsMatch(bytes, "SHA-384 AB")).toBe(true);
+    });
+});
+
+describe("MD5 and SHA-1", () => {
+    it("match the known vectors for text and files", async () => {
+        expect(encodeDigest(await hashText("abc", "MD5"), "hex")).toBe(
+            "900150983cd24fb0d6963f7d28e17f72",
+        );
+        expect(encodeDigest(await hashText("abc", "SHA-1"), "hex")).toBe(
+            "a9993e364706816aba3e25717850c26c9cd0d89d",
+        );
+        expect(encodeDigest(await hashText("", "MD5"), "hex")).toBe(
+            "d41d8cd98f00b204e9800998ecf8427e",
+        );
+        const blob = new Blob([new TextEncoder().encode("abc")]);
+        expect(encodeDigest(await hashBlob(blob, { algorithm: "MD5" }), "hex")).toBe(
+            "900150983cd24fb0d6963f7d28e17f72",
+        );
+        expect(encodeDigest(await hashBlob(blob, { algorithm: "SHA-1" }), "hex")).toBe(
+            "a9993e364706816aba3e25717850c26c9cd0d89d",
+        );
+    });
+
+    it("are marked as legacy and accept md5: and sha1: prefixes", () => {
+        expect(isLegacy("MD5")).toBe(true);
+        expect(isLegacy("SHA-256")).toBe(false);
+        expect(digestsMatch(new Uint8Array([0xab]), "md5:ab")).toBe(true);
+        expect(digestsMatch(new Uint8Array([0xab]), "sha1 AB")).toBe(true);
     });
 });

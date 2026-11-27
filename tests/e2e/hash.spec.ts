@@ -18,12 +18,12 @@ test.describe("hash tool", () => {
 
     test("the SHA-512 preset hashes text and files", async ({ page }) => {
         await page.goto("/en/tools/hash/?preset=sha512");
-        const algorithm = page.getByRole("group", { name: "Algorithm" });
+        const algorithm = page.locator("[data-tool-algorithm]");
         await page.locator("[data-tool-input]").fill("abc");
         await expect(page.locator("[data-tool-output]")).toHaveValue(
             createHash("sha512").update("abc").digest("hex"),
         );
-        await algorithm.getByText("SHA-384", { exact: true }).click();
+        await algorithm.selectOption("SHA-384");
         await expect(page.locator("[data-tool-output]")).toHaveValue(
             createHash("sha384").update("abc").digest("hex"),
         );
@@ -37,10 +37,19 @@ test.describe("hash tool", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue(
             createHash("sha384").update(data).digest("hex"),
         );
-        await algorithm.getByText("SHA-512", { exact: true }).click();
+        await algorithm.selectOption("SHA-512");
         await expect(page.locator("[data-tool-output]")).toHaveValue(
             createHash("sha512").update(data).digest("hex"),
         );
+    });
+
+    test("the MD5 preset warns that MD5 is legacy", async ({ page }) => {
+        await page.goto("/en/tools/hash/?preset=md5");
+        await page.locator("[data-tool-input]").fill("abc");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "900150983cd24fb0d6963f7d28e17f72",
+        );
+        await expect(page.locator("[data-tool-legacy]")).toBeVisible();
     });
 
     test("hashes a file in a worker without uploading it", async ({ page }) => {

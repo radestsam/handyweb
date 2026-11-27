@@ -10,7 +10,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Tool registry, runtime, worker protocol, and file helpers.
 - Base64 Encoder and Decoder.
 - JSON Formatter and Validator.
-- SHA-256, SHA-384, and SHA-512 Hash Generator for text and files.
+- SHA-256, SHA-384, and SHA-512 Hash Generator for text and files, plus MD5 and SHA-1 with a legacy warning.
 - Persian Text Normalizer and Digit Converter.
 - Jalali and Gregorian Date Converter.
 - Word and Character Counter.
