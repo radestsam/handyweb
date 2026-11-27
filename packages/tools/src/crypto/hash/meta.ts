@@ -3,22 +3,33 @@ import type { ToolDefinition } from "@handyweb/core";
 export const hashMeta: ToolDefinition = {
     id: "hash",
     slug: "hash",
-    aliases: ["sha256", "sha-256", "file-hash", "checksum"],
+    aliases: ["sha256", "sha-256", "sha384", "sha512", "sha-512", "file-hash", "checksum"],
     category: "crypto",
     alsoIn: ["developer"],
     related: ["base64"],
-    tags: ["hash", "sha256", "checksum"],
+    tags: ["hash", "sha256", "sha512", "checksum"],
     title: {
-        fa: "تولید هش SHA-256 برای متن و فایل",
-        en: "SHA-256 Hash Generator for Text and Files",
+        fa: "تولید هش SHA-256 و SHA-512 برای متن و فایل",
+        en: "SHA-256 and SHA-512 Hash Generator for Text and Files",
     },
     description: {
-        fa: "هش SHA-256 نوشته یا فایل را بسازید و با هشی که دارید بسنجید. فایل روی دستگاه خودتان خوانده می‌شود و جایی فرستاده نمی‌شود.",
-        en: "Create the SHA-256 hash of text or a file and compare it with an expected value. The file is read on your device and never uploaded.",
+        fa: "هش SHA-256، SHA-384 یا SHA-512 نوشته یا فایل را بسازید و با هشی که دارید بسنجید. فایل روی دستگاه خودتان خوانده می‌شود و جایی فرستاده نمی‌شود.",
+        en: "Create the SHA-256, SHA-384, or SHA-512 hash of text or a file and compare it with an expected value. The file is read on your device and never uploaded.",
     },
     keywords: {
-        fa: ["هش", "sha256", "چک‌سام", "اثر انگشت فایل", "بررسی فایل", "درهم‌سازی"],
-        en: ["sha256", "sha-256", "hash", "checksum", "file hash", "digest", "verify download"],
+        fa: ["هش", "sha256", "sha512", "چک‌سام", "اثر انگشت فایل", "بررسی فایل", "درهم‌سازی"],
+        en: [
+            "sha256",
+            "sha-256",
+            "sha384",
+            "sha512",
+            "sha-512",
+            "hash",
+            "checksum",
+            "file hash",
+            "digest",
+            "verify download",
+        ],
     },
     presets: [
         {
@@ -26,6 +37,18 @@ export const hashMeta: ToolDefinition = {
             title: { fa: "هش فایل", en: "File Hash" },
             keywords: { fa: ["فایل"], en: ["file"] },
             options: { source: "file" },
+        },
+        {
+            id: "sha384",
+            title: { fa: "تولید هش SHA-384", en: "SHA-384 Hash Generator" },
+            keywords: { fa: ["sha384"], en: ["sha384", "sha-384"] },
+            options: { algorithm: "SHA-384" },
+        },
+        {
+            id: "sha512",
+            title: { fa: "تولید هش SHA-512", en: "SHA-512 Hash Generator" },
+            keywords: { fa: ["sha512"], en: ["sha512", "sha-512"] },
+            options: { algorithm: "SHA-512" },
         },
     ],
     execution: "worker",
@@ -38,15 +61,15 @@ export const hashMeta: ToolDefinition = {
     outputKinds: ["text"],
     limits: { maxInputBytes: 20_000_000 },
     limitations: {
-        fa: "SHA-256 برای بررسی درستی فایل خوب است، اما برای نگه‌داری گذرواژه نه. فایل‌های بزرگ تکه‌تکه خوانده می‌شوند و اندازه‌شان مرزی ندارد، اما زمان کار به توان دستگاه بستگی دارد.",
-        en: "SHA-256 is right for checking file integrity, but not for storing passwords. Large files are read in chunks with no size limit, but the time depends on your device.",
+        fa: "هش‌های SHA-2 برای بررسی درستی فایل خوب‌اند، اما برای نگه‌داری گذرواژه نه. فایل‌های بزرگ تکه‌تکه خوانده می‌شوند و اندازه‌شان مرزی ندارد، اما زمان کار به توان دستگاه بستگی دارد.",
+        en: "SHA-2 hashes are right for checking file integrity, but not for storing passwords. Large files are read in chunks with no size limit, but the time depends on your device.",
     },
     guide: {
         steps: [
             { fa: "«نوشته» یا «فایل» را برگزینید.", en: "Choose Text or File." },
             {
-                fa: "نوشته را بنویسید یا فایل را برگزینید. هش SHA-256 روی دستگاه خودتان ساخته می‌شود.",
-                en: "Type the text or choose the file. The SHA-256 hash is created on your device.",
+                fa: "الگوریتم را برگزینید، سپس نوشته را بنویسید یا فایل را برگزینید. هش روی دستگاه خودتان ساخته می‌شود.",
+                en: "Choose the algorithm, then type the text or choose the file. The hash is created on your device.",
             },
             {
                 fa: "برای بررسی یک دانلود، هشی را که سازنده فایل داده است در کادر سنجش بچسبانید.",
@@ -54,6 +77,16 @@ export const hashMeta: ToolDefinition = {
             },
         ],
         faq: [
+            {
+                question: {
+                    fa: "کدام الگوریتم را برگزینم؟",
+                    en: "Which algorithm do I need?",
+                },
+                answer: {
+                    fa: "همان الگوریتمی که سازنده فایل هش آن را منتشر کرده است. SHA-256 رایج‌ترین است. SHA-384 و SHA-512 هش درازتری می‌سازند و هر سه امروز ایمن‌اند.",
+                    en: "The algorithm that the publisher of the file used for its hash. SHA-256 is the most common. SHA-384 and SHA-512 make longer hashes, and all three are secure today.",
+                },
+            },
             {
                 question: { fa: "هش SHA-256 به چه کار می‌آید؟", en: "What is a SHA-256 hash for?" },
                 answer: {

@@ -18,8 +18,15 @@ import {
     type ToolUiProps,
 } from "@handyweb/core/ui";
 import { hashMeta } from "./meta";
-import { strings } from "./i18n";
-import { digestsMatch, encodeDigest, hashText, type OutputEncoding } from "./logic";
+import { digestLabel, strings } from "./i18n";
+import {
+    ALGORITHMS,
+    digestsMatch,
+    encodeDigest,
+    hashText,
+    type Algorithm,
+    type OutputEncoding,
+} from "./logic";
 import type { HashFileInput } from "./worker";
 
 type Source = "text" | "file";
@@ -32,6 +39,10 @@ const createWorker = (): WorkerLike =>
 export default function HashTool({ locale, presetOptions }: ToolUiProps) {
     const [source, setSource] = useState<Source>(
         presetOptions?.["source"] === "file" ? "file" : "text",
+    );
+    const presetAlgorithm = presetOptions?.["algorithm"];
+    const [algorithm, setAlgorithm] = useState<Algorithm>(
+        ALGORITHMS.find((value) => value === presetAlgorithm) ?? "SHA-256",
     );
     const [encoding, setEncoding] = useState<OutputEncoding>("hex");
     const [text, setText] = useState("");
@@ -57,7 +68,7 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
                 return;
             }
             try {
-                const bytes = await hashText(text);
+                const bytes = await hashText(text, algorithm);
                 if (current) {
                     setDigest(bytes);
                     setError(null);
@@ -69,12 +80,12 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
         return () => {
             current = false;
         };
-    }, [text, source]);
+    }, [text, source, algorithm]);
 
     // Cancel a running file job when the tool unmounts.
     useEffect(() => () => job.current?.abort(), []);
 
-    const hashFile = async (picked: File) => {
+    const hashFile = async (picked: File, chosen: Algorithm = algorithm) => {
         job.current?.abort();
         const controller = new AbortController();
         job.current = controller;
@@ -84,7 +95,7 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
         setProgress({ completed: 0, total: picked.size });
         const result = await runInWorker<HashFileInput, Uint8Array>(
             createWorker,
-            { file: picked },
+            { file: picked, algorithm: chosen },
             { signal: controller.signal, onProgress: setProgress },
         );
         if (job.current !== controller) return;
@@ -107,6 +118,13 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
         setExpected("");
     };
 
+    const changeAlgorithm = (next: Algorithm) => {
+        setAlgorithm(next);
+        setExpected("");
+        // A file is hashed again with the new algorithm. Text updates in the effect.
+        if (source === "file" && file) void hashFile(file, next);
+    };
+
     const changeSource = (next: Source) => {
         reset();
         setSource(next);
@@ -122,6 +140,12 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
     return (
         <div className="flex flex-col gap-6">
             <div className="flex flex-wrap items-end gap-x-6 gap-y-4">
+                <Segmented<Algorithm>
+                    legend={t("algorithm")}
+                    value={algorithm}
+                    onChange={changeAlgorithm}
+                    options={ALGORITHMS.map((value) => ({ value, label: value }))}
+                />
                 <Segmented<Source>
                     legend={t("source")}
                     value={source}
@@ -214,10 +238,12 @@ export default function HashTool({ locale, presetOptions }: ToolUiProps) {
 
             <section
                 className="overflow-hidden rounded-2xl border border-border bg-bg"
-                aria-label={t("digest")}
+                aria-label={digestLabel(algorithm)[locale]}
             >
                 <div className="flex min-h-11 items-center justify-between gap-2 border-b border-border/70 ps-4 pe-1.5">
-                    <span className="text-xs font-semibold text-muted">{t("digest")}</span>
+                    <span className="text-xs font-semibold text-muted">
+                        <bdi>{digestLabel(algorithm)[locale]}</bdi>
+                    </span>
                     <CopyButton text={output} locale={locale} compact />
                 </div>
                 <div dir="ltr" className="min-h-24 px-4 py-5 select-all">

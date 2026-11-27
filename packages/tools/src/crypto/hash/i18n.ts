@@ -7,7 +7,7 @@ export const strings = {
     encoding: { fa: "گونه خروجی", en: "Output format" },
     hex: { fa: "هگز", en: "Hex" },
     base64: { fa: "Base64", en: "Base64" },
-    digest: { fa: "هش SHA-256", en: "SHA-256 hash" },
+    algorithm: { fa: "الگوریتم", en: "Algorithm" },
     expected: {
         fa: "سنجش با هشی که دارید (دلخواه)",
         en: "Compare with an expected hash (optional)",
@@ -19,3 +19,8 @@ export const strings = {
         en: "The text is larger than 20 MB. Use a file instead.",
     },
 } as const satisfies Record<string, LocalizedText>;
+
+/** The title of the result box, such as "SHA-256 hash". */
+export function digestLabel(algorithm: string): LocalizedText {
+    return { fa: `هش ${algorithm}`, en: `${algorithm} hash` };
+}

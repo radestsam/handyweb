@@ -16,6 +16,33 @@ test.describe("hash tool", () => {
         await expect(page.locator("[data-tool-match]")).toHaveAttribute("data-tool-match", "yes");
     });
 
+    test("the SHA-512 preset hashes text and files", async ({ page }) => {
+        await page.goto("/en/tools/hash/?preset=sha512");
+        const algorithm = page.getByRole("group", { name: "Algorithm" });
+        await page.locator("[data-tool-input]").fill("abc");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            createHash("sha512").update("abc").digest("hex"),
+        );
+        await algorithm.getByText("SHA-384", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            createHash("sha384").update("abc").digest("hex"),
+        );
+        await page.getByText("File", { exact: true }).click();
+        const data = Buffer.alloc(3_000_000, 9);
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "sample.bin",
+            mimeType: "application/octet-stream",
+            buffer: data,
+        });
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            createHash("sha384").update(data).digest("hex"),
+        );
+        await algorithm.getByText("SHA-512", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            createHash("sha512").update(data).digest("hex"),
+        );
+    });
+
     test("hashes a file in a worker without uploading it", async ({ page }) => {
         const data = Buffer.alloc(5_000_000, 7);
         const requests: string[] = [];

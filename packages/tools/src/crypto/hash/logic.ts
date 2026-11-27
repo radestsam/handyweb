@@ -1,7 +1,7 @@
-import { createSHA256 } from "hash-wasm";
+import { createSHA256, createSHA384, createSHA512 } from "hash-wasm";
 
-/** The algorithms the tool offers. More SHA-2 sizes come in T3.10. */
-export const ALGORITHMS = ["SHA-256"] as const;
+/** The SHA-2 algorithms the tool offers. The names are the Web Crypto names. */
+export const ALGORITHMS = ["SHA-256", "SHA-384", "SHA-512"] as const;
 export type Algorithm = (typeof ALGORITHMS)[number];
 
 export type OutputEncoding = "hex" | "base64";
@@ -27,9 +27,14 @@ export interface StreamProgress {
  */
 export async function hashBlob(
     blob: Blob,
-    options: { signal?: AbortSignal; onProgress?: (progress: StreamProgress) => void } = {},
+    options: {
+        algorithm?: Algorithm;
+        signal?: AbortSignal;
+        onProgress?: (progress: StreamProgress) => void;
+    } = {},
 ): Promise<Uint8Array> {
-    const hasher = await createSHA256();
+    const create = { "SHA-256": createSHA256, "SHA-384": createSHA384, "SHA-512": createSHA512 };
+    const hasher = await create[options.algorithm ?? "SHA-256"]();
     hasher.init();
     const reader = blob.stream().getReader();
     let completed = 0;
@@ -62,12 +67,12 @@ export function encodeDigest(bytes: Uint8Array, encoding: OutputEncoding): strin
 
 /**
  * Compares a computed digest with a pasted one. Accepts hex in any case and
- * Base64, and ignores spaces and a "sha256:" style prefix.
+ * Base64, and ignores spaces and a "sha256:", "sha384:", or "sha512:" style prefix.
  */
 export function digestsMatch(bytes: Uint8Array, expected: string): boolean | null {
     const cleaned = expected
         .trim()
-        .replace(/^sha-?256[:=\s]*/i, "")
+        .replace(/^sha-?(?:256|384|512)[:=\s]*/i, "")
         .replace(/\s+/g, "");
     if (cleaned === "") return null;
     if (/^[0-9a-fA-F]+$/.test(cleaned)) return cleaned.toLowerCase() === encodeDigest(bytes, "hex");
