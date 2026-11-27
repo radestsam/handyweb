@@ -470,7 +470,9 @@ test.describe("regex tester", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("0\t1404-09\n12\t2025-11");
     });
 
-    test("stops a catastrophic pattern and warns about it", async ({ page }) => {
+    test("stops a catastrophic pattern and warns about it", async ({ page, browserName }) => {
+        // JavaScriptCore (WebKit) finishes this pattern fast, so there is no timeout to see.
+        test.skip(browserName === "webkit", "The pattern is not slow in JavaScriptCore.");
         await page.goto("/en/tools/regex-tester/");
         await page.getByLabel("Pattern (regex)").fill("^(a+)+$");
         await expect(page.locator("[data-tool-risk]")).toBeVisible();
