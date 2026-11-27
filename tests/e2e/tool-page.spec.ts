@@ -653,3 +653,19 @@ test.describe("zwnj fixer", () => {
         await expect(page.locator("[data-tool-counts] li")).toHaveCount(2);
     });
 });
+
+test.describe("punctuation and direction", () => {
+    test("fixes Persian punctuation", async ({ page }) => {
+        await page.goto("/fa/tools/punctuation-fixer/");
+        await page.locator("[data-tool-input]").fill('سلام , "دوست" خوبی ?');
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام، «دوست» خوبی؟");
+    });
+
+    test("adds an LRM after C++ and removes marks", async ({ page }) => {
+        await page.goto("/en/tools/direction-fixer/");
+        await page.locator("[data-tool-input]").fill("من C++ بلدم");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("من C++‎ بلدم");
+        await page.getByText("Remove", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("من C++ بلدم");
+    });
+});

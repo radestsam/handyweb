@@ -61,6 +61,8 @@ describe("search ranking", () => {
         expect(top("email extractor")).toBe("text-extractor");
         expect(top("عدد به حروف")).toBe("number-to-words");
         expect(top("نیم فاصله")).toBe("zwnj-fixer");
+        expect(top("ویرگول فارسی")).toBe("punctuation-fixer");
+        expect(top("rtl fix")).toBe("direction-fixer");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
