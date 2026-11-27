@@ -38,4 +38,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "slug-generator": () => import("./text/slug-generator/ui"),
     "lorem-ipsum": () => import("./text/lorem-ipsum/ui"),
     "text-extractor": () => import("./text/text-extractor/ui"),
+    "number-to-words": () => import("./persian/number-to-words/ui"),
 };
