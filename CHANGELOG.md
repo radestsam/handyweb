@@ -14,5 +14,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Persian Text Normalizer and Digit Converter.
 - Jalali and Gregorian Date Converter.
 - Word and Character Counter.
+- Case Converter (UPPERCASE, lowercase, Title Case, Sentence case).
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

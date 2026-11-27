@@ -5,6 +5,7 @@ import { hashMeta } from "./crypto/hash/meta";
 import { persianNormalizerMeta } from "./persian/persian-normalizer/meta";
 import { jalaliConverterMeta } from "./persian/jalali-converter/meta";
 import { textCounterMeta } from "./text/text-counter/meta";
+import { caseConverterMeta } from "./text/case-converter/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -17,4 +18,5 @@ export const catalog: readonly ToolDefinition[] = [
     persianNormalizerMeta,
     jalaliConverterMeta,
     textCounterMeta,
+    caseConverterMeta,
 ];
