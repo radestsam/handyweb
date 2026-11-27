@@ -1428,3 +1428,14 @@ test.describe("unit converter", () => {
         await expect(page.locator('[data-unit="f"] [data-unit-value]')).toHaveText("۲۱۲");
     });
 });
+
+test.describe("percentage calculator", () => {
+    test("answers with Persian digits", async ({ page }) => {
+        await page.goto("/fa/tools/percentage-calculator/");
+        await page.locator("[data-tool-input]").fill("۲۰");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("30");
+        const change = page.locator('[data-percent="change"]');
+        await expect(change).toContainText("افزایش");
+        await expect(change).toContainText("۲۵");
+    });
+});

@@ -107,6 +107,7 @@ describe("search ranking", () => {
         expect(top("minify svg")).toBe("svg-optimizer");
         expect(top("تبدیل مثقال به گرم")).toBe("unit-converter");
         expect(top("fahrenheit to celsius")).toBe("unit-converter");
+        expect(top("محاسبه درصد")).toBe("percentage-calculator");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");

@@ -84,4 +84,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "svg-viewer": () => import("./image/svg-viewer/ui"),
     "svg-optimizer": () => import("./image/svg-optimizer/ui"),
     "unit-converter": () => import("./calculators/unit-converter/ui"),
+    "percentage-calculator": () => import("./calculators/percentage-calculator/ui"),
 };
