@@ -119,3 +119,26 @@ test.describe("jalali converter", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("1404/09/05");
     });
 });
+
+test.describe("text counter", () => {
+    test("counts a ZWNJ word as one word and shows the reading time", async ({ page }) => {
+        await page.goto("/en/tools/text-counter/");
+        await page
+            .locator("[data-tool-input]")
+            .fill("می‌روم به کتاب‌خانه.\n\nSecond paragraph here!");
+        const stat = (name: string) => page.locator(`[data-stat="${name}"]`);
+        await expect(stat("words")).toHaveText("6");
+        await expect(stat("sentences")).toHaveText("2");
+        await expect(stat("paragraphs")).toHaveText("2");
+        await expect(stat("lines")).toHaveText("3");
+        await expect(stat("reading")).toHaveText("2 s");
+        await page.getByLabel("Words per minute").fill("60");
+        await expect(stat("reading")).toHaveText("6 s");
+    });
+
+    test("shows Persian digits on the Persian page", async ({ page }) => {
+        await page.goto("/fa/tools/text-counter/");
+        await page.locator("[data-tool-input]").fill("یک دو سه");
+        await expect(page.locator('[data-stat="words"]')).toHaveText("۳");
+    });
+});

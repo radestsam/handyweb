@@ -1,5 +1,6 @@
 import AxeBuilder from "@axe-core/playwright";
 import { expect, test } from "@playwright/test";
+import { catalog } from "@handyweb/tools/catalog";
 
 test.describe("search", () => {
     test("opens with /, finds a tool typed with an Arabic keyboard, and opens it with Enter", async ({
@@ -48,7 +49,8 @@ test.describe("search", () => {
 
 test("the home page lists every tool once", async ({ page }) => {
     await page.goto("/fa/");
-    await expect(page.locator("[data-tool-row]")).toHaveCount(5);
+    const published = catalog.filter((tool) => tool.status === "published");
+    await expect(page.locator("[data-tool-row]")).toHaveCount(published.length);
 });
 
 test("the arrow keys move between results", async ({ page }) => {

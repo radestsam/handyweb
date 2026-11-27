@@ -10,4 +10,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     hash: () => import("./crypto/hash/ui"),
     "persian-normalizer": () => import("./persian/persian-normalizer/ui"),
     "jalali-converter": () => import("./persian/jalali-converter/ui"),
+    "text-counter": () => import("./text/text-counter/ui"),
 };
