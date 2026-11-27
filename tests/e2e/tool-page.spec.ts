@@ -1195,3 +1195,32 @@ test.describe("image palette", () => {
         await expect(page.locator("pre")).toContainText("--color-5:");
     });
 });
+
+test.describe("image compare", () => {
+    test("counts changed pixels and finds equal images", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-compare/");
+        await page
+            .locator('[data-compare-slot="first"] input[type="file"]')
+            .setInputFiles({ name: "a.png", mimeType: "image/png", buffer: makePng(10, 10) });
+        // Step 30 changes red and green by more than the threshold, except in
+        // columns and rows 0 and 9 (9 x 30 = 270 wraps to 14). So 4 pixels stay the same.
+        await page.locator('[data-compare-slot="second"] input[type="file"]').setInputFiles({
+            name: "b.png",
+            mimeType: "image/png",
+            buffer: makePng(10, 10, true, 30),
+        });
+        await page.getByRole("radio", { name: "Pixel difference" }).check({ force: true });
+        await expect(page.locator("[data-tool-output]")).toHaveValue("96");
+        await expect(page.locator("[data-tool-diff]")).toContainText("96 pixels changed (96.00%)");
+        await page.getByRole("button", { name: "Other images" }).click();
+        await page
+            .locator('[data-compare-slot="first"] input[type="file"]')
+            .setInputFiles({ name: "a.png", mimeType: "image/png", buffer: makePng(10, 10) });
+        await page
+            .locator('[data-compare-slot="second"] input[type="file"]')
+            .setInputFiles({ name: "c.png", mimeType: "image/png", buffer: makePng(10, 10) });
+        await page.getByRole("radio", { name: "Pixel difference" }).check({ force: true });
+        await expect(page.locator("[data-tool-diff]")).toContainText("the same");
+    });
+});
