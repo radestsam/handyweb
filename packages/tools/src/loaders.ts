@@ -44,4 +44,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "direction-fixer": () => import("./persian/direction-fixer/ui"),
     "yaml-formatter": () => import("./developer/yaml-formatter/ui"),
     "json-yaml": () => import("./developer/json-yaml/ui"),
+    "sql-formatter": () => import("./developer/sql-formatter/ui"),
 };
