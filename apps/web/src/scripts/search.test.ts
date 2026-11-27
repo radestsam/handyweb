@@ -69,6 +69,7 @@ describe("search ranking", () => {
         expect(top("html formatter")).toBe("html-formatter");
         expect(top("css formatter")).toBe("css-formatter");
         expect(top("javascript formatter")).toBe("js-formatter");
+        expect(top("json to csv")).toBe("json-csv");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
