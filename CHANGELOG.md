@@ -22,5 +22,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - HTML Entity Encoder and Decoder.
 - Unicode Escape and Unescape.
 - Unicode Character Inspector.
+- XML Formatter and Validator.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

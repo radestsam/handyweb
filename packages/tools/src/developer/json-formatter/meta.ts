@@ -6,7 +6,7 @@ export const jsonFormatterMeta: ToolDefinition = {
     aliases: ["json-validator", "json-minifier", "json-beautifier", "json-pretty-print"],
     category: "developer",
     alsoIn: [],
-    related: ["base64"],
+    related: ["base64", "xml-formatter"],
     tags: ["json", "format", "validate"],
     title: { fa: "قالب‌بندی و اعتبارسنجی JSON", en: "JSON Formatter and Validator" },
     description: {
