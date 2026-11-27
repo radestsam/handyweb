@@ -6,7 +6,7 @@ export const discountCalculatorMeta: ToolDefinition = {
     aliases: ["sale-calculator", "price-after-discount", "percent-off-calculator"],
     category: "calculators",
     alsoIn: [],
-    related: ["percentage-calculator"],
+    related: ["percentage-calculator", "vat-calculator"],
     tags: ["discount", "price", "calculator"],
     title: { fa: "محاسبه تخفیف", en: "Discount Calculator" },
     description: {

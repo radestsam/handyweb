@@ -1450,3 +1450,12 @@ test.describe("discount calculator", () => {
         await expect(page.locator('[data-discount="reverse"]')).toHaveText("20%");
     });
 });
+
+test.describe("vat calculator", () => {
+    test("takes VAT out with the remove preset", async ({ page }) => {
+        await page.goto("/en/tools/vat-calculator/?preset=remove");
+        await page.locator("[data-tool-input]").fill("1,100,000");
+        await expect(page.locator('[data-vat="net"]')).toHaveText("1,000,000");
+        await expect(page.locator('[data-vat="vat"]')).toHaveText("100,000");
+    });
+});
