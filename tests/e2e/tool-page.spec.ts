@@ -937,3 +937,20 @@ test.describe("file signature", () => {
         await expect(page.locator("[data-tool-warning]")).toContainText("does not match");
     });
 });
+
+test.describe("pem decoder", () => {
+    test("reads a certificate and refuses a private key", async ({ page }) => {
+        const { pemDecoderMeta } = await import("../../packages/tools/src/crypto/pem-decoder/meta");
+        await page.goto("/en/tools/pem-decoder/");
+        await page.locator("[data-tool-input]").fill(pemDecoderMeta.example as string);
+        await expect(page.locator('[data-field="san"]')).toHaveText(
+            "DNS:handyweb.ir, DNS:www.handyweb.ir",
+        );
+        await page
+            .locator("[data-tool-input]")
+            .fill(
+                "-----BEGIN PRIVATE KEY-----\nMC4CAQAwBQYDK2VwBCIEIA==\n-----END PRIVATE KEY-----",
+            );
+        await expect(page.getByRole("alert")).toContainText("private key");
+    });
+});

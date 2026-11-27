@@ -59,5 +59,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Text Encryption with a Passphrase (AES-256-GCM, PBKDF2).
 - TOTP Code Generator.
 - File Type Detector.
+- Certificate and CSR Decoder.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
