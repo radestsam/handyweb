@@ -33,6 +33,8 @@ for (const locale of LOCALES) {
                 await expect(page.locator("html")).toHaveAttribute("data-theme", theme);
                 await page.waitForLoadState("networkidle");
                 const results = await new AxeBuilder({ page })
+                    // A sandboxed preview frame runs no script, so axe cannot run inside it.
+                    .exclude("iframe[sandbox]")
                     .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa", "wcag22aa"])
                     .analyze();
                 expect(
