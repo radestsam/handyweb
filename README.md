@@ -130,6 +130,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Image Resolution and Print Size Calculator            | Calculators              | `packages/tools/src/calculators/image-resolution`      | None                                                       |
 | CSS Unit Converter                                    | Calculators              | `packages/tools/src/calculators/css-units`             | None                                                       |
 | Roman Numeral Converter                               | Calculators              | `packages/tools/src/calculators/roman-numerals`        | None                                                       |
+| Binary and Hex Calculator                             | Calculators              | `packages/tools/src/calculators/binary-calculator`     | None                                                       |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`                | None                                                       |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`               | None                                                       |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator`   | `@cfworker/json-schema`                                    |
