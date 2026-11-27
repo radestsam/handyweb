@@ -3,6 +3,7 @@ import { downloadBlob } from "@handyweb/core/files";
 import { toToolError, type ToolResult } from "@handyweb/core/runtime";
 import {
     Button,
+    Checkbox,
     ErrorMessage,
     Pane,
     PaneAction,
@@ -14,6 +15,14 @@ import {
 import { qrGeneratorMeta } from "./meta";
 import { eccLabels, strings } from "./i18n";
 import { colorWarning, ECC_LEVELS, makeQr, toSvg, type Ecc, type QrMatrix } from "./logic";
+import {
+    emailPayload,
+    vcardPayload,
+    wifiPayload,
+    type ContactFields,
+    type EmailFields,
+    type WifiFields,
+} from "./payloads";
 
 const MAX = qrGeneratorMeta.limits?.maxInputBytes ?? Infinity;
 const PNG_SIZES = ["256", "512", "1024"] as const;
@@ -39,8 +48,82 @@ function toPng(matrix: QrMatrix, dark: string, light: string, target: number): P
     );
 }
 
-export default function QrGenerator({ locale }: ToolUiProps) {
-    const [text, setText] = useState("");
+type Kind = "text" | "wifi" | "email" | "contact";
+const KINDS: readonly Kind[] = ["text", "wifi", "email", "contact"];
+
+const FIELD =
+    "min-h-11 w-full min-w-0 rounded-xl border border-border bg-surface-2/60 px-3 text-base text-text outline-none focus-visible:border-focus focus-visible:shadow-[0_0_0_4px_var(--hw-glow)]";
+
+function Field({
+    label,
+    value,
+    onChange,
+    ltr = false,
+    type = "text",
+    ...props
+}: {
+    label: string;
+    value: string;
+    onChange: (value: string) => void;
+    ltr?: boolean;
+    type?: string;
+} & Record<`data-${string}`, string>) {
+    const id = useId();
+    return (
+        <label
+            htmlFor={id}
+            className="flex min-w-0 flex-col gap-1.5 text-xs font-semibold text-muted"
+        >
+            {label}
+            <input
+                id={id}
+                type={type}
+                dir={ltr ? "ltr" : "auto"}
+                autoComplete="off"
+                value={value}
+                onChange={(event) => onChange(event.target.value)}
+                className={FIELD}
+                {...props}
+            />
+        </label>
+    );
+}
+
+export default function QrGenerator({ locale, presetOptions }: ToolUiProps) {
+    const [kind, setKind] = useState<Kind>(
+        KINDS.find((value) => value === presetOptions?.["kind"]) ?? "text",
+    );
+    const [plain, setPlain] = useState("");
+    const [wifi, setWifi] = useState<WifiFields>({
+        ssid: "",
+        password: "",
+        security: "WPA",
+        hidden: false,
+    });
+    const [mail, setMail] = useState<EmailFields>({ to: "", subject: "", body: "" });
+    const [contact, setContact] = useState<ContactFields>({
+        name: "",
+        phone: "",
+        email: "",
+        organization: "",
+        url: "",
+    });
+    // The text in the code: what the user typed, or the payload that a form builds.
+    const text =
+        kind === "text"
+            ? plain
+            : kind === "wifi"
+              ? wifi.ssid
+                  ? wifiPayload(wifi)
+                  : ""
+              : kind === "email"
+                ? mail.to.trim()
+                    ? emailPayload(mail)
+                    : ""
+                : contact.name.trim()
+                  ? vcardPayload(contact)
+                  : "";
+    const setText = setPlain;
     const [ecc, setEcc] = useState<Ecc>("M");
     const [dark, setDark] = useState("#000000");
     const [light, setLight] = useState("#ffffff");
@@ -90,26 +173,149 @@ export default function QrGenerator({ locale }: ToolUiProps) {
 
     return (
         <div className="flex flex-col gap-6">
-            <Pane
-                label={t("content")}
-                locale={locale}
-                value={text}
-                onChange={(event) => setText(event.target.value)}
-                placeholder="https://…"
-                className="min-h-28"
-                actions={
-                    <>
-                        <PasteButton locale={locale} onPaste={setText} />
-                        <PaneAction
-                            icon="clear"
-                            label={UI_STRINGS.clear[locale]}
-                            onClick={() => setText("")}
-                            disabled={text === ""}
-                        />
-                    </>
-                }
-                data-tool-input=""
+            <Segmented<Kind>
+                legend={t("kind")}
+                value={kind}
+                onChange={setKind}
+                options={KINDS.map((value) => ({ value, label: t(value) }))}
             />
+            {kind === "wifi" && (
+                <div className="flex flex-col gap-3" data-qr-form="wifi">
+                    <div className="grid gap-3 sm:grid-cols-2">
+                        <Field
+                            label={t("ssid")}
+                            value={wifi.ssid}
+                            onChange={(ssid) => setWifi({ ...wifi, ssid })}
+                            data-qr-field="ssid"
+                        />
+                        {wifi.security !== "nopass" && (
+                            <Field
+                                label={t("password")}
+                                value={wifi.password}
+                                onChange={(password) => setWifi({ ...wifi, password })}
+                                ltr
+                                data-qr-field="password"
+                            />
+                        )}
+                    </div>
+                    <div className="flex flex-wrap items-end gap-x-6 gap-y-2">
+                        <Segmented<WifiFields["security"]>
+                            legend={t("security")}
+                            value={wifi.security}
+                            onChange={(security) => setWifi({ ...wifi, security })}
+                            options={[
+                                { value: "WPA", label: "WPA/WPA2/WPA3" },
+                                { value: "WEP", label: "WEP" },
+                                { value: "nopass", label: t("open") },
+                            ]}
+                        />
+                        <Checkbox
+                            label={t("hidden")}
+                            checked={wifi.hidden}
+                            onChange={(hidden) => setWifi({ ...wifi, hidden })}
+                        />
+                    </div>
+                    <p className="text-xs text-muted">{t("wifiNote")}</p>
+                </div>
+            )}
+            {kind === "email" && (
+                <div className="grid gap-3 sm:grid-cols-2" data-qr-form="email">
+                    <Field
+                        label={t("to")}
+                        value={mail.to}
+                        onChange={(to) => setMail({ ...mail, to })}
+                        ltr
+                        type="email"
+                        data-qr-field="to"
+                    />
+                    <Field
+                        label={t("subject")}
+                        value={mail.subject}
+                        onChange={(subject) => setMail({ ...mail, subject })}
+                    />
+                    <div className="sm:col-span-2">
+                        <Field
+                            label={t("body")}
+                            value={mail.body}
+                            onChange={(body) => setMail({ ...mail, body })}
+                        />
+                    </div>
+                </div>
+            )}
+            {kind === "contact" && (
+                <div className="grid gap-3 sm:grid-cols-2" data-qr-form="contact">
+                    <Field
+                        label={t("name")}
+                        value={contact.name}
+                        onChange={(name) => setContact({ ...contact, name })}
+                        data-qr-field="name"
+                    />
+                    <Field
+                        label={t("phone")}
+                        value={contact.phone}
+                        onChange={(phone) => setContact({ ...contact, phone })}
+                        ltr
+                        type="tel"
+                    />
+                    <Field
+                        label={t("email")}
+                        value={contact.email}
+                        onChange={(email) => setContact({ ...contact, email })}
+                        ltr
+                        type="email"
+                    />
+                    <Field
+                        label={t("organization")}
+                        value={contact.organization}
+                        onChange={(organization) => setContact({ ...contact, organization })}
+                    />
+                    <div className="sm:col-span-2">
+                        <Field
+                            label={t("url")}
+                            value={contact.url}
+                            onChange={(url) => setContact({ ...contact, url })}
+                            ltr
+                            type="url"
+                        />
+                    </div>
+                </div>
+            )}
+            {kind !== "text" && text && (
+                <details className="rounded-2xl border border-border bg-bg px-4 py-2 text-sm">
+                    <summary className="cursor-pointer text-xs font-semibold text-muted">
+                        {t("payload")}
+                    </summary>
+                    <pre
+                        dir="ltr"
+                        className="mt-2 overflow-x-auto font-mono text-xs whitespace-pre-wrap"
+                        data-qr-payload=""
+                    >
+                        {text}
+                    </pre>
+                </details>
+            )}
+            <div className={kind === "text" ? "contents" : "hidden"}>
+                <Pane
+                    label={t("content")}
+                    locale={locale}
+                    value={plain}
+                    onChange={(event) => setText(event.target.value)}
+                    placeholder="https://…"
+                    className="min-h-28"
+                    actions={
+                        <>
+                            <PasteButton locale={locale} onPaste={setText} />
+                            <PaneAction
+                                icon="clear"
+                                label={UI_STRINGS.clear[locale]}
+                                onClick={() => setText("")}
+                                disabled={plain === ""}
+                            />
+                        </>
+                    }
+                    data-tool-input=""
+                />
+            </div>
 
             <div className="flex flex-wrap items-end gap-x-6 gap-y-4">
                 <Segmented<Ecc>
