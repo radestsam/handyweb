@@ -100,4 +100,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "ip-calculator": () => import("./network/ip-calculator/ui"),
     "mac-formatter": () => import("./network/mac-formatter/ui"),
     "http-status": () => import("./network/http-status/ui"),
+    "mime-types": () => import("./network/mime-types/ui"),
 };

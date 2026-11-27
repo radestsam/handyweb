@@ -1,0 +1,636 @@
+{
+    "version": "2026-11-27",
+    "source": "IANA Media Types registry, https://www.iana.org/assignments/media-types/, and the common extensions in the WHATWG MIME Sniffing standard and web server defaults",
+    "entries": [
+        {
+            "type": "text/plain",
+            "extensions": ["txt"],
+            "description": {
+                "en": "Plain text",
+                "fa": "متن ساده"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/html",
+            "extensions": ["html", "htm"],
+            "description": {
+                "en": "HTML web page",
+                "fa": "صفحه وب HTML"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/css",
+            "extensions": ["css"],
+            "description": {
+                "en": "CSS style sheet",
+                "fa": "شیوه‌نامه CSS"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/csv",
+            "extensions": ["csv"],
+            "description": {
+                "en": "Comma-separated values",
+                "fa": "مقدارهای جداشده با ویرگول"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/javascript",
+            "extensions": ["js", "mjs"],
+            "description": {
+                "en": "JavaScript (RFC 9239)",
+                "fa": "جاوااسکریپت (RFC 9239)"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/markdown",
+            "extensions": ["md", "markdown"],
+            "description": {
+                "en": "Markdown",
+                "fa": "مارک‌داون"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/calendar",
+            "extensions": ["ics"],
+            "description": {
+                "en": "iCalendar event",
+                "fa": "رویداد تقویم iCalendar"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/vcard",
+            "extensions": ["vcf"],
+            "description": {
+                "en": "vCard contact",
+                "fa": "کارت تماس vCard"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/xml",
+            "extensions": ["xml"],
+            "description": {
+                "en": "XML (text)",
+                "fa": "XML (متنی)"
+            },
+            "group": "text"
+        },
+        {
+            "type": "text/vtt",
+            "extensions": ["vtt"],
+            "description": {
+                "en": "WebVTT subtitles",
+                "fa": "زیرنویس WebVTT"
+            },
+            "group": "text"
+        },
+        {
+            "type": "application/json",
+            "extensions": ["json"],
+            "description": {
+                "en": "JSON data",
+                "fa": "داده JSON"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/ld+json",
+            "extensions": ["jsonld"],
+            "description": {
+                "en": "JSON-LD linked data",
+                "fa": "داده پیوندی JSON-LD"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/manifest+json",
+            "extensions": ["webmanifest"],
+            "description": {
+                "en": "Web app manifest",
+                "fa": "مانیفست برنامه وب"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/xml",
+            "extensions": ["xml"],
+            "description": {
+                "en": "XML",
+                "fa": "XML"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/pdf",
+            "extensions": ["pdf"],
+            "description": {
+                "en": "PDF document",
+                "fa": "سند PDF"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/zip",
+            "extensions": ["zip"],
+            "description": {
+                "en": "ZIP archive",
+                "fa": "بایگانی ZIP"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/gzip",
+            "extensions": ["gz"],
+            "description": {
+                "en": "Gzip file",
+                "fa": "فایل Gzip"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/x-tar",
+            "extensions": ["tar"],
+            "description": {
+                "en": "Tar archive",
+                "fa": "بایگانی Tar"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/x-7z-compressed",
+            "extensions": ["7z"],
+            "description": {
+                "en": "7-Zip archive",
+                "fa": "بایگانی 7-Zip"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.rar",
+            "extensions": ["rar"],
+            "description": {
+                "en": "RAR archive",
+                "fa": "بایگانی RAR"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/x-bzip2",
+            "extensions": ["bz2"],
+            "description": {
+                "en": "Bzip2 file",
+                "fa": "فایل Bzip2"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/octet-stream",
+            "extensions": ["bin"],
+            "description": {
+                "en": "Binary data of an unknown type",
+                "fa": "داده دودویی با نوع نامعلوم"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/wasm",
+            "extensions": ["wasm"],
+            "description": {
+                "en": "WebAssembly",
+                "fa": "وب‌اسمبلی"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/msword",
+            "extensions": ["doc"],
+            "description": {
+                "en": "Microsoft Word (old)",
+                "fa": "مایکروسافت ورد (کهنه)"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            "extensions": ["docx"],
+            "description": {
+                "en": "Microsoft Word",
+                "fa": "مایکروسافت ورد"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.ms-excel",
+            "extensions": ["xls"],
+            "description": {
+                "en": "Microsoft Excel (old)",
+                "fa": "مایکروسافت اکسل (کهنه)"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+            "extensions": ["xlsx"],
+            "description": {
+                "en": "Microsoft Excel",
+                "fa": "مایکروسافت اکسل"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.ms-powerpoint",
+            "extensions": ["ppt"],
+            "description": {
+                "en": "Microsoft PowerPoint (old)",
+                "fa": "مایکروسافت پاورپوینت (کهنه)"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+            "extensions": ["pptx"],
+            "description": {
+                "en": "Microsoft PowerPoint",
+                "fa": "مایکروسافت پاورپوینت"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.oasis.opendocument.text",
+            "extensions": ["odt"],
+            "description": {
+                "en": "OpenDocument text",
+                "fa": "سند متنی OpenDocument"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.oasis.opendocument.spreadsheet",
+            "extensions": ["ods"],
+            "description": {
+                "en": "OpenDocument spreadsheet",
+                "fa": "صفحه‌گسترده OpenDocument"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/rtf",
+            "extensions": ["rtf"],
+            "description": {
+                "en": "Rich Text Format",
+                "fa": "Rich Text Format"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/epub+zip",
+            "extensions": ["epub"],
+            "description": {
+                "en": "EPUB e-book",
+                "fa": "کتاب الکترونیکی EPUB"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/vnd.android.package-archive",
+            "extensions": ["apk"],
+            "description": {
+                "en": "Android app",
+                "fa": "برنامه اندروید"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/x-msdownload",
+            "extensions": ["exe", "dll"],
+            "description": {
+                "en": "Windows program",
+                "fa": "برنامه ویندوز"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/x-apple-diskimage",
+            "extensions": ["dmg"],
+            "description": {
+                "en": "macOS disk image",
+                "fa": "دیسک ایمیج macOS"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/x-sh",
+            "extensions": ["sh"],
+            "description": {
+                "en": "Shell script",
+                "fa": "اسکریپت شل"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/sql",
+            "extensions": ["sql"],
+            "description": {
+                "en": "SQL",
+                "fa": "SQL"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/yaml",
+            "extensions": ["yaml", "yml"],
+            "description": {
+                "en": "YAML (RFC 9512)",
+                "fa": "YAML (RFC 9512)"
+            },
+            "group": "application"
+        },
+        {
+            "type": "application/x-www-form-urlencoded",
+            "extensions": [],
+            "description": {
+                "en": "HTML form data",
+                "fa": "داده فرم HTML"
+            },
+            "group": "application"
+        },
+        {
+            "type": "multipart/form-data",
+            "extensions": [],
+            "description": {
+                "en": "Form data with files",
+                "fa": "داده فرم با فایل"
+            },
+            "group": "multipart"
+        },
+        {
+            "type": "image/png",
+            "extensions": ["png"],
+            "description": {
+                "en": "PNG image",
+                "fa": "تصویر PNG"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/jpeg",
+            "extensions": ["jpg", "jpeg", "jfif"],
+            "description": {
+                "en": "JPEG image",
+                "fa": "تصویر JPEG"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/gif",
+            "extensions": ["gif"],
+            "description": {
+                "en": "GIF image",
+                "fa": "تصویر GIF"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/webp",
+            "extensions": ["webp"],
+            "description": {
+                "en": "WebP image",
+                "fa": "تصویر WebP"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/avif",
+            "extensions": ["avif"],
+            "description": {
+                "en": "AVIF image",
+                "fa": "تصویر AVIF"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/heic",
+            "extensions": ["heic"],
+            "description": {
+                "en": "HEIC image (iPhone)",
+                "fa": "تصویر HEIC (آیفون)"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/svg+xml",
+            "extensions": ["svg"],
+            "description": {
+                "en": "SVG vector image",
+                "fa": "تصویر برداری SVG"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/bmp",
+            "extensions": ["bmp"],
+            "description": {
+                "en": "BMP image",
+                "fa": "تصویر BMP"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/tiff",
+            "extensions": ["tif", "tiff"],
+            "description": {
+                "en": "TIFF image",
+                "fa": "تصویر TIFF"
+            },
+            "group": "image"
+        },
+        {
+            "type": "image/vnd.microsoft.icon",
+            "extensions": ["ico"],
+            "description": {
+                "en": "Icon (favicon)",
+                "fa": "آیکون (فاوآیکون)"
+            },
+            "group": "image"
+        },
+        {
+            "type": "audio/mpeg",
+            "extensions": ["mp3"],
+            "description": {
+                "en": "MP3 audio",
+                "fa": "صدای MP3"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "audio/aac",
+            "extensions": ["aac"],
+            "description": {
+                "en": "AAC audio",
+                "fa": "صدای AAC"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "audio/mp4",
+            "extensions": ["m4a"],
+            "description": {
+                "en": "MPEG-4 audio",
+                "fa": "صدای MPEG-4"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "audio/ogg",
+            "extensions": ["ogg", "oga"],
+            "description": {
+                "en": "Ogg audio",
+                "fa": "صدای Ogg"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "audio/opus",
+            "extensions": ["opus"],
+            "description": {
+                "en": "Opus audio",
+                "fa": "صدای Opus"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "audio/wav",
+            "extensions": ["wav"],
+            "description": {
+                "en": "WAV audio",
+                "fa": "صدای WAV"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "audio/flac",
+            "extensions": ["flac"],
+            "description": {
+                "en": "FLAC audio",
+                "fa": "صدای FLAC"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "audio/webm",
+            "extensions": ["weba"],
+            "description": {
+                "en": "WebM audio",
+                "fa": "صدای WebM"
+            },
+            "group": "audio"
+        },
+        {
+            "type": "video/mp4",
+            "extensions": ["mp4"],
+            "description": {
+                "en": "MP4 video",
+                "fa": "ویدیوی MP4"
+            },
+            "group": "video"
+        },
+        {
+            "type": "video/webm",
+            "extensions": ["webm"],
+            "description": {
+                "en": "WebM video",
+                "fa": "ویدیوی WebM"
+            },
+            "group": "video"
+        },
+        {
+            "type": "video/ogg",
+            "extensions": ["ogv"],
+            "description": {
+                "en": "Ogg video",
+                "fa": "ویدیوی Ogg"
+            },
+            "group": "video"
+        },
+        {
+            "type": "video/quicktime",
+            "extensions": ["mov"],
+            "description": {
+                "en": "QuickTime video",
+                "fa": "ویدیوی QuickTime"
+            },
+            "group": "video"
+        },
+        {
+            "type": "video/x-matroska",
+            "extensions": ["mkv"],
+            "description": {
+                "en": "Matroska video",
+                "fa": "ویدیوی Matroska"
+            },
+            "group": "video"
+        },
+        {
+            "type": "video/x-msvideo",
+            "extensions": ["avi"],
+            "description": {
+                "en": "AVI video",
+                "fa": "ویدیوی AVI"
+            },
+            "group": "video"
+        },
+        {
+            "type": "video/mp2t",
+            "extensions": ["ts"],
+            "description": {
+                "en": "MPEG transport stream",
+                "fa": "جریان MPEG-TS"
+            },
+            "group": "video"
+        },
+        {
+            "type": "font/woff2",
+            "extensions": ["woff2"],
+            "description": {
+                "en": "WOFF2 web font",
+                "fa": "فونت وب WOFF2"
+            },
+            "group": "font"
+        },
+        {
+            "type": "font/woff",
+            "extensions": ["woff"],
+            "description": {
+                "en": "WOFF web font",
+                "fa": "فونت وب WOFF"
+            },
+            "group": "font"
+        },
+        {
+            "type": "font/ttf",
+            "extensions": ["ttf"],
+            "description": {
+                "en": "TrueType font",
+                "fa": "فونت TrueType"
+            },
+            "group": "font"
+        },
+        {
+            "type": "font/otf",
+            "extensions": ["otf"],
+            "description": {
+                "en": "OpenType font",
+                "fa": "فونت OpenType"
+            },
+            "group": "font"
+        }
+    ]
+}

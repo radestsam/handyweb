@@ -1661,3 +1661,13 @@ test.describe("http status", () => {
         await expect(page.locator('[data-status="404"]')).toHaveCount(0);
     });
 });
+
+test.describe("mime types", () => {
+    test("finds a type from a file name", async ({ page }) => {
+        await page.goto("/en/tools/mime-types/");
+        await page.locator("[data-tool-input]").fill("photo.HEIC");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("image/heic");
+        await page.locator("[data-tool-input]").fill("font/");
+        await expect(page.locator('[data-mime="font/woff2"]')).toBeVisible();
+    });
+});
