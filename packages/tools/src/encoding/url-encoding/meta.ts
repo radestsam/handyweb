@@ -6,7 +6,7 @@ export const urlEncodingMeta: ToolDefinition = {
     aliases: ["url-encoder", "url-decoder", "percent-encoding", "urlencode"],
     category: "encoding",
     alsoIn: ["developer"],
-    related: ["base64"],
+    related: ["base64", "html-entities"],
     tags: ["url", "encoding", "percent"],
     title: {
         fa: "رمزگذاری و رمزگشایی URL",
