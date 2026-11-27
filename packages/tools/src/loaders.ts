@@ -101,4 +101,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "mac-formatter": () => import("./network/mac-formatter/ui"),
     "http-status": () => import("./network/http-status/ui"),
     "mime-types": () => import("./network/mime-types/ui"),
+    "ip-ranges": () => import("./network/ip-ranges/ui"),
 };

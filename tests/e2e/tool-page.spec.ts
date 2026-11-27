@@ -1671,3 +1671,13 @@ test.describe("mime types", () => {
         await expect(page.locator('[data-mime="font/woff2"]')).toBeVisible();
     });
 });
+
+test.describe("ip ranges", () => {
+    test("names a range and says when an address is public", async ({ page }) => {
+        await page.goto("/en/tools/ip-ranges/");
+        await page.locator("[data-tool-input]").fill("172.20.1.1");
+        await expect(page.locator("[data-range-answer]")).toContainText("172.16.0.0/12");
+        await page.locator("[data-tool-input]").fill("1.1.1.1");
+        await expect(page.locator("[data-range-answer]")).toContainText("public");
+    });
+});
