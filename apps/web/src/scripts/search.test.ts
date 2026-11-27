@@ -33,6 +33,8 @@ describe("search ranking", () => {
         expect(top("مرتب سازی")).toBe("sort-lines");
         expect(top("remove extra spaces")).toBe("text-cleaner");
         expect(top("حذف فاصله اضافه")).toBe("text-cleaner");
+        expect(top("url decode")).toBe("url-encoding");
+        expect(top("لینک فارسی")).toBe("url-encoding");
         expect(top("حروف بزرگ")).toBe("case-converter");
         expect(top("شمارش کلمات")).toBe("text-counter");
     });
