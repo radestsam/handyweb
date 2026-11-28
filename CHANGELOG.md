@@ -39,5 +39,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Slug Generator, with Latin and Persian slugs.
 - Lorem Ipsum Generator, with Persian placeholder text.
 - Email, URL, and Phone Extractor.
+- Number to Persian Words, with decimals, ordinals, and Rial or Toman.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

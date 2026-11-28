@@ -625,3 +625,22 @@ test.describe("slug, lorem, and extractor", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("09123456789\n09121112233");
     });
 });
+
+test.describe("number to words", () => {
+    test("writes an amount in Toman", async ({ page }) => {
+        await page.goto("/fa/tools/number-to-words/?preset=toman");
+        await page.locator("[data-tool-input]").fill("۱٬۲۵۰٬۰۰۰");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "یک میلیون و دویست و پنجاه هزار تومان",
+        );
+    });
+
+    test("writes an ordinal and reports a bad number", async ({ page }) => {
+        await page.goto("/en/tools/number-to-words/");
+        await page.getByLabel("Ordinal (بیست و یکم)").check();
+        await page.locator("[data-tool-input]").fill("23");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("بیست و سوم");
+        await page.locator("[data-tool-input]").fill("12x");
+        await expect(page.getByRole("alert")).toContainText("Enter a number");
+    });
+});

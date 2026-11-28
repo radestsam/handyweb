@@ -109,6 +109,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Random Token and Bytes Generator                      | Hashing and Cryptography | `packages/tools/src/crypto/random-token`         | None                                                       |
 | Persian Text Normalizer and Digit Converter           | Persian                  | `packages/tools/src/persian/persian-normalizer`  | `diff` (change view)                                       |
 | Jalali and Gregorian Date Converter                   | Persian                  | `packages/tools/src/persian/jalali-converter`    | `jalaali-js`                                               |
+| Number to Persian Words                               | Persian                  | `packages/tools/src/persian/number-to-words`     | None                                                       |
 | Word and Character Counter                            | Text                     | `packages/tools/src/text/text-counter`           | None                                                       |
 | Case Converter                                        | Text                     | `packages/tools/src/text/case-converter`         | None                                                       |
 | Remove Duplicate Lines                                | Text                     | `packages/tools/src/text/remove-duplicate-lines` | None                                                       |

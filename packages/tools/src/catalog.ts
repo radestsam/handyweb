@@ -32,6 +32,7 @@ import { jsonStringMeta } from "./developer/json-string/meta";
 import { slugGeneratorMeta } from "./text/slug-generator/meta";
 import { loremIpsumMeta } from "./text/lorem-ipsum/meta";
 import { textExtractorMeta } from "./text/text-extractor/meta";
+import { numberToWordsMeta } from "./persian/number-to-words/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -71,4 +72,5 @@ export const catalog: readonly ToolDefinition[] = [
     slugGeneratorMeta,
     loremIpsumMeta,
     textExtractorMeta,
+    numberToWordsMeta,
 ];
