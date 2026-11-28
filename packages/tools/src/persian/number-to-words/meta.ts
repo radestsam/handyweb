@@ -8,12 +8,13 @@ export const numberToWordsMeta: ToolDefinition = {
     alsoIn: ["calculators"],
     related: ["persian-normalizer", "number-base"],
     tags: ["persian", "number", "words"],
-    title: {
-        fa: "تبدیل عدد به حروف فارسی",
-        en: "Number to Persian Words",
+    title: { fa: "تبدیل عدد به حروف فارسی", en: "Number to Persian Words" },
+    seoTitle: {
+        fa: "تبدیل عدد به حروف فارسی برای چک و فاکتور",
+        en: "Number to Persian Words for Cheques and Invoices",
     },
     description: {
-        fa: "عدد را به حروف فارسی بنویسید، برای چک، فاکتور و قرارداد: با اعشار، عدد ترتیبی و یکای ریال یا تومان. عددهای بسیار بزرگ هم بی‌کم‌وکاست خوانده می‌شوند.",
+        fa: "تبدیل عدد به حروف فارسی برای چک، فاکتور و قرارداد: با اعشار، عدد ترتیبی و واحد ریال یا تومان. عددهای بسیار بزرگ هم بی‌کم‌وکاست خوانده می‌شوند.",
         en: "Write a number in Persian words for cheques, invoices, and contracts, with decimals, ordinals, and Rial or Toman. Very large numbers stay exact.",
     },
     keywords: {

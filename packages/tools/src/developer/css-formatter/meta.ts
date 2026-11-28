@@ -8,12 +8,13 @@ export const cssFormatterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["html-formatter", "js-formatter"],
     tags: ["css", "format"],
-    title: {
-        fa: "آراستن کد CSS",
-        en: "CSS Formatter",
+    title: { fa: "فرمت و مرتب کردن کد CSS", en: "CSS Formatter" },
+    seoTitle: {
+        fa: "فرمت و مرتب کردن کد CSS (CSS Beautifier)",
+        en: "CSS Formatter and Beautifier Online",
     },
     description: {
-        fa: "کد CSS فشرده یا درهم را با تورفتگی و یک ویژگی در هر خط بیارایید.",
+        fa: "مرتب کردن CSS فشرده یا درهم با تورفتگی و یک ویژگی در هر خط، تا کد CSS خوانا شود.",
         en: "Format minified or messy CSS with indentation and one property per line.",
     },
     keywords: {
@@ -40,18 +41,7 @@ export const cssFormatterMeta: ToolDefinition = {
             { fa: "تورفتگی را برگزینید.", en: "Choose the indent." },
             { fa: "خروجی را کپی کنید.", en: "Copy the output." },
         ],
-        faq: [
-            {
-                question: {
-                    fa: "کد من جایی فرستاده می‌شود؟",
-                    en: "Is my code sent anywhere?",
-                },
-                answer: {
-                    fa: "نه. آراستن با کتابخانه js-beautify در مرورگر شما انجام می‌شود.",
-                    en: "No. Formatting runs in your browser with the js-beautify library.",
-                },
-            },
-        ],
+        faq: [],
     },
     example: "body{margin:0;font-family:Estedad}a{color:#bc4a3c}",
 };

@@ -3,6 +3,7 @@ import { localePath, nonEmptyCategories, toolsInCategory, type Locale } from "@h
 import Base from "../../layouts/Base.astro";
 import ToolList from "../../components/ToolList.astro";
 import { useTranslations } from "../../i18n/site";
+import { homeJsonLd } from "../../seo";
 import { localeStaticPaths } from "../../i18n/static-paths";
 import { categories, tools } from "../../i18n/tools";
 
@@ -21,13 +22,13 @@ const groups = nonEmptyCategories(categories, tools)
 const text = {
     fa: {
         title: "ابزارهای آنلاین رایگان، روی دستگاه خودتان",
-        lead: "کدگذاری، هش فایل، تبدیل تاریخ و یکسان‌سازی نوشته فارسی را در مرورگر خودتان انجام دهید. چیزی به سرور فرستاده نمی‌شود.",
-        privacy: "چطور ورودی شما روی دستگاهتان می‌ماند",
+        lead: "کدگذاری، هش فایل، تبدیل تاریخ و یکسان‌سازی نوشته فارسی را در مرورگر خودتان انجام دهید.",
+        privacy: "حریم خصوصی در HandyWeb",
     },
     en: {
         title: "Free online tools that run on your own device",
-        lead: "Encode text, hash files, convert Persian dates, and clean up Persian text in your browser. Nothing is sent to a server.",
-        privacy: "How your input stays on your device",
+        lead: "Encode text, hash files, convert Persian dates, and clean up Persian text in your browser.",
+        privacy: "Privacy at HandyWeb",
     },
 }[locale];
 ---
@@ -37,19 +38,10 @@ const text = {
     path="/"
     title={
         locale === "fa"
-            ? "HandyWeb: ابزارهای آنلاین رایگان فارسی"
+            ? "HandyWeb: ابزارهای آنلاین رایگان فارسی برای متن، عکس و PDF"
             : "HandyWeb: Free Online Tools That Run in Your Browser"
     }
-    jsonLd={[
-        {
-            "@context": "https://schema.org",
-            "@type": "WebSite",
-            name: "HandyWeb",
-            url: new URL(`/${locale}/`, Astro.site).href,
-            inLanguage: locale === "fa" ? "fa-IR" : "en",
-            description: t("site.description"),
-        },
-    ]}
+    jsonLd={homeJsonLd(locale, Astro.site ?? new URL("https://handyweb.ir"), t("site.description"))}
 >
     <main id="main" class="mx-auto max-w-6xl px-safe">
         <section class="hero-grid pt-14 pb-12 sm:pt-24 sm:pb-16" aria-labelledby="hero-title">

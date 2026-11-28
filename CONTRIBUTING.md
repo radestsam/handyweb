@@ -48,6 +48,8 @@ Thank you for helping. This guide tells you how to set up the project, add a too
 
     The registry test, the privacy tests (no request leaves the browser, nothing is stored), and the accessibility tests run on every tool automatically.
 
+    The UI is rendered into the HTML at build time, where there is no `window` and no DOM. The first render must give the same HTML on the server and in the browser. Draw random values (passwords, tokens, IDs) and read browser features only after `useClient()` from `@handyweb/core/ui` returns `true`, so the static HTML never holds a secret. `tests/e2e/ssr.spec.ts` fails on a page that starts with an error.
+
 4. If the tool adds a package that ships to visitors, add it to `THIRD_PARTY_NOTICES.md` with its license.
 
 See `packages/tools/src/encoding/base64/` for a complete example.

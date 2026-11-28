@@ -8,9 +8,10 @@ export const zwnjFixerMeta: ToolDefinition = {
     alsoIn: ["text"],
     related: ["persian-normalizer", "text-cleaner"],
     tags: ["persian", "zwnj", "half-space"],
-    title: {
-        fa: "درست کردن نیم‌فاصله در متن فارسی",
-        en: "Persian Half-Space (ZWNJ) Fixer",
+    title: { fa: "درست کردن نیم‌فاصله در متن فارسی", en: "Persian Half-Space (ZWNJ) Fixer" },
+    seoTitle: {
+        fa: "درست کردن نیم‌فاصله در متن فارسی آنلاین",
+        en: "Persian Half-Space (ZWNJ) Fixer Online",
     },
     description: {
         fa: "اسپیس‌های نادرست را در «می روم»، «کتاب ها»، «بزرگ تر» و «خانه ای» به نیم‌فاصله برگردانید. هر قاعده جداست و هر ویرایش را می‌بینید.",

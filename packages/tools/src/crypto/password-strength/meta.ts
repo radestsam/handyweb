@@ -8,10 +8,14 @@ export const passwordStrengthMeta: ToolDefinition = {
     alsoIn: [],
     related: ["password-generator", "hash", "random-token"],
     tags: ["password", "security", "strength"],
-    title: { fa: "سنجش قدرت گذرواژه", en: "Password Strength Checker" },
+    title: { fa: "سنجش قدرت رمز عبور", en: "Password Strength Checker" },
+    seoTitle: {
+        fa: "سنجش قدرت رمز عبور و امنیت پسورد",
+        en: "Password Strength Checker: How Secure Is It?",
+    },
     description: {
-        fa: "ببینید یک گذرواژه چقدر قوی است، حدس زدن آن چقدر زمان می‌برد و چگونه بهترش کنید. گذرواژه از مرورگر شما بیرون نمی‌رود.",
-        en: "See how strong a password is, how long it would take to guess, and how to make it better. The password never leaves your browser.",
+        fa: "سنجش قدرت رمز عبور: ببینید پسورد شما چقدر قوی است، حدس زدن آن چقدر زمان می‌برد و چگونه بهترش کنید.",
+        en: "See how strong a password is, how long it would take to guess, and how to make it better.",
     },
     keywords: {
         fa: [
@@ -52,16 +56,6 @@ export const passwordStrengthMeta: ToolDefinition = {
             },
         ],
         faq: [
-            {
-                question: {
-                    fa: "آیا گذرواژه من فرستاده یا ذخیره می‌شود؟",
-                    en: "Is my password sent or stored?",
-                },
-                answer: {
-                    fa: "نه. سنجش در یک Worker در مرورگر شما انجام می‌شود و گذرواژه به هیچ جا فرستاده یا در مرورگر ذخیره نمی‌شود.",
-                    en: "No. The check runs in a worker in your browser. The password is not sent anywhere and not stored in the browser.",
-                },
-            },
             {
                 question: {
                     fa: "چرا بار نخست کند است؟",

@@ -149,7 +149,6 @@ export default function HmacTool({ locale, presetOptions }: ToolUiProps) {
                             autoComplete="off"
                             spellCheck={false}
                             className={FIELD}
-                            aria-describedby={`${keyId}-note`}
                             data-tool-input=""
                         />
                     </div>
@@ -164,9 +163,6 @@ export default function HmacTool({ locale, presetOptions }: ToolUiProps) {
                         ]}
                     />
                 </div>
-                <p id={`${keyId}-note`} className="text-xs text-muted">
-                    {t("keyNote")}
-                </p>
             </div>
 
             {error && <ErrorMessage error={error} locale={locale} />}

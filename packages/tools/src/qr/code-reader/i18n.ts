@@ -25,10 +25,6 @@ export const strings = {
     network: { fa: "نام شبکه", en: "Network name" },
     password: { fa: "رمز", en: "Password" },
     security: { fa: "امنیت", en: "Security" },
-    privacy: {
-        fa: "تصویر دوربین در مرورگر شما خوانده می‌شود و به هیچ جا فرستاده یا ذخیره نمی‌شود.",
-        en: "The camera picture is read in your browser and is never sent or saved.",
-    },
 } as const satisfies Record<string, LocalizedText>;
 
 export const KINDS: Record<Kind, LocalizedText> = {

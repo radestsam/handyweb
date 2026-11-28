@@ -9,8 +9,12 @@ export const barcodeGeneratorMeta: ToolDefinition = {
     related: ["qr-generator", "code-reader"],
     tags: ["barcode", "ean", "code128", "upc"],
     title: { fa: "ساخت بارکد", en: "Barcode Generator" },
+    seoTitle: {
+        fa: "ساخت بارکد EAN-13 و Code 128 آنلاین",
+        en: "Barcode Generator for EAN-13, UPC-A, and Code 128",
+    },
     description: {
-        fa: "بارکد Code 128، EAN-13، EAN-8 و UPC-A بسازید، با رقم کنترل خودکار، و آن را SVG برای چاپ یا PNG دانلود کنید. هیچ چیزی بارگذاری نمی‌شود.",
+        fa: "ساخت بارکد Code 128، EAN-13، EAN-8 و UPC-A با رقم کنترل خودکار، و دانلود آن به شکل SVG برای چاپ یا PNG.",
         en: "Make Code 128, EAN-13, EAN-8, and UPC-A barcodes, with the check digit added for you, and download them as SVG for print or PNG.",
     },
     keywords: {

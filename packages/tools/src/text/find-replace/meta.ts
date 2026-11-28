@@ -8,12 +8,13 @@ export const findReplaceMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["regex-tester", "text-cleaner"],
     tags: ["text", "find", "replace", "regex"],
-    title: {
-        fa: "جستجو و جایگزینی در متن",
-        en: "Find and Replace",
+    title: { fa: "جستجو و جایگزینی در متن", en: "Find and Replace Text" },
+    seoTitle: {
+        fa: "جستجو و جایگزینی در متن، ساده یا با Regex",
+        en: "Find and Replace Text Online with Regex",
     },
     description: {
-        fa: "یک واژه یا عبارت را در سراسر نوشته پیدا و جایگزین کنید، با نوشته ساده یا regex. شمار جایگزینی‌ها را هم می‌بینید.",
+        fa: "جستجو و جایگزینی یک کلمه یا عبارت در سراسر متن، به شکل ساده یا با regex. شمار جایگزینی‌ها را هم می‌بینید.",
         en: "Find a word or phrase in a text and replace it everywhere, as plain text or with a regex. You also see how many replacements were made.",
     },
     keywords: {

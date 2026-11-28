@@ -8,12 +8,13 @@ export const textExtractorMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["find-replace", "remove-duplicate-lines"],
     tags: ["extract", "email", "url", "phone"],
-    title: {
-        fa: "بیرون کشیدن ایمیل، لینک و شماره تلفن از متن",
-        en: "Email, URL, and Phone Extractor",
+    title: { fa: "استخراج ایمیل، لینک و شماره تلفن از متن", en: "Email, URL, and Phone Extractor" },
+    seoTitle: {
+        fa: "استخراج ایمیل، لینک و شماره تلفن از متن",
+        en: "Email, URL, and Phone Extractor for Any Text",
     },
     description: {
-        fa: "ایمیل‌ها، نشانی‌های وب، شماره تلفن‌ها، شماره‌ها، هشتگ‌ها و منشن‌ها را از یک نوشته بیرون بکشید. رقم‌های ۰ تا ۹ پارسی هم خوانده می‌شوند.",
+        fa: "استخراج ایمیل، لینک، شماره تلفن، عدد، هشتگ و منشن از یک متن. شماره‌های با رقم فارسی هم پیدا می‌شوند.",
         en: "Pull emails, URLs, phone numbers (Persian digits too), numbers, hashtags, and mentions out of a text.",
     },
     keywords: {

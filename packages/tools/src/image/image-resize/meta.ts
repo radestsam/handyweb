@@ -8,13 +8,14 @@ export const imageResizeMeta: ToolDefinition = {
     alsoIn: [],
     related: ["base64-file", "file-signature"],
     tags: ["image", "resize", "photo"],
-    title: {
-        fa: "تغییر اندازه تصویر",
-        en: "Image Resizer",
+    title: { fa: "تغییر اندازه عکس", en: "Image Resizer" },
+    seoTitle: {
+        fa: "تغییر اندازه عکس و کوچک کردن ابعاد آنلاین",
+        en: "Image Resizer: Resize Photos by Pixels or Percent",
     },
     description: {
-        fa: "اندازه عکس را با پیکسل، درصد یا ضلع بلندتر تغییر دهید و آن را PNG، JPEG یا WebP دانلود کنید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Resize a photo by pixels, percent, or the longest side, and download it as PNG, JPEG, or WebP. The photo never leaves your device.",
+        fa: "تغییر سایز عکس با پیکسل، درصد یا ضلع بلندتر، و دانلود آن به شکل PNG، JPEG یا WebP.",
+        en: "Resize a photo by pixels, percent, or the longest side, and download it as PNG, JPEG, or WebP.",
     },
     keywords: {
         fa: [
@@ -67,13 +68,6 @@ export const imageResizeMeta: ToolDefinition = {
             },
         ],
         faq: [
-            {
-                question: { fa: "عکس من بارگذاری می‌شود؟", en: "Is my photo uploaded?" },
-                answer: {
-                    fa: "نه. مرورگر شما عکس را می‌خواند و اندازه آن را تغییر می‌دهد. هیچ فایلی به سرور فرستاده نمی‌شود.",
-                    en: "No. Your browser reads and resizes the photo. No file is sent to a server.",
-                },
-            },
             {
                 question: {
                     fa: "چرا حجم فایل PNG بیشتر شد؟",

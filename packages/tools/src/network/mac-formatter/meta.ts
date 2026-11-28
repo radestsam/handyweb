@@ -8,9 +8,13 @@ export const macFormatterMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["ip-calculator"],
     tags: ["mac", "network", "format"],
-    title: { fa: "تبدیل شکل نشانی MAC", en: "MAC Address Formatter" },
+    title: { fa: "تبدیل فرمت مک آدرس (MAC)", en: "MAC Address Formatter" },
+    seoTitle: {
+        fa: "تبدیل فرمت مک آدرس (MAC) با دونقطه یا خط تیره",
+        en: "MAC Address Formatter and Checker Online",
+    },
     description: {
-        fa: "نشانی‌های MAC را میان شکل‌های 00:1A:2B، 00-1A-2B، 001A.2B3C و بی‌جداکننده تبدیل کنید و ببینید نشانی محلی، تصادفی یا چندپخشی است.",
+        fa: "تبدیل مک آدرس میان شکل‌های 00:1A:2B، 00-1A-2B، 001A.2B3C و بی‌جداکننده، و دیدن اینکه آدرس MAC محلی، تصادفی یا چندپخشی است.",
         en: "Convert MAC addresses between the 00:1A:2B, 00-1A-2B, 001A.2B3C, and plain styles, and see whether an address is local, random, or multicast.",
     },
     keywords: {

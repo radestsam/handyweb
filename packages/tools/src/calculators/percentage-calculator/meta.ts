@@ -9,6 +9,10 @@ export const percentageCalculatorMeta: ToolDefinition = {
     related: ["discount-calculator", "unit-converter"],
     tags: ["percent", "calculator"],
     title: { fa: "محاسبه درصد", en: "Percentage Calculator" },
+    seoTitle: {
+        fa: "محاسبه درصد، درصد افزایش و کاهش آنلاین",
+        en: "Percentage Calculator: Percent Change and More",
+    },
     description: {
         fa: "درصد یک عدد، درصدِ یک عدد از عدد دیگر، درصد افزایش یا کاهش، و افزودن یا کم کردن درصد را با اعداد فارسی یا انگلیسی حساب کنید.",
         en: "Work out a percent of a number, one number as a percent of another, a percent increase or decrease, and adding or taking away a percent.",

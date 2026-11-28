@@ -14,13 +14,14 @@ export const totpMeta: ToolDefinition = {
     alsoIn: [],
     related: ["hmac", "password-generator"],
     tags: ["totp", "2fa", "otp"],
-    title: {
-        fa: "ساخت کد ورود دومرحله‌ای (TOTP)",
-        en: "TOTP Code Generator",
+    title: { fa: "ساخت کد ورود دومرحله‌ای (TOTP)", en: "TOTP Code Generator" },
+    seoTitle: {
+        fa: "ساخت کد ورود دومرحله‌ای (TOTP) و 2FA",
+        en: "TOTP Code Generator for Two-Factor Login (2FA)",
     },
     description: {
-        fa: "از کلید پنهان یا پیوند otpauth یک حساب، کد شش‌رقمی ورود دومرحله‌ای (مانند Google Authenticator) را بسازید. همه کار در مرورگر شما انجام می‌شود.",
-        en: "Make the six-digit two-factor login code (as in Google Authenticator) from the secret key or otpauth link of an account. Everything runs in your browser.",
+        fa: "ساخت کد دو مرحله ای شش‌رقمی (TOTP) مانند Google Authenticator، از کلید پنهان یا پیوند otpauth یک حساب.",
+        en: "Make the six-digit two-factor login code (as in Google Authenticator) from the secret key or otpauth link of an account.",
     },
     keywords: {
         fa: ["کد دو مرحله ای", "totp", "گوگل آتنتیکیتور", "رمز یکبار مصرف", "2fa"],
@@ -58,8 +59,8 @@ export const totpMeta: ToolDefinition = {
             {
                 question: { fa: "این ابزار ایمن است؟", en: "Is this tool safe?" },
                 answer: {
-                    fa: "کلید از مرورگر شما بیرون نمی‌رود و جایی ذخیره نمی‌شود. با این همه، کلید ورود دومرحله‌ای را تنها برای آزمایش یا بازیابی به کار ببرید و آن را با کسی هم‌رسانی نکنید.",
-                    en: "The key does not leave your browser and is not stored. Still, use a two-factor key here only for testing or recovery, and never share it.",
+                    fa: "کلید ورود دومرحله‌ای را تنها برای آزمایش یا بازیابی به کار ببرید و آن را با کسی هم‌رسانی نکنید.",
+                    en: "Use a two-factor key here only for testing or recovery, and never share it.",
                 },
             },
             {

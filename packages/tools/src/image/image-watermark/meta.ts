@@ -9,9 +9,13 @@ export const imageWatermarkMeta: ToolDefinition = {
     related: ["image-resize", "image-blur"],
     tags: ["image", "watermark", "logo"],
     title: { fa: "واترمارک روی عکس", en: "Image Watermark Tool" },
+    seoTitle: {
+        fa: "واترمارک روی عکس با متن فارسی یا لوگو",
+        en: "Image Watermark Tool for Text and Logos",
+    },
     description: {
-        fa: "متن فارسی یا انگلیسی یا لوگوی خود را به‌عنوان واترمارک روی عکس بگذارید، در یک گوشه یا تکرارشده در همه تصویر. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Put Persian or English text, or your logo, on a photo as a watermark, in one corner or repeated over the whole picture. The photo never leaves your device.",
+        fa: "متن فارسی یا انگلیسی یا لوگوی خود را به‌عنوان واترمارک روی عکس بگذارید، در یک گوشه یا تکرارشده در همه تصویر.",
+        en: "Put Persian or English text, or your logo, on a photo as a watermark, in one corner or repeated over the whole picture.",
     },
     keywords: {
         fa: [

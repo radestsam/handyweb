@@ -6,7 +6,9 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 
 ### Added
 
+- Each tool page links to the GitHub bug form, with the tool, the page, and the release filled in.
 - Security headers from one source (`apps/web/security-headers.json`): an enforced Content-Security-Policy with script and style hashes, HSTS, `Permissions-Policy`, `Referrer-Policy: no-referrer`, and cache rules. The build writes a Cloudflare `_headers` file, nginx snippets, and a CSP meta tag in each page.
+- Tool pages contain the tool UI in their HTML, so the page does not move when the tool starts.
 - Static site with Persian (RTL) and English (LTR) pages, light and dark themes, and self-hosted Noto Sans and Estedad fonts.
 - Metric-matched system font fallbacks, so the page does not move when the web fonts load.
 - Tool registry, runtime, worker protocol, and file helpers.

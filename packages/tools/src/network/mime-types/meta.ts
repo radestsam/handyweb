@@ -9,6 +9,10 @@ export const mimeTypesMeta: ToolDefinition = {
     related: ["file-signature", "http-header-parser"],
     tags: ["mime", "content-type", "extension", "reference"],
     title: { fa: "جستجوی نوع MIME و پسوند فایل", en: "MIME Type and File Extension Lookup" },
+    seoTitle: {
+        fa: "جستجوی نوع MIME و پسوند فایل (Content-Type)",
+        en: "MIME Type and File Extension Lookup",
+    },
     description: {
         fa: "نوع MIME (Content-Type) یک پسوند یا نام فایل را پیدا کنید، یا پسوندهای یک نوع MIME را ببینید؛ برای وب، ایمیل و تنظیم سرور.",
         en: "Find the MIME type (Content-Type) of an extension or a file name, or the extensions of a MIME type; for the web, email, and server settings.",

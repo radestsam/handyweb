@@ -14,6 +14,10 @@ export const colorContrastMeta: ToolDefinition = {
     related: ["color-converter", "image-color-picker"],
     tags: ["color", "contrast", "wcag", "accessibility"],
     title: { fa: "بررسی کنتراست رنگ (WCAG)", en: "Color Contrast Checker (WCAG)" },
+    seoTitle: {
+        fa: "بررسی کنتراست رنگ (WCAG) متن و پس‌زمینه",
+        en: "Color Contrast Checker (WCAG) for Text and UI",
+    },
     description: {
         fa: "نسبت کنتراست رنگ متن و پس‌زمینه را حساب کنید، قبولی در AA و AAA استاندارد WCAG را ببینید و نزدیک‌ترین رنگ خوانا را بگیرید.",
         en: "Work out the contrast ratio of a text and a background color, see whether it passes WCAG AA and AAA, and get the closest readable color.",

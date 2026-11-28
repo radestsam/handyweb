@@ -9,8 +9,12 @@ export const jsonFormatterMeta: ToolDefinition = {
     related: ["base64", "xml-formatter"],
     tags: ["json", "format", "validate"],
     title: { fa: "قالب‌بندی و اعتبارسنجی JSON", en: "JSON Formatter and Validator" },
+    seoTitle: {
+        fa: "قالب‌بندی و اعتبارسنجی JSON (JSON Formatter)",
+        en: "JSON Formatter and Validator Online",
+    },
     description: {
-        fa: "JSON را بیارایید و خوانا کنید، فشرده کنید یا نادرستی‌های آن را با شماره خط و ستون پیدا کنید. همه کار در مرورگر خودتان انجام می‌شود.",
+        fa: "JSON را بیارایید و خوانا کنید، فشرده کنید یا نادرستی‌های آن را با شماره خط و ستون پیدا کنید.",
         en: "Pretty-print or minify JSON, or find its errors with the line and column.",
     },
     keywords: {
@@ -60,16 +64,6 @@ export const jsonFormatterMeta: ToolDefinition = {
             },
         ],
         faq: [
-            {
-                question: {
-                    fa: "JSON من به سرور فرستاده می‌شود؟",
-                    en: "Is my JSON sent to a server?",
-                },
-                answer: {
-                    fa: "نه. همه کار در مرورگر خودتان انجام می‌شود، حتی برای فایل‌های بزرگ.",
-                    en: "No. All the work happens in your browser, even for large inputs.",
-                },
-            },
             {
                 question: {
                     fa: "چرا ویرگول پایانی نادرست است؟",

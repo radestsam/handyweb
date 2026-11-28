@@ -22,10 +22,6 @@ export const strings = {
         fa: "این مقدار هگز یا Base64 با درازای این الگوریتم نیست.",
         en: "This value is not hex or Base64 of the right length for this algorithm.",
     },
-    keyNote: {
-        fa: "کلید تنها در این صفحه به کار می‌رود و جایی نگه داشته یا فرستاده نمی‌شود.",
-        en: "The key is used on this page only. It is not stored or sent anywhere.",
-    },
 } as const satisfies Record<string, LocalizedText>;
 
 export function macLabel(algorithm: string): LocalizedText {

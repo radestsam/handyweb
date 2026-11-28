@@ -13,12 +13,13 @@ export const textCleanerMeta: ToolDefinition = {
     alsoIn: ["persian"],
     related: ["persian-normalizer", "remove-duplicate-lines"],
     tags: ["text", "clean", "whitespace", "invisible"],
-    title: {
-        fa: "پاک‌سازی متن و حذف فاصله‌های اضافه",
-        en: "Text Cleaner",
+    title: { fa: "پاک‌سازی متن و حذف فاصله‌های اضافه", en: "Text Cleaner" },
+    seoTitle: {
+        fa: "پاک‌سازی متن و حذف فاصله‌های اضافه و خط خالی",
+        en: "Text Cleaner: Remove Extra Spaces and Lines",
     },
     description: {
-        fa: "اسپیس‌های زیادی، خط‌های خالی و نویسه‌های نامرئی متن کپی‌شده را پاک کنید. نیم‌فاصله‌های فارسی دست‌نخورده می‌مانند.",
+        fa: "حذف فاصله اضافه، خط‌های خالی و کاراکترهای نامرئی از متن کپی‌شده. نیم‌فاصله‌های فارسی دست‌نخورده می‌مانند.",
         en: "Remove extra spaces, empty lines, and invisible characters from copied text. Persian ZWNJ characters always stay.",
     },
     keywords: {

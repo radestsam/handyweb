@@ -9,6 +9,9 @@ import { marked } from "marked";
  */
 
 export function markdownToHtml(markdown: string): string {
+    // DOMPurify needs a DOM. The page is built on the server, where there is
+    // none, so the result is empty there. Never return HTML that is not clean.
+    if (!DOMPurify.isSupported) return "";
     const raw = marked.parse(markdown, { async: false, gfm: true, breaks: false }) as string;
     return DOMPurify.sanitize(raw, { USE_PROFILES: { html: true } });
 }

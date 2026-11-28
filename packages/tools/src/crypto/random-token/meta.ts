@@ -8,9 +8,10 @@ export const randomTokenMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["password-generator", "hmac", "uuid-generator"],
     tags: ["random", "token", "bytes", "secret"],
-    title: {
-        fa: "ساخت توکن و بایت تصادفی",
-        en: "Random Token and Bytes Generator",
+    title: { fa: "ساخت توکن و کلید API تصادفی", en: "Random Token and API Key Generator" },
+    seoTitle: {
+        fa: "ساخت توکن و کلید API تصادفی و ایمن",
+        en: "Random Token and API Key Generator (Hex, Base64)",
     },
     description: {
         fa: "توکن، کلید API یا بایت‌های تصادفی ایمن بسازید، به شکل هگز، Base64 یا Base64url. تصادف از crypto.getRandomValues مرورگر می‌آید.",

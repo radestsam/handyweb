@@ -8,6 +8,7 @@ const category = (id: string, order = 1): ToolCategory => ({
     slug: id,
     order,
     title: { fa: "دسته", en: "Category" },
+    seoTitle: { fa: "دسته ابزارها", en: "Category Tools" },
     description: { fa: "توضیح", en: "Description" },
 });
 
@@ -20,6 +21,7 @@ const tool = (id: string, extra: Partial<ToolDefinition> = {}): ToolDefinition =
     related: [],
     tags: [],
     title: { fa: "ابزار", en: "Tool" },
+    seoTitle: { fa: "ابزار آنلاین", en: "Tool Online" },
     description: { fa: "توضیح", en: "Description" },
     keywords: { fa: ["ابزار"], en: ["tool"] },
     presets: [],
@@ -54,6 +56,26 @@ describe("validateRegistry", () => {
         expect(validateRegistry({ categories, tools, loaders: { a: noop } })).toContain(
             'Tool "a" title: the English text is empty.',
         );
+    });
+
+    it("rejects a seoTitle that does not start with the title or is too long", () => {
+        const tools = [
+            tool("a", { seoTitle: { fa: "ابزار دیگر", en: "Other Tool" } }),
+            tool("b", { seoTitle: { fa: "ابزار", en: `Tool ${"x".repeat(50)}` } }),
+        ];
+        const errors = validateRegistry({ categories, tools, loaders: { a: noop, b: noop } });
+        expect(errors).toEqual([
+            'Tool "a": the en seoTitle does not start with the title.',
+            'Tool "b": the en seoTitle is longer than 49 characters.',
+        ]);
+    });
+
+    it("rejects an external link that is not https", () => {
+        const text = { fa: "محصول دیگر", en: "Another product" };
+        const tools = [tool("a", { externalLink: { href: "http://x.example", label: "x", text } })];
+        expect(validateRegistry({ categories, tools, loaders: { a: noop } })).toEqual([
+            'Tool "a": the externalLink href is not an https URL.',
+        ]);
     });
 
     it("rejects unknown categories and related tools", () => {

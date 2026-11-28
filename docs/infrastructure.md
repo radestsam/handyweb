@@ -4,13 +4,13 @@ This document describes the system as the code defines it. Update it in the same
 
 ## Build
 
-| Part         | Where                                         | What it does                                                                                                                                          |
-| ------------ | --------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Workspaces   | `package.json`                                | Yarn 1 workspaces: `apps/web`, `packages/core`, `packages/tools`                                                                                      |
-| Site         | `apps/web`                                    | Astro, static output only. `yarn build` writes `apps/web/dist/`                                                                                       |
-| Islands      | `apps/web/src/components/tool/ToolIsland.tsx` | The only React island. Rendered on the client only. Loads one tool chunk through `packages/tools/src/loaders.ts`                                      |
-| Styles       | `apps/web/src/styles/`                        | Tailwind CSS 4, color tokens, self-hosted fonts. No CSS or script is inlined into HTML, except the hashed theme script and the Astro island bootstrap |
-| Output check | `scripts/ci/build.sh`                         | Fails when the build writes a server entry point                                                                                                      |
+| Part         | Where                                         | What it does                                                                                                                                                                                                                                                                                        |
+| ------------ | --------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Workspaces   | `package.json`                                | Yarn 1 workspaces: `apps/web`, `packages/core`, `packages/tools`                                                                                                                                                                                                                                    |
+| Site         | `apps/web`                                    | Astro, static output only. `yarn build` writes `apps/web/dist/`                                                                                                                                                                                                                                     |
+| Islands      | `apps/web/src/components/tool/ToolIsland.tsx` | The only React island. The tool UI is rendered into the HTML at build time (`client:load`), and React takes it over when the tool chunk (from `packages/tools/src/loaders.ts`) arrives, so the page does not move. Random values are drawn in the browser only (`useClient` in `@handyweb/core/ui`) |
+| Styles       | `apps/web/src/styles/`                        | Tailwind CSS 4, color tokens, self-hosted fonts. No CSS or script is inlined into HTML, except the hashed theme script and the Astro island bootstrap                                                                                                                                               |
+| Output check | `scripts/ci/build.sh`                         | Fails when the build writes a server entry point                                                                                                                                                                                                                                                    |
 
 ## Routes
 

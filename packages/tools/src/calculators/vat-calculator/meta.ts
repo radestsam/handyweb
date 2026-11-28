@@ -9,8 +9,12 @@ export const vatCalculatorMeta: ToolDefinition = {
     related: ["discount-calculator", "percentage-calculator"],
     tags: ["vat", "tax", "invoice"],
     title: { fa: "محاسبه مالیات بر ارزش افزوده", en: "VAT Calculator" },
+    seoTitle: {
+        fa: "محاسبه مالیات بر ارزش افزوده فاکتور",
+        en: "VAT Calculator: Add or Remove VAT from a Price",
+    },
     description: {
-        fa: "مالیات بر ارزش افزوده را با نرخی که می‌نویسید به مبلغ بیفزایید یا آن را از مبلغ با مالیات جدا کنید؛ مناسب برای فاکتور و پیش‌فاکتور.",
+        fa: "محاسبه مالیات بر ارزش افزوده با نرخی که می‌نویسید: آن را به مبلغ بیفزایید یا از مبلغ با مالیات جدا کنید؛ مناسب برای فاکتور و پیش‌فاکتور.",
         en: "Add VAT at the rate you enter to an amount, or take it out of an amount that includes VAT; useful for invoices and quotes.",
     },
     keywords: {

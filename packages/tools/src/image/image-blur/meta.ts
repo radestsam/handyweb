@@ -8,10 +8,14 @@ export const imageBlurMeta: ToolDefinition = {
     alsoIn: [],
     related: ["image-pixelate", "image-resize", "image-metadata"],
     tags: ["image", "blur", "privacy"],
-    title: { fa: "محو کردن تصویر", en: "Image Blur Tool" },
+    title: { fa: "محو کردن عکس", en: "Image Blur Tool" },
+    seoTitle: {
+        fa: "محو کردن عکس و بلر کردن چهره یا پلاک",
+        en: "Image Blur Tool for Faces and Number Plates",
+    },
     description: {
-        fa: "همه عکس یا تنها یک ناحیه، مانند چهره یا پلاک، را محو (بلر) کنید و دانلود کنید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Blur a whole picture or only one area, such as a face or a number plate, and download it. The picture never leaves your device.",
+        fa: "محو کردن عکس (بلر کردن) یا تنها یک ناحیه از آن، مانند چهره یا پلاک، و دانلود نتیجه.",
+        en: "Blur a whole picture or only one area, such as a face or a number plate, and download it.",
     },
     keywords: {
         fa: ["محو کردن عکس", "بلر کردن عکس", "مات کردن عکس", "محو کردن چهره"],

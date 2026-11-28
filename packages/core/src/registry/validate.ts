@@ -2,6 +2,9 @@ import type { ToolCategory, ToolDefinition, ToolLoader } from "../types/tool";
 
 const SLUG = /^[a-z0-9]+(?:-[a-z0-9]+)*$/;
 
+/** The page title adds " | HandyWeb" (11 characters). The total stays at 60 or fewer. */
+export const SEO_TITLE_MAX = 49;
+
 export interface Registry {
     categories: readonly ToolCategory[];
     tools: readonly ToolDefinition[];
@@ -28,6 +31,7 @@ export function validateRegistry({ categories, tools, loaders }: Registry): stri
         categoryIds.add(category.id);
         categorySlugs.add(category.slug);
         checkText(`Category "${category.id}" title`, category.title, fail);
+        checkSeoTitle(`Category "${category.id}"`, category.title, category.seoTitle, fail);
         checkText(`Category "${category.id}" description`, category.description, fail);
     }
 
@@ -47,8 +51,14 @@ export function validateRegistry({ categories, tools, loaders }: Registry): stri
         }
 
         checkText(`${name} title`, tool.title, fail);
+        checkSeoTitle(name, tool.title, tool.seoTitle, fail);
         checkText(`${name} description`, tool.description, fail);
         if (tool.limitations) checkText(`${name} limitations`, tool.limitations, fail);
+        if (tool.externalLink) {
+            checkText(`${name} externalLink`, tool.externalLink.text, fail);
+            if (!tool.externalLink.href.startsWith("https://"))
+                fail(`${name}: the externalLink href is not an https URL.`);
+        }
         tool.guide?.steps.forEach((step, i) => checkText(`${name} step ${i + 1}`, step, fail));
         tool.guide?.faq.forEach((item, i) => {
             checkText(`${name} question ${i + 1}`, item.question, fail);
@@ -105,4 +115,21 @@ export function validateRegistry({ categories, tools, loaders }: Registry): stri
 function checkText(label: string, text: { fa: string; en: string }, fail: (m: string) => void) {
     if (text.fa.trim() === "") fail(`${label}: the Persian text is empty.`);
     if (text.en.trim() === "") fail(`${label}: the English text is empty.`);
+}
+
+/** The seoTitle starts with the title (the h1), and the page title stays at 60 characters or fewer. */
+function checkSeoTitle(
+    name: string,
+    title: { fa: string; en: string },
+    seoTitle: { fa: string; en: string },
+    fail: (m: string) => void,
+) {
+    checkText(`${name} seoTitle`, seoTitle, fail);
+    for (const locale of ["fa", "en"] as const) {
+        const seo = seoTitle[locale];
+        if (!seo.startsWith(title[locale]))
+            fail(`${name}: the ${locale} seoTitle does not start with the title.`);
+        if (seo.length > SEO_TITLE_MAX)
+            fail(`${name}: the ${locale} seoTitle is longer than ${SEO_TITLE_MAX} characters.`);
+    }
 }

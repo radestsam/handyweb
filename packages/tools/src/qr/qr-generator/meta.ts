@@ -8,9 +8,10 @@ export const qrGeneratorMeta: ToolDefinition = {
     alsoIn: [],
     related: ["url-encoding"],
     tags: ["qr", "qr code"],
-    title: {
-        fa: "ساخت کد QR",
-        en: "QR Code Generator",
+    title: { fa: "ساخت کد QR", en: "QR Code Generator" },
+    seoTitle: {
+        fa: "ساخت کد QR برای لینک، متن و وای‌فای",
+        en: "QR Code Generator for Links and Text (PNG, SVG)",
     },
     description: {
         fa: "برای یک نشانی یا هر نوشته، حتی فارسی، کد QR بسازید و آن را به شکل PNG یا SVG دانلود کنید. رنگ‌ها را برگزینید و هشدار خوانایی بگیرید.",
@@ -71,6 +72,14 @@ export const qrGeneratorMeta: ToolDefinition = {
     featured: true,
     inputKinds: ["text"],
     outputKinds: ["image"],
+    externalLink: {
+        href: "https://pvnd.io",
+        label: "pvnd.io",
+        text: {
+            fa: "کد QR پویا با آمار اسکن می‌خواهید؟ این محصول را ببینید که ساخته سازنده HandyWeb است:",
+            en: "Need a dynamic QR code with scan statistics? Try this product by the creator of HandyWeb:",
+        },
+    },
     limits: { maxInputBytes: 4_000 },
     limitations: {
         fa: "یک کد QR تا حدود ۲٬۹۰۰ بایت را با سطح L در خود جا می‌دهد. هر حرف فارسی دو بایت است. گونه‌های ویژه مانند Wi-Fi و کارت ویزیت هنوز نیامده‌اند.",

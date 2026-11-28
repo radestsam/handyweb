@@ -9,9 +9,13 @@ export const pdfWatermarkMeta: ToolDefinition = {
     related: ["image-watermark", "pdf-metadata", "pdf-merge"],
     tags: ["pdf", "watermark", "stamp"],
     title: { fa: "افزودن واترمارک به PDF", en: "PDF Watermark" },
+    seoTitle: {
+        fa: "افزودن واترمارک به PDF با متن فارسی",
+        en: "PDF Watermark: Add Text to Every Page",
+    },
     description: {
-        fa: "یک متن مانند «محرمانه» یا نام خود را به شکل واترمارک روی همه برگه‌های PDF بگذارید، با رنگ، زاویه، اندازه و پررنگی دلخواه. فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "Put a text such as CONFIDENTIAL or your name on every page of a PDF, with the color, angle, size, and opacity you choose. The file never leaves your device.",
+        fa: "افزودن واترمارک به PDF: متنی مانند «محرمانه» یا نام خود را روی همه صفحه‌ها بگذارید، با رنگ، زاویه، اندازه و پررنگی دلخواه.",
+        en: "Put a text such as CONFIDENTIAL or your name on every page of a PDF, with the color, angle, size, and opacity you choose.",
     },
     keywords: {
         fa: [

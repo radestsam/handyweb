@@ -33,6 +33,8 @@ export interface ToolCategory {
     id: string;
     slug: string;
     title: LocalizedText;
+    /** The page title in search results, without the site name. It starts with `title`. */
+    seoTitle: LocalizedText;
     description: LocalizedText;
     /** Sort order on the home page and the directory. */
     order: number;
@@ -56,7 +58,15 @@ export interface ToolDefinition {
     /** Related tool ids. */
     related: string[];
     tags: string[];
+    /** The short name: the h1, the tool lists, and the breadcrumbs. */
     title: LocalizedText;
+    /**
+     * The page title in search results, without the site name. It starts
+     * with `title`, so the h1 and the page title agree. Use the words that
+     * people search for. Keep it at 49 characters or fewer, because the site
+     * name adds 11.
+     */
+    seoTitle: LocalizedText;
     description: LocalizedText;
     keywords: { fa: string[]; en: string[] };
     presets: ToolPreset[];
@@ -77,6 +87,12 @@ export interface ToolDefinition {
         steps: LocalizedText[];
         faq: Array<{ question: LocalizedText; answer: LocalizedText }>;
     };
+    /**
+     * A link to another product of the same creator, shown under the tool.
+     * `text` comes first, then the link with `label`. Only a link: the page
+     * loads nothing from `href`.
+     */
+    externalLink?: { href: string; label: string; text: LocalizedText };
     /** A typical text input. The shared browser tests run the tool with it. */
     example?: string;
 }

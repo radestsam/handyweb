@@ -8,7 +8,11 @@ export const cssUnitsMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["unit-converter", "color-converter"],
     tags: ["css", "px", "rem", "em"],
-    title: { fa: "تبدیل یکاهای CSS (px به rem)", en: "CSS Unit Converter (px to rem)" },
+    title: { fa: "تبدیل واحدهای CSS", en: "CSS Unit Converter" },
+    seoTitle: {
+        fa: "تبدیل واحدهای CSS (px به rem، em و vw)",
+        en: "CSS Unit Converter (px to rem, em, and vw)",
+    },
     description: {
         fa: "px، rem، em، ٪، vw، vh، pt، cm و دیگر یکاهای CSS را به هم تبدیل کنید، با اندازه فونت ریشه و اندازه نمایشگر دلخواه.",
         en: "Convert px, rem, em, %, vw, vh, pt, cm, and other CSS units, with your own root font size and viewport size.",

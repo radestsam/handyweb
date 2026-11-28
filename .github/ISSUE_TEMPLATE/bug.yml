@@ -9,6 +9,18 @@ body:
       description: The URL, for example https://handyweb.ir/fa/tools/base64/
     validations:
       required: true
+  - type: input
+    id: tool
+    attributes:
+      label: Tool
+      description: The tool name, its id, and its privacy mode. The Report a Problem link on a tool page fills this in.
+      placeholder: Base64 Encoder & Decoder (base64, local)
+  - type: input
+    id: version
+    attributes:
+      label: Release
+      description: The release that the site runs. The Report a Problem link on a tool page fills this in.
+      placeholder: v0.1.0
   - type: textarea
     id: steps
     attributes:

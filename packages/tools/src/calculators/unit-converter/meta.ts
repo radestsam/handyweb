@@ -9,8 +9,12 @@ export const unitConverterMeta: ToolDefinition = {
     related: ["number-base"],
     tags: ["units", "convert", "length", "weight"],
     title: { fa: "تبدیل واحد", en: "Unit Converter" },
+    seoTitle: {
+        fa: "تبدیل واحد طول، وزن، دما و واحدهای ایرانی",
+        en: "Unit Converter for Length, Weight, and More",
+    },
     description: {
-        fa: "طول، وزن، دما، مساحت، حجم، سرعت، حجم داده، زمان، فشار و انرژی را تبدیل کنید، با یکاهای ایرانی مانند مثقال، سیر، من، ذرع و جریب. همه نتیجه‌ها یک‌جا دیده می‌شوند.",
+        fa: "تبدیل واحد طول، وزن، دما، مساحت، حجم، سرعت، حجم داده، زمان، فشار و انرژی، با واحدهای ایرانی مانند مثقال، سیر، من، ذرع و جریب. همه نتیجه‌ها یک‌جا دیده می‌شوند.",
         en: "Convert length, weight, temperature, area, volume, speed, data, time, pressure, and energy, with Iranian units such as mesghal, sir, and jerib.",
     },
     keywords: {

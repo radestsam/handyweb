@@ -2,7 +2,10 @@ import {
     Component,
     lazy,
     Suspense,
-    useMemo,
+    useCallback,
+    useEffect,
+    useState,
+    useSyncExternalStore,
     type ComponentType,
     type LazyExoticComponent,
     type ReactNode,
@@ -31,16 +34,23 @@ const LAZY_TOOLS: Readonly<Record<string, LazyTool>> = Object.fromEntries(
     ]),
 );
 
+const subscribe = () => () => undefined;
+const readPresetId = () => new URLSearchParams(window.location.search).get("preset");
+
 /**
  * The only island on a tool page. It loads the UI chunk of one tool on demand,
  * so a page never loads the code of another tool.
  */
 export default function ToolIsland({ toolId, locale, presets }: Props) {
-    const presetOptions = useMemo(() => {
-        if (typeof window === "undefined") return undefined;
-        const id = new URLSearchParams(window.location.search).get("preset");
-        return presets.find((preset) => preset.id === id)?.options;
-    }, [presets]);
+    // The page is built on the server without a query string, so the first
+    // render has no preset, the same as the HTML. A ?preset= in the URL is read
+    // after hydration, and the tool starts again with it (the key changes).
+    const presetId = useSyncExternalStore(subscribe, readPresetId, () => null);
+    const preset = presets.find((item) => item.id === presetId);
+    // The tool HTML is on the page before its code runs. Until React has taken
+    // it over, the tool is inert, so that text typed into it is not lost.
+    const [ready, setReady] = useState(false);
+    const markReady = useCallback(() => setReady(true), []);
 
     const Tool = LAZY_TOOLS[toolId];
     if (!Tool)
@@ -48,17 +58,26 @@ export default function ToolIsland({ toolId, locale, presets }: Props) {
 
     return (
         <ToolErrorBoundary locale={locale}>
-            <Suspense
-                fallback={
-                    <p className="text-sm text-muted" role="status">
-                        {UI_STRINGS.working[locale]}
-                    </p>
-                }
-            >
-                <Tool locale={locale} presetOptions={presetOptions} />
-            </Suspense>
+            <div inert={!ready} aria-busy={!ready} data-tool-ready={ready ? "" : undefined}>
+                <Suspense
+                    fallback={
+                        <p className="text-sm text-muted" role="status">
+                            {UI_STRINGS.working[locale]}
+                        </p>
+                    }
+                >
+                    <Tool key={preset?.id ?? ""} locale={locale} presetOptions={preset?.options} />
+                    <Ready onReady={markReady} />
+                </Suspense>
+            </div>
         </ToolErrorBoundary>
     );
+}
+
+/** Calls onReady when the tool next to it has been hydrated or rendered. */
+function Ready({ onReady }: { onReady: () => void }) {
+    useEffect(onReady, [onReady]);
+    return null;
 }
 
 /** Keeps a crash inside one tool from breaking the page. */

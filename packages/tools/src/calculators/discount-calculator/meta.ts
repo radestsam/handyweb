@@ -9,6 +9,10 @@ export const discountCalculatorMeta: ToolDefinition = {
     related: ["percentage-calculator", "vat-calculator"],
     tags: ["discount", "price", "calculator"],
     title: { fa: "محاسبه تخفیف", en: "Discount Calculator" },
+    seoTitle: {
+        fa: "محاسبه تخفیف، قیمت بعد از تخفیف و درصد آن",
+        en: "Discount Calculator: Sale Price and Percent Off",
+    },
     description: {
         fa: "قیمت پس از تخفیف، مقدار صرفه‌جویی و تخفیف روی‌همِ دو تخفیف پشت سر هم را حساب کنید، یا درصد تخفیف را از قیمت پیش و پس پیدا کنید.",
         en: "Work out the price after a discount, how much you save, and the total of two discounts in a row, or find the discount percent from the prices before and after.",

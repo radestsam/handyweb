@@ -8,12 +8,13 @@ export const splitJoinMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["remove-duplicate-lines", "sort-lines", "text-repeater"],
     tags: ["text", "split", "join", "lines"],
-    title: {
-        fa: "جدا کردن و به هم پیوستن متن",
-        en: "Text Splitter and Joiner",
+    title: { fa: "جدا کردن و به هم پیوستن متن", en: "Text Splitter and Joiner" },
+    seoTitle: {
+        fa: "جدا کردن و به هم پیوستن متن با کاما",
+        en: "Text Splitter and Joiner for Comma Lists",
     },
     description: {
-        fa: "یک فهرست جداشده با کاما را خط به خط کنید، یا خط‌ها را با کاما، اسپیس یا هر جداکننده دیگری به هم بپیوندید.",
+        fa: "جدا کردن متن با کاما و تبدیل آن به یک مورد در هر خط، یا پیوستن خطوط با کاما، اسپیس یا هر جداکننده دیگر.",
         en: "Turn a comma-separated list into one item per line, or join lines with a comma, a space, or any other delimiter.",
     },
     keywords: {

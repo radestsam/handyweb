@@ -7,6 +7,7 @@ import {
     Pane,
     Segmented,
     type ToolUiProps,
+    useClient,
 } from "@handyweb/core/ui";
 import { alphabetLabels, strings } from "./i18n";
 import {
@@ -44,7 +45,11 @@ export default function RandomToken({ locale, presetOptions }: ToolUiProps) {
         maximumFractionDigits: 0,
     });
 
+    // No token is drawn while the page is built on the server, so the static
+    // HTML never holds one.
+    const client = useClient();
     const result = useMemo((): ToolResult<string> => {
+        if (!client) return { ok: true, value: "" };
         try {
             const make =
                 kind === "token"
@@ -56,7 +61,7 @@ export default function RandomToken({ locale, presetOptions }: ToolUiProps) {
         }
         // `round` is a dependency on purpose: it asks for new random values.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [kind, alphabet, length, byteCount, encoding, count, round]);
+    }, [client, kind, alphabet, length, byteCount, encoding, count, round]);
 
     const bits =
         kind === "token" ? tokenBits(alphabet, Number(length) || 0) : (Number(byteCount) || 0) * 8;

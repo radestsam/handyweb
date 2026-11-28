@@ -8,6 +8,7 @@ import {
     ErrorMessage,
     Segmented,
     type ToolUiProps,
+    useClient,
 } from "@handyweb/core/ui";
 import { setLabels, strengthLabels, strings } from "./i18n";
 import {
@@ -54,7 +55,11 @@ export default function PasswordGenerator({ locale, presetOptions }: ToolUiProps
     const t = (key: keyof typeof strings) => strings[key][locale];
     const number = (n: number) => new Intl.NumberFormat(locale === "fa" ? "fa-IR" : "en").format(n);
 
+    // No password is drawn while the page is built on the server, so the
+    // static HTML never holds one.
+    const client = useClient();
     const result = useMemo((): ToolResult<string> => {
+        if (!client) return { ok: true, value: "" };
         try {
             return {
                 ok: true,
@@ -68,7 +73,7 @@ export default function PasswordGenerator({ locale, presetOptions }: ToolUiProps
         }
         // `round` is a dependency on purpose: it asks for a new random value.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [kind, password, passphrase, round]);
+    }, [client, kind, password, passphrase, round]);
 
     const bits =
         kind === "password" ? passwordBits(password) : passphraseBits(passphrase, EFF_WORDS.length);
@@ -231,7 +236,13 @@ export default function PasswordGenerator({ locale, presetOptions }: ToolUiProps
                         <div className="h-1.5 overflow-hidden rounded-full bg-border">
                             <div
                                 className={cx("h-full rounded-full", STRENGTH_COLORS[level])}
-                                style={{ width: `${Math.min(100, (bits / 128) * 100)}%` }}
+                                // The CSP blocks a style attribute in the static HTML, so
+                                // the width is set after hydration only.
+                                style={
+                                    client
+                                        ? { width: `${Math.min(100, (bits / 128) * 100)}%` }
+                                        : undefined
+                                }
                             />
                         </div>
                     </div>

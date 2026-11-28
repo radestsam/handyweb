@@ -8,9 +8,13 @@ export const imageResolutionMeta: ToolDefinition = {
     alsoIn: ["image"],
     related: ["aspect-ratio", "image-resize"],
     tags: ["dpi", "print", "pixels", "resolution"],
-    title: { fa: "محاسبه رزولوشن و اندازه چاپ", en: "Image Resolution and Print Size Calculator" },
+    title: { fa: "محاسبه رزولوشن و اندازه چاپ", en: "Print Size and DPI Calculator" },
+    seoTitle: {
+        fa: "محاسبه رزولوشن و اندازه چاپ عکس (DPI)",
+        en: "Print Size and DPI Calculator for Photos",
+    },
     description: {
-        fa: "اندازه چاپ یک عکس را از پیکسل و DPI حساب کنید، یا ببینید برای چاپ A4، A5 یا عکس ۱۰×۱۵ با ۳۰۰ DPI چند پیکسل لازم است.",
+        fa: "تبدیل پیکسل به سانتی‌متر و محاسبه DPI: اندازه چاپ عکس را از پیکسل و DPI حساب کنید، یا ببینید برای چاپ A4، A5 یا عکس ۱۰×۱۵ با ۳۰۰ DPI چند پیکسل لازم است.",
         en: "Work out the print size of a photo from its pixels and DPI, or see how many pixels you need to print A4, A5, or a 10×15 photo at 300 DPI.",
     },
     keywords: {

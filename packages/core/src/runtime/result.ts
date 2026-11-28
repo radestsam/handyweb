@@ -51,8 +51,8 @@ const GENERIC: Record<Exclude<ToolErrorCode, "invalid-input">, LocalizedText> = 
         en: "The operation took too long and was stopped.",
     },
     internal: {
-        fa: "کار با شکست روبه‌رو شد. ورودی شما به جایی فرستاده نشد.",
-        en: "An unexpected error occurred. Your input was not sent anywhere.",
+        fa: "کار با شکست روبه‌رو شد.",
+        en: "An unexpected error occurred.",
     },
 };
 

@@ -9,9 +9,13 @@ export const codeReaderMeta: ToolDefinition = {
     related: ["qr-generator", "barcode-generator"],
     tags: ["qr", "barcode", "scanner", "camera"],
     title: { fa: "خواندن QR و بارکد", en: "QR Code and Barcode Reader" },
+    seoTitle: {
+        fa: "خواندن QR و بارکد با دوربین یا از عکس",
+        en: "QR Code and Barcode Reader with Camera or Photo",
+    },
     description: {
-        fa: "کد QR یا بارکد را با دوربین یا از یک عکس بخوانید؛ پیوند، رمز Wi-Fi، شماره و متن را ببینید. تصویر از دستگاه شما بیرون نمی‌رود.",
-        en: "Read a QR code or a barcode with the camera or from a picture, and see the link, Wi-Fi password, number, or text. Nothing leaves your device.",
+        fa: "خواندن QR و بارکد با دوربین یا از یک عکس؛ لینک، رمز Wi-Fi، شماره و متن را ببینید.",
+        en: "Read a QR code or a barcode with the camera or from a picture, and see the link, Wi-Fi password, number, or text.",
     },
     keywords: {
         fa: [
@@ -38,6 +42,14 @@ export const codeReaderMeta: ToolDefinition = {
     featured: false,
     inputKinds: ["image"],
     outputKinds: ["text"],
+    externalLink: {
+        href: "https://pvnd.io",
+        label: "pvnd.io",
+        text: {
+            fa: "کد QR پویا با آمار اسکن می‌خواهید؟ این محصول را ببینید که ساخته سازنده HandyWeb است:",
+            en: "Need a dynamic QR code with scan statistics? Try this product by the creator of HandyWeb:",
+        },
+    },
     limits: { maxInputBytes: 100_000_000 },
     limitations: {
         fa: "بارکد (EAN، Code 128 و دیگران) تنها در مرورگرهایی خوانده می‌شود که بارکدخوان دارند، مانند Chrome، Edge و مرورگرهای اندروید. در Firefox و Safari تنها QR خوانده می‌شود. هر بار یک کد خوانده می‌شود.",
@@ -58,12 +70,12 @@ export const codeReaderMeta: ToolDefinition = {
         faq: [
             {
                 question: {
-                    fa: "تصویر دوربین جایی فرستاده می‌شود؟",
-                    en: "Is the camera picture sent anywhere?",
+                    fa: "دوربین کی خاموش می‌شود؟",
+                    en: "When does the camera turn off?",
                 },
                 answer: {
-                    fa: "نه. فریم‌ها تنها در مرورگر شما خوانده می‌شوند و دوربین پس از پیدا شدن کد یا بستن صفحه خاموش می‌شود.",
-                    en: "No. The frames are read only in your browser, and the camera turns off when a code is found or the page closes.",
+                    fa: "دوربین پس از پیدا شدن کد یا بستن صفحه خاموش می‌شود.",
+                    en: "The camera turns off when a code is found or the page closes.",
                 },
             },
         ],

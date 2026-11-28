@@ -8,12 +8,13 @@ export const xmlFormatterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["json-formatter", "html-entities"],
     tags: ["xml", "format", "validate"],
-    title: {
-        fa: "آراستن و بررسی درستی XML",
-        en: "XML Formatter and Validator",
+    title: { fa: "فرمت و بررسی درستی XML", en: "XML Formatter and Validator" },
+    seoTitle: {
+        fa: "فرمت و بررسی درستی XML (XML Formatter)",
+        en: "XML Formatter and Validator Online",
     },
     description: {
-        fa: "XML را با تورفتگی خوانا بیارایید، فشرده کنید یا درستی ساختار آن را بسنجید. اگر خطایی باشد، شماره خط و ستون آن را می‌بینید.",
+        fa: "بررسی XML و مرتب کردن آن با تورفتگی خوانا، یا فشرده سازی XML. اگر خطایی باشد، شماره خط و ستون آن را می‌بینید.",
         en: "Pretty-print XML with clean indentation, minify it, or check that it is well-formed. An error shows its line and column.",
     },
     keywords: {
@@ -96,8 +97,8 @@ export const xmlFormatterMeta: ToolDefinition = {
                     en: "My XML refers to external files. Is that safe?",
                 },
                 answer: {
-                    fa: "بله. پارسر مرورگر هیچ DTD یا موجودیت بیرونی را بارگیری نمی‌کند و چیزی از دستگاه شما بیرون نمی‌رود.",
-                    en: "Yes. The browser parser loads no external DTD or entity, and nothing leaves your device.",
+                    fa: "بله. پارسر مرورگر هیچ DTD یا موجودیت بیرونی را بارگیری نمی‌کند.",
+                    en: "Yes. The browser parser loads no external DTD or entity.",
                 },
             },
         ],

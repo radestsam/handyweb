@@ -9,8 +9,12 @@ export const httpStatusMeta: ToolDefinition = {
     related: ["http-header-parser", "url-parser"],
     tags: ["http", "status", "reference"],
     title: { fa: "فهرست کدهای وضعیت HTTP", en: "HTTP Status Code Reference" },
+    seoTitle: {
+        fa: "فهرست کدهای وضعیت HTTP (۴۰۴، ۵۰۰، ۳۰۱)",
+        en: "HTTP Status Code Reference: 404, 500, and More",
+    },
     description: {
-        fa: "همه کدهای وضعیت HTTP، از 200 و 301 تا 404 و 503، با نام و توضیح کوتاه به فارسی و انگلیسی؛ با کد یا واژه جستجو کنید.",
+        fa: "همه کدهای وضعیت HTTP، از 200 و 301 تا خطای 404 و 503، با نام و توضیح کوتاه به فارسی و انگلیسی؛ با کد یا کلمه جستجو کنید.",
         en: "Every HTTP status code, from 200 and 301 to 404 and 503, with its name and a short explanation; search by code or word.",
     },
     keywords: {

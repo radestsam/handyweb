@@ -8,9 +8,10 @@ export const markdownEditorMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["html-preview", "html-formatter"],
     tags: ["markdown", "editor", "preview"],
-    title: {
-        fa: "ویرایشگر و پیش‌نمایش Markdown",
-        en: "Markdown Editor and Preview",
+    title: { fa: "ویرایشگر و پیش‌نمایش Markdown", en: "Markdown Editor and Preview" },
+    seoTitle: {
+        fa: "ویرایشگر و پیش‌نمایش Markdown فارسی",
+        en: "Markdown Editor and Preview for RTL Text",
     },
     description: {
         fa: "Markdown بنویسید و همزمان پیش‌نمایش آن را، راست‌به‌چپ یا چپ‌به‌راست، ببینید. HTML پاک‌سازی‌شده را کپی یا به شکل فایل دانلود کنید.",

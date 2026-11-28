@@ -8,9 +8,13 @@ export const ipCalculatorMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["mac-formatter", "url-parser"],
     tags: ["ip", "subnet", "cidr", "network"],
-    title: { fa: "محاسبه زیرشبکه IP (CIDR)", en: "IP Subnet Calculator (CIDR)" },
+    title: { fa: "محاسبه ساب‌نت IP (CIDR)", en: "IP Subnet Calculator (CIDR)" },
+    seoTitle: {
+        fa: "محاسبه ساب‌نت IP (CIDR) برای IPv4 و IPv6",
+        en: "IP Subnet Calculator (CIDR) for IPv4 and IPv6",
+    },
     description: {
-        fa: "نشانی شبکه، Broadcast، ماسک، بازه میزبان‌ها و شمار نشانی‌ها را برای IPv4 و IPv6 حساب کنید و ببینید نشانی خصوصی یا رزرو است.",
+        fa: "محاسبه CIDR و ساب نت: آدرس شبکه، Broadcast، ماسک، بازه میزبان‌ها و شمار آدرس‌ها را برای IPv4 و IPv6 حساب کنید و ببینید آدرس خصوصی یا رزرو است.",
         en: "Work out the network, broadcast, mask, host range, and address count for IPv4 and IPv6, and see whether an address is private or reserved.",
     },
     keywords: {

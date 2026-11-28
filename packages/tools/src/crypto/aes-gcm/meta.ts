@@ -8,13 +8,14 @@ export const aesGcmMeta: ToolDefinition = {
     alsoIn: [],
     related: ["password-generator", "hmac"],
     tags: ["aes", "encrypt", "decrypt"],
-    title: {
-        fa: "رمزنگاری متن با عبارت عبور (AES)",
-        en: "Text Encryption with a Passphrase (AES-GCM)",
+    title: { fa: "رمزنگاری متن با رمز عبور", en: "Text Encryption with a Password" },
+    seoTitle: {
+        fa: "رمزنگاری متن با رمز عبور (AES) و رمزگشایی",
+        en: "Text Encryption with a Password (AES-256-GCM)",
     },
     description: {
-        fa: "یک نوشته را با عبارت عبور به شکل AES-256-GCM رمزنگاری کنید و دوباره رمزگشایی کنید. همه کار با Web Crypto مرورگر انجام می‌شود.",
-        en: "Encrypt text with a passphrase using AES-256-GCM, and decrypt it again. Everything runs with the Web Crypto of your browser.",
+        fa: "یک نوشته را با عبارت عبور به شکل AES-256-GCM رمزنگاری کنید و دوباره رمزگشایی کنید. این ابزار Web Crypto مرورگر را به کار می‌برد.",
+        en: "Encrypt text with a passphrase using AES-256-GCM, and decrypt it again. It uses the Web Crypto API of the browser.",
     },
     keywords: {
         fa: ["رمزنگاری متن", "رمزگذاری متن با رمز", "aes", "رمزگشایی متن"],
@@ -56,16 +57,6 @@ export const aesGcmMeta: ToolDefinition = {
                 answer: {
                     fa: "Base64 از این بایت‌ها: یک بایت نسخه (۱)، ۱۶ بایت salt، ۱۲ بایت IV، سپس متن رمزی و ۱۶ بایت برچسب GCM. کلید با PBKDF2-SHA256، ۶۰۰٬۰۰۰ دور و کلید ۲۵۶ بیتی ساخته می‌شود.",
                     en: "Base64 of these bytes: one version byte (1), a 16-byte salt, a 12-byte IV, then the ciphertext and the 16-byte GCM tag. The key comes from PBKDF2-SHA256 with 600,000 iterations and a 256-bit length.",
-                },
-            },
-            {
-                question: {
-                    fa: "عبارت عبور فرستاده یا ذخیره می‌شود؟",
-                    en: "Is the passphrase sent or stored?",
-                },
-                answer: {
-                    fa: "نه. عبارت عبور و نوشته تنها در این صفحه به کار می‌روند و پس از بستن آن از میان می‌روند.",
-                    en: "No. The passphrase and the text are used only on this page and are gone when you close it.",
                 },
             },
         ],

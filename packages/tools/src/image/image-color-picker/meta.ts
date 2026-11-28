@@ -8,10 +8,14 @@ export const imageColorPickerMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["color-converter", "image-palette"],
     tags: ["image", "color", "picker", "hex"],
-    title: { fa: "گرفتن رنگ از تصویر", en: "Image Color Picker" },
+    title: { fa: "گرفتن رنگ از عکس", en: "Image Color Picker" },
+    seoTitle: {
+        fa: "گرفتن رنگ از عکس و کد رنگ HEX و RGB",
+        en: "Image Color Picker: Get HEX and RGB from a Photo",
+    },
     description: {
-        fa: "روی هر نقطه عکس بزنید و کد رنگ آن را به شکل HEX، RGB، HSL و OKLCH بگیرید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Click any point of a picture and get its color as HEX, RGB, HSL, and OKLCH. The picture never leaves your device.",
+        fa: "گرفتن رنگ از عکس: روی هر نقطه عکس بزنید و کد رنگ آن را به شکل HEX، RGB، HSL و OKLCH بگیرید.",
+        en: "Click any point of a picture and get its color as HEX, RGB, HSL, and OKLCH.",
     },
     keywords: {
         fa: ["کد رنگ عکس", "گرفتن رنگ از عکس", "پیدا کردن کد رنگ", "قطره چکان رنگ"],

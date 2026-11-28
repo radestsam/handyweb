@@ -14,3 +14,4 @@ export * from "./icons";
 export * from "./Pane";
 export * from "./PaneAction";
 export * from "./PasteButton";
+export * from "./useClient";

@@ -15,10 +15,14 @@ export const pdfPagesMeta: ToolDefinition = {
     alsoIn: [],
     related: ["pdf-merge", "pdf-to-images", "images-to-pdf"],
     tags: ["pdf", "split", "rotate", "extract", "reorder"],
-    title: { fa: "ویرایش برگه‌های PDF", en: "PDF Page Organizer" },
+    title: { fa: "جدا کردن و ویرایش صفحات PDF", en: "PDF Page Organizer" },
+    seoTitle: {
+        fa: "جدا کردن و ویرایش صفحات PDF، حذف و چرخش",
+        en: "PDF Page Organizer: Split, Rotate, and Delete",
+    },
     description: {
-        fa: "برگه‌های PDF را ببینید، بچرخانید، جابه‌جا کنید، بردارید، جدا کنید یا هر برگه را فایلی جداگانه کنید. فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "See the pages of a PDF, then turn, reorder, remove, extract, or split them into single files. The file never leaves your device.",
+        fa: "جدا کردن صفحات PDF، چرخاندن، جابه‌جا کردن و حذف صفحه، یا تبدیل هر صفحه به یک فایل جداگانه.",
+        en: "See the pages of a PDF, then turn, reorder, remove, extract, or split them into single files.",
     },
     keywords: {
         fa: [

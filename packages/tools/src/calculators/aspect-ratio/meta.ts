@@ -9,6 +9,10 @@ export const aspectRatioMeta: ToolDefinition = {
     related: ["image-resize", "image-crop"],
     tags: ["ratio", "resolution", "video"],
     title: { fa: "محاسبه نسبت تصویر", en: "Aspect Ratio Calculator" },
+    seoTitle: {
+        fa: "محاسبه نسبت تصویر و ابعاد برای عکس و ویدیو",
+        en: "Aspect Ratio Calculator for Photos and Video",
+    },
     description: {
         fa: "نسبت تصویر را از پهنا و بلندا پیدا کنید (برای نمونه ۱۹۲۰×۱۰۸۰ برابر ۱۶:۹)، یا ضلع دیگر را برای یک نسبت مانند ۱۶:۹، ۴:۵ یا ۹:۱۶ حساب کنید.",
         en: "Find the aspect ratio from a width and height (1920×1080 is 16:9), or work out the other side for a ratio such as 16:9, 4:5, or 9:16.",

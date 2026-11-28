@@ -8,6 +8,7 @@ import {
     Pane,
     Segmented,
     type ToolUiProps,
+    useClient,
 } from "@handyweb/core/ui";
 import { strings } from "./i18n";
 import { generateLorem, MAX_COUNT, type Language, type Unit } from "./logic";
@@ -24,7 +25,11 @@ export default function LoremIpsum({ locale, presetOptions }: ToolUiProps) {
     const countId = useId();
     const t = (key: keyof typeof strings) => strings[key][locale];
 
+    // The text is random, so it is drawn in the browser only. The HTML of the
+    // server and the first render in the browser are the same.
+    const client = useClient();
     const result = useMemo((): ToolResult<string> => {
+        if (!client) return { ok: true, value: "" };
         try {
             return {
                 ok: true,
@@ -35,7 +40,7 @@ export default function LoremIpsum({ locale, presetOptions }: ToolUiProps) {
         }
         // `round` is a dependency on purpose: it asks for new text.
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [language, unit, count, classicStart, round]);
+    }, [client, language, unit, count, classicStart, round]);
     const output = result.ok ? result.value : "";
 
     return (
