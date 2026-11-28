@@ -1,0 +1,35 @@
+import type { LocalizedText } from "@handyweb/core";
+
+export const strings = {
+    pages: { fa: "برگه", en: "pages" },
+    another: { fa: "PDF دیگر", en: "Another PDF" },
+    text: { fa: "متن واترمارک", en: "Watermark text" },
+    defaultText: { fa: "محرمانه", en: "CONFIDENTIAL" },
+    color: { fa: "رنگ", en: "Color" },
+    gray: { fa: "خاکستری", en: "Gray" },
+    red: { fa: "قرمز", en: "Red" },
+    blue: { fa: "آبی", en: "Blue" },
+    layout: { fa: "چینش", en: "Layout" },
+    center: { fa: "یکی در میانه", en: "One in the center" },
+    tiled: { fa: "تکرار در سراسر برگه", en: "Repeated across the page" },
+    angle: { fa: "زاویه", en: "Angle" },
+    diagonal: { fa: "مورب", en: "Diagonal" },
+    straight: { fa: "افقی", en: "Straight" },
+    size: { fa: "اندازه", en: "Size" },
+    small: { fa: "کوچک", en: "Small" },
+    medium: { fa: "میانه", en: "Medium" },
+    large: { fa: "بزرگ", en: "Large" },
+    opacity: { fa: "پررنگی", en: "Opacity" },
+    apply: { fa: "افزودن واترمارک", en: "Add watermark" },
+    result: { fa: "PDF با واترمارک", en: "Watermarked PDF" },
+    needText: { fa: "متن واترمارک را بنویسید.", en: "Write the watermark text." },
+    tooLarge: {
+        fa: "این فایل از اندازه مجاز (۱۰۰ مگابایت) بزرگ‌تر است.",
+        en: "This file is larger than the limit (100 MB).",
+    },
+    reading: { fa: "در حال خواندن…", en: "Reading…" },
+    note: {
+        fa: "واترمارک روی برگه‌ها گذاشته می‌شود و با یک ویرایشگر PDF پاک‌شدنی است. آن را برای نشان دادن مالکیت یا وضعیت سند به کار ببرید، نه برای ایمنی.",
+        en: "The watermark goes on top of the pages, and a PDF editor can remove it. Use it to mark ownership or status, not for security.",
+    },
+} as const satisfies Record<string, LocalizedText>;

@@ -82,6 +82,7 @@ import { imagesToPdfMeta } from "./pdf/images-to-pdf/meta";
 import { pdfToImagesMeta } from "./pdf/pdf-to-images/meta";
 import { pdfMetadataMeta } from "./pdf/pdf-metadata/meta";
 import { pdfTextMeta } from "./pdf/pdf-text/meta";
+import { pdfWatermarkMeta } from "./pdf/pdf-watermark/meta";
 import { unitConverterMeta } from "./calculators/unit-converter/meta";
 import { percentageCalculatorMeta } from "./calculators/percentage-calculator/meta";
 import { discountCalculatorMeta } from "./calculators/discount-calculator/meta";
@@ -190,6 +191,7 @@ export const catalog: readonly ToolDefinition[] = [
     pdfToImagesMeta,
     pdfMetadataMeta,
     pdfTextMeta,
+    pdfWatermarkMeta,
     unitConverterMeta,
     percentageCalculatorMeta,
     discountCalculatorMeta,

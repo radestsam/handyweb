@@ -1898,3 +1898,46 @@ test.describe("pdf text extractor", () => {
         await expect(page.locator("[data-tool-no-text]")).toContainText("OCR");
     });
 });
+
+test.describe("pdf watermark", () => {
+    test("puts a Persian watermark on every page", async ({ page }) => {
+        const { makePdf } = await import("../support/pdf");
+        const { PDFDocument } = await import("@cantoo/pdf-lib");
+        await page.goto("/fa/tools/pdf-watermark/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "contract.pdf",
+            mimeType: "application/pdf",
+            buffer: await makePdf(3),
+        });
+        await expect(page.locator("[data-tool-text]")).toHaveValue("محرمانه");
+        await page.locator("[data-tool-text]").fill("پیش‌نویس");
+        await page.getByText("تکرار در سراسر برگه", { exact: true }).click();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^\d+$/);
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "دانلود" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("contract-watermarked.pdf");
+        const { readFile } = await import("node:fs/promises");
+        const bytes = await readFile((await file.path()) as string);
+        expect((await PDFDocument.load(bytes)).getPageCount()).toBe(3);
+        const raw = bytes.toString("latin1");
+        // The image is stored once for all pages: one image and its alpha mask.
+        expect(raw.match(/\/Subtype\s*\/Image/g)?.length).toBe(2);
+        expect(raw).toContain("/SMask");
+        expect(raw).toContain("/ca 0.25");
+    });
+
+    test("asks for a text", async ({ page }) => {
+        const { makePdf } = await import("../support/pdf");
+        await page.goto("/en/tools/pdf-watermark/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.pdf",
+            mimeType: "application/pdf",
+            buffer: await makePdf(1),
+        });
+        await page.locator("[data-tool-text]").fill("   ");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.getByRole("alert")).toContainText("Write the watermark text.");
+    });
+});
