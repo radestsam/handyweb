@@ -53,5 +53,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Cron Expression Parser.
 - HTTP Header Parser, with a security header check, and User-Agent Parser.
 - Text to Hex and Text to Binary Converters.
+- File to Base64 and Data URI.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

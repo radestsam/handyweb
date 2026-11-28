@@ -79,6 +79,7 @@ describe("search ranking", () => {
         expect(top("user agent")).toBe("user-agent-parser");
         expect(top("text to hex")).toBe("hex");
         expect(top("text to binary")).toBe("binary");
+        expect(top("image to base64")).toBe("base64-file");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("تبدیل مبنا")).toBe("number-base");
