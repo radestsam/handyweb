@@ -6,7 +6,7 @@ export const passwordGeneratorMeta: ToolDefinition = {
     aliases: ["passphrase-generator", "random-password", "strong-password-generator"],
     category: "crypto",
     alsoIn: [],
-    related: ["hash", "hmac"],
+    related: ["hash", "hmac", "random-token"],
     tags: ["password", "passphrase", "random"],
     title: {
         fa: "ساخت گذرواژه و عبارت عبور ایمن",

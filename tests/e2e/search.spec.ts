@@ -26,7 +26,7 @@ test.describe("search", () => {
         await page.keyboard.press("Escape");
         await expect(page.locator("[data-search-dialog]")).toBeHidden();
         await page.locator("[data-search-open]:visible").click();
-        await page.locator("[data-search-input]").fill("base64");
+        await page.locator("[data-search-input]").fill("base64 decoder");
         await expect(page.locator("[data-search-results] li")).toHaveCount(1);
     });
 

@@ -43,6 +43,8 @@ describe("search ranking", () => {
         expect(top("jwt")).toBe("jwt-decoder");
         expect(top("hmac")).toBe("hmac");
         expect(top("password generator")).toBe("password-generator");
+        expect(top("random bytes")).toBe("random-token");
+        expect(top("کلید api")).toBe("random-token");
         expect(top("رمز عبور قوی")).toBe("password-generator");
         expect(top("webhook signature")).toBe("hmac");
         expect(top("نویسه نامرئی")).toBe("unicode-explorer");
