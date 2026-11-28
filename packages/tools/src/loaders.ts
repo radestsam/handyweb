@@ -71,4 +71,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "image-rotate": () => import("./image/image-rotate/ui"),
     "image-flip": () => import("./image/image-flip/ui"),
     "image-crop": () => import("./image/image-crop/ui"),
+    "image-converter": () => import("./image/image-converter/ui"),
 };
