@@ -1098,3 +1098,20 @@ test.describe("image converter", () => {
         expect(head).toEqual([0xff, 0xd8, 0xff]);
     });
 });
+
+test.describe("image compressor", () => {
+    test("makes a large photo smaller and limits the size", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-compressor/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "photo.png",
+            mimeType: "image/png",
+            buffer: makePng(1600, 1200),
+        });
+        await page.getByLabel("Maximum longest side").selectOption("800");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-result-size]")).toContainText("800 × 600");
+        await expect(page.locator("[data-tool-result-size]")).toContainText("smaller");
+        await expect(page.locator("[data-tool-larger]")).toHaveCount(0);
+    });
+});

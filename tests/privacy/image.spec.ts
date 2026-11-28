@@ -35,7 +35,13 @@ for (const locale of ["fa", "en"] as const) {
     });
 }
 
-for (const slug of ["image-rotate", "image-flip", "image-crop", "image-converter"]) {
+for (const slug of [
+    "image-rotate",
+    "image-flip",
+    "image-crop",
+    "image-converter",
+    "image-compressor",
+]) {
     test(`${slug} runs locally and stores nothing`, async ({ page, requests, baseURL }) => {
         await page.goto(`/en/tools/${slug}/`);
         await page.locator('input[type="file"]').setInputFiles({
@@ -52,6 +58,7 @@ for (const slug of ["image-rotate", "image-flip", "image-crop", "image-converter
             "image-flip": /^40x20$/,
             "image-crop": /^0,0,10x20$/,
             "image-converter": /^secret-holiday-photo\.png$/,
+            "image-compressor": /^\d+$/,
         };
         await expect(page.locator("[data-tool-output]")).toHaveValue(expected[slug] as RegExp);
         await page.waitForLoadState("networkidle");
