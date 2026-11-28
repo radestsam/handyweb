@@ -12,9 +12,23 @@ const entries: SearchEntry[] = catalog.map((tool) => ({
     category: tool.category,
     title: tool.title,
     description: tool.description,
-    titles: normalizeForSearch(`${tool.title.fa} | ${tool.title.en}`),
+    // The same fields as the built index (pages/search-index.json.ts).
+    titles: normalizeForSearch(
+        [
+            tool.title.fa,
+            tool.title.en,
+            ...tool.presets.flatMap((preset) => [preset.title.fa, preset.title.en]),
+        ].join(" | "),
+    ),
     terms: normalizeForSearch(
-        [...tool.keywords.fa, ...tool.keywords.en, ...tool.aliases].join(" | "),
+        [
+            ...tool.keywords.fa,
+            ...tool.keywords.en,
+            ...tool.presets.flatMap((preset) => [...preset.keywords.fa, ...preset.keywords.en]),
+            tool.slug.replace(/-/g, " "),
+            ...tool.aliases.map((alias) => alias.replace(/-/g, " ")),
+            ...tool.tags,
+        ].join(" | "),
     ),
     text: normalizeForSearch(`${tool.description.fa} | ${tool.description.en}`),
 }));
@@ -94,6 +108,8 @@ describe("search ranking", () => {
         expect(top("mirror image")).toBe("image-flip");
         expect(top("برش عکس")).toBe("image-crop");
         expect(top("webp to png")).toBe("image-converter");
+        expect(top("jpg to pdf")).toBe("images-to-pdf");
+        expect(top("merge pdf")).toBe("pdf-merge");
         expect(top("کم کردن حجم عکس")).toBe("image-compressor");
         expect(top("remove exif")).toBe("image-metadata");
         expect(top("گرفتن رنگ از عکس")).toBe("image-color-picker");

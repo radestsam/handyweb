@@ -18,8 +18,8 @@ import {
     MAX_TOTAL_BYTES,
     mergedName,
     mergePdfs,
-    move,
 } from "./logic";
+import { move } from "../shared/list";
 
 interface Item {
     key: number;

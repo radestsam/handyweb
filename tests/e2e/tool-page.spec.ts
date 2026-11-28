@@ -1737,3 +1737,40 @@ test.describe("pdf merger", () => {
         await expect(page.locator("[data-tool-run]")).toBeDisabled();
     });
 });
+
+test.describe("images to pdf", () => {
+    test("puts each image on its own page in the chosen order", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        const { pageWidths } = await import("../support/pdf");
+        await page.goto("/en/tools/images-to-pdf/");
+        await page.locator('input[type="file"]').setInputFiles([
+            { name: "wide.png", mimeType: "image/png", buffer: makePng(40, 20) },
+            { name: "tall.png", mimeType: "image/png", buffer: makePng(20, 40) },
+        ]);
+        await expect(page.locator("[data-tool-files] li")).toHaveCount(2);
+        await page.getByRole("button", { name: "Move down: wide.png" }).click();
+        await page.getByText("Same as image", { exact: true }).click();
+        await page.getByText("None", { exact: true }).click();
+        await expect(page.getByRole("radio", { name: "Same as image" })).toBeChecked();
+        await expect(page.getByRole("radio", { name: "None" })).toBeChecked();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("2");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("tall.pdf");
+        const { readFile } = await import("node:fs/promises");
+        expect(await pageWidths(await readFile((await file.path()) as string))).toEqual([15, 30]);
+    });
+
+    test("does not add a file that is not an image", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/fa/tools/images-to-pdf/");
+        await page.locator('input[type="file"]').setInputFiles([
+            { name: "photo.png", mimeType: "image/png", buffer: makePng(10, 10) },
+            { name: "notes.jpg", mimeType: "image/jpeg", buffer: Buffer.from("hello") },
+        ]);
+        await expect(page.locator("[data-tool-files] li")).toHaveCount(1);
+        await expect(page.locator("[data-tool-skipped] li")).toContainText("notes.jpg");
+    });
+});

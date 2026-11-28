@@ -33,3 +33,23 @@ for (const locale of ["fa", "en"] as const) {
         expect(errors).toEqual([]);
     });
 }
+
+test("images-to-pdf runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    const { makePng } = await import("../support/png");
+    await page.goto("/en/tools/images-to-pdf/");
+    await page.locator('input[type="file"]').setInputFiles([
+        { name: "secret-passport.png", mimeType: "image/png", buffer: makePng(40, 20) },
+        { name: "secret-id-card.png", mimeType: "image/png", buffer: makePng(20, 40) },
+    ]);
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue("2");
+    const download = page.waitForEvent("download");
+    await page.getByRole("button", { name: "Download" }).click();
+    expect((await download).suggestedFilename()).toBe("secret-passport.pdf");
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, [
+        "secret-passport",
+        "secret-id-card",
+    ]);
+    await expectCleanStorage(page, ["secret-passport", "secret-id-card"]);
+});
