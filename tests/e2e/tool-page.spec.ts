@@ -1544,3 +1544,15 @@ test.describe("color contrast", () => {
         expect(ratio).toBeGreaterThanOrEqual(4.5);
     });
 });
+
+test.describe("time zone converter", () => {
+    test("converts noon in Tehran to other zones", async ({ page }) => {
+        await page.goto("/en/tools/time-zone-converter/");
+        await page.locator("[data-tz-from]").selectOption("Asia/Tehran");
+        await page.locator("[data-tool-input]").fill("2026-03-21T12:00");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("2026-03-21T08:30:00.000Z");
+        await expect(page.locator('[data-tz="UTC"]')).toContainText("8:30");
+        await expect(page.locator('[data-tz="Asia/Tokyo"]')).toContainText("5:30");
+        await expect(page.locator('[data-tz="Asia/Tehran"]')).toContainText("UTC+03:30");
+    });
+});
