@@ -72,6 +72,7 @@ import { imageColorPickerMeta } from "./image/image-color-picker/meta";
 import { imagePaletteMeta } from "./image/image-palette/meta";
 import { imageCompareMeta } from "./image/image-compare/meta";
 import { imageBlurMeta } from "./image/image-blur/meta";
+import { imagePixelateMeta } from "./image/image-pixelate/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -151,4 +152,5 @@ export const catalog: readonly ToolDefinition[] = [
     imagePaletteMeta,
     imageCompareMeta,
     imageBlurMeta,
+    imagePixelateMeta,
 ];

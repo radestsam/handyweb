@@ -1264,3 +1264,32 @@ test.describe("image blur", () => {
         expect(reds[31] as number).toBeLessThan(31 * 8 - 10);
     });
 });
+
+test.describe("image pixelate", () => {
+    test("makes blocks of one color", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-pixelate/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.png",
+            mimeType: "image/png",
+            buffer: makePng(32, 32, true, 8),
+        });
+        await page.locator("[data-effect-strength]").fill("16");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a-pixelated.png");
+        const reds = await page
+            .locator("[data-effect-frame] img")
+            .evaluate(async (img: HTMLImageElement) => {
+                await img.decode();
+                const canvas = document.createElement("canvas");
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+                context.drawImage(img, 0, 0);
+                return [...context.getImageData(0, 0, 32, 1).data].filter((_, i) => i % 4 === 0);
+            });
+        // Columns 0 to 15 average to 60, and 16 to 31 to 188 (Brave adds noise of 1 or 2).
+        for (let x = 0; x < 32; x++)
+            expect(Math.abs((reds[x] as number) - (x < 16 ? 60 : 188))).toBeLessThanOrEqual(3);
+    });
+});
