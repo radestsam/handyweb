@@ -81,3 +81,17 @@ test("image-metadata runs locally and stores nothing", async ({ page, requests, 
     expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo", "SN12345"]);
     await expectCleanStorage(page, ["secret-holiday-photo"]);
 });
+
+test("image-color-picker runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    await page.goto("/en/tools/image-color-picker/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-holiday-photo.png",
+        mimeType: "image/png",
+        buffer: makePng(40, 20),
+    });
+    await page.locator("[data-tool-canvas][data-ready]").click({ position: { x: 5, y: 5 } });
+    await expect(page.locator("[data-tool-output]")).toHaveValue(/^#[0-9a-f]{6}$/);
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo"]);
+    await expectCleanStorage(page, ["secret-holiday-photo"]);
+});

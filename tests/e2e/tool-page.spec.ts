@@ -1151,3 +1151,31 @@ test.describe("image metadata", () => {
         expect(size).toEqual([3, 5]);
     });
 });
+
+test.describe("image color picker", () => {
+    test("picks a pixel by click and moves it with the keyboard", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-color-picker/");
+        // Red is 60 x column, green is 60 x row, blue is 128.
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.png",
+            mimeType: "image/png",
+            buffer: makePng(4, 4, true, 60),
+        });
+        const canvas = page.locator("[data-tool-canvas][data-ready]");
+        await expect(canvas).toBeVisible();
+        const box = (await canvas.boundingBox())!;
+        // The center of pixel (2, 1).
+        await canvas.click({ position: { x: (box.width / 4) * 2.5, y: (box.height / 4) * 1.5 } });
+        const rgb = async () => {
+            const hex = await page.locator("[data-tool-output]").inputValue();
+            return [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
+        };
+        const near = (got: number[], want: number[]) =>
+            got.forEach((v, i) => expect(Math.abs(v - (want[i] as number))).toBeLessThanOrEqual(3));
+        near(await rgb(), [120, 60, 128]);
+        await canvas.press("ArrowRight");
+        await canvas.press("ArrowDown");
+        near(await rgb(), [180, 120, 128]);
+    });
+});
