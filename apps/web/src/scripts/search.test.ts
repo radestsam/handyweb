@@ -51,6 +51,9 @@ describe("search ranking", () => {
         expect(top("epoch")).toBe("unix-timestamp");
         expect(top("binary to decimal")).toBe("number-base");
         expect(top("qr code")).toBe("qr-generator");
+        expect(top("reverse text")).toBe("reverse-text");
+        expect(top("تکرار متن")).toBe("text-repeater");
+        expect(top("join lines")).toBe("split-join");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");

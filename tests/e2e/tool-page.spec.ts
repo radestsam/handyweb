@@ -549,3 +549,27 @@ test.describe("qr generator", () => {
         );
     });
 });
+
+test.describe("small text tools", () => {
+    test("reverse text reverses words", async ({ page }) => {
+        await page.goto("/en/tools/reverse-text/?preset=words");
+        await page.locator("[data-tool-input]").fill("one two three");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("three two one");
+    });
+
+    test("text repeater repeats with a new line", async ({ page }) => {
+        await page.goto("/fa/tools/text-repeater/");
+        await page.locator("[data-tool-input]").fill("سلام");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام\nسلام\nسلام");
+    });
+
+    test("split and join round trip", async ({ page }) => {
+        await page.goto("/en/tools/split-join/");
+        await page.locator("[data-tool-input]").fill("a, b,,c");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a\nb\nc");
+        await page.getByText("Join", { exact: true }).click();
+        await page.getByLabel("Delimiter").fill(";");
+        await page.locator("[data-tool-input]").fill("a\nb");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a;b");
+    });
+});
