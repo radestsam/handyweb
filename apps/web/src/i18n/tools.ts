@@ -21,3 +21,32 @@ export function toolStaticPaths() {
         ]),
     );
 }
+
+/*
+ * The tools that the home page shows, in this order. The site has no
+ * analytics, so this is a hand-picked list of the tools that people need
+ * most often, not a measured ranking. Every id must be a published tool:
+ * `featuredTools` throws at build time if one is missing.
+ */
+export const FEATURED = [
+    "jalali-converter",
+    "persian-normalizer",
+    "text-counter",
+    "base64",
+    "json-formatter",
+    "password-generator",
+    "qr-generator",
+    "image-compressor",
+    "image-resize",
+    "pdf-merge",
+    "unit-converter",
+    "hash",
+] as const;
+
+export function featuredTools(): ToolDefinition[] {
+    return FEATURED.map((slug) => {
+        const tool = tools.find((t) => t.slug === slug);
+        if (!tool) throw new Error(`Featured tool "${slug}" is not a published tool.`);
+        return tool;
+    });
+}

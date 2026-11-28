@@ -1,7 +1,6 @@
 ---
 import { localePath, type Locale, type ToolDefinition } from "@handyweb/core";
 import Base from "../../../layouts/Base.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import PrivacyBadge from "../../../components/tool/PrivacyBadge.astro";
 import Unbroken from "../../../components/Unbroken.astro";
 import ToolIsland from "../../../components/tool/ToolIsland";
@@ -116,19 +115,16 @@ const jsonLd: unknown[] = [
         title={`${tool.title[locale]} | ${t("site.name")}`}
         jsonLd={jsonLd}
         description={tool.description[locale]}
+        breadcrumbs={[
+            { label: t("nav.tools"), path: "/tools" },
+            ...(category
+                ? [{ label: category.title[locale], path: `/categories/${category.slug}` }]
+                : []),
+            { label: tool.title[locale] },
+        ]}
     >
-        <main id="main" class="mx-auto max-w-6xl px-safe pt-5 sm:pt-12">
-            <Breadcrumbs
-                locale={locale}
-                items={[
-                    { label: t("nav.tools"), path: "/tools" },
-                    ...(category
-                        ? [{ label: category.title[locale], path: `/categories/${category.slug}` }]
-                        : []),
-                    { label: tool.title[locale] },
-                ]}
-            />
-            <h1 class="mt-4 max-w-[32ch] text-xl font-bold sm:mt-6 sm:text-2xl">
+        <main id="main" class="mx-auto max-w-6xl px-safe pt-6 sm:pt-12">
+            <h1 class="max-w-[32ch] text-xl font-bold sm:text-2xl">
                 <Unbroken text={tool.title[locale]} />
             </h1>
             <p class="mt-2 max-w-[60ch] text-sm text-muted sm:mt-3 sm:text-base">

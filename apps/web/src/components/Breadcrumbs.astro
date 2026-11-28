@@ -27,7 +27,12 @@ const trail = [{ label: t("nav.home"), path: "/" }, ...items];
                             {item.label}
                         </span>
                     ) : (
-                        <a href={localePath(locale, item.path)}>{item.label}</a>
+                        <a
+                            href={localePath(locale, item.path)}
+                            class="inline-flex min-h-6 items-center"
+                        >
+                            {item.label}
+                        </a>
                     )}
                     {!last && (
                         <span

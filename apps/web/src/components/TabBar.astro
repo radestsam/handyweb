@@ -37,6 +37,8 @@ const tab =
         <li class="flex flex-1">
             <a
                 href={localePath(locale, "/tools")}
+                data-sidebar-open
+                aria-controls="tool-sidebar"
                 class={tab}
                 aria-current={
                     current.startsWith("/tools/") || current.startsWith("/categories/")
@@ -47,12 +49,6 @@ const tab =
                 <Icon name="grid" />
                 <span>{t("nav.toolsShort")}</span>
             </a>
-        </li>
-        <li class="flex flex-1">
-            <button type="button" data-search-open class={tab}>
-                <Icon name="search" />
-                <span>{t("nav.search")}</span>
-            </button>
         </li>
     </ul>
 </nav>
