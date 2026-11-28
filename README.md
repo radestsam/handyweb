@@ -100,6 +100,9 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | YAML Formatter and Validator                          | Developer                | `packages/tools/src/developer/yaml-formatter`    | `yaml`                                                     |
 | JSON and YAML Converter                               | Developer                | `packages/tools/src/developer/json-yaml`         | `yaml`                                                     |
 | SQL Formatter                                         | Developer                | `packages/tools/src/developer/sql-formatter`     | `sql-formatter`                                            |
+| HTML Formatter                                        | Developer                | `packages/tools/src/developer/html-formatter`    | `js-beautify`                                              |
+| CSS Formatter                                         | Developer                | `packages/tools/src/developer/css-formatter`     | `js-beautify`                                              |
+| JavaScript Formatter                                  | Developer                | `packages/tools/src/developer/js-formatter`      | `js-beautify`                                              |
 | JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`       | None                                                       |
 | UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`    | None                                                       |
 | Regex Tester                                          | Developer                | `packages/tools/src/developer/regex-tester`      | None                                                       |

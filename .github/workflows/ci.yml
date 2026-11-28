@@ -67,9 +67,23 @@ jobs:
           retention-days: 14
 
   e2e:
-    name: Browser Tests
+    name: Browser Tests (${{ matrix.project }})
     runs-on: ubuntu-24.04
     timeout-minutes: 20
+    strategy:
+      # One job per Playwright project, so the suite runs in parallel and one
+      # browser failing does not hide the results of the others.
+      fail-fast: false
+      matrix:
+        include:
+          - project: chromium
+            browser: chromium
+          - project: firefox
+            browser: firefox
+          - project: webkit
+            browser: webkit
+          - project: mobile
+            browser: chromium
     steps:
       - name: Checkout
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -89,17 +103,21 @@ jobs:
       - name: Install the packages
         run: yarn install --frozen-lockfile --non-interactive
 
-      - name: Install the browsers
-        run: yarn playwright install --with-deps chromium firefox webkit
+      - name: Install the browser
+        env:
+          BROWSER: ${{ matrix.browser }}
+        run: yarn playwright install --with-deps "$BROWSER"
 
       - name: Run the browser tests
-        run: yarn -s test:e2e
+        env:
+          PROJECT: ${{ matrix.project }}
+        run: yarn -s test:e2e --project="$PROJECT"
 
       - name: Upload the report
         if: failure()
         uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
         with:
-          name: playwright-report
+          name: playwright-report-${{ matrix.project }}
           path: playwright-report/
           retention-days: 7
 

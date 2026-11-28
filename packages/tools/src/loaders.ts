@@ -45,4 +45,7 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "yaml-formatter": () => import("./developer/yaml-formatter/ui"),
     "json-yaml": () => import("./developer/json-yaml/ui"),
     "sql-formatter": () => import("./developer/sql-formatter/ui"),
+    "html-formatter": () => import("./developer/html-formatter/ui"),
+    "css-formatter": () => import("./developer/css-formatter/ui"),
+    "js-formatter": () => import("./developer/js-formatter/ui"),
 };
