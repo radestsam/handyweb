@@ -2036,3 +2036,33 @@ test.describe("pdf compressor", () => {
         await expect(page.locator("[data-tool-not-smaller]")).toContainText("کوچک‌تر نشد");
     });
 });
+
+test.describe("password strength checker", () => {
+    test("rates a common password and a long passphrase", async ({ page }) => {
+        await page.goto("/en/tools/password-strength/");
+        const input = page.locator("[data-tool-input]");
+        await expect(input).toHaveAttribute("type", "password");
+        await input.fill("password");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("0", { timeout: 15_000 });
+        await expect(page.locator("[data-tool-warning]")).toHaveAttribute(
+            "data-tool-warning",
+            "topTen",
+        );
+        await expect(page.locator('[data-tool-time="offlineFast"]')).toHaveText(
+            "less than a second",
+        );
+        await input.fill("correct-violet-tugboat-mosaic-91");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("4");
+        await expect(page.locator("[data-tool-warning]")).toHaveCount(0);
+        await page.getByRole("button", { name: "Show" }).click();
+        await expect(input).toHaveAttribute("type", "text");
+    });
+
+    test("gives Persian feedback", async ({ page }) => {
+        await page.goto("/fa/tools/password-strength/");
+        await page.locator("[data-tool-input]").fill("qwertyuiop");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^[01]$/, { timeout: 15_000 });
+        await expect(page.locator("[data-tool-warning]")).toContainText("پرکاربرد");
+        await expect(page.locator("[data-tool-score]")).toHaveText(/ضعیف/);
+    });
+});

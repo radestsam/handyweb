@@ -23,6 +23,7 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "jwt-decoder": () => import("./developer/jwt-decoder/ui"),
     hmac: () => import("./crypto/hmac/ui"),
     "password-generator": () => import("./crypto/password-generator/ui"),
+    "password-strength": () => import("./crypto/password-strength/ui"),
     "random-token": () => import("./crypto/random-token/ui"),
     "uuid-generator": () => import("./developer/uuid-generator/ui"),
     "text-diff": () => import("./text/text-diff/ui"),
