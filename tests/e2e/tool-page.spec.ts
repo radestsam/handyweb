@@ -1417,3 +1417,14 @@ test.describe("svg optimizer", () => {
         expect(size).toBe(true);
     });
 });
+
+test.describe("unit converter", () => {
+    test("the mesghal preset converts Persian digits to grams", async ({ page }) => {
+        await page.goto("/fa/tools/unit-converter/?preset=mesghal-to-gram");
+        await page.locator("[data-tool-input]").fill("۲٫۵");
+        await expect(page.locator('[data-unit="g"] [data-unit-value]')).toHaveText("۱۱٫۵۲");
+        await page.locator("[data-unit-kind]").selectOption("temperature");
+        await page.locator("[data-tool-input]").fill("100");
+        await expect(page.locator('[data-unit="f"] [data-unit-value]')).toHaveText("۲۱۲");
+    });
+});
