@@ -29,5 +29,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Random Token and Bytes Generator.
 - UUID and ULID Generator, with an inspector for the version and the time.
 - Text Diff Checker, by lines, words, or characters, with a unified patch.
+- Regex Tester, with a time limit and a warning for slow patterns.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

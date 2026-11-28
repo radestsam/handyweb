@@ -47,6 +47,7 @@ describe("search ranking", () => {
         expect(top("uuid")).toBe("uuid-generator");
         expect(top("ulid")).toBe("uuid-generator");
         expect(top("diff checker")).toBe("text-diff");
+        expect(top("regex")).toBe("regex-tester");
         expect(top("مقایسه متن")).toBe("text-diff");
         expect(top("کلید api")).toBe("random-token");
         expect(top("رمز عبور قوی")).toBe("password-generator");

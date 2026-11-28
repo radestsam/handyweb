@@ -26,4 +26,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "random-token": () => import("./crypto/random-token/ui"),
     "uuid-generator": () => import("./developer/uuid-generator/ui"),
     "text-diff": () => import("./text/text-diff/ui"),
+    "regex-tester": () => import("./developer/regex-tester/ui"),
 };
