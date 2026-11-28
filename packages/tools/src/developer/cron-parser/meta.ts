@@ -8,9 +8,10 @@ export const cronParserMeta: ToolDefinition = {
     alsoIn: [],
     related: ["unix-timestamp", "regex-tester"],
     tags: ["cron", "crontab", "schedule"],
-    title: {
-        fa: "خواندن عبارت cron",
-        en: "Cron Expression Parser",
+    title: { fa: "خواندن عبارت cron", en: "Cron Expression Parser" },
+    seoTitle: {
+        fa: "خواندن عبارت cron و زمان اجراهای بعدی",
+        en: "Cron Expression Parser with Next Run Times",
     },
     description: {
         fa: "یک عبارت cron را به زبان ساده فارسی یا انگلیسی بخوانید و ده اجرای بعدی آن را با تاریخ شمسی ببینید.",

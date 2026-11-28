@@ -8,13 +8,14 @@ export const jwtDecoderMeta: ToolDefinition = {
     alsoIn: ["crypto"],
     related: ["base64", "json-formatter", "unix-timestamp"],
     tags: ["jwt", "token", "decode"],
-    title: {
-        fa: "رمزگشایی توکن JWT",
-        en: "JWT Decoder",
+    title: { fa: "رمزگشایی توکن JWT", en: "JWT Decoder" },
+    seoTitle: {
+        fa: "رمزگشایی توکن JWT و خواندن تاریخ انقضا",
+        en: "JWT Decoder: Read the Header, Payload, and exp",
     },
     description: {
-        fa: "سربرگ و بدنه یک توکن JWT را بخوانید و زمان‌های exp، nbf و iat را به تاریخ شمسی یا میلادی ببینید. امضا بررسی نمی‌شود و توکن روی دستگاه شما می‌ماند.",
-        en: "Read the header and payload of a JWT, and see the exp, nbf, and iat times as dates. The signature is not checked, and the token stays on your device.",
+        fa: "رمزگشایی توکن JWT: سربرگ و بدنه توکن را بخوانید و زمان‌های exp، nbf و iat را به تاریخ شمسی یا میلادی ببینید. امضا بررسی نمی‌شود.",
+        en: "Read the header and payload of a JWT, and see the exp, nbf, and iat times as dates. The signature is not checked.",
     },
     keywords: {
         fa: ["jwt", "رمزگشایی jwt", "توکن", "خواندن توکن", "بررسی توکن"],
@@ -66,8 +67,8 @@ export const jwtDecoderMeta: ToolDefinition = {
                     en: "Is it safe to paste a token here?",
                 },
                 answer: {
-                    fa: "توکن از مرورگر شما بیرون نمی‌رود و جایی نگه داشته نمی‌شود. با این همه، توکن یک کلید ورود است: آن را با کسی هم‌رسانی نکنید و پس از کار، کادر را پاک کنید.",
-                    en: "The token does not leave your browser and is not stored. Still, a token is a key to an account: do not share it, and clear the box when you finish.",
+                    fa: "توکن یک کلید ورود است: آن را با کسی هم‌رسانی نکنید و پس از کار، کادر را پاک کنید.",
+                    en: "A token is a key to an account: do not share it, and clear the box when you finish.",
                 },
             },
             {

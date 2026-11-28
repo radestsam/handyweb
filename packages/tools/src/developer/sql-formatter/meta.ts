@@ -8,12 +8,13 @@ export const sqlFormatterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["json-formatter", "xml-formatter", "yaml-formatter"],
     tags: ["sql", "format"],
-    title: {
-        fa: "آراستن کوئری SQL",
-        en: "SQL Formatter",
+    title: { fa: "فرمت و مرتب کردن کوئری SQL", en: "SQL Formatter" },
+    seoTitle: {
+        fa: "فرمت و مرتب کردن کوئری SQL و MySQL",
+        en: "SQL Formatter for MySQL, PostgreSQL, and More",
     },
     description: {
-        fa: "کوئری‌های SQL را با تورفتگی خوانا بیارایید، برای SQL استاندارد، PostgreSQL، MySQL، MariaDB، SQLite و SQL Server.",
+        fa: "مرتب کردن کوئری SQL با تورفتگی خوانا، برای SQL استاندارد، PostgreSQL، MySQL، MariaDB، SQLite و SQL Server.",
         en: "Format SQL queries with readable indentation, for standard SQL, PostgreSQL, MySQL, MariaDB, SQLite, and SQL Server.",
     },
     keywords: {
@@ -59,18 +60,7 @@ export const sqlFormatterMeta: ToolDefinition = {
             { fa: "کوئری را بچسبانید.", en: "Paste the query." },
             { fa: "خروجی را کپی کنید.", en: "Copy the output." },
         ],
-        faq: [
-            {
-                question: {
-                    fa: "کوئری من به سرور فرستاده می‌شود؟",
-                    en: "Is my query sent to a server?",
-                },
-                answer: {
-                    fa: "نه. آراستن در مرورگر شما انجام می‌شود، پس کوئری‌هایی با نام جدول‌ها و داده‌های درونی هم ایمن‌اند.",
-                    en: "No. Formatting runs in your browser, so queries with internal table names and data are safe.",
-                },
-            },
-        ],
+        faq: [],
     },
     example: "select id, name from users where active = 1 order by name",
 };

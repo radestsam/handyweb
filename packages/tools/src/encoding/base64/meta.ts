@@ -9,8 +9,12 @@ export const base64Meta: ToolDefinition = {
     related: ["json-formatter", "url-encoding"],
     tags: ["base64", "encoding"],
     title: { fa: "رمزگذاری و رمزگشایی Base64", en: "Base64 Encoder and Decoder" },
+    seoTitle: {
+        fa: "رمزگذاری و رمزگشایی Base64 متن فارسی",
+        en: "Base64 Encoder and Decoder Online (UTF-8)",
+    },
     description: {
-        fa: "نوشته را به Base64 برگردانید یا Base64 را دوباره به نوشته درآورید. با UTF-8، نویسه‌های ایمن برای URL و نوشته فارسی کار می‌کند، همه در مرورگر خودتان.",
+        fa: "نوشته را به Base64 برگردانید یا Base64 را دوباره به نوشته درآورید. با UTF-8، نویسه‌های ایمن برای URL و نوشته فارسی کار می‌کند.",
         en: "Encode text as Base64 or decode Base64 back to text. Supports UTF-8, the URL-safe alphabet, and Persian text.",
     },
     keywords: {

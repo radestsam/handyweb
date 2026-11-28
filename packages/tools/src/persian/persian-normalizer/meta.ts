@@ -13,9 +13,10 @@ export const persianNormalizerMeta: ToolDefinition = {
     alsoIn: ["text"],
     related: ["jalali-converter", "text-counter"],
     tags: ["persian", "normalize", "digits"],
-    title: {
-        fa: "یکسان‌سازی متن فارسی و تبدیل اعداد",
-        en: "Persian Text Normalizer and Digit Converter",
+    title: { fa: "یکسان‌سازی متن فارسی", en: "Persian Text Normalizer" },
+    seoTitle: {
+        fa: "یکسان‌سازی متن فارسی، ی و ک عربی و اعداد",
+        en: "Persian Text Normalizer for Arabic Yeh and Kaf",
     },
     description: {
         fa: "ی و ک عربی را فارسی کنید، کشیده و نیم‌فاصله‌های زیادی را بردارید و شماره‌ها را فارسی یا لاتین کنید. هر ویرایش را پیش از کپی می‌بینید.",

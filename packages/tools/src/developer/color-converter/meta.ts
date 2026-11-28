@@ -8,9 +8,10 @@ export const colorConverterMeta: ToolDefinition = {
     alsoIn: ["calculators", "image"],
     related: ["qr-generator", "number-base"],
     tags: ["color", "hex", "rgb", "hsl"],
-    title: {
-        fa: "تبدیل کد رنگ (HEX، RGB، HSL)",
-        en: "Color Converter",
+    title: { fa: "تبدیل کد رنگ (HEX، RGB، HSL)", en: "Color Converter (HEX, RGB, HSL)" },
+    seoTitle: {
+        fa: "تبدیل کد رنگ (HEX، RGB، HSL) و CMYK",
+        en: "Color Converter (HEX, RGB, HSL) and CMYK",
     },
     description: {
         fa: "یک کد رنگ را میان HEX، RGB، HSL، HWB، OKLCH و CMYK برگردانید و کنتراست آن را با سفید و سیاه برای خوانایی متن ببینید.",

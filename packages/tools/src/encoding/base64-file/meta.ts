@@ -8,13 +8,14 @@ export const base64FileMeta: ToolDefinition = {
     alsoIn: ["developer", "image"],
     related: ["base64"],
     tags: ["base64", "file", "data uri"],
-    title: {
-        fa: "تبدیل فایل به Base64 و Data URI",
-        en: "File to Base64 and Data URI",
+    title: { fa: "تبدیل فایل به Base64 و Data URI", en: "File to Base64 and Data URI" },
+    seoTitle: {
+        fa: "تبدیل فایل به Base64 و Data URI و برعکس",
+        en: "File to Base64 and Data URI Converter",
     },
     description: {
-        fa: "یک فایل یا تصویر را به Base64 یا Data URI برگردانید، یا Base64 را دوباره به فایل درآورید و دانلود کنید. فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "Turn a file or image into Base64 or a Data URI, or turn Base64 back into a file and download it. The file never leaves your device.",
+        fa: "یک فایل یا تصویر را به Base64 یا Data URI برگردانید، یا Base64 را دوباره به فایل درآورید و دانلود کنید.",
+        en: "Turn a file or image into Base64 or a Data URI, or turn Base64 back into a file and download it.",
     },
     keywords: {
         fa: ["تبدیل فایل به base64", "تصویر به base64", "data uri", "base64 به فایل"],

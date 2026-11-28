@@ -9,7 +9,7 @@ const fa = {
     "site.name": "HandyWeb",
     "site.tagline": "ابزارهای کاربردی وب، روی دستگاه خود شما",
     "site.description":
-        "ابزارهای آنلاین رایگان و متن‌باز که در مرورگر خودتان کار می‌کنند: تبدیل تاریخ شمسی، Base64، هش فایل و یکسان‌سازی متن فارسی. چیزی به سرور فرستاده نمی‌شود.",
+        "ابزارهای آنلاین رایگان و متن‌باز که در مرورگر خودتان کار می‌کنند: تبدیل تاریخ شمسی، Base64، هش فایل و یکسان‌سازی متن فارسی.",
     "nav.home": "خانه",
     "nav.tools": "همه ابزارها",
     "nav.categories": "دسته‌ها",
@@ -49,7 +49,7 @@ const en: Messages = {
     "site.name": "HandyWeb",
     "site.tagline": "Handy web tools that run on your own device",
     "site.description":
-        "A free, open-source collection of online tools that run in your browser. Your input is never sent to a server.",
+        "A free, open-source collection of online tools that run in your browser: Persian date conversion, word counting, image compression, PDF, and more.",
     "nav.home": "Home",
     "nav.tools": "All Tools",
     "nav.categories": "Categories",

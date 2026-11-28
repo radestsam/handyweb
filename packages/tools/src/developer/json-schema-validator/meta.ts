@@ -8,9 +8,10 @@ export const jsonSchemaValidatorMeta: ToolDefinition = {
     alsoIn: [],
     related: ["json-formatter", "json-diff"],
     tags: ["json", "schema", "validate"],
-    title: {
-        fa: "بررسی JSON با JSON Schema",
-        en: "JSON Schema Validator",
+    title: { fa: "بررسی JSON با JSON Schema", en: "JSON Schema Validator" },
+    seoTitle: {
+        fa: "بررسی JSON با JSON Schema و نمایش خطاها",
+        en: "JSON Schema Validator (Draft 7 and 2020-12)",
     },
     description: {
         fa: "یک داده JSON را با یک JSON Schema (نسخه‌های 4، 7، 2019-09 و 2020-12) بسنجید و هر خطا را با مسیر آن در داده ببینید.",
@@ -31,8 +32,8 @@ export const jsonSchemaValidatorMeta: ToolDefinition = {
     outputKinds: ["structured"],
     limits: { maxInputBytes: 5_000_000 },
     limitations: {
-        fa: "$ref به نشانی‌های بیرونی بارگیری نمی‌شود، چون ابزار هیچ درخواستی به شبکه نمی‌فرستد. $ref درون همان شِما کار می‌کند. پیام خطاها انگلیسی‌اند.",
-        en: "A $ref to another URL is not loaded, because the tool sends no network request. A $ref inside the same schema works. Error messages are in English.",
+        fa: "$ref به نشانی‌های بیرونی بارگیری نمی‌شود. $ref درون همان شِما کار می‌کند. پیام خطاها انگلیسی‌اند.",
+        en: "A $ref to another URL is not loaded. A $ref inside the same schema works. Error messages are in English.",
     },
     guide: {
         steps: [

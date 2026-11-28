@@ -8,9 +8,10 @@ export const binaryMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["hex", "base64", "number-base"],
     tags: ["binary", "bytes", "encoding"],
-    title: {
-        fa: "تبدیل متن به باینری و برعکس",
-        en: "Text to Binary Converter",
+    title: { fa: "تبدیل متن به باینری و برعکس", en: "Text to Binary Converter" },
+    seoTitle: {
+        fa: "تبدیل متن به باینری و برعکس (صفر و یک)",
+        en: "Text to Binary Converter and Binary to Text",
     },
     description: {
         fa: "نوشته را به بایت‌های دودویی (صفر و یک، UTF-8) برگردانید یا رشته دودویی را به نوشته خوانا درآورید.",

@@ -11,9 +11,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "text",
         order: 10,
         title: { fa: "متن", en: "Text" },
+        seoTitle: {
+            fa: "متن: شمارش کلمات، مقایسه و پاک‌سازی متن",
+            en: "Text Tools: Count Words, Compare, and Clean Text",
+        },
         description: {
-            fa: "شمردن، چیدن، پاک‌سازی و دگرگون کردن نوشته.",
-            en: "Count, convert, sort, and clean text.",
+            fa: "شمارش کلمات و حروف، مقایسه دو متن، حذف خطوط تکراری، مرتب‌سازی و پاک‌سازی متن.",
+            en: "Count words and characters, compare two texts, remove duplicate lines, and sort or clean up text.",
         },
     },
     {
@@ -21,9 +25,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "persian",
         order: 20,
         title: { fa: "فارسی", en: "Persian" },
+        seoTitle: {
+            fa: "فارسی: ابزارهای متن فارسی و تبدیل تاریخ شمسی",
+            en: "Persian Text Tools and Jalali Date Converter",
+        },
         description: {
-            fa: "یکسان‌سازی نویسه‌ها، شماره‌های فارسی، نیم‌فاصله و تبدیل تاریخ شمسی و میلادی.",
-            en: "Character normalization, Persian digits, ZWNJ, and the Jalali calendar.",
+            fa: "یکسان‌سازی متن فارسی، ی و ک عربی، نیم‌فاصله، اعداد فارسی و تبدیل تاریخ شمسی و میلادی.",
+            en: "Persian text normalization, Arabic yeh and kaf, ZWNJ, Persian digits, and Jalali to Gregorian dates.",
         },
     },
     {
@@ -31,9 +39,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "encoding",
         order: 30,
         title: { fa: "کدگذاری", en: "Encoding" },
+        seoTitle: {
+            fa: "کدگذاری: ابزارهای Base64، URL و یونیکد",
+            en: "Encoding Tools: Base64, URL, HTML, and Unicode",
+        },
         description: {
-            fa: "Base64، URL، HTML، یونیکد و گونه‌های دیگر.",
-            en: "Base64, URL, HTML, Unicode, and other formats.",
+            fa: "رمزگذاری و رمزگشایی Base64، URL، موجودیت‌های HTML، یونیکد، هگز و باینری.",
+            en: "Encode and decode Base64, URLs, HTML entities, Unicode escapes, hex, and binary.",
         },
     },
     {
@@ -41,9 +53,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "crypto",
         order: 40,
         title: { fa: "هش و رمزنگاری", en: "Hashing and Cryptography" },
+        seoTitle: {
+            fa: "هش و رمزنگاری: ساخت هش، رمز عبور و توکن",
+            en: "Hashing and Cryptography: Hash and Password Tools",
+        },
         description: {
-            fa: "هش، HMAC، ساخت گذرواژه و شناسه‌های ایمن و پیش‌بینی‌ناپذیر.",
-            en: "Hashes, HMAC, password generators, and secure random IDs.",
+            fa: "ساخت هش SHA-256، HMAC، رمز عبور قوی، توکن تصادفی و کد ورود دومرحله‌ای.",
+            en: "SHA-256 hashes, HMAC, strong passwords, random tokens, and two-factor (TOTP) codes.",
         },
     },
     {
@@ -51,9 +67,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "developer",
         order: 50,
         title: { fa: "برنامه‌نویسی", en: "Developer" },
+        seoTitle: {
+            fa: "برنامه‌نویسی: فرمت JSON، XML و ابزار توسعه",
+            en: "Developer Tools: JSON, XML, Regex, and More",
+        },
         description: {
-            fa: "آراستن و بررسی درستی JSON، XML و گونه‌های دیگر.",
-            en: "Format and validate JSON, XML, and other formats.",
+            fa: "فرمت و اعتبارسنجی JSON، XML، YAML و SQL، تست Regex، رمزگشایی JWT و تبدیل تایم استمپ.",
+            en: "Format and validate JSON, XML, YAML, and SQL, test regex, decode JWTs, and convert timestamps.",
         },
     },
     {
@@ -61,9 +81,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "image",
         order: 60,
         title: { fa: "تصویر", en: "Images" },
+        seoTitle: {
+            fa: "تصویر: کم کردن حجم، برش و تغییر اندازه عکس",
+            en: "Images: Compress, Resize, and Crop Photos Online",
+        },
         description: {
-            fa: "کوچک کردن، بریدن و فشرده‌سازی تصویر.",
-            en: "Resize, crop, convert, and compress images.",
+            fa: "کم کردن حجم عکس، تغییر اندازه، برش، چرخاندن، تبدیل فرمت و پاک کردن فراداده عکس.",
+            en: "Compress, resize, crop, rotate, and convert images, and remove photo metadata (EXIF).",
         },
     },
     {
@@ -71,9 +95,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "pdf",
         order: 70,
         title: { fa: "PDF", en: "PDF" },
+        seoTitle: {
+            fa: "PDF: ادغام، کم کردن حجم و تبدیل PDF آنلاین",
+            en: "PDF Tools: Merge, Compress, and Convert PDF",
+        },
         description: {
-            fa: "یکی کردن، جدا کردن و ویرایش برگه‌های PDF.",
-            en: "Merge, split, and edit PDF pages.",
+            fa: "ادغام PDF، کم کردن حجم PDF، جدا کردن صفحات، تبدیل عکس به PDF و PDF به عکس.",
+            en: "Merge, compress, and split PDF files, and convert images to PDF and PDF to images.",
         },
     },
     {
@@ -81,9 +109,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "qr",
         order: 80,
         title: { fa: "QR و بارکد", en: "QR Codes and Barcodes" },
+        seoTitle: {
+            fa: "QR و بارکد: ساخت و اسکن کیو آر کد و بارکد",
+            en: "QR Codes and Barcodes: Generator and Reader",
+        },
         description: {
-            fa: "ساخت و خواندن کد QR و بارکد.",
-            en: "Create and read QR codes and barcodes.",
+            fa: "ساخت کد QR برای لینک و متن، ساخت بارکد، و اسکن QR و بارکد با دوربین یا عکس.",
+            en: "Make QR codes for links and text, make barcodes, and scan QR codes and barcodes with a camera.",
         },
     },
     {
@@ -91,9 +123,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "calculators",
         order: 90,
         title: { fa: "ماشین‌حساب و مبدل", en: "Calculators and Converters" },
+        seoTitle: {
+            fa: "ماشین‌حساب و مبدل: درصد، تخفیف و تبدیل واحد",
+            en: "Calculators and Converters: Units, Percent, Dates",
+        },
         description: {
-            fa: "برگرداندن یکاها، تاریخ، پایه شماره‌ها و شمارش‌های روزانه.",
-            en: "Unit, date, and number base conversion, and everyday calculations.",
+            fa: "محاسبه درصد و تخفیف، تبدیل واحد، فاصله دو تاریخ، مالیات بر ارزش افزوده و منطقه زمانی.",
+            en: "Percentage, discount, and VAT calculators, unit and time zone converters, and date differences.",
         },
     },
     {
@@ -101,9 +137,13 @@ export const categories: readonly ToolCategory[] = [
         slug: "network",
         order: 100,
         title: { fa: "شبکه", en: "Network" },
+        seoTitle: {
+            fa: "شبکه: محاسبه ساب‌نت IP و کدهای وضعیت HTTP",
+            en: "Network Tools: Subnet Calculator and HTTP Codes",
+        },
         description: {
-            fa: "شمارش نشانی IP و زیرشبکه و جدول‌های راهنما.",
-            en: "IP and subnet calculators and reference tables.",
+            fa: "محاسبه ساب‌نت IP و CIDR، بازه‌های IP خصوصی، فرمت مک آدرس و کدهای وضعیت HTTP.",
+            en: "IP subnet (CIDR) calculator, private IP ranges, MAC address formats, and HTTP status codes.",
         },
     },
 ];

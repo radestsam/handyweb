@@ -8,12 +8,13 @@ export const punctuationFixerMeta: ToolDefinition = {
     alsoIn: ["text"],
     related: ["zwnj-fixer", "persian-normalizer"],
     tags: ["persian", "punctuation"],
-    title: {
-        fa: "درست کردن نشانه‌گذاری متن فارسی",
-        en: "Persian Punctuation Fixer",
+    title: { fa: "درست کردن نشانه‌گذاری متن فارسی", en: "Persian Punctuation Fixer" },
+    seoTitle: {
+        fa: "درست کردن نشانه‌گذاری متن فارسی (، ؟ «»)",
+        en: "Persian Punctuation Fixer for Commas and Quotes",
     },
     description: {
-        fa: 'کامای لاتین را به «،»، علامت سؤال را به «؟» و گیومه "…" را به «…» برگردانید و اسپیس پیرامون نشانه‌ها را درست کنید. متن انگلیسی و شماره‌ها دست‌نخورده می‌مانند.',
+        fa: 'درست کردن نشانه گذاری فارسی: کامای لاتین را به «،»، علامت سؤال را به «؟» و گیومه "…" را به «…» برگردانید و اسپیس پیرامون نشانه‌ها را درست کنید.',
         en: 'Change Latin commas to «،», question marks to «؟», and "…" quotes to «…», and fix the spaces around marks. English text and numbers stay as they are.',
     },
     keywords: {

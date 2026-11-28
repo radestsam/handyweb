@@ -9,9 +9,13 @@ export const svgViewerMeta: ToolDefinition = {
     related: ["svg-optimizer", "favicon-generator", "image-converter"],
     tags: ["svg", "preview", "png", "sanitize"],
     title: { fa: "نمایش امن SVG و تبدیل به PNG", en: "SVG Viewer and SVG to PNG" },
+    seoTitle: {
+        fa: "نمایش امن SVG و تبدیل به PNG آنلاین",
+        en: "SVG Viewer and SVG to PNG Converter Online",
+    },
     description: {
-        fa: "کد یا فایل SVG را امن ببینید، بخش‌های خطرناک آن مانند اسکریپت را پیدا و پاک کنید و آن را به PNG با اندازه دلخواه تبدیل کنید. هیچ چیزی بارگذاری نمی‌شود.",
-        en: "View SVG code or a file safely, find and remove unsafe parts such as scripts, and convert it to PNG at any size. Nothing is uploaded.",
+        fa: "نمایش SVG به شکل امن، پیدا و پاک کردن بخش‌های خطرناک مانند اسکریپت، و تبدیل SVG به PNG با اندازه دلخواه.",
+        en: "View SVG code or a file safely, find and remove unsafe parts such as scripts, and convert it to PNG at any size.",
     },
     keywords: {
         fa: ["نمایش svg", "تبدیل svg به png", "پیش نمایش svg", "باز کردن svg"],

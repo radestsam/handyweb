@@ -8,10 +8,14 @@ export const pdfToImagesMeta: ToolDefinition = {
     alsoIn: ["image"],
     related: ["images-to-pdf", "pdf-merge", "image-compressor"],
     tags: ["pdf", "image", "convert", "png", "jpg"],
-    title: { fa: "تبدیل PDF به تصویر", en: "PDF to Images" },
+    title: { fa: "تبدیل PDF به عکس", en: "PDF to Image Converter" },
+    seoTitle: {
+        fa: "تبدیل PDF به عکس (JPG و PNG) آنلاین",
+        en: "PDF to Image Converter: PDF to JPG and PNG",
+    },
     description: {
-        fa: "برگه‌های یک PDF را با وضوح دلخواه به تصویر PNG یا JPG تبدیل کنید و جداگانه یا با هم در یک ZIP دانلود کنید. فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "Turn the pages of a PDF into PNG or JPG images at the resolution you choose, and download them one by one or as a ZIP. The file never leaves your device.",
+        fa: "تبدیل PDF به عکس PNG یا JPG با وضوح دلخواه، و دانلود صفحه‌ها جداگانه یا با هم در یک ZIP.",
+        en: "Turn the pages of a PDF into PNG or JPG images at the resolution you choose, and download them one by one or as a ZIP.",
     },
     keywords: {
         fa: [

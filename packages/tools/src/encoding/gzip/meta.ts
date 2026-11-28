@@ -8,9 +8,10 @@ export const gzipMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["base64", "base64-file"],
     tags: ["gzip", "deflate", "compression"],
-    title: {
-        fa: "فشرده‌سازی و باز کردن Gzip و Deflate",
-        en: "Gzip and Deflate Compressor",
+    title: { fa: "فشرده‌سازی و باز کردن Gzip و Deflate", en: "Gzip and Deflate Compressor" },
+    seoTitle: {
+        fa: "فشرده‌سازی و باز کردن Gzip و Deflate آنلاین",
+        en: "Gzip and Deflate Compressor and Decompressor",
     },
     description: {
         fa: "نوشته یا فایل را با gzip، deflate (zlib) یا deflate-raw فشرده کنید یا داده فشرده را باز کنید. کار با توان خود مرورگر انجام می‌شود.",

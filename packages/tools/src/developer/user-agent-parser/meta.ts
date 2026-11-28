@@ -8,12 +8,13 @@ export const userAgentParserMeta: ToolDefinition = {
     alsoIn: ["network"],
     related: ["http-header-parser", "url-parser"],
     tags: ["user-agent", "browser", "os"],
-    title: {
-        fa: "خواندن User-Agent مرورگر",
-        en: "User-Agent Parser",
+    title: { fa: "خواندن User-Agent مرورگر", en: "User-Agent Parser" },
+    seoTitle: {
+        fa: "خواندن User-Agent مرورگر و تشخیص سیستم‌عامل",
+        en: "User-Agent Parser: Browser, OS, and Device",
     },
     description: {
-        fa: "یک رشته User-Agent را بخوانید تا مرورگر، موتور، سیستم‌عامل، گونه دستگاه و ربات‌های شناخته‌شده را ببینید. User-Agent مرورگر خودتان را هم می‌توانید بیازمایید.",
+        fa: "تشخیص مرورگر از رشته یوزر ایجنت (User-Agent): مرورگر، موتور، سیستم‌عامل، نوع دستگاه و ربات‌های شناخته‌شده. User-Agent مرورگر خودتان را هم ببینید.",
         en: "Read a User-Agent string to see the browser, engine, operating system, device type, and known bots. You can also check your own browser's User-Agent.",
     },
     keywords: {
@@ -51,18 +52,7 @@ export const userAgentParserMeta: ToolDefinition = {
                 en: "Read the browser, OS, and device.",
             },
         ],
-        faq: [
-            {
-                question: {
-                    fa: "User-Agent من فرستاده می‌شود؟",
-                    en: "Is my User-Agent sent anywhere?",
-                },
-                answer: {
-                    fa: "نه. ابزار تنها navigator.userAgent را در همین صفحه می‌خواند. البته مرورگر شما آن را با هر درخواستی به هر سایتی می‌فرستد.",
-                    en: "No. The tool only reads navigator.userAgent on this page. Your browser does send it with every request to every site, though.",
-                },
-            },
-        ],
+        faq: [],
     },
     example:
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36",

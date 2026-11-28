@@ -8,9 +8,10 @@ export const uuidGeneratorMeta: ToolDefinition = {
     alsoIn: ["crypto"],
     related: ["random-token"],
     tags: ["uuid", "ulid", "guid", "id"],
-    title: {
-        fa: "ساخت UUID و ULID",
-        en: "UUID and ULID Generator",
+    title: { fa: "ساخت UUID و ULID", en: "UUID and ULID Generator" },
+    seoTitle: {
+        fa: "ساخت UUID و ULID (نسخه ۴ و ۷) آنلاین",
+        en: "UUID and ULID Generator (v4 and v7) Online",
     },
     description: {
         fa: "UUID نسخه ۴ و ۷ یا ULID بسازید، تا ۱٬۰۰۰ تا در یک بار. یک UUID یا ULID را هم بچسبانید تا نسخه و زمان درون آن را ببینید.",

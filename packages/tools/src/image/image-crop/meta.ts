@@ -8,10 +8,14 @@ export const imageCropMeta: ToolDefinition = {
     alsoIn: [],
     related: ["image-resize", "image-rotate"],
     tags: ["image", "crop", "photo"],
-    title: { fa: "بریدن تصویر", en: "Image Cropper" },
+    title: { fa: "برش عکس", en: "Image Cropper" },
+    seoTitle: {
+        fa: "برش عکس آنلاین با نسبت ۱:۱ و استوری",
+        en: "Image Cropper: Crop Photos to 1:1, 16:9, or 9:16",
+    },
     description: {
-        fa: "بخشی از عکس را با نسبت آزاد یا ۱:۱، ۴:۳، ۱۶:۹ و ۹:۱۶ (استوری) ببرید و دانلود کنید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Crop part of a photo with a free ratio or 1:1, 4:3, 16:9, or 9:16 (story), and download it. The photo never leaves your device.",
+        fa: "برش عکس با نسبت آزاد یا ۱:۱، ۴:۳، ۱۶:۹ و ۹:۱۶ (استوری) و دانلود آن.",
+        en: "Crop part of a photo with a free ratio or 1:1, 4:3, 16:9, or 9:16 (story), and download it.",
     },
     keywords: {
         fa: ["برش عکس", "کراپ عکس", "بریدن عکس", "عکس مربعی", "برش عکس برای استوری"],

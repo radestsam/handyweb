@@ -8,12 +8,13 @@ export const hexMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["binary", "base64", "number-base"],
     tags: ["hex", "bytes", "encoding"],
-    title: {
-        fa: "تبدیل متن به هگز و برعکس",
-        en: "Text to Hex Converter",
+    title: { fa: "تبدیل متن به هگز و برعکس", en: "Text to Hex Converter" },
+    seoTitle: {
+        fa: "تبدیل متن به هگز و برعکس (Hex به متن)",
+        en: "Text to Hex Converter and Hex to Text",
     },
     description: {
-        fa: "نوشته را به بایت‌های هگز (UTF-8) برگردانید یا هگز را به نوشته خوانا درآورید. 0x، \\x، اسپیس و دونقطه پذیرفته می‌شوند.",
+        fa: "تبدیل متن به هگز (بایت‌های UTF-8) و هگز به متن خوانا. 0x، \\x، اسپیس و دونقطه پذیرفته می‌شوند.",
         en: "Convert text to hex bytes (UTF-8) or hex back to readable text. 0x, \\x, spaces, and colons are accepted.",
     },
     keywords: {

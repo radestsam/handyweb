@@ -8,10 +8,14 @@ export const imageRotateMeta: ToolDefinition = {
     alsoIn: [],
     related: ["image-flip", "image-resize"],
     tags: ["image", "rotate", "photo"],
-    title: { fa: "چرخاندن تصویر", en: "Image Rotator" },
+    title: { fa: "چرخاندن عکس", en: "Image Rotator" },
+    seoTitle: {
+        fa: "چرخاندن عکس ۹۰ درجه یا با هر زاویه",
+        en: "Image Rotator: Rotate a Photo by Any Angle",
+    },
     description: {
-        fa: "عکس را ۹۰ یا ۱۸۰ درجه، یا با هر زاویه دلخواه، بچرخانید و بدون افت کیفیت دانلود کنید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Rotate a photo by 90 or 180 degrees, or by any angle, and download it without quality loss. The photo never leaves your device.",
+        fa: "چرخاندن عکس ۹۰ یا ۱۸۰ درجه، یا با هر زاویه دلخواه، و دانلود آن بدون افت کیفیت.",
+        en: "Rotate a photo by 90 or 180 degrees, or by any angle, and download it without quality loss.",
     },
     keywords: {
         fa: ["چرخاندن عکس", "چرخش تصویر", "صاف کردن عکس کج", "عکس برعکس"],

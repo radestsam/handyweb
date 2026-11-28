@@ -8,7 +8,11 @@ export const binaryCalculatorMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["number-base", "binary"],
     tags: ["binary", "hex", "bitwise", "calculator"],
-    title: { fa: "ماشین حساب دودویی و هگز", en: "Binary and Hex Calculator" },
+    title: { fa: "ماشین حساب باینری و هگز", en: "Binary and Hex Calculator" },
+    seoTitle: {
+        fa: "ماشین حساب باینری و هگز با AND، OR و XOR",
+        en: "Binary and Hex Calculator with Bitwise Operators",
+    },
     description: {
         fa: "دو عدد دودویی، هگز یا ده‌دهی را جمع، تفریق، ضرب و تقسیم کنید یا AND، OR، XOR و شیفت بیتی بگیرید، و پاسخ را در هر چهار مبنا ببینید.",
         en: "Add, subtract, multiply, and divide binary or hex numbers, or use AND, OR, XOR, and bit shifts, and see the answer in four bases.",

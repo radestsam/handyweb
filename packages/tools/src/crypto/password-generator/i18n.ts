@@ -25,8 +25,8 @@ export const strings = {
         en: "Words come from the EFF list of 7,776 English words. Each word adds about 12.9 bits.",
     },
     randomNote: {
-        fa: "همه نویسه‌ها با crypto.getRandomValues مرورگر برگزیده می‌شوند و جایی نگه داشته یا فرستاده نمی‌شوند.",
-        en: "Every character comes from crypto.getRandomValues of your browser. Nothing is stored or sent.",
+        fa: "همه نویسه‌ها با crypto.getRandomValues مرورگر برگزیده می‌شوند.",
+        en: "Every character comes from crypto.getRandomValues of your browser.",
     },
 } as const satisfies Record<string, LocalizedText>;
 

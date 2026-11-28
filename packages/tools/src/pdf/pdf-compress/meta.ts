@@ -9,9 +9,13 @@ export const pdfCompressMeta: ToolDefinition = {
     related: ["image-compressor", "pdf-pages", "pdf-metadata"],
     tags: ["pdf", "compress", "size"],
     title: { fa: "کم کردن حجم PDF", en: "PDF Compressor" },
+    seoTitle: {
+        fa: "کم کردن حجم PDF و فشرده سازی PDF آنلاین",
+        en: "PDF Compressor: Reduce PDF File Size",
+    },
     description: {
-        fa: "حجم PDF را با فشرده‌سازی دوباره تصویرهای JPEG و پاک کردن بخش‌های بی‌کاربرد کم کنید. فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "Make a PDF smaller by compressing its JPEG images again and removing parts that are not used. The file never leaves your device.",
+        fa: "کم کردن حجم PDF با فشرده‌سازی دوباره تصویرهای JPEG و پاک کردن بخش‌های بی‌کاربرد.",
+        en: "Make a PDF smaller by compressing its JPEG images again and removing parts that are not used.",
     },
     keywords: {
         fa: [

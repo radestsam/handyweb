@@ -8,10 +8,14 @@ export const imagePaletteMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["image-color-picker", "color-converter"],
     tags: ["image", "color", "palette"],
-    title: { fa: "استخراج پالت رنگ از تصویر", en: "Image Palette Extractor" },
+    title: { fa: "استخراج پالت رنگ از عکس", en: "Image Palette Extractor" },
+    seoTitle: {
+        fa: "استخراج پالت رنگ از عکس و کد رنگ‌ها",
+        en: "Image Palette Extractor: Main Colors of a Photo",
+    },
     description: {
-        fa: "رنگ‌های اصلی یک عکس را با سهم هر رنگ پیدا کنید و آن‌ها را به شکل متغیرهای CSS، فهرست HEX یا JSON کپی کنید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Find the main colors of a picture with the share of each one, and copy them as CSS variables, a HEX list, or JSON. The picture never leaves your device.",
+        fa: "استخراج رنگ از عکس: رنگ‌های اصلی و سهم هر رنگ را ببینید و پالت را به شکل متغیرهای CSS، فهرست HEX یا JSON کپی کنید.",
+        en: "Find the main colors of a picture with the share of each one, and copy them as CSS variables, a HEX list, or JSON.",
     },
     keywords: {
         fa: ["پالت رنگ عکس", "رنگ های عکس", "استخراج رنگ از عکس", "پالت رنگی"],

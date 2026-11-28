@@ -8,10 +8,14 @@ export const imageConverterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["image-compressor", "image-resize", "base64-file"],
     tags: ["image", "convert", "png", "jpg", "webp"],
-    title: { fa: "تبدیل فرمت تصویر", en: "Image Converter" },
+    title: { fa: "تبدیل فرمت عکس", en: "Image Converter" },
+    seoTitle: {
+        fa: "تبدیل فرمت عکس (WebP، PNG و JPG) آنلاین",
+        en: "Image Converter for WebP, PNG, and JPG",
+    },
     description: {
-        fa: "عکس را میان PNG، JPG و WebP تبدیل کنید، برای نمونه WebP به PNG یا PNG به JPG. تبدیل در مرورگر شما انجام می‌شود و عکس بارگذاری نمی‌شود.",
-        en: "Convert a picture between PNG, JPG, and WebP, for example WebP to PNG or PNG to JPG. The conversion runs in your browser and nothing is uploaded.",
+        fa: "تبدیل فرمت عکس میان PNG، JPG و WebP، برای نمونه WebP به PNG یا PNG به JPG.",
+        en: "Convert a picture between PNG, JPG, and WebP, for example WebP to PNG or PNG to JPG.",
     },
     keywords: {
         fa: [

@@ -8,12 +8,13 @@ export const textDiffMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["remove-duplicate-lines", "persian-normalizer"],
     tags: ["diff", "compare", "text"],
-    title: {
-        fa: "مقایسه دو متن و نمایش تفاوت‌ها",
-        en: "Text Diff Checker",
+    title: { fa: "مقایسه دو متن و نمایش تفاوت‌ها", en: "Text Diff Checker" },
+    seoTitle: {
+        fa: "مقایسه دو متن و نمایش تفاوت‌ها آنلاین",
+        en: "Text Diff Checker: Compare Two Texts Online",
     },
     description: {
-        fa: "دو نوشته را خط به خط، واژه به واژه یا نویسه به نویسه با هم بسنجید و افزوده‌ها و برداشته‌ها را ببینید. خروجی را به شکل patch هم کپی کنید.",
+        fa: "مقایسه متن: تفاوت دو متن را خط به خط، کلمه به کلمه یا حرف به حرف ببینید و افزوده‌ها و حذف‌شده‌ها را بشناسید. خروجی را به شکل patch هم کپی کنید.",
         en: "Compare two texts line by line, word by word, or character by character, and see what was added and removed. Copy the result as a patch too.",
     },
     keywords: {

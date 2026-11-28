@@ -8,12 +8,13 @@ export const textRepeaterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["split-join", "text-counter"],
     tags: ["text", "repeat"],
-    title: {
-        fa: "تکرار متن",
-        en: "Text Repeater",
+    title: { fa: "تکرار متن", en: "Text Repeater" },
+    seoTitle: {
+        fa: "تکرار متن و کلمه به تعداد دلخواه",
+        en: "Text Repeater: Repeat Text Many Times",
     },
     description: {
-        fa: "یک نوشته را چند بار پشت سر هم تکرار کنید، با خط تازه، اسپیس یا جداکننده دلخواه میان آن‌ها.",
+        fa: "تکرار متن یا کلمه به تعداد دلخواه، با خط تازه، اسپیس یا جداکننده دلخواه میان نمونه‌ها.",
         en: "Repeat a text a number of times, with a new line, a space, or a custom separator between the copies.",
     },
     keywords: {

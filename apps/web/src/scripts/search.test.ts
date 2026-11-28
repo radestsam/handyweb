@@ -151,7 +151,7 @@ describe("search ranking", () => {
         expect(top("کلید api")).toBe("random-token");
         expect(top("رمز عبور قوی")).toBe("password-generator");
         expect(top("webhook signature")).toBe("hmac");
-        expect(top("نویسه نامرئی")).toBe("unicode-explorer");
+        expect(top("بررسی کاراکتر")).toBe("unicode-explorer");
         expect(top("حروف بزرگ")).toBe("case-converter");
         expect(top("شمارش کلمات")).toBe("text-counter");
     });

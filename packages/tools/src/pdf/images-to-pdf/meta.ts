@@ -8,10 +8,14 @@ export const imagesToPdfMeta: ToolDefinition = {
     alsoIn: ["image"],
     related: ["pdf-merge", "image-compressor", "image-rotate"],
     tags: ["pdf", "image", "convert", "jpg"],
-    title: { fa: "تبدیل تصویر به PDF", en: "Images to PDF" },
+    title: { fa: "تبدیل عکس به PDF", en: "Image to PDF Converter" },
+    seoTitle: {
+        fa: "تبدیل عکس به PDF (JPG و PNG به PDF)",
+        en: "Image to PDF Converter: JPG and PNG to PDF",
+    },
     description: {
-        fa: "چند عکس JPG، PNG یا WebP را به ترتیب دلخواه در یک فایل PDF بگذارید، با اندازه برگه A4، Letter یا هم‌اندازه تصویر. تصویرها از دستگاه شما بیرون نمی‌روند.",
-        en: "Put JPG, PNG, or WebP pictures into one PDF in the order you choose, on A4, Letter, or image-sized pages. The pictures never leave your device.",
+        fa: "تبدیل عکس به PDF: چند عکس JPG، PNG یا WebP را به ترتیب دلخواه در یک فایل PDF بگذارید، با صفحه A4، Letter یا هم‌اندازه عکس.",
+        en: "Put JPG, PNG, or WebP pictures into one PDF in the order you choose, on A4, Letter, or image-sized pages.",
     },
     keywords: {
         fa: [
@@ -67,16 +71,6 @@ export const imagesToPdfMeta: ToolDefinition = {
                 answer: {
                     fa: "نه. JPEG و PNG همان‌گونه که هستند در PDF گذاشته می‌شوند. WebP، GIF و BMP بی‌افت به PNG تبدیل می‌شوند. JPEGی که چرخش EXIF دارد، صاف و دوباره با کیفیت بالا ذخیره می‌شود.",
                     en: "No. JPEG and PNG files go into the PDF as they are. WebP, GIF, and BMP become PNG with no loss. A JPEG with an EXIF turn is drawn upright and saved again at high quality.",
-                },
-            },
-            {
-                question: {
-                    fa: "آیا عکس‌ها به سرور فرستاده می‌شوند؟",
-                    en: "Are my pictures uploaded?",
-                },
-                answer: {
-                    fa: "نه. PDF در مرورگر شما ساخته می‌شود و تصویرها به هیچ جا فرستاده نمی‌شوند.",
-                    en: "No. The PDF is made in your browser, and the pictures are not sent anywhere.",
                 },
             },
         ],

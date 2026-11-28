@@ -8,9 +8,10 @@ export const loremIpsumMeta: ToolDefinition = {
     alsoIn: ["persian"],
     related: ["text-counter", "text-repeater"],
     tags: ["lorem ipsum", "placeholder", "text"],
-    title: {
+    title: { fa: "ساخت متن ساختگی (لورم ایپسوم فارسی)", en: "Lorem Ipsum Generator" },
+    seoTitle: {
         fa: "ساخت متن ساختگی (لورم ایپسوم فارسی)",
-        en: "Lorem Ipsum Generator",
+        en: "Lorem Ipsum Generator in Persian and Latin",
     },
     description: {
         fa: "متن ساختگی فارسی یا لاتین برای پر کردن طرح و صفحه بسازید: به شمار بند، جمله یا واژه.",

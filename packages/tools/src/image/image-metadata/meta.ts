@@ -15,9 +15,13 @@ export const imageMetadataMeta: ToolDefinition = {
     related: ["image-compressor", "file-signature"],
     tags: ["image", "exif", "metadata", "privacy", "gps"],
     title: { fa: "دیدن و پاک کردن فراداده عکس (EXIF)", en: "Image Metadata Viewer and Remover" },
+    seoTitle: {
+        fa: "دیدن و پاک کردن فراداده عکس (EXIF) و موقعیت",
+        en: "Image Metadata Viewer and Remover (EXIF and GPS)",
+    },
     description: {
-        fa: "مکان GPS، مدل دوربین، تاریخ و دیگر فراداده‌های عکس JPEG، PNG و WebP را ببینید و بدون افت کیفیت پاک کنید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "See the GPS location, camera model, date, and other metadata in a JPEG, PNG, or WebP photo, and remove it without quality loss. The photo never leaves your device.",
+        fa: "دیدن فراداده عکس (EXIF) مانند مکان GPS، مدل دوربین و تاریخ در JPEG، PNG و WebP، و پاک کردن آن بدون افت کیفیت.",
+        en: "See the GPS location, camera model, date, and other metadata in a JPEG, PNG, or WebP photo, and remove it without quality loss.",
     },
     keywords: {
         fa: ["پاک کردن exif", "حذف موقعیت مکانی عکس", "فراداده عکس", "متادیتا عکس", "اطلاعات عکس"],

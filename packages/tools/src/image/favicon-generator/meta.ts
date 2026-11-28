@@ -9,9 +9,13 @@ export const faviconGeneratorMeta: ToolDefinition = {
     related: ["image-resize", "image-converter"],
     tags: ["favicon", "ico", "icon", "pwa"],
     title: { fa: "ساخت فاوآیکون", en: "Favicon Generator" },
+    seoTitle: {
+        fa: "ساخت فاوآیکون (favicon.ico) از عکس",
+        en: "Favicon Generator: favicon.ico from a Picture",
+    },
     description: {
-        fa: "از یک تصویر، favicon.ico، آیکون اپل، آیکون‌های ۱۹۲ و ۵۱۲ و فایل manifest بسازید و همه را در یک ZIP با کد HTML آن دانلود کنید. تصویر از دستگاه شما بیرون نمی‌رود.",
-        en: "Make favicon.ico, the Apple icon, 192 and 512 icons, and a manifest from one picture, and download them in one ZIP with the HTML. The picture never leaves your device.",
+        fa: "از یک تصویر، favicon.ico، آیکون اپل، آیکون‌های ۱۹۲ و ۵۱۲ و فایل manifest بسازید و همه را در یک ZIP با کد HTML آن دانلود کنید.",
+        en: "Make favicon.ico, the Apple icon, 192 and 512 icons, and a manifest from one picture, and download them in one ZIP with the HTML.",
     },
     keywords: {
         fa: ["ساخت فاوآیکون", "favicon", "آیکون سایت", "ساخت ico", "فاو آیکون"],

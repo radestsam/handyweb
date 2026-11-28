@@ -15,6 +15,10 @@ export const jalaliConverterMeta: ToolDefinition = {
     related: ["persian-normalizer"],
     tags: ["date", "calendar", "jalali"],
     title: { fa: "تبدیل تاریخ شمسی و میلادی", en: "Jalali and Gregorian Date Converter" },
+    seoTitle: {
+        fa: "تبدیل تاریخ شمسی و میلادی آنلاین با روز هفته",
+        en: "Jalali and Gregorian Date Converter (Persian)",
+    },
     description: {
         fa: "تاریخ شمسی را به میلادی و میلادی را به شمسی برگردانید، همراه با روز هفته و سال‌های ۳۶۶ روزه (کبیسه).",
         en: "Convert a Jalali (Persian) date to Gregorian and back, with the day of the week and leap years.",

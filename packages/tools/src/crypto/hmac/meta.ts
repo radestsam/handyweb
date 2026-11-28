@@ -8,13 +8,14 @@ export const hmacMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["hash", "jwt-decoder"],
     tags: ["hmac", "signature", "sha256"],
-    title: {
-        fa: "ساخت و بررسی HMAC",
-        en: "HMAC Generator and Verifier",
+    title: { fa: "ساخت و بررسی HMAC", en: "HMAC Generator and Verifier" },
+    seoTitle: {
+        fa: "ساخت و بررسی HMAC-SHA256 و امضای وب‌هوک",
+        en: "HMAC Generator and Verifier (SHA-256, SHA-512)",
     },
     description: {
-        fa: "HMAC-SHA256، HMAC-SHA384 یا HMAC-SHA512 یک پیام را با کلید پنهان بسازید، یا امضای یک وب‌هوک را بررسی کنید. کلید و پیام روی دستگاه شما می‌مانند.",
-        en: "Create the HMAC-SHA256, HMAC-SHA384, or HMAC-SHA512 of a message with a secret key, or check a webhook signature. The key and the message stay on your device.",
+        fa: "HMAC-SHA256، HMAC-SHA384 یا HMAC-SHA512 یک پیام را با کلید پنهان بسازید، یا امضای یک وب‌هوک را بررسی کنید.",
+        en: "Create the HMAC-SHA256, HMAC-SHA384, or HMAC-SHA512 of a message with a secret key, or check a webhook signature.",
     },
     keywords: {
         fa: ["hmac", "امضای پیام", "امضای وب‌هوک", "کلید پنهان", "hmac sha256"],

@@ -8,9 +8,10 @@ export const pemDecoderMeta: ToolDefinition = {
     alsoIn: ["developer", "network"],
     related: ["hash", "http-header-parser"],
     tags: ["certificate", "pem", "csr", "x509"],
-    title: {
-        fa: "خواندن گواهی SSL و CSR",
-        en: "Certificate and CSR Decoder",
+    title: { fa: "خواندن گواهی SSL و CSR", en: "SSL Certificate and CSR Decoder" },
+    seoTitle: {
+        fa: "خواندن گواهی SSL و CSR و تاریخ انقضا",
+        en: "SSL Certificate and CSR Decoder (PEM, X.509)",
     },
     description: {
         fa: "یک گواهی SSL/TLS (X.509) یا درخواست گواهی (CSR) به شکل PEM را بخوانید: دارنده، صادرکننده، تاریخ اعتبار، نام‌های دامنه، کلید و اثر انگشت SHA-256.",

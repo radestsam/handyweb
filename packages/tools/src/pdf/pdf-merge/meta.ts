@@ -8,10 +8,14 @@ export const pdfMergeMeta: ToolDefinition = {
     alsoIn: [],
     related: ["image-compressor", "file-signature"],
     tags: ["pdf", "merge", "combine"],
-    title: { fa: "یکی کردن PDF", en: "PDF Merger" },
+    title: { fa: "ادغام PDF", en: "PDF Merger" },
+    seoTitle: {
+        fa: "ادغام PDF و یکی کردن چند فایل PDF",
+        en: "PDF Merger: Combine PDF Files into One",
+    },
     description: {
-        fa: "چند فایل PDF را به ترتیب دلخواه در یک فایل یکی کنید. فایل‌ها از دستگاه شما بیرون نمی‌روند.",
-        en: "Combine several PDF files into one, in the order you choose. The files never leave your device.",
+        fa: "ادغام PDF: چند فایل PDF را به ترتیب دلخواه در یک فایل یکی کنید.",
+        en: "Combine several PDF files into one, in the order you choose.",
     },
     keywords: {
         fa: ["یکی کردن pdf", "ادغام pdf", "چسباندن pdf", "ترکیب فایل pdf", "ادغام چند pdf"],
@@ -47,16 +51,6 @@ export const pdfMergeMeta: ToolDefinition = {
             },
         ],
         faq: [
-            {
-                question: {
-                    fa: "آیا فایل‌ها به سرور فرستاده می‌شوند؟",
-                    en: "Are my files uploaded?",
-                },
-                answer: {
-                    fa: "نه. یکی کردن در مرورگر شما انجام می‌شود و فایل‌ها به هیچ جا فرستاده نمی‌شوند.",
-                    en: "No. The merge runs in your browser, and the files are not sent anywhere.",
-                },
-            },
             {
                 question: {
                     fa: "آیا کیفیت برگه‌ها کم می‌شود؟",
