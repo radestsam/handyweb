@@ -99,6 +99,7 @@ describe("search ranking", () => {
         expect(top("گرفتن رنگ از عکس")).toBe("image-color-picker");
         expect(top("color palette from image")).toBe("image-palette");
         expect(top("مقایسه دو تصویر")).toBe("image-compare");
+        expect(top("blur face")).toBe("image-blur");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");

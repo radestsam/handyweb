@@ -1224,3 +1224,43 @@ test.describe("image compare", () => {
         await expect(page.locator("[data-tool-diff]")).toContainText("the same");
     });
 });
+
+test.describe("image blur", () => {
+    test("blurs only the drawn area", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-blur/?preset=area");
+        // Red is 8 x column: a strong left-to-right gradient.
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.png",
+            mimeType: "image/png",
+            buffer: makePng(32, 16, true, 8),
+        });
+        const frame = page.locator("[data-effect-frame]");
+        const box = (await frame.boundingBox())!;
+        // Draw the right half.
+        await page.mouse.move(box.x + box.width * 0.5, box.y + 1);
+        await page.mouse.down();
+        await page.mouse.move(box.x + box.width - 0.5, box.y + box.height - 0.5, { steps: 4 });
+        await page.mouse.up();
+        await expect(page.locator("[data-effect-region]")).toBeVisible();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a-blurred.png");
+        const reds = await page
+            .locator("[data-effect-frame] img")
+            .evaluate(async (img: HTMLImageElement) => {
+                await img.decode();
+                const canvas = document.createElement("canvas");
+                canvas.width = img.naturalWidth;
+                canvas.height = img.naturalHeight;
+                const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+                context.drawImage(img, 0, 0);
+                const line = context.getImageData(0, 8, 32, 1).data;
+                return [...line].filter((_, i) => i % 4 === 0);
+            });
+        // The left half is not changed: red still goes up by 8 each pixel (Brave adds noise of 1 or 2).
+        for (let x = 0; x < 14; x++)
+            expect(Math.abs((reds[x] as number) - x * 8)).toBeLessThanOrEqual(3);
+        // The right half is blurred: its far edge is pulled toward the inside.
+        expect(reds[31] as number).toBeLessThan(31 * 8 - 10);
+    });
+});
