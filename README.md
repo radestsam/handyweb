@@ -61,6 +61,8 @@ The budget check allows 15 KB of start JavaScript on a page without a tool, 90 K
 
 pdf.js (`pdfjs-dist`), the PDF renderer, has two budgets of its own: 150 KB for its main chunk (`pdfjs.*.js`) and 400 KB for its worker (`pdf.worker-*.js`). They are about 130 KB and 360 KB. Both load only when a PDF tool that renders pages opens a file. The owner approved these budgets on 2026-11-28.
 
+The password strength worker (`zxcvbn.worker-*.js`) has a budget of 870 KB. It holds zxcvbn-ts with all of its common and English dictionaries, about 860 KB. The smaller choice, without the English words and names, was about 250 KB. The owner chose the full set on 2026-11-28 for better detection. The worker loads only on the password strength page.
+
 - **Browser Tests:** Playwright in Chromium, Firefox, and WebKit, on desktop and mobile viewports.
 - **Lint Scripts & Workflows:** shellcheck and shfmt on `scripts/`, actionlint and zizmor on the workflows.
 
@@ -171,6 +173,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | SHA-256 and SHA-512 Hash Generator for Text and Files | Hashing and Cryptography | `packages/tools/src/crypto/hash`                       | `hash-wasm` (file hashing)                                                                                  |
 | HMAC Generator and Verifier                           | Hashing and Cryptography | `packages/tools/src/crypto/hmac`                       | None                                                                                                        |
 | Password and Passphrase Generator                     | Hashing and Cryptography | `packages/tools/src/crypto/password-generator`         | None (EFF large wordlist, generated)                                                                        |
+| Password Strength Checker                             | Hashing and Cryptography | `packages/tools/src/crypto/password-strength`          | `@zxcvbn-ts/core`, `@zxcvbn-ts/language-common`, `@zxcvbn-ts/language-en` (in a worker)                     |
 | Random Token and Bytes Generator                      | Hashing and Cryptography | `packages/tools/src/crypto/random-token`               | None                                                                                                        |
 | Text Encryption with a Passphrase (AES-GCM)           | Hashing and Cryptography | `packages/tools/src/crypto/aes-gcm`                    | None (Web Crypto)                                                                                           |
 | TOTP Code Generator                                   | Hashing and Cryptography | `packages/tools/src/crypto/totp`                       | None (Web Crypto)                                                                                           |

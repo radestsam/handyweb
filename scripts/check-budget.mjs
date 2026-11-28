@@ -24,6 +24,9 @@ const BUDGET = {
     // (pdf.worker-*.js). Owner decision of 2026-11-28.
     pdfjs: 150 * KB,
     pdfjsWorker: 400 * KB,
+    // The password strength worker (zxcvbn.worker-*.js): zxcvbn-ts with all
+    // of its common and English dictionaries. Owner decision of 2026-11-28.
+    zxcvbnWorker: 870 * KB,
 };
 
 /** The budget of an on-demand chunk, by its file name. */
@@ -31,6 +34,7 @@ function chunkBudget(path) {
     if (/[\/]pdf-lib\.[\w-]+\.js$/.test(path)) return BUDGET.pdfLib;
     if (/[\/]pdfjs\.[\w-]+\.js$/.test(path)) return BUDGET.pdfjs;
     if (/[\/]pdf\.worker-[\w-]+\.js$/.test(path)) return BUDGET.pdfjsWorker;
+    if (/[\/]zxcvbn\.worker-[\w-]+\.js$/.test(path)) return BUDGET.zxcvbnWorker;
     return BUDGET.chunk;
 }
 

@@ -17,6 +17,7 @@ import { xmlFormatterMeta } from "./developer/xml-formatter/meta";
 import { jwtDecoderMeta } from "./developer/jwt-decoder/meta";
 import { hmacMeta } from "./crypto/hmac/meta";
 import { passwordGeneratorMeta } from "./crypto/password-generator/meta";
+import { passwordStrengthMeta } from "./crypto/password-strength/meta";
 import { randomTokenMeta } from "./crypto/random-token/meta";
 import { uuidGeneratorMeta } from "./developer/uuid-generator/meta";
 import { textDiffMeta } from "./text/text-diff/meta";
@@ -128,6 +129,7 @@ export const catalog: readonly ToolDefinition[] = [
     jwtDecoderMeta,
     hmacMeta,
     passwordGeneratorMeta,
+    passwordStrengthMeta,
     randomTokenMeta,
     uuidGeneratorMeta,
     textDiffMeta,

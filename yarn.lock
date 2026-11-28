@@ -1710,6 +1710,32 @@
   resolved "https://registry.yarnpkg.com/@vscode/l10n/-/l10n-0.0.18.tgz#916d3a5e960dbab47c1c56f58a7cb5087b135c95"
   integrity sha512-KYSIHVmslkaCDyw013pphY+d7x1qV8IZupYfeIfzNA+nsaWHbn5uPuQRvdRFsa9zFzGeudPuoGoZ1Op4jrJXIQ==
 
+"@zxcvbn-ts/core@4.3.0":
+  version "4.3.0"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/core/-/core-4.3.0.tgz#3de8b259f6ad774b91dabd538d934d99c3716601"
+  integrity sha512-Y5Nes+T9TweCdA/X1zji6KZiepThNP52kNXAo9omdyI5fltlDqIBgFeIwEepehzVUiGdYvL+YsbCYyyS3yn2nw==
+  dependencies:
+    fastest-levenshtein "1.0.16"
+
+"@zxcvbn-ts/dictionary-compression@^3.0.1":
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/dictionary-compression/-/dictionary-compression-3.0.1.tgz#f357ad46e08fff8ba92f6f163d6b38b9533fc849"
+  integrity sha512-p3KyPzxGc3vWSap5hHA6SllbUCmh7s+NtpGyC3qEWrxYJT9t9TUAzjPm48Okipo+UUyPQfDlIvTcs9JRShBFiQ==
+
+"@zxcvbn-ts/language-common@4.2.0":
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/language-common/-/language-common-4.2.0.tgz#913c8d123109df9e8be446464a3fefaedfa3e4c0"
+  integrity sha512-LPcIu73i+ZV2fYPRDAd/JfaBblFUMVXSjupxkr0NU04wViVkYuzZ6ncw6pDgUdm7MMM5llMMzkbzhKrwXgv1tg==
+  dependencies:
+    "@zxcvbn-ts/dictionary-compression" "^3.0.1"
+
+"@zxcvbn-ts/language-en@4.1.2":
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/@zxcvbn-ts/language-en/-/language-en-4.1.2.tgz#2e71e28f0f4d84f21b5377fb13f087100873d2f9"
+  integrity sha512-VICTXVOYrfSCtmrLLv41x4nx34H+BEJO2FPYMUXK3DGYxVtBfqUKx9Xq9WfxBpDAvvlQ4DocUA9bqNN18zKMXA==
+  dependencies:
+    "@zxcvbn-ts/dictionary-compression" "^3.0.1"
+
 abbrev@^5.0.0:
   version "5.0.0"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-5.0.0.tgz#bab70805adca6637a33eeecdb8b7b5474d6d6425"
@@ -2474,6 +2500,11 @@ fast-wrap-ansi@^0.2.0:
   integrity sha512-7F2Fl+TjRSenLqlU3UjSH0iyqopqoZIu7eZVpEirP2g1GtWa2G/ecEmBdgz31+Mxr+ELclgg6sokpSFIQiZ02Q==
   dependencies:
     fast-string-width "^3.0.2"
+
+fastest-levenshtein@1.0.16:
+  version "1.0.16"
+  resolved "https://registry.yarnpkg.com/fastest-levenshtein/-/fastest-levenshtein-1.0.16.tgz#210e61b6ff181de91ea9b3d1b84fdedd47e034e5"
+  integrity sha512-eRnCtTTtGZFpQCwhJiUOuxPQWRXVKYDn0b2PeHfXL6/Zi53SLAzAHfVhVWK2AryC/WH05kGfxhFIPvTF0SXQzg==
 
 fdir@^6.5.0:
   version "6.5.0"
