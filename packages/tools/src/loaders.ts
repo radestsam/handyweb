@@ -39,4 +39,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "lorem-ipsum": () => import("./text/lorem-ipsum/ui"),
     "text-extractor": () => import("./text/text-extractor/ui"),
     "number-to-words": () => import("./persian/number-to-words/ui"),
+    "zwnj-fixer": () => import("./persian/zwnj-fixer/ui"),
 };

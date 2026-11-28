@@ -644,3 +644,12 @@ test.describe("number to words", () => {
         await expect(page.getByRole("alert")).toContainText("Enter a number");
     });
 });
+
+test.describe("zwnj fixer", () => {
+    test("adds half-spaces and lists the changes", async ({ page }) => {
+        await page.goto("/fa/tools/zwnj-fixer/");
+        await page.locator("[data-tool-input]").fill("کتاب ها را می خوانم");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("کتاب‌ها را می‌خوانم");
+        await expect(page.locator("[data-tool-counts] li")).toHaveCount(2);
+    });
+});
