@@ -27,6 +27,7 @@ describe("search ranking", () => {
         expect(top("بیس۶۴")).toBe("base64");
         expect(top("json")).toBe("json-formatter");
         expect(top("sha256")).toBe("hash");
+        expect(top("sha512")).toBe("hash");
         expect(top("word count")).toBe("text-counter");
         expect(top("title case")).toBe("case-converter");
         expect(top("remove duplicates")).toBe("remove-duplicate-lines");
