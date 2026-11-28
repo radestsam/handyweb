@@ -791,3 +791,16 @@ test.describe("url parser", () => {
         await expect(page.locator("[data-tool-params]")).toContainText("next");
     });
 });
+
+test.describe("cron parser", () => {
+    test("describes an expression and lists runs", async ({ page }) => {
+        await page.goto("/en/tools/cron-parser/");
+        await page.locator("[data-tool-input]").fill("30 9 * * 1-5");
+        await expect(page.locator("[data-tool-meaning]")).toHaveText(
+            "At 09:30, on Monday, Tuesday, Wednesday, Thursday and Friday.",
+        );
+        await expect(page.locator("[data-tool-runs] li")).toHaveCount(10);
+        await page.locator("[data-tool-input]").fill("61 * * * *");
+        await expect(page.getByRole("alert")).toContainText("61");
+    });
+});

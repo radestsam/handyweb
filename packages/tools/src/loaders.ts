@@ -53,4 +53,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "json-schema-validator": () => import("./developer/json-schema-validator/ui"),
     "color-converter": () => import("./developer/color-converter/ui"),
     "url-parser": () => import("./developer/url-parser/ui"),
+    "cron-parser": () => import("./developer/cron-parser/ui"),
 };
