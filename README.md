@@ -133,6 +133,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Binary and Hex Calculator                             | Calculators              | `packages/tools/src/calculators/binary-calculator`     | None                                                       |
 | Color Contrast Checker (WCAG)                         | Calculators              | `packages/tools/src/calculators/color-contrast`        | None                                                       |
 | Time Zone Converter                                   | Calculators              | `packages/tools/src/calculators/time-zone-converter`   | None                                                       |
+| Barcode Generator                                     | QR Codes and Barcodes    | `packages/tools/src/qr/barcode-generator`              | None                                                       |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`                | None                                                       |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`               | None                                                       |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator`   | `@cfworker/json-schema`                                    |
