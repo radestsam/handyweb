@@ -1,6 +1,10 @@
 import { makePng } from "../support/png";
 import { expect, expectCleanStorage, expectNoLeak, test } from "../support/privacy";
 
+// A tool page has the tool HTML before its code runs, and the tool is inert
+// until React takes it over. setInputFiles does not wait for that, so the
+// tests wait for [data-tool-ready] after each tool page loads.
+
 /*
  * Image tools take a file, not text, so the text suite (tools.spec.ts) does
  * not run them. These tests upload a file made here, run the tool, and check
@@ -16,6 +20,7 @@ for (const locale of ["fa", "en"] as const) {
         const errors: string[] = [];
         page.on("pageerror", (error) => errors.push(error.message));
         await page.goto(`/${locale}/tools/image-resize/`);
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "secret-holiday-photo.png",
             mimeType: "image/png",
@@ -44,6 +49,7 @@ for (const slug of [
 ]) {
     test(`${slug} runs locally and stores nothing`, async ({ page, requests, baseURL }) => {
         await page.goto(`/en/tools/${slug}/`);
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "secret-holiday-photo.png",
             mimeType: "image/png",
@@ -70,6 +76,7 @@ for (const slug of [
 test("image-metadata runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     const { RICH_JPEG } = await import("../../packages/tools/src/image/image-metadata/fixtures");
     await page.goto("/en/tools/image-metadata/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-holiday-photo.jpg",
         mimeType: "image/jpeg",
@@ -84,6 +91,7 @@ test("image-metadata runs locally and stores nothing", async ({ page, requests, 
 
 test("image-color-picker runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/image-color-picker/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-holiday-photo.png",
         mimeType: "image/png",
@@ -98,6 +106,7 @@ test("image-color-picker runs locally and stores nothing", async ({ page, reques
 
 test("image-palette runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/image-palette/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-holiday-photo.png",
         mimeType: "image/png",
@@ -111,6 +120,7 @@ test("image-palette runs locally and stores nothing", async ({ page, requests, b
 
 test("image-compare runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/image-compare/");
+    await page.locator("[data-tool-ready]").waitFor();
     const files = page.locator('input[type="file"]');
     await files.first().setInputFiles({
         name: "secret-before.png",
@@ -131,6 +141,7 @@ test("image-compare runs locally and stores nothing", async ({ page, requests, b
 
 test("image-blur runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/image-blur/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-holiday-photo.png",
         mimeType: "image/png",
@@ -147,6 +158,7 @@ test("image-blur runs locally and stores nothing", async ({ page, requests, base
 
 test("image-pixelate runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/image-pixelate/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-holiday-photo.png",
         mimeType: "image/png",
@@ -163,6 +175,7 @@ test("image-pixelate runs locally and stores nothing", async ({ page, requests, 
 
 test("image-watermark runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/fa/tools/image-watermark/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-holiday-photo.png",
         mimeType: "image/png",
@@ -183,6 +196,7 @@ test("image-watermark runs locally and stores nothing", async ({ page, requests,
 
 test("favicon-generator runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/favicon-generator/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page
         .locator('input[type="file"]')
         .setInputFiles({ name: "secret-logo.png", mimeType: "image/png", buffer: makePng(64, 64) });
@@ -197,6 +211,7 @@ test("code-reader runs locally and stores nothing", async ({ page, requests, bas
     const { makeQr } = await import("../../packages/tools/src/qr/qr-generator/logic");
     const { qrPng } = await import("../support/qr-png");
     await page.goto("/en/tools/code-reader/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-ticket.png",
         mimeType: "image/png",

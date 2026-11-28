@@ -9,6 +9,7 @@ import {
     Pane,
     Segmented,
     type ToolUiProps,
+    useClient,
 } from "@handyweb/core/ui";
 import { kindLabels, strings, variantLabels } from "./i18n";
 import { ID_KINDS, MAX_COUNT, generateIds, inspectId, type IdKind, type Inspection } from "./logic";
@@ -30,7 +31,10 @@ export default function UuidGenerator({ locale, presetOptions }: ToolUiProps) {
     const t = (key: keyof typeof strings) => strings[key][locale];
     const redraw = () => setDraw({ now: Date.now(), round: draw.round + 1 });
 
+    // The IDs are drawn in the browser only, so the static HTML holds none.
+    const client = useClient();
     const result = useMemo((): ToolResult<string> => {
+        if (!client) return { ok: true, value: "" };
         try {
             return {
                 ok: true,
@@ -39,7 +43,7 @@ export default function UuidGenerator({ locale, presetOptions }: ToolUiProps) {
         } catch (error) {
             return { ok: false, error: toToolError(error) };
         }
-    }, [kind, count, uppercase, hyphens, draw]);
+    }, [client, kind, count, uppercase, hyphens, draw]);
 
     const inspection = useMemo((): ToolResult<Inspection> | null => {
         if (probe.trim() === "") return null;

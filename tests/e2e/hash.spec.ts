@@ -4,9 +4,14 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { expect, test } from "@playwright/test";
 
+// A tool page has the tool HTML before its code runs, and the tool is inert
+// until React takes it over. setInputFiles does not wait for that, so the
+// tests wait for [data-tool-ready] after each tool page loads.
+
 test.describe("hash tool", () => {
     test("hashes text and compares it with an expected value", async ({ page }) => {
         await page.goto("/en/tools/hash/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator("[data-tool-input]").fill("abc");
         const expected = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad";
         await expect(page.locator("[data-tool-output]")).toHaveValue(expected);
@@ -18,6 +23,7 @@ test.describe("hash tool", () => {
 
     test("the SHA-512 preset hashes text and files", async ({ page }) => {
         await page.goto("/en/tools/hash/?preset=sha512");
+        await page.locator("[data-tool-ready]").waitFor();
         const algorithm = page.locator("[data-tool-algorithm]");
         await page.locator("[data-tool-input]").fill("abc");
         await expect(page.locator("[data-tool-output]")).toHaveValue(
@@ -45,6 +51,7 @@ test.describe("hash tool", () => {
 
     test("the MD5 preset warns that MD5 is legacy", async ({ page }) => {
         await page.goto("/en/tools/hash/?preset=md5");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator("[data-tool-input]").fill("abc");
         await expect(page.locator("[data-tool-output]")).toHaveValue(
             "900150983cd24fb0d6963f7d28e17f72",
@@ -59,6 +66,7 @@ test.describe("hash tool", () => {
             if (request.method() !== "GET") requests.push(`${request.method()} ${request.url()}`);
         });
         await page.goto("/en/tools/hash/?preset=file");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "sample.bin",
             mimeType: "application/octet-stream",
@@ -80,6 +88,7 @@ test.describe("hash tool", () => {
                 page.on("worker", (worker) => worker.on("close", () => resolve()));
             });
             await page.goto("/en/tools/hash/?preset=file");
+            await page.locator("[data-tool-ready]").waitFor();
             await page.locator('input[type="file"]').setInputFiles(path);
             await page.locator("[data-tool-cancel]").click();
             await closed;

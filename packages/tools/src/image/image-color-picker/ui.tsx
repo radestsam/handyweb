@@ -10,6 +10,7 @@ import {
     Ltr,
     Segmented,
     type ToolUiProps,
+    useClient,
 } from "@handyweb/core/ui";
 import { formatColor, type Rgba } from "../../developer/color-converter/logic";
 import { strings } from "./i18n";
@@ -50,7 +51,8 @@ export default function ImageColorPicker({ locale }: ToolUiProps) {
         pixels.current = { data: data.data, width: size.width, height: size.height };
         setReady(true);
     }, [source, size]);
-    const hasEyeDropper = typeof window !== "undefined" && "EyeDropper" in window;
+    const client = useClient();
+    const hasEyeDropper = client && "EyeDropper" in window;
 
     const reset = () => {
         pixels.current = null;

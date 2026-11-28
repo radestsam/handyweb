@@ -137,7 +137,7 @@ const jsonLd: unknown[] = [
                 data-tool-root={tool.id}
             >
                 <ToolIsland
-                    client:only="react"
+                    client:load
                     toolId={tool.id}
                     locale={locale}
                     presets={tool.presets.map(({ id, options }) => ({ id, options }))}
