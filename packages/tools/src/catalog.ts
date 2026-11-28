@@ -38,6 +38,7 @@ import { punctuationFixerMeta } from "./persian/punctuation-fixer/meta";
 import { directionFixerMeta } from "./persian/direction-fixer/meta";
 import { yamlFormatterMeta } from "./developer/yaml-formatter/meta";
 import { jsonYamlMeta } from "./developer/json-yaml/meta";
+import { sqlFormatterMeta } from "./developer/sql-formatter/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -83,4 +84,5 @@ export const catalog: readonly ToolDefinition[] = [
     directionFixerMeta,
     yamlFormatterMeta,
     jsonYamlMeta,
+    sqlFormatterMeta,
 ];

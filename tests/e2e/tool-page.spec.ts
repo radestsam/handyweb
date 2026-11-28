@@ -687,3 +687,15 @@ test.describe("yaml tools", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("name: سارا\n");
     });
 });
+
+test.describe("sql formatter", () => {
+    test("formats a query", async ({ page }) => {
+        await page.goto("/en/tools/sql-formatter/?preset=postgresql");
+        await page.locator("[data-tool-input]").fill("select a from t where x=1");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "SELECT\n  a\nFROM\n  t\nWHERE\n  x = 1",
+        );
+        await page.locator("[data-tool-input]").fill("select (a from t");
+        await expect(page.getByRole("alert")).toContainText("line 1");
+    });
+});

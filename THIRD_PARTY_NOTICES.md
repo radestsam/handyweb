@@ -38,6 +38,8 @@ The passphrase words come from the EFF large wordlist by the Electronic Frontier
 | `hash-wasm`                      | MIT                                                                 | Yes: streaming SHA-256 for files (WebAssembly)                |
 | `jalaali-js`                     | MIT                                                                 | Yes: Jalali and Gregorian conversion                          |
 | `yaml`                           | ISC                                                                 | Yes: YAML parsing and writing                                 |
+| `sql-formatter`                  | MIT                                                                 | Yes: SQL formatting                                           |
+| `nearley`                        | MIT                                                                 | Yes: the parser runtime of `sql-formatter`                    |
 | `uqr`                            | MIT (includes the QR Code generator library by Project Nayuki, MIT) | Yes: QR code encoding                                         |
 | `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                           |
 | `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                           |
