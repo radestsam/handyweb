@@ -34,5 +34,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Number Base Converter, for bases 2 to 36 with exact large numbers.
 - QR Code Generator, with PNG and SVG download.
 - Reverse Text, Text Repeater, and Text Splitter and Joiner.
+- Find and Replace, with plain text and regex modes.
+- JSON String Escaper and Unescaper.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

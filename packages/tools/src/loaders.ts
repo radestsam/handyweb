@@ -33,4 +33,6 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "reverse-text": () => import("./text/reverse-text/ui"),
     "text-repeater": () => import("./text/text-repeater/ui"),
     "split-join": () => import("./text/split-join/ui"),
+    "find-replace": () => import("./text/find-replace/ui"),
+    "json-string": () => import("./developer/json-string/ui"),
 };

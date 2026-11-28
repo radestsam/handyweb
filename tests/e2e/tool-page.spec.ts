@@ -573,3 +573,33 @@ test.describe("small text tools", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("a;b");
     });
 });
+
+test.describe("find and replace", () => {
+    test("replaces whole Persian words and counts", async ({ page }) => {
+        await page.goto("/fa/tools/find-replace/");
+        await page.getByLabel("جستجو برای").fill("کتاب");
+        await page.getByLabel("جایگزین با").fill("دفتر");
+        await page.getByLabel("تنها واژه کامل").check();
+        await page.locator("[data-tool-input]").fill("کتاب کتابخانه کتاب");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("دفتر کتابخانه دفتر");
+        await expect(page.locator("[data-tool-count]")).toContainText("۲");
+    });
+
+    test("the regex preset uses groups", async ({ page }) => {
+        await page.goto("/en/tools/find-replace/?preset=regex");
+        await page.getByLabel("Find").fill("(\\d+)-(\\d+)");
+        await page.getByLabel("Replace with").fill("$2-$1");
+        await page.locator("[data-tool-input]").fill("12-34");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("34-12");
+    });
+});
+
+test.describe("json string", () => {
+    test("escapes and unescapes", async ({ page }) => {
+        await page.goto("/en/tools/json-string/");
+        await page.locator("[data-tool-input]").fill('a "b"\nc');
+        await expect(page.locator("[data-tool-output]")).toHaveValue('a \\"b\\"\\nc');
+        await page.getByRole("button", { name: "Swap input and output" }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue('a "b"\nc');
+    });
+});
