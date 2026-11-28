@@ -81,6 +81,7 @@ import { unitConverterMeta } from "./calculators/unit-converter/meta";
 import { percentageCalculatorMeta } from "./calculators/percentage-calculator/meta";
 import { discountCalculatorMeta } from "./calculators/discount-calculator/meta";
 import { vatCalculatorMeta } from "./calculators/vat-calculator/meta";
+import { dateDifferenceMeta } from "./calculators/date-difference/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -169,4 +170,5 @@ export const catalog: readonly ToolDefinition[] = [
     percentageCalculatorMeta,
     discountCalculatorMeta,
     vatCalculatorMeta,
+    dateDifferenceMeta,
 ];
