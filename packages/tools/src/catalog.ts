@@ -84,6 +84,7 @@ import { pdfMetadataMeta } from "./pdf/pdf-metadata/meta";
 import { pdfTextMeta } from "./pdf/pdf-text/meta";
 import { pdfWatermarkMeta } from "./pdf/pdf-watermark/meta";
 import { pdfPagesMeta } from "./pdf/pdf-pages/meta";
+import { pdfCompressMeta } from "./pdf/pdf-compress/meta";
 import { unitConverterMeta } from "./calculators/unit-converter/meta";
 import { percentageCalculatorMeta } from "./calculators/percentage-calculator/meta";
 import { discountCalculatorMeta } from "./calculators/discount-calculator/meta";
@@ -194,6 +195,7 @@ export const catalog: readonly ToolDefinition[] = [
     pdfTextMeta,
     pdfWatermarkMeta,
     pdfPagesMeta,
+    pdfCompressMeta,
     unitConverterMeta,
     percentageCalculatorMeta,
     discountCalculatorMeta,
