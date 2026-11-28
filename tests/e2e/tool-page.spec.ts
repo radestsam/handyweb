@@ -391,3 +391,26 @@ test.describe("random token", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue(/^[A-Za-z0-9_-]{22}$/);
     });
 });
+
+test.describe("uuid generator", () => {
+    test("makes v4 UUIDs and inspects a v7 UUID", async ({ page }) => {
+        await page.goto("/en/tools/uuid-generator/");
+        await page.locator("[data-tool-input]").fill("2");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            /^[0-9a-f-]{36}\n[0-9a-f-]{36}$/,
+        );
+        await page
+            .getByLabel("Inspect a UUID or ULID")
+            .fill("017f22e2-79b0-7cc3-98c4-dc0c0c07398f");
+        await expect(page.locator('[data-field="type"]')).toHaveText("UUID v7");
+        await expect(page.locator('[data-field="time"]')).toContainText("2022");
+    });
+
+    test("the ULID preset makes ULIDs", async ({ page }) => {
+        await page.goto("/fa/tools/uuid-generator/?preset=ulid");
+        await page.locator("[data-tool-input]").fill("3");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            /^[0-9A-HJKMNP-TV-Z]{26}(\n[0-9A-HJKMNP-TV-Z]{26}){2}$/,
+        );
+    });
+});

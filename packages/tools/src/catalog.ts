@@ -18,6 +18,7 @@ import { jwtDecoderMeta } from "./developer/jwt-decoder/meta";
 import { hmacMeta } from "./crypto/hmac/meta";
 import { passwordGeneratorMeta } from "./crypto/password-generator/meta";
 import { randomTokenMeta } from "./crypto/random-token/meta";
+import { uuidGeneratorMeta } from "./developer/uuid-generator/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -43,4 +44,5 @@ export const catalog: readonly ToolDefinition[] = [
     hmacMeta,
     passwordGeneratorMeta,
     randomTokenMeta,
+    uuidGeneratorMeta,
 ];
