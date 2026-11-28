@@ -4,6 +4,8 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 
 ## Unreleased
 
+## 1.0.0 - 2026-11-28
+
 ### Added
 
 - Each tool page links to the GitHub bug form, with the tool, the page, and the release filled in.
