@@ -825,3 +825,19 @@ test.describe("header and user-agent parsers", () => {
         await expect(page.locator('[data-field="browser"]')).not.toHaveText("ناشناخته");
     });
 });
+
+test.describe("hex and binary", () => {
+    test("encodes text to hex and back", async ({ page }) => {
+        await page.goto("/en/tools/hex/");
+        await page.locator("[data-tool-input]").fill("سلام");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("D8 B3 D9 84 D8 A7 D9 85");
+        await page.getByRole("button", { name: "Swap input and output" }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام");
+    });
+
+    test("the binary decode preset reads bits", async ({ page }) => {
+        await page.goto("/fa/tools/binary/?preset=decode");
+        await page.locator("[data-tool-input]").fill("01001000 01101001");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("Hi");
+    });
+});

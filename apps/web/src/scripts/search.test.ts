@@ -77,9 +77,11 @@ describe("search ranking", () => {
         expect(top("cron")).toBe("cron-parser");
         expect(top("security headers")).toBe("http-header-parser");
         expect(top("user agent")).toBe("user-agent-parser");
+        expect(top("text to hex")).toBe("hex");
+        expect(top("text to binary")).toBe("binary");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
-        expect(top("باینری")).toBe("number-base");
+        expect(top("تبدیل مبنا")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
         expect(top("مقایسه متن")).toBe("text-diff");
         expect(top("کلید api")).toBe("random-token");

@@ -50,6 +50,8 @@ import { urlParserMeta } from "./developer/url-parser/meta";
 import { cronParserMeta } from "./developer/cron-parser/meta";
 import { httpHeaderParserMeta } from "./developer/http-header-parser/meta";
 import { userAgentParserMeta } from "./developer/user-agent-parser/meta";
+import { hexMeta } from "./encoding/hex/meta";
+import { binaryMeta } from "./encoding/binary/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -107,4 +109,6 @@ export const catalog: readonly ToolDefinition[] = [
     cronParserMeta,
     httpHeaderParserMeta,
     userAgentParserMeta,
+    hexMeta,
+    binaryMeta,
 ];
