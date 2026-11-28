@@ -301,3 +301,27 @@ test.describe("xml formatter", () => {
         await expect(page.locator("[data-tool-status]")).toContainText("Root: a, 2 elements");
     });
 });
+
+test.describe("jwt decoder", () => {
+    const b64url = (value: object) => Buffer.from(JSON.stringify(value)).toString("base64url");
+
+    test("decodes the payload, shows the banner, and never says valid", async ({ page }) => {
+        await page.goto("/en/tools/jwt-decoder/");
+        const jwt = `${b64url({ alg: "HS256" })}.${b64url({ name: "سارا", exp: 1 })}.c2ln`;
+        await page.locator("[data-tool-input]").fill(`Bearer ${jwt}`);
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            '{\n  "name": "سارا",\n  "exp": 1\n}',
+        );
+        await expect(page.locator("[data-tool-banner]")).toContainText("not verified");
+        await expect(page.locator("[data-tool-time]")).toHaveAttribute("data-tool-time", "expired");
+        // The FAQ explains the word "valid"; the tool output itself must never use it.
+        await expect(page.locator("astro-island")).toContainText("not verified");
+        await expect(page.locator("astro-island")).not.toContainText(/\bvalid\b/i);
+    });
+
+    test("warns about alg none in Persian", async ({ page }) => {
+        await page.goto("/fa/tools/jwt-decoder/");
+        await page.locator("[data-tool-input]").fill(`${b64url({ alg: "none" })}.${b64url({})}.`);
+        await expect(page.getByText("الگوریتم none است")).toBeVisible();
+    });
+});

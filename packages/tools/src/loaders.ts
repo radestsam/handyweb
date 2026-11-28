@@ -20,4 +20,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "unicode-escape": () => import("./encoding/unicode-escape/ui"),
     "unicode-explorer": () => import("./text/unicode-explorer/ui"),
     "xml-formatter": () => import("./developer/xml-formatter/ui"),
+    "jwt-decoder": () => import("./developer/jwt-decoder/ui"),
 };

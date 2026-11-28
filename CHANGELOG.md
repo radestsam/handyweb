@@ -23,5 +23,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Unicode Escape and Unescape.
 - Unicode Character Inspector.
 - XML Formatter and Validator.
+- JWT Decoder, with a clear note that it does not verify the signature.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

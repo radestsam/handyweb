@@ -14,6 +14,7 @@ import { htmlEntitiesMeta } from "./encoding/html-entities/meta";
 import { unicodeEscapeMeta } from "./encoding/unicode-escape/meta";
 import { unicodeExplorerMeta } from "./text/unicode-explorer/meta";
 import { xmlFormatterMeta } from "./developer/xml-formatter/meta";
+import { jwtDecoderMeta } from "./developer/jwt-decoder/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -35,4 +36,5 @@ export const catalog: readonly ToolDefinition[] = [
     unicodeEscapeMeta,
     unicodeExplorerMeta,
     xmlFormatterMeta,
+    jwtDecoderMeta,
 ];
