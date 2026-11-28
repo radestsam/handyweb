@@ -1519,3 +1519,13 @@ test.describe("roman numerals", () => {
         await expect(page.getByRole("alert")).toBeVisible();
     });
 });
+
+test.describe("binary calculator", () => {
+    test("adds binary numbers and does XOR", async ({ page }) => {
+        await page.goto("/en/tools/binary-calculator/");
+        await page.locator("[data-tool-input]").fill("1010");
+        await expect(page.locator('[data-binary="decimal"]')).toHaveText("16");
+        await page.locator("[data-binary-op]").selectOption("XOR");
+        await expect(page.locator('[data-binary="binary"]')).toHaveText("1100");
+    });
+});
