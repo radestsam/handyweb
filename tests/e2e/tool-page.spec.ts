@@ -1771,3 +1771,59 @@ test.describe("images to pdf", () => {
         await expect(page.locator("[data-tool-skipped] li")).toContainText("notes.jpg");
     });
 });
+
+test.describe("pdf to images", () => {
+    test("renders the chosen pages and zips them", async ({ page }) => {
+        const { makePdf } = await import("../support/pdf");
+        const { readStoredZip } = await import("../../packages/core/src/files/zip");
+        await page.goto("/en/tools/pdf-to-images/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "report.pdf",
+            mimeType: "application/pdf",
+            buffer: await makePdf(3),
+        });
+        await expect(page.locator("[data-tool-page-count]")).toContainText("3 pages");
+        await page.getByText("72 dpi", { exact: true }).click();
+        await page.locator("[data-tool-pages]").fill("2-3");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("2");
+        await expect(page.locator("[data-tool-images] li")).toHaveCount(2);
+        await expect(page.locator("[data-tool-images] li").first()).toContainText("101 × 200");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download all (ZIP)" }).click();
+        const file = await download;
+        const { readFile } = await import("node:fs/promises");
+        const entries = readStoredZip(
+            new Uint8Array(await readFile((await file.path()) as string)),
+        );
+        expect(entries.map((entry) => entry.name)).toEqual([
+            "report-page-2.png",
+            "report-page-3.png",
+        ]);
+        expect([...(entries[0]?.data.slice(0, 4) ?? [])]).toEqual([0x89, 0x50, 0x4e, 0x47]);
+    });
+
+    test("explains a bad page list and a locked PDF", async ({ page }) => {
+        const { makePdf } = await import("../support/pdf");
+        const { PDFDocument } = await import("@cantoo/pdf-lib");
+        await page.goto("/fa/tools/pdf-to-images/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.pdf",
+            mimeType: "application/pdf",
+            buffer: await makePdf(2),
+        });
+        await page.locator("[data-tool-pages]").fill("5");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.getByRole("alert")).toContainText("۲");
+        await page.getByRole("button", { name: "PDF دیگر" }).click();
+        const locked = await PDFDocument.create();
+        locked.addPage();
+        locked.encrypt({ userPassword: "secret", ownerPassword: "owner" });
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "locked.pdf",
+            mimeType: "application/pdf",
+            buffer: Buffer.from(await locked.save()),
+        });
+        await expect(page.getByRole("alert")).toContainText("گذرواژه");
+    });
+});

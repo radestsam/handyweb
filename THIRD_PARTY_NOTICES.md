@@ -26,33 +26,35 @@ The passphrase words come from the EFF large wordlist by the Electronic Frontier
 
 `scripts/check-notices.mjs` fails the build when a package in a `dependencies` field is missing here.
 
-| Package                          | License                                                             | Ships to visitors                                                             |
-| -------------------------------- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| `astro`                          | MIT                                                                 | Yes: the island runtime                                                       |
-| `@astrojs/react`                 | MIT                                                                 | Yes: the React renderer of islands                                            |
-| `react`                          | MIT                                                                 | Yes                                                                           |
-| `react-dom`                      | MIT                                                                 | Yes                                                                           |
-| `tailwindcss`                    | MIT                                                                 | Yes: the generated CSS                                                        |
-| `@tailwindcss/vite`              | MIT                                                                 | No: build step only                                                           |
-| `diff`                           | BSD-3-Clause                                                        | Yes: the change views of the Persian tools, and the text diff                 |
-| `hash-wasm`                      | MIT                                                                 | Yes: streaming SHA-256 for files (WebAssembly)                                |
-| `jalaali-js`                     | MIT                                                                 | Yes: Jalali and Gregorian conversion                                          |
-| `yaml`                           | ISC                                                                 | Yes: YAML parsing and writing                                                 |
-| `sql-formatter`                  | MIT                                                                 | Yes: SQL formatting                                                           |
-| `nearley`                        | MIT                                                                 | Yes: the parser runtime of `sql-formatter`                                    |
-| `js-beautify`                    | MIT                                                                 | Yes: HTML, CSS, and JavaScript formatting (only the browser beautifier files) |
-| `@cfworker/json-schema`          | MIT                                                                 | Yes: JSON Schema validation (no generated code, so no `eval`)                 |
-| `jsqr`                           | Apache-2.0                                                          | Yes: QR reading in browsers without BarcodeDetector                           |
-| `marked`                         | MIT                                                                 | Yes: Markdown to HTML                                                         |
-| `dompurify`                      | MPL-2.0 OR Apache-2.0 (used under Apache-2.0)                       | Yes: HTML sanitizing of the Markdown output                                   |
-| `uqr`                            | MIT (includes the QR Code generator library by Project Nayuki, MIT) | Yes: QR code encoding                                                         |
-| `@cantoo/pdf-lib`                | MIT                                                                 | Yes: PDF reading and writing (the PDF tools)                                  |
-| `fflate`                         | MIT                                                                 | Yes: deflate streams of `@cantoo/pdf-lib`                                     |
-| `culori`                         | MIT                                                                 | Yes: color parsing of `@cantoo/pdf-lib`                                       |
-| `node-html-better-parser`        | MIT                                                                 | Yes: HTML parsing of `@cantoo/pdf-lib` (bundled with it)                      |
-| `html-entities`                  | MIT                                                                 | Yes: a dependency of `node-html-better-parser`                                |
-| `tslib`                          | 0BSD                                                                | Yes: TypeScript helpers of `@cantoo/pdf-lib`                                  |
-| `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                           |
-| `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                           |
+| Package                          | License                                                             | Ships to visitors                                                                                        |
+| -------------------------------- | ------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `astro`                          | MIT                                                                 | Yes: the island runtime                                                                                  |
+| `@astrojs/react`                 | MIT                                                                 | Yes: the React renderer of islands                                                                       |
+| `react`                          | MIT                                                                 | Yes                                                                                                      |
+| `react-dom`                      | MIT                                                                 | Yes                                                                                                      |
+| `tailwindcss`                    | MIT                                                                 | Yes: the generated CSS                                                                                   |
+| `@tailwindcss/vite`              | MIT                                                                 | No: build step only                                                                                      |
+| `diff`                           | BSD-3-Clause                                                        | Yes: the change views of the Persian tools, and the text diff                                            |
+| `hash-wasm`                      | MIT                                                                 | Yes: streaming SHA-256 for files (WebAssembly)                                                           |
+| `jalaali-js`                     | MIT                                                                 | Yes: Jalali and Gregorian conversion                                                                     |
+| `yaml`                           | ISC                                                                 | Yes: YAML parsing and writing                                                                            |
+| `sql-formatter`                  | MIT                                                                 | Yes: SQL formatting                                                                                      |
+| `nearley`                        | MIT                                                                 | Yes: the parser runtime of `sql-formatter`                                                               |
+| `js-beautify`                    | MIT                                                                 | Yes: HTML, CSS, and JavaScript formatting (only the browser beautifier files)                            |
+| `@cfworker/json-schema`          | MIT                                                                 | Yes: JSON Schema validation (no generated code, so no `eval`)                                            |
+| `jsqr`                           | Apache-2.0                                                          | Yes: QR reading in browsers without BarcodeDetector                                                      |
+| `marked`                         | MIT                                                                 | Yes: Markdown to HTML                                                                                    |
+| `dompurify`                      | MPL-2.0 OR Apache-2.0 (used under Apache-2.0)                       | Yes: HTML sanitizing of the Markdown output                                                              |
+| `uqr`                            | MIT (includes the QR Code generator library by Project Nayuki, MIT) | Yes: QR code encoding                                                                                    |
+| `@cantoo/pdf-lib`                | MIT                                                                 | Yes: PDF reading and writing (the PDF tools)                                                             |
+| `fflate`                         | MIT                                                                 | Yes: deflate streams of `@cantoo/pdf-lib`                                                                |
+| `culori`                         | MIT                                                                 | Yes: color parsing of `@cantoo/pdf-lib`                                                                  |
+| `node-html-better-parser`        | MIT                                                                 | Yes: HTML parsing of `@cantoo/pdf-lib` (bundled with it)                                                 |
+| `html-entities`                  | MIT                                                                 | Yes: a dependency of `node-html-better-parser`                                                           |
+| `tslib`                          | 0BSD                                                                | Yes: TypeScript helpers of `@cantoo/pdf-lib`                                                             |
+| `pdfjs-dist`                     | Apache-2.0                                                          | Yes: PDF page rendering (the main library and its worker; no WebAssembly decoders, fonts, or color maps) |
+| `@napi-rs/canvas`                | MIT                                                                 | No: an optional Node.js dependency of `pdfjs-dist`                                                       |
+| `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                                                      |
+| `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                                                      |
 
 Development tools (TypeScript, ESLint, Prettier, Vitest, Playwright, and others) are not shipped to visitors. Their licenses are in `node_modules/`.

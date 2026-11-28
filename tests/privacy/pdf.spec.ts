@@ -53,3 +53,20 @@ test("images-to-pdf runs locally and stores nothing", async ({ page, requests, b
     ]);
     await expectCleanStorage(page, ["secret-passport", "secret-id-card"]);
 });
+
+test("pdf-to-images runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    await page.goto("/en/tools/pdf-to-images/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-bank-statement.pdf",
+        mimeType: "application/pdf",
+        buffer: await makePdf(2),
+    });
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue("2");
+    const download = page.waitForEvent("download");
+    await page.getByRole("button", { name: "Download all (ZIP)" }).click();
+    expect((await download).suggestedFilename()).toBe("secret-bank-statement-pages.zip");
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-bank-statement"]);
+    await expectCleanStorage(page, ["secret-bank-statement"]);
+});
