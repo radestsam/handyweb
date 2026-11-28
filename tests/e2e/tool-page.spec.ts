@@ -1397,3 +1397,23 @@ test.describe("svg viewer", () => {
         expect(external).toEqual([]);
     });
 });
+
+test.describe("svg optimizer", () => {
+    test("makes the example smaller and the result still opens as an image", async ({ page }) => {
+        const { svgOptimizerMeta } =
+            await import("../../packages/tools/src/image/svg-optimizer/meta");
+        await page.goto("/en/tools/svg-optimizer/");
+        await page.locator("[data-tool-input]").fill(svgOptimizerMeta.example as string);
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 12L20 12" stroke="#bc4a3c" stroke-width="2"/></svg>',
+        );
+        await expect(page.locator("[data-svg-saving]")).toContainText("smaller");
+        const size = await page
+            .getByRole("img", { name: "After" })
+            .evaluate(async (img: HTMLImageElement) => {
+                await img.decode();
+                return img.naturalWidth > 0;
+            });
+        expect(size).toBe(true);
+    });
+});
