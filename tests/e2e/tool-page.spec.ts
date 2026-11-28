@@ -1324,3 +1324,44 @@ test.describe("image watermark", () => {
         expect(bright.topLeft).toBe(0);
     });
 });
+
+test.describe("favicon generator", () => {
+    test("downloads a ZIP with a valid ICO and icons of the right sizes", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        const { readStoredZip } = await import("../../packages/core/src/files/zip");
+        const { readImageHeader } = await import("../../packages/core/src/image/size");
+        await page.goto("/en/tools/favicon-generator/");
+        await page
+            .locator('input[type="file"]')
+            .setInputFiles({ name: "logo.png", mimeType: "image/png", buffer: makePng(600, 600) });
+        await page.getByRole("radio", { name: "Rounded" }).check({ force: true });
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-favicon-previews] li")).toHaveCount(6);
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download the ZIP" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("favicon.zip");
+        const { readFile } = await import("node:fs/promises");
+        const entries = readStoredZip(
+            new Uint8Array(await readFile((await file.path()) as string)),
+        );
+        expect(entries.map((e) => e.name)).toEqual([
+            "favicon.ico",
+            "apple-touch-icon.png",
+            "icon-192.png",
+            "icon-512.png",
+            "site.webmanifest",
+        ]);
+        const size = (name: string) =>
+            readImageHeader(entries.find((e) => e.name === name)!.data)?.width;
+        expect([size("apple-touch-icon.png"), size("icon-192.png"), size("icon-512.png")]).toEqual([
+            180, 192, 512,
+        ]);
+        const ico = entries[0]!.data;
+        const view = new DataView(ico.buffer, ico.byteOffset);
+        expect(view.getUint16(4, true)).toBe(3);
+        // The first image in the ICO is a 16 x 16 PNG.
+        const first = ico.subarray(view.getUint32(18, true));
+        expect(readImageHeader(first)).toMatchObject({ format: "png", width: 16, height: 16 });
+    });
+});

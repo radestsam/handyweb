@@ -180,3 +180,15 @@ test("image-watermark runs locally and stores nothing", async ({ page, requests,
     ]);
     await expectCleanStorage(page, ["secret-holiday-photo", "متن پنهان من"]);
 });
+
+test("favicon-generator runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    await page.goto("/en/tools/favicon-generator/");
+    await page
+        .locator('input[type="file"]')
+        .setInputFiles({ name: "secret-logo.png", mimeType: "image/png", buffer: makePng(64, 64) });
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue(/^\d+$/);
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-logo"]);
+    await expectCleanStorage(page, ["secret-logo"]);
+});
