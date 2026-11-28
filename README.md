@@ -104,6 +104,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | CSS Formatter                                         | Developer                | `packages/tools/src/developer/css-formatter`     | `js-beautify`                                              |
 | JavaScript Formatter                                  | Developer                | `packages/tools/src/developer/js-formatter`      | `js-beautify`                                              |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`          | None                                                       |
+| JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`         | None                                                       |
 | JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`       | None                                                       |
 | UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`    | None                                                       |
 | Regex Tester                                          | Developer                | `packages/tools/src/developer/regex-tester`      | None                                                       |

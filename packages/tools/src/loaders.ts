@@ -49,4 +49,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "css-formatter": () => import("./developer/css-formatter/ui"),
     "js-formatter": () => import("./developer/js-formatter/ui"),
     "json-csv": () => import("./developer/json-csv/ui"),
+    "json-diff": () => import("./developer/json-diff/ui"),
 };

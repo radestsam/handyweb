@@ -734,3 +734,15 @@ test.describe("json csv", () => {
         );
     });
 });
+
+test.describe("json diff", () => {
+    test("lists structural differences", async ({ page }) => {
+        await page.goto("/en/tools/json-diff/");
+        await page.getByLabel("First JSON").fill('{"a":1,"b":2}');
+        await page.getByLabel("Second JSON").fill('{"b":2,"a":3}');
+        await expect(page.locator("[data-tool-count]")).toHaveText("1");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("~ $.a: 1 → 3");
+        await page.getByLabel("Second JSON").fill('{ "b": 2, "a": 1 }');
+        await expect(page.locator("[data-tool-identical]")).toBeVisible();
+    });
+});

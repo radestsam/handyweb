@@ -70,6 +70,7 @@ describe("search ranking", () => {
         expect(top("css formatter")).toBe("css-formatter");
         expect(top("javascript formatter")).toBe("js-formatter");
         expect(top("json to csv")).toBe("json-csv");
+        expect(top("compare json")).toBe("json-diff");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
