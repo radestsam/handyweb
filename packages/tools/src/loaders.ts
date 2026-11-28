@@ -97,4 +97,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "time-zone-converter": () => import("./calculators/time-zone-converter/ui"),
     "barcode-generator": () => import("./qr/barcode-generator/ui"),
     "code-reader": () => import("./qr/code-reader/ui"),
+    "ip-calculator": () => import("./network/ip-calculator/ui"),
 };

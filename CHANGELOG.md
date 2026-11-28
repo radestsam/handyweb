@@ -91,6 +91,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Time Zone Converter (uses the time zone data of the browser).
 - Barcode Generator (Code 128, EAN-13, EAN-8, UPC-A).
 - QR Code and Barcode Reader (camera or picture).
+- IP Subnet Calculator for IPv4 and IPv6.
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

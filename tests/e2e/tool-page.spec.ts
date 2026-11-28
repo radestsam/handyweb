@@ -1621,3 +1621,18 @@ test.describe("code reader", () => {
         await context.clearPermissions();
     });
 });
+
+test.describe("ip calculator", () => {
+    test("works out IPv4 and IPv6 subnets", async ({ page }) => {
+        await page.goto("/fa/tools/ip-calculator/");
+        await page.locator("[data-tool-input]").fill("10.1.2.3 255.255.240.0");
+        await expect(page.locator('[data-ip="network"]')).toContainText("10.1.0.0");
+        await expect(page.locator('[data-ip="hosts"]')).toContainText("۴٬۰۹۴");
+        await expect(page.locator('[data-ip="special"]')).toContainText("خصوصی");
+        await page.locator("[data-tool-input]").fill("2001:db8::1/64");
+        await expect(page.locator('[data-ip="last"]')).toContainText(
+            "2001:db8::ffff:ffff:ffff:ffff",
+        );
+        await expect(page.locator('[data-ip="addresses"]')).toContainText("2^64");
+    });
+});
