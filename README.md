@@ -56,6 +56,9 @@ The dependency direction is `apps/web` to `packages/tools` to `packages/core`. E
 `.github/workflows/ci.yml` runs on every push to `main` and on every pull request to `main`. It has three jobs:
 
 - **Lint, Test & Build:** the format check, ESLint, the type check, the unit tests, a package audit, and the static build, with the JavaScript budget check (`scripts/check-budget.mjs`).
+
+The budget check allows 15 KB of start JavaScript on a page without a tool, 90 KB on a tool page, and 60 KB for each tool chunk (gzip). The PDF library chunk (`pdf-lib.*.js`) has its own budget of 260 KB. No PDF writer fits in 60 KB (`@cantoo/pdf-lib` is about 250 KB). The chunk loads only when a PDF tool opens a file, and the service worker caches it after the first use. The owner approved this budget on 2026-11-27.
+
 - **Browser Tests:** Playwright in Chromium, Firefox, and WebKit, on desktop and mobile viewports.
 - **Lint Scripts & Workflows:** shellcheck and shfmt on `scripts/`, actionlint and zizmor on the workflows.
 
@@ -122,6 +125,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Favicon Generator                                     | Images                   | `packages/tools/src/image/favicon-generator`           | None                                                        |
 | SVG Viewer and SVG to PNG                             | Images                   | `packages/tools/src/image/svg-viewer`                  | `dompurify`                                                 |
 | SVG Optimizer                                         | Images                   | `packages/tools/src/image/svg-optimizer`               | `dompurify`                                                 |
+| PDF Merger                                            | PDF                      | `packages/tools/src/pdf/pdf-merge`                     | `@cantoo/pdf-lib` (loads only when a PDF is opened)         |
 | Unit Converter                                        | Calculators              | `packages/tools/src/calculators/unit-converter`        | None                                                        |
 | Percentage Calculator                                 | Calculators              | `packages/tools/src/calculators/percentage-calculator` | None                                                        |
 | Discount Calculator                                   | Calculators              | `packages/tools/src/calculators/discount-calculator`   | None                                                        |

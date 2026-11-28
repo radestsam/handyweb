@@ -46,6 +46,12 @@ The passphrase words come from the EFF large wordlist by the Electronic Frontier
 | `marked`                         | MIT                                                                 | Yes: Markdown to HTML                                                         |
 | `dompurify`                      | MPL-2.0 OR Apache-2.0 (used under Apache-2.0)                       | Yes: HTML sanitizing of the Markdown output                                   |
 | `uqr`                            | MIT (includes the QR Code generator library by Project Nayuki, MIT) | Yes: QR code encoding                                                         |
+| `@cantoo/pdf-lib`                | MIT                                                                 | Yes: PDF reading and writing (the PDF tools)                                  |
+| `fflate`                         | MIT                                                                 | Yes: deflate streams of `@cantoo/pdf-lib`                                     |
+| `culori`                         | MIT                                                                 | Yes: color parsing of `@cantoo/pdf-lib`                                       |
+| `node-html-better-parser`        | MIT                                                                 | Yes: HTML parsing of `@cantoo/pdf-lib` (bundled with it)                      |
+| `html-entities`                  | MIT                                                                 | Yes: a dependency of `node-html-better-parser`                                |
+| `tslib`                          | 0BSD                                                                | Yes: TypeScript helpers of `@cantoo/pdf-lib`                                  |
 | `@fontsource-variable/noto-sans` | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                           |
 | `@fontsource-variable/estedad`   | SIL OFL 1.1 (font), MIT (package)                                   | Yes: the font files                                                           |
 

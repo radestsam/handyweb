@@ -17,6 +17,9 @@ const BUDGET = {
     toolPage: 90 * KB,
     // One tool chunk, loaded on demand.
     chunk: 60 * KB,
+    // The PDF library chunk (pdf-lib.*.js). Only PDF tool pages load it, on
+    // demand. Owner decision of 2026-11-27, see README.md ("Deviations").
+    pdfLib: 260 * KB,
 };
 
 const gz = (path) => gzipSync(readFileSync(path)).length;
@@ -68,10 +71,9 @@ for (const chunk of files(join(DIST, "_astro")).filter(
     (f) => f.endsWith(".js") && !startFiles.has(f) && !/[\/]client\.[\w-]+\.js$/.test(f),
 )) {
     const size = gz(chunk);
-    if (size > BUDGET.chunk)
-        failures.push(
-            `${relative(DIST, chunk)}: ${(size / KB).toFixed(1)} KB > ${BUDGET.chunk / KB} KB`,
-        );
+    const budget = /[\/]pdf-lib\.[\w-]+\.js$/.test(chunk) ? BUDGET.pdfLib : BUDGET.chunk;
+    if (size > budget)
+        failures.push(`${relative(DIST, chunk)}: ${(size / KB).toFixed(1)} KB > ${budget / KB} KB`);
 }
 
 report.sort((a, b) => b[0] - a[0]);

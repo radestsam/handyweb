@@ -83,6 +83,7 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "favicon-generator": () => import("./image/favicon-generator/ui"),
     "svg-viewer": () => import("./image/svg-viewer/ui"),
     "svg-optimizer": () => import("./image/svg-optimizer/ui"),
+    "pdf-merge": () => import("./pdf/pdf-merge/ui"),
     "unit-converter": () => import("./calculators/unit-converter/ui"),
     "percentage-calculator": () => import("./calculators/percentage-calculator/ui"),
     "discount-calculator": () => import("./calculators/discount-calculator/ui"),
