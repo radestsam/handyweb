@@ -1484,3 +1484,14 @@ test.describe("aspect ratio", () => {
         await expect(page.locator('[data-ratio="other"]')).toHaveText("1,350");
     });
 });
+
+test.describe("image resolution", () => {
+    test("gives the print size and the pixels for A4", async ({ page }) => {
+        await page.goto("/en/tools/image-resolution/");
+        await page.locator("[data-tool-input]").fill("3000");
+        await page.getByLabel("Height (pixels)").fill("2000");
+        await page.getByRole("radio", { name: "in" }).check({ force: true });
+        await expect(page.locator('[data-resolution="print"]')).toContainText("10 × 6.7");
+        await expect(page.locator('[data-resolution="need"]')).toContainText("2,480 × 3,508");
+    });
+});

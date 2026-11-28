@@ -83,6 +83,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - VAT Calculator, with a rate that the user enters.
 - Date Difference Calculator for Persian (Jalali) and Gregorian dates.
 - Aspect Ratio Calculator.
+- Image Resolution and Print Size Calculator.
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
