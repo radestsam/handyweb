@@ -896,3 +896,20 @@ test.describe("subtitle converter", () => {
         await expect(page.locator("[data-tool-input]")).toHaveValue(/سلام/);
     });
 });
+
+test.describe("aes-gcm", () => {
+    test("encrypts and decrypts text", async ({ page }) => {
+        await page.goto("/en/tools/aes-gcm/");
+        await page.getByLabel("Passphrase", { exact: true }).fill("correct horse");
+        await page.getByLabel("Text", { exact: true }).fill("سلام");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^A[Q-Za-f]/, {
+            timeout: 15_000,
+        });
+        await page.getByText("Decrypt", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("سلام", { timeout: 15_000 });
+        await page.getByLabel("Passphrase", { exact: true }).fill("wrong");
+        await expect(page.getByRole("alert")).toContainText("passphrase is wrong", {
+            timeout: 15_000,
+        });
+    });
+});
