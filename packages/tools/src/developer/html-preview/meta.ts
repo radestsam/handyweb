@@ -8,12 +8,13 @@ export const htmlPreviewMeta: ToolDefinition = {
     alsoIn: [],
     related: ["html-formatter", "html-entities"],
     tags: ["html", "preview"],
-    title: {
-        fa: "پیش‌نمایش کد HTML",
-        en: "HTML Previewer",
+    title: { fa: "پیش‌نمایش و اجرای کد HTML", en: "HTML Previewer" },
+    seoTitle: {
+        fa: "پیش‌نمایش و اجرای کد HTML در مرورگر",
+        en: "HTML Previewer: Run HTML Code in Your Browser",
     },
     description: {
-        fa: "کد HTML را بنویسید یا بچسبانید و همزمان پیش‌نمایش آن را در یک قاب امن و بسته ببینید. هیچ چیزی از اینترنت بارگیری نمی‌شود.",
+        fa: "پیش نمایش HTML همزمان: کد HTML را بنویسید یا بچسبانید و نتیجه را در یک قاب امن و بسته ببینید. هیچ چیزی از اینترنت بارگیری نمی‌شود.",
         en: "Type or paste HTML and see a live preview in a safe, sandboxed frame. Nothing is loaded from the internet.",
     },
     keywords: {

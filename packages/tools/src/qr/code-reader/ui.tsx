@@ -196,7 +196,6 @@ export default function CodeReader({ locale }: ToolUiProps) {
                     )}
                 </section>
             )}
-            <p className="text-xs text-muted">{t("privacy")}</p>
             <input type="hidden" value={found ? found.value : ""} readOnly data-tool-output="" />
         </div>
     );

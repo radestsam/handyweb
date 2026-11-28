@@ -5,6 +5,7 @@ import ToolList from "../../../components/ToolList.astro";
 import { useTranslations } from "../../../i18n/site";
 import { localeStaticPaths } from "../../../i18n/static-paths";
 import { categories, tools } from "../../../i18n/tools";
+import { collectionPage } from "../../../seo";
 
 export const getStaticPaths = localeStaticPaths;
 
@@ -14,6 +15,20 @@ const groups = nonEmptyCategories(categories, tools).map((category) => ({
     category,
     tools: toolsInCategory(tools, category.id),
 }));
+const description =
+    locale === "fa"
+        ? "همه ابزارهای آنلاین رایگان HandyWeb در یک جا: تبدیل تاریخ شمسی، شمارش کلمات، فشرده سازی عکس، ادغام PDF، JSON و هش."
+        : "All free HandyWeb online tools in one place: Persian date conversion, word counting, image compression, PDF merging, JSON, and hashing.";
+// The tools in the order the page lists them. A tool that is in more than one category is listed once.
+const listed = [...new Map(groups.flatMap((g) => g.tools).map((tool) => [tool.id, tool])).values()];
+const jsonLd = [
+    collectionPage(
+        locale,
+        Astro.site ?? new URL("https://handyweb.ir"),
+        { name: t("nav.tools"), description, path: "/tools" },
+        listed,
+    ),
+];
 ---
 
 <Base
@@ -21,14 +36,11 @@ const groups = nonEmptyCategories(categories, tools).map((category) => ({
     path="/tools"
     title={
         locale === "fa"
-            ? "همه ابزارهای آنلاین رایگان | HandyWeb"
-            : "All Free Online Tools | HandyWeb"
+            ? "همه ابزارهای آنلاین رایگان برای متن، عکس و PDF | HandyWeb"
+            : "All Free Online Tools for Text, Images, and PDF | HandyWeb"
     }
-    description={
-        locale === "fa"
-            ? "همه ابزارهای آنلاین رایگان HandyWeb در یک جا: کدگذاری، هش، JSON، تبدیل تاریخ شمسی و ابزارهای نوشته فارسی."
-            : "All free HandyWeb online tools in one place: encoding, hashing, JSON, Persian date conversion, and Persian text tools."
-    }
+    description={description}
+    jsonLd={jsonLd}
 >
     <main id="main" class="mx-auto max-w-6xl px-safe pt-12 sm:pt-16">
         <h1 class="text-2xl font-bold">{t("nav.tools")}</h1>

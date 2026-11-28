@@ -9,9 +9,13 @@ export const pdfTextMeta: ToolDefinition = {
     related: ["pdf-to-images", "pdf-metadata", "text-counter"],
     tags: ["pdf", "text", "extract", "txt"],
     title: { fa: "استخراج متن از PDF", en: "PDF Text Extractor" },
+    seoTitle: {
+        fa: "استخراج متن از PDF و تبدیل PDF به متن",
+        en: "PDF Text Extractor: PDF to Text Online",
+    },
     description: {
-        fa: "متن همه برگه‌های یک PDF را بیرون بکشید، کپی کنید یا در فایل TXT دانلود کنید. فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "Pull the text out of every page of a PDF, then copy it or download it as a TXT file. The file never leaves your device.",
+        fa: "استخراج متن از PDF: متن همه صفحه‌ها را بیرون بکشید، کپی کنید یا در فایل TXT دانلود کنید.",
+        en: "Pull the text out of every page of a PDF, then copy it or download it as a TXT file.",
     },
     keywords: {
         fa: [

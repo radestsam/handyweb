@@ -8,10 +8,14 @@ export const imageCompareMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["image-compressor", "image-resize"],
     tags: ["image", "compare", "diff"],
-    title: { fa: "مقایسه دو تصویر", en: "Image Comparer" },
+    title: { fa: "مقایسه دو عکس", en: "Image Compare Tool" },
+    seoTitle: {
+        fa: "مقایسه دو عکس و پیدا کردن تفاوت‌ها",
+        en: "Image Compare Tool: Find the Difference",
+    },
     description: {
-        fa: "دو تصویر را با اسلایدر پیش و پس، شفافیت یا تفاوت پیکسل به پیکسل بسنجید و بخش‌های تغییرکرده را ببینید. تصویرها از دستگاه شما بیرون نمی‌روند.",
-        en: "Compare two pictures with a before-and-after slider, opacity, or a pixel-by-pixel difference, and see what changed. The pictures never leave your device.",
+        fa: "مقایسه دو عکس با اسلایدر پیش و پس، شفافیت یا تفاوت پیکسل به پیکسل، و دیدن بخش‌های تغییرکرده.",
+        en: "Compare two pictures with a before-and-after slider, opacity, or a pixel-by-pixel difference, and see what changed.",
     },
     keywords: {
         fa: ["مقایسه عکس", "مقایسه دو تصویر", "تفاوت دو عکس", "پیدا کردن تفاوت عکس"],

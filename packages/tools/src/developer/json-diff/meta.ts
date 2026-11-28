@@ -8,12 +8,13 @@ export const jsonDiffMeta: ToolDefinition = {
     alsoIn: [],
     related: ["text-diff", "json-formatter"],
     tags: ["json", "diff", "compare"],
-    title: {
-        fa: "مقایسه دو JSON",
-        en: "JSON Diff",
+    title: { fa: "مقایسه دو JSON", en: "JSON Diff" },
+    seoTitle: {
+        fa: "مقایسه دو JSON و نمایش تفاوت‌ها",
+        en: "JSON Diff: Compare Two JSON Files Online",
     },
     description: {
-        fa: "دو سند JSON را از نظر ساختار بسنجید، بی‌توجه به ترتیب کلیدها و فاصله‌ها، و هر تفاوت را با مسیر آن ببینید.",
+        fa: "مقایسه JSON از نظر ساختار، بی‌توجه به ترتیب کلیدها و فاصله‌ها، و دیدن هر تفاوت با مسیر آن در سند.",
         en: "Compare two JSON documents by structure, whatever the key order and spacing, and see each difference with its path.",
     },
     keywords: {

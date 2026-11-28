@@ -8,9 +8,10 @@ export const urlEncodingMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["base64", "html-entities"],
     tags: ["url", "encoding", "percent"],
-    title: {
-        fa: "رمزگذاری و رمزگشایی URL",
-        en: "URL Encoder and Decoder",
+    title: { fa: "رمزگذاری و رمزگشایی لینک (URL)", en: "URL Encoder and Decoder" },
+    seoTitle: {
+        fa: "رمزگذاری و رمزگشایی لینک (URL) فارسی",
+        en: "URL Encoder and Decoder Online (Percent Encoding)",
     },
     description: {
         fa: "نشانی‌ها و نوشته فارسی را به شکل درصدی (%D8%A7) رمزگذاری کنید یا آن‌ها را به نوشته خوانا برگردانید. یک بخش از URL یا یک URL کامل.",

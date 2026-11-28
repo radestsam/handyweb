@@ -8,12 +8,13 @@ export const jsonYamlMeta: ToolDefinition = {
     alsoIn: [],
     related: ["yaml-formatter", "json-formatter"],
     tags: ["json", "yaml", "convert"],
-    title: {
-        fa: "تبدیل JSON به YAML و برعکس",
-        en: "JSON and YAML Converter",
+    title: { fa: "تبدیل JSON به YAML", en: "JSON and YAML Converter" },
+    seoTitle: {
+        fa: "تبدیل JSON به YAML و YAML به JSON آنلاین",
+        en: "JSON and YAML Converter: JSON to YAML and Back",
     },
     description: {
-        fa: "JSON را به YAML یا YAML را به JSON برگردانید. چند سند YAML به یک آرایه JSON تبدیل می‌شوند.",
+        fa: "تبدیل JSON به YAML یا تبدیل YAML به JSON. چند سند YAML به یک آرایه JSON تبدیل می‌شوند.",
         en: "Convert JSON to YAML or YAML to JSON. Several YAML documents become one JSON array.",
     },
     keywords: {

@@ -8,10 +8,14 @@ export const imageFlipMeta: ToolDefinition = {
     alsoIn: [],
     related: ["image-rotate", "image-resize"],
     tags: ["image", "flip", "mirror"],
-    title: { fa: "قرینه کردن تصویر", en: "Image Flipper" },
+    title: { fa: "قرینه کردن عکس", en: "Image Flipper" },
+    seoTitle: {
+        fa: "قرینه کردن عکس و آینه‌ای کردن سلفی",
+        en: "Image Flipper: Mirror a Photo or Selfie Online",
+    },
     description: {
-        fa: "عکس را افقی یا عمودی قرینه (آینه‌ای) کنید، برای نمونه سلفی برعکس را درست کنید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Flip a photo horizontally or vertically (mirror it), for example to fix a mirrored selfie. The photo never leaves your device.",
+        fa: "قرینه کردن عکس به شکل افقی یا عمودی (آینه‌ای)، برای نمونه برای درست کردن سلفی برعکس.",
+        en: "Flip a photo horizontally or vertically (mirror it), for example to fix a mirrored selfie.",
     },
     keywords: {
         fa: ["قرینه کردن عکس", "آینه‌ای کردن عکس", "برعکس کردن سلفی", "فلیپ عکس"],

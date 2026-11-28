@@ -14,9 +14,10 @@ export const numberBaseMeta: ToolDefinition = {
     alsoIn: ["calculators"],
     related: ["unix-timestamp", "unicode-escape"],
     tags: ["binary", "hex", "octal", "base"],
-    title: {
-        fa: "تبدیل مبنای اعداد (دودویی، هگز، دهدهی)",
-        en: "Number Base Converter",
+    title: { fa: "تبدیل مبنای اعداد (باینری، هگز، دهدهی)", en: "Number Base Converter" },
+    seoTitle: {
+        fa: "تبدیل مبنای اعداد (باینری، هگز، دهدهی) آنلاین",
+        en: "Number Base Converter: Binary, Hex, and Decimal",
     },
     description: {
         fa: "یک عدد را میان دودویی، هشت‌هشتی، دهدهی، هگز و هر پایه از ۲ تا ۳۶ برگردانید. عددهای بسیار بزرگ بی‌کم‌وکاست می‌مانند.",

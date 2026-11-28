@@ -14,9 +14,13 @@ export const pdfMetadataMeta: ToolDefinition = {
     related: ["image-metadata", "pdf-merge", "pdf-to-images"],
     tags: ["pdf", "metadata", "privacy"],
     title: { fa: "ویرایش و پاک کردن فراداده PDF", en: "PDF Metadata Editor" },
+    seoTitle: {
+        fa: "ویرایش و پاک کردن فراداده PDF (متادیتا)",
+        en: "PDF Metadata Editor: Title, Author, and Dates",
+    },
     description: {
-        fa: "عنوان، نویسنده، برنامه سازنده و تاریخ‌های یک PDF را ببینید، ویرایش کنید یا همه را پاک کنید. فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "See, edit, or remove the title, author, creator app, and dates of a PDF. The file never leaves your device.",
+        fa: "ویرایش مشخصات PDF مانند عنوان، نویسنده، برنامه سازنده و تاریخ‌ها، یا پاک کردن همه فراداده.",
+        en: "See, edit, or remove the title, author, creator app, and dates of a PDF.",
     },
     keywords: {
         fa: [

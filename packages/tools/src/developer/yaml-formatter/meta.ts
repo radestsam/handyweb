@@ -8,9 +8,10 @@ export const yamlFormatterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["json-yaml", "json-formatter", "xml-formatter"],
     tags: ["yaml", "format", "validate"],
-    title: {
-        fa: "آراستن و بررسی درستی YAML",
-        en: "YAML Formatter and Validator",
+    title: { fa: "فرمت و بررسی درستی YAML", en: "YAML Formatter and Validator" },
+    seoTitle: {
+        fa: "فرمت و بررسی درستی YAML و فایل yml",
+        en: "YAML Formatter and Validator Online",
     },
     description: {
         fa: "YAML را با تورفتگی یکسان بیارایید یا درستی آن را بسنجید. توضیح‌ها می‌مانند و خطا با شماره خط و ستون نشان داده می‌شود.",

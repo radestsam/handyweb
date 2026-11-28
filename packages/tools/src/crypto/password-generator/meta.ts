@@ -8,13 +8,14 @@ export const passwordGeneratorMeta: ToolDefinition = {
     alsoIn: [],
     related: ["hash", "hmac", "random-token"],
     tags: ["password", "passphrase", "random"],
-    title: {
-        fa: "ساخت گذرواژه و عبارت عبور ایمن",
-        en: "Password and Passphrase Generator",
+    title: { fa: "ساخت رمز عبور قوی", en: "Password Generator" },
+    seoTitle: {
+        fa: "ساخت رمز عبور قوی و تصادفی (پسورد ساز)",
+        en: "Password Generator for Strong Random Passwords",
     },
     description: {
-        fa: "گذرواژه تصادفی نیرومند یا عبارت عبوری از واژه‌های انگلیسی بسازید. تصادف از crypto.getRandomValues مرورگر می‌آید و گذرواژه هرگز از دستگاه شما بیرون نمی‌رود.",
-        en: "Create a strong random password or a passphrase of English words. The randomness comes from crypto.getRandomValues, and the password never leaves your device.",
+        fa: "ساخت رمز عبور قوی و تصادفی یا عبارت عبوری از کلمه‌های انگلیسی. تصادف از crypto.getRandomValues مرورگر می‌آید.",
+        en: "Create a strong random password or a passphrase of English words. The randomness comes from crypto.getRandomValues.",
     },
     keywords: {
         fa: ["ساخت رمز", "رمز عبور قوی", "گذرواژه تصادفی", "پسورد قوی", "ساخت پسورد", "عبارت عبور"],
@@ -75,12 +76,12 @@ export const passwordGeneratorMeta: ToolDefinition = {
             },
             {
                 question: {
-                    fa: "گذرواژه جایی نگه داشته می‌شود؟",
-                    en: "Is the password stored anywhere?",
+                    fa: "گذرواژه را کجا نگه دارم؟",
+                    en: "Where should I keep the password?",
                 },
                 answer: {
-                    fa: "نه. گذرواژه در مرورگر شما ساخته می‌شود و نه نگه داشته می‌شود و نه فرستاده. آن را در یک گذرواژه‌نگهدار (password manager) بگذارید.",
-                    en: "No. The password is made in your browser and is neither stored nor sent. Keep it in a password manager.",
+                    fa: "آن را در یک گذرواژه‌نگهدار (password manager) بگذارید.",
+                    en: "Keep it in a password manager.",
                 },
             },
             {

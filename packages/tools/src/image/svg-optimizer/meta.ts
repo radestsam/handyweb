@@ -9,9 +9,13 @@ export const svgOptimizerMeta: ToolDefinition = {
     related: ["svg-viewer", "favicon-generator"],
     tags: ["svg", "optimize", "minify"],
     title: { fa: "بهینه‌سازی و کوچک کردن SVG", en: "SVG Optimizer" },
+    seoTitle: {
+        fa: "بهینه‌سازی و کوچک کردن SVG و کم کردن حجم",
+        en: "SVG Optimizer: Make SVG Files Smaller",
+    },
     description: {
-        fa: "حجم SVG را با پاک کردن داده‌های ویرایشگر، توضیح‌ها، گروه‌های خالی و رقم‌های اضافه کم کنید، و پیش و پس را کنار هم ببینید. هیچ چیزی بارگذاری نمی‌شود.",
-        en: "Make an SVG smaller by removing editor data, comments, empty groups, and extra digits, and compare before and after. Nothing is uploaded.",
+        fa: "کم کردن حجم SVG با پاک کردن داده‌های ویرایشگر، توضیح‌ها، گروه‌های خالی و رقم‌های اضافه، و دیدن پیش و پس کنار هم.",
+        en: "Make an SVG smaller by removing editor data, comments, empty groups, and extra digits, and compare before and after.",
     },
     keywords: {
         fa: ["بهینه سازی svg", "کم کردن حجم svg", "فشرده سازی svg", "minify svg"],

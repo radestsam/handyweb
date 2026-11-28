@@ -18,13 +18,14 @@ export const hashMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["base64", "hmac"],
     tags: ["hash", "sha256", "sha512", "checksum"],
-    title: {
-        fa: "تولید هش SHA-256 و SHA-512 برای متن و فایل",
-        en: "SHA-256 and SHA-512 Hash Generator for Text and Files",
+    title: { fa: "ساخت هش SHA-256 متن و فایل", en: "SHA-256 Hash Generator" },
+    seoTitle: {
+        fa: "ساخت هش SHA-256 متن و فایل و بررسی چک‌سام",
+        en: "SHA-256 Hash Generator for Text and Files",
     },
     description: {
-        fa: "هش SHA-256، SHA-384 یا SHA-512 نوشته یا فایل را بسازید و با هشی که دارید بسنجید. فایل روی دستگاه خودتان خوانده می‌شود و جایی فرستاده نمی‌شود.",
-        en: "Create the SHA-256, SHA-384, or SHA-512 hash of text or a file and compare it with an expected value. The file is read on your device and never uploaded.",
+        fa: "هش SHA-256، SHA-384 یا SHA-512 متن یا فایل را بسازید و با هشی که دارید بسنجید، برای نمونه برای بررسی چک‌سام یک فایل دانلودشده.",
+        en: "Create the SHA-256, SHA-384, or SHA-512 hash of text or a file and compare it with an expected value, for example to check the checksum of a download.",
     },
     keywords: {
         fa: ["هش", "sha256", "sha512", "چک‌سام", "اثر انگشت فایل", "بررسی فایل", "درهم‌سازی"],
@@ -92,8 +93,8 @@ export const hashMeta: ToolDefinition = {
         steps: [
             { fa: "«نوشته» یا «فایل» را برگزینید.", en: "Choose Text or File." },
             {
-                fa: "الگوریتم را برگزینید، سپس نوشته را بنویسید یا فایل را برگزینید. هش روی دستگاه خودتان ساخته می‌شود.",
-                en: "Choose the algorithm, then type the text or choose the file. The hash is created on your device.",
+                fa: "الگوریتم را برگزینید، سپس نوشته را بنویسید یا فایل را برگزینید.",
+                en: "Choose the algorithm, then type the text or choose the file.",
             },
             {
                 fa: "برای بررسی یک دانلود، هشی را که سازنده فایل داده است در کادر سنجش بچسبانید.",
@@ -116,13 +117,6 @@ export const hashMeta: ToolDefinition = {
                 answer: {
                     fa: "هش اثر انگشت یک فایل است. اگر حتی یک بایت فایل دگرگون شود، هش آن هم دگرگون می‌شود. پس با آن می‌توانید ببینید فایلی که دانلود کرده‌اید دست‌نخورده است یا نه.",
                     en: "A hash is a fingerprint of a file. If even one byte changes, the hash changes too, so you can check that a downloaded file is intact.",
-                },
-            },
-            {
-                question: { fa: "فایل من بارگذاری می‌شود؟", en: "Is my file uploaded?" },
-                answer: {
-                    fa: "نه. فایل تکه‌تکه در مرورگر خودتان خوانده می‌شود و هیچ بخشی از آن جایی فرستاده نمی‌شود.",
-                    en: "No. The file is read in chunks inside your browser, and no part of it is sent anywhere.",
                 },
             },
         ],

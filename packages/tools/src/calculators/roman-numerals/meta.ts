@@ -8,7 +8,11 @@ export const romanNumeralsMeta: ToolDefinition = {
     alsoIn: [],
     related: ["number-base", "unit-converter"],
     tags: ["roman", "numerals", "convert"],
-    title: { fa: "تبدیل عدد رومی", en: "Roman Numeral Converter" },
+    title: { fa: "تبدیل اعداد رومی", en: "Roman Numeral Converter" },
+    seoTitle: {
+        fa: "تبدیل اعداد رومی به عدد و عدد به رومی",
+        en: "Roman Numeral Converter: Roman to Number",
+    },
     description: {
         fa: "عدد را به عدد رومی و عدد رومی را به عدد تبدیل کنید، از ۱ تا ۳۹۹۹، با اعداد فارسی یا انگلیسی.",
         en: "Convert numbers to Roman numerals and Roman numerals to numbers, from 1 to 3999.",

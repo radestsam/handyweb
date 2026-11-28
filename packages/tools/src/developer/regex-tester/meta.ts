@@ -8,9 +8,10 @@ export const regexTesterMeta: ToolDefinition = {
     alsoIn: ["text"],
     related: ["text-diff", "unicode-explorer"],
     tags: ["regex", "regexp", "pattern"],
-    title: {
-        fa: "آزمون عبارت باقاعده (Regex)",
-        en: "Regex Tester",
+    title: { fa: "آزمون عبارت باقاعده (Regex)", en: "Regex Tester" },
+    seoTitle: {
+        fa: "آزمون عبارت باقاعده (Regex) با پشتیبانی فارسی",
+        en: "Regex Tester for JavaScript Regular Expressions",
     },
     description: {
         fa: "یک الگوی regex جاوااسکریپت را روی نوشته بیازمایید، یافته‌ها و گروه‌ها را ببینید و از الگوهای کند آگاه شوید. با نوشته فارسی و \\p{…} هم کار می‌کند.",

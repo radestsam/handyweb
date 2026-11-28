@@ -8,9 +8,10 @@ export const sortLinesMeta: ToolDefinition = {
     alsoIn: ["persian"],
     related: ["remove-duplicate-lines", "text-counter"],
     tags: ["text", "lines", "sort"],
-    title: {
-        fa: "مرتب‌سازی خط‌ها به ترتیب الفبا",
-        en: "Sort Lines Alphabetically",
+    title: { fa: "مرتب‌سازی خطوط به ترتیب الفبا", en: "Sort Lines Alphabetically" },
+    seoTitle: {
+        fa: "مرتب‌سازی خطوط به ترتیب الفبا فارسی و انگلیسی",
+        en: "Sort Lines Alphabetically in Persian or English",
     },
     description: {
         fa: "خط‌های یک فهرست را به ترتیب الفبای فارسی یا انگلیسی، از آغاز به پایان یا وارونه، بچینید. شماره‌ها به شکل عدد سنجیده می‌شوند، پس «۲» پیش از «۱۰» می‌آید.",

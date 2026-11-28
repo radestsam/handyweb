@@ -8,9 +8,10 @@ export const httpHeaderParserMeta: ToolDefinition = {
     alsoIn: ["network"],
     related: ["url-parser", "user-agent-parser"],
     tags: ["http", "headers", "security"],
-    title: {
-        fa: "خواندن سربرگ‌های HTTP",
-        en: "HTTP Header Parser",
+    title: { fa: "بررسی هدرهای HTTP", en: "HTTP Header Parser" },
+    seoTitle: {
+        fa: "بررسی هدرهای HTTP و هدرهای امنیتی و کوکی",
+        en: "HTTP Header Parser and Security Header Check",
     },
     description: {
         fa: "سربرگ‌های HTTP را از ابزار برنامه‌نویس مرورگر یا curl بچسبانید تا هر یک را با توضیح ببینید و سربرگ‌های امنیتی و کوکی‌ها را بسنجید.",
@@ -31,8 +32,8 @@ export const httpHeaderParserMeta: ToolDefinition = {
     outputKinds: ["structured"],
     limits: { maxInputBytes: 1_000_000 },
     limitations: {
-        fa: "ابزار هیچ درخواستی نمی‌فرستد: تنها سربرگ‌هایی را می‌خواند که شما می‌چسبانید. بررسی امنیتی تنها بودن سربرگ‌ها را می‌سنجد، نه درستی هر قاعده CSP را.",
-        en: "The tool sends no request: it reads only the headers you paste. The security check looks at which headers exist, not at every CSP rule.",
+        fa: "ابزار تنها سربرگ‌هایی را می‌خواند که شما می‌چسبانید. بررسی امنیتی تنها بودن سربرگ‌ها را می‌سنجد، نه درستی هر قاعده CSP را.",
+        en: "The tool reads only the headers you paste. The security check looks at which headers exist, not at every CSP rule.",
     },
     guide: {
         steps: [
@@ -46,18 +47,7 @@ export const httpHeaderParserMeta: ToolDefinition = {
                 en: "Read the explanations and the security check.",
             },
         ],
-        faq: [
-            {
-                question: {
-                    fa: "سربرگ‌ها جایی فرستاده می‌شوند؟",
-                    en: "Are the headers sent anywhere?",
-                },
-                answer: {
-                    fa: "نه. همه چیز در مرورگر شما خوانده می‌شود. با این همه، کوکی و Authorization را با کسی هم‌رسانی نکنید.",
-                    en: "No. Everything is read in your browser. Still, do not share Cookie or Authorization values with anyone.",
-                },
-            },
-        ],
+        faq: [],
     },
     example:
         "HTTP/2 200 OK\ncontent-type: text/html\nstrict-transport-security: max-age=31536000\nx-content-type-options: nosniff",

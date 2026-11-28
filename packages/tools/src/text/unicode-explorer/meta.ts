@@ -8,9 +8,10 @@ export const unicodeExplorerMeta: ToolDefinition = {
     alsoIn: ["persian", "developer"],
     related: ["unicode-escape", "text-cleaner", "persian-normalizer"],
     tags: ["unicode", "characters", "inspect"],
-    title: {
-        fa: "بررسی نویسه‌های یونیکد",
-        en: "Unicode Character Inspector",
+    title: { fa: "بررسی کاراکترهای یونیکد", en: "Unicode Character Inspector" },
+    seoTitle: {
+        fa: "بررسی کاراکترهای یونیکد و نویسه‌های نامرئی",
+        en: "Unicode Character Inspector and Lookup",
     },
     description: {
         fa: "هر نویسه نوشته را با کد یونیکد، نام، گونه، خط و بایت‌های UTF-8 ببینید. ی عربی، نیم‌فاصله و نویسه‌های نادیدنی را پیدا کنید.",

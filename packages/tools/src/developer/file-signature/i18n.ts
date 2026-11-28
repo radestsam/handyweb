@@ -20,8 +20,8 @@ export const strings = {
     },
     firstBytes: { fa: "بایت‌های آغاز", en: "First bytes" },
     note: {
-        fa: "تنها ۵۱۲ بایت نخست فایل خوانده می‌شود و فایل از دستگاه شما بیرون نمی‌رود.",
-        en: "Only the first 512 bytes of the file are read, and the file never leaves your device.",
+        fa: "تنها ۵۱۲ بایت نخست فایل خوانده می‌شود.",
+        en: "Only the first 512 bytes of the file are read.",
     },
     badHex: { fa: "هگز درست نیست.", en: "The hex is not valid." },
 } as const satisfies Record<string, LocalizedText>;

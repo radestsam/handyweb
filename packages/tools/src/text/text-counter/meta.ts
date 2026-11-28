@@ -14,9 +14,10 @@ export const textCounterMeta: ToolDefinition = {
     alsoIn: ["persian"],
     related: ["persian-normalizer", "case-converter"],
     tags: ["text", "count", "words", "characters"],
-    title: {
-        fa: "شمارش واژه، نویسه و زمان خواندن",
-        en: "Word and Character Counter",
+    title: { fa: "شمارش کلمات و حروف", en: "Word and Character Counter" },
+    seoTitle: {
+        fa: "شمارش کلمات و حروف متن فارسی و زمان خواندن",
+        en: "Word and Character Counter for Any Text",
     },
     description: {
         fa: "شمار واژه‌ها، نویسه‌ها، خط‌ها، بندها و جمله‌های نوشته فارسی یا انگلیسی را ببینید و زمان خواندن آن را برآورد کنید. نیم‌فاصله واژه را دو تکه نمی‌کند.",

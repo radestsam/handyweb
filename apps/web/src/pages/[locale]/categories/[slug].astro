@@ -10,6 +10,7 @@ import Base from "../../../layouts/Base.astro";
 import ToolList from "../../../components/ToolList.astro";
 import { useTranslations } from "../../../i18n/site";
 import { categories, tools } from "../../../i18n/tools";
+import { breadcrumbList, collectionPage } from "../../../seo";
 
 export function getStaticPaths() {
     return LOCALES.flatMap((locale) =>
@@ -23,17 +24,29 @@ export function getStaticPaths() {
 const locale = Astro.params.locale as Locale;
 const { category } = Astro.props as { category: ToolCategory };
 const t = useTranslations(locale);
+const site = Astro.site ?? new URL("https://handyweb.ir");
+const path = `/categories/${category.slug}`;
+const jsonLd = [
+    breadcrumbList(locale, site, [
+        { name: t("nav.home"), path: "/" },
+        { name: t("nav.tools"), path: "/tools" },
+        { name: category.title[locale], path },
+    ]),
+    collectionPage(
+        locale,
+        site,
+        { name: category.title[locale], description: category.description[locale], path },
+        toolsInCategory(tools, category.id),
+    ),
+];
 ---
 
 <Base
     locale={locale}
     path={`/categories/${category.slug}`}
-    title={
-        locale === "fa"
-            ? `ابزارهای ${category.title.fa} | HandyWeb`
-            : `${category.title.en} Tools | HandyWeb`
-    }
-    description={`${category.description[locale]} ${locale === "fa" ? "رایگان، و همه در مرورگر خودتان؛ چیزی به سرور فرستاده نمی‌شود." : "Free, and all in your browser: nothing is sent to a server."}`}
+    title={`${category.seoTitle[locale]} | HandyWeb`}
+    jsonLd={jsonLd}
+    description={category.description[locale]}
     breadcrumbs={[{ label: t("nav.tools"), path: "/tools" }, { label: category.title[locale] }]}
 >
     <main id="main" class="mx-auto max-w-6xl px-safe pt-8 sm:pt-12">

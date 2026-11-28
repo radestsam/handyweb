@@ -3,6 +3,7 @@ import { localePath, type Locale, type ToolDefinition } from "@handyweb/core";
 import Base from "../../../layouts/Base.astro";
 import PrivacyBadge from "../../../components/tool/PrivacyBadge.astro";
 import Unbroken from "../../../components/Unbroken.astro";
+import Ltr from "../../../components/Ltr.astro";
 import ToolIsland from "../../../components/tool/ToolIsland";
 import { useTranslations } from "../../../i18n/site";
 import { toolIssueUrl, toolSourceUrl } from "../../../release";
@@ -44,7 +45,7 @@ const labels = {
 const jsonLd: unknown[] = [
     {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
+        "@type": "WebApplication",
         name: tool.title[locale],
         description: tool.description[locale],
         url: url(path),
@@ -112,7 +113,7 @@ const jsonLd: unknown[] = [
     <Base
         locale={locale}
         path={path}
-        title={`${tool.title[locale]} | ${t("site.name")}`}
+        title={`${tool.seoTitle[locale]} | ${t("site.name")}`}
         jsonLd={jsonLd}
         description={tool.description[locale]}
         breadcrumbs={[
@@ -152,6 +153,15 @@ const jsonLd: unknown[] = [
                     </p>
                 </noscript>
             </section>
+
+            {tool.externalLink && (
+                <p class="mt-4 max-w-[60ch] text-sm text-muted" data-external-link>
+                    {tool.externalLink.text[locale]}{" "}
+                    <a href={tool.externalLink.href}>
+                        <Ltr>{tool.externalLink.label}</Ltr>
+                    </a>
+                </p>
+            )}
 
             {tool.guide && (
                 <section

@@ -9,9 +9,13 @@ export const imageCompressorMeta: ToolDefinition = {
     related: ["image-resize", "image-converter"],
     tags: ["image", "compress", "jpg", "webp"],
     title: { fa: "کم کردن حجم عکس", en: "Image Compressor" },
+    seoTitle: {
+        fa: "کم کردن حجم عکس و فشرده سازی عکس آنلاین",
+        en: "Image Compressor: Reduce Photo Size Online",
+    },
     description: {
-        fa: "حجم عکس را با WebP یا JPEG و کیفیت دلخواه کم کنید و پیش از دانلود، حجم پیش و پس را ببینید. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Make a photo file smaller with WebP or JPEG at the quality you choose, and see the size before and after. The photo never leaves your device.",
+        fa: "کم کردن حجم عکس و فشرده سازی عکس با WebP یا JPEG و کیفیت دلخواه، و دیدن حجم پیش و پس پیش از دانلود.",
+        en: "Make a photo file smaller with WebP or JPEG at the quality you choose, and see the size before and after.",
     },
     keywords: {
         fa: ["کم کردن حجم عکس", "فشرده سازی عکس", "کاهش حجم تصویر", "فشرده کردن عکس"],

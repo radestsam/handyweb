@@ -8,9 +8,10 @@ export const unixTimestampMeta: ToolDefinition = {
     alsoIn: ["calculators"],
     related: ["jalali-converter", "jwt-decoder", "uuid-generator"],
     tags: ["timestamp", "epoch", "unix", "date"],
-    title: {
-        fa: "تبدیل برچسب زمانی یونیکس به تاریخ",
-        en: "Unix Timestamp Converter",
+    title: { fa: "تبدیل تایم استمپ یونیکس به تاریخ", en: "Unix Timestamp Converter" },
+    seoTitle: {
+        fa: "تبدیل تایم استمپ یونیکس به تاریخ شمسی و میلادی",
+        en: "Unix Timestamp Converter: Epoch to Date and Back",
     },
     description: {
         fa: "برچسب زمانی یونیکس را به تاریخ شمسی، میلادی و ISO 8601 برگردانید، یا یک تاریخ شمسی یا میلادی را به برچسب زمانی درآورید. ثانیه و میلی‌ثانیه خودکار شناخته می‌شوند.",

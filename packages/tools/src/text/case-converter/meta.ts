@@ -13,12 +13,13 @@ export const caseConverterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["text-counter"],
     tags: ["text", "case", "uppercase", "lowercase"],
-    title: {
-        fa: "تبدیل حروف بزرگ و کوچک انگلیسی",
-        en: "Case Converter",
+    title: { fa: "تبدیل حروف بزرگ و کوچک انگلیسی", en: "Case Converter" },
+    seoTitle: {
+        fa: "تبدیل حروف بزرگ و کوچک انگلیسی آنلاین",
+        en: "Case Converter: Uppercase, Lowercase, Title Case",
     },
     description: {
-        fa: "حروف لاتین را بزرگ یا کوچک کنید، یا نوشته را به شیوه عنوان (Title Case) یا جمله (Sentence case) درآورید. نوشته فارسی دست‌نخورده می‌ماند.",
+        fa: "تبدیل حروف بزرگ و کوچک انگلیسی، یا تبدیل متن به شیوه عنوان (Title Case) یا جمله (Sentence case). متن فارسی دست‌نخورده می‌ماند.",
         en: "Convert text to UPPERCASE, lowercase, Title Case, or Sentence case. Title case follows the Chicago Manual of Style. Persian text stays as it is.",
     },
     keywords: {

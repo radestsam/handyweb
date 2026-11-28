@@ -9,6 +9,10 @@ export const timeZoneConverterMeta: ToolDefinition = {
     related: ["date-difference", "unix-timestamp"],
     tags: ["time zone", "time", "utc", "tehran"],
     title: { fa: "تبدیل منطقه زمانی", en: "Time Zone Converter" },
+    seoTitle: {
+        fa: "تبدیل منطقه زمانی و اختلاف ساعت با تهران",
+        en: "Time Zone Converter for Tehran, Dubai, and More",
+    },
     description: {
         fa: "یک ساعت را از یک منطقه زمانی به چند منطقه دیگر، مانند تهران، استانبول، دبی، لندن و نیویورک، تبدیل کنید و اختلاف ساعت را ببینید.",
         en: "Convert a time from one time zone to many others, such as Tehran, Istanbul, Dubai, London, and New York, and see the offsets.",

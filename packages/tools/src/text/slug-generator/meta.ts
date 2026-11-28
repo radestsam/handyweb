@@ -8,9 +8,10 @@ export const slugGeneratorMeta: ToolDefinition = {
     alsoIn: ["developer", "persian"],
     related: ["url-encoding", "case-converter"],
     tags: ["slug", "url", "seo"],
-    title: {
-        fa: "ساخت Slug برای نشانی صفحه",
-        en: "Slug Generator",
+    title: { fa: "ساخت Slug برای آدرس صفحه", en: "Slug Generator" },
+    seoTitle: {
+        fa: "ساخت Slug برای آدرس صفحه با حروف فارسی",
+        en: "Slug Generator for SEO-Friendly URLs",
     },
     description: {
         fa: "از عنوان یک نوشته، slug تمیز برای نشانی صفحه بسازید: با حروف لاتین یا با حروف فارسی، با خط تیره یا زیرخط.",

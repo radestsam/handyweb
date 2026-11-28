@@ -37,7 +37,7 @@ export const strings = {
         en: "Only the first 256 characters are checked.",
     },
     privacy: {
-        fa: "گذرواژه در مرورگر شما سنجیده می‌شود و به هیچ جا فرستاده یا ذخیره نمی‌شود. با این حال، گذرواژه واقعی و در حال استفاده خود را در هیچ وب‌سایتی ننویسید.",
-        en: "The password is checked in your browser. It is not sent anywhere and not stored. Still, do not type a real password that you use now into any website.",
+        fa: "گذرواژه واقعی و در حال استفاده خود را در هیچ وب‌سایتی ننویسید.",
+        en: "Do not type a real password that you use now into any website.",
     },
 } as const satisfies Record<string, LocalizedText>;

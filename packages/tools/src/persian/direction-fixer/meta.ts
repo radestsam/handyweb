@@ -8,9 +8,10 @@ export const directionFixerMeta: ToolDefinition = {
     alsoIn: ["text"],
     related: ["text-cleaner", "unicode-explorer"],
     tags: ["persian", "rtl", "bidi", "direction"],
-    title: {
+    title: { fa: "درست کردن جهت متن فارسی و انگلیسی درهم", en: "Persian Text Direction Fixer" },
+    seoTitle: {
         fa: "درست کردن جهت متن فارسی و انگلیسی درهم",
-        en: "Persian Text Direction Fixer",
+        en: "Persian Text Direction Fixer for Mixed RTL Text",
     },
     description: {
         fa: "وقتی «C++» یا «Windows 11!» در نوشته فارسی به هم می‌ریزد، با افزودن نشانه LRM یا جداسازی، آن را درست نشان دهید. نشانه‌های جهت را می‌توانید پاک هم کنید.",

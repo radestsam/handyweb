@@ -8,12 +8,13 @@ export const jsonCsvMeta: ToolDefinition = {
     alsoIn: [],
     related: ["json-formatter", "json-yaml"],
     tags: ["json", "csv", "excel", "convert"],
-    title: {
-        fa: "تبدیل JSON به CSV و برعکس",
-        en: "JSON and CSV Converter",
+    title: { fa: "تبدیل JSON به CSV", en: "JSON and CSV Converter" },
+    seoTitle: {
+        fa: "تبدیل JSON به CSV و اکسل و CSV به JSON",
+        en: "JSON and CSV Converter for Excel and Back",
     },
     description: {
-        fa: "یک آرایه JSON را به CSV برای Excel برگردانید، با فارسی درست، یا یک فایل CSV را به JSON درآورید.",
+        fa: "تبدیل JSON به CSV برای Excel با فارسی درست، یا تبدیل CSV به JSON.",
         en: "Convert a JSON array to CSV for Excel, with Persian shown correctly, or a CSV file to JSON.",
     },
     keywords: {

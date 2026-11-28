@@ -8,12 +8,13 @@ export const htmlFormatterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["css-formatter", "js-formatter"],
     tags: ["html", "format"],
-    title: {
-        fa: "آراستن کد HTML",
-        en: "HTML Formatter",
+    title: { fa: "فرمت و مرتب کردن کد HTML", en: "HTML Formatter" },
+    seoTitle: {
+        fa: "فرمت و مرتب کردن کد HTML (HTML Beautifier)",
+        en: "HTML Formatter and Beautifier Online",
     },
     description: {
-        fa: "کد HTML را با تورفتگی خوانا بیارایید. CSS و JavaScript درون صفحه هم آراسته می‌شوند.",
+        fa: "مرتب کردن HTML با تورفتگی خوانا. CSS و JavaScript درون صفحه هم مرتب می‌شوند.",
         en: "Format HTML with readable indentation. Inline CSS and JavaScript are formatted too.",
     },
     keywords: {
@@ -40,18 +41,7 @@ export const htmlFormatterMeta: ToolDefinition = {
             { fa: "تورفتگی را برگزینید.", en: "Choose the indent." },
             { fa: "خروجی را کپی کنید.", en: "Copy the output." },
         ],
-        faq: [
-            {
-                question: {
-                    fa: "کد من جایی فرستاده می‌شود؟",
-                    en: "Is my code sent anywhere?",
-                },
-                answer: {
-                    fa: "نه. آراستن با کتابخانه js-beautify در مرورگر شما انجام می‌شود.",
-                    en: "No. Formatting runs in your browser with the js-beautify library.",
-                },
-            },
-        ],
+        faq: [],
     },
     example: "<div><h1>سلام</h1><p>متن <b>نمونه</b></p></div>",
 };

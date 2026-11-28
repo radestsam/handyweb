@@ -8,9 +8,10 @@ export const unicodeEscapeMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["unicode-explorer", "html-entities", "url-encoding"],
     tags: ["unicode", "escape", "encoding"],
-    title: {
-        fa: "تبدیل متن به کد یونیکد و برعکس",
-        en: "Unicode Escape and Unescape",
+    title: { fa: "تبدیل متن به کد یونیکد و برعکس", en: "Unicode Escape and Unescape" },
+    seoTitle: {
+        fa: "تبدیل متن به کد یونیکد و برعکس (\\u و U+)",
+        en: "Unicode Escape and Unescape (\\u and U+)",
     },
     description: {
         fa: "نوشته فارسی را به کدهای یونیکد مانند \\u0633 یا U+0633 درآورید، یا رشته‌هایی مانند \\u0633\\u0644\\u0627\\u0645 را به نوشته خوانا برگردانید.",

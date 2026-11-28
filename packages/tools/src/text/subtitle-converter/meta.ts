@@ -12,6 +12,10 @@ export const subtitleConverterMeta: ToolDefinition = {
         fa: "تبدیل زیرنویس SRT و VTT و درست کردن فارسی",
         en: "Subtitle Converter (SRT and VTT)",
     },
+    seoTitle: {
+        fa: "تبدیل زیرنویس SRT و VTT و درست کردن فارسی",
+        en: "Subtitle Converter (SRT and VTT) and Persian Fix",
+    },
     description: {
         fa: "زیرنویس SRT را به WebVTT یا برعکس برگردانید، زمان آن را جابه‌جا کنید، و زیرنویس فارسی به‌هم‌ریخته (Windows-1256) را به UTF-8 درست کنید.",
         en: "Convert SRT subtitles to WebVTT or back, shift their timing, and fix garbled Persian subtitles (Windows-1256) by converting them to UTF-8.",

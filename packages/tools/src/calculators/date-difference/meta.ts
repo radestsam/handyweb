@@ -9,6 +9,10 @@ export const dateDifferenceMeta: ToolDefinition = {
     related: ["jalali-converter"],
     tags: ["date", "days", "jalali", "calendar"],
     title: { fa: "محاسبه فاصله دو تاریخ", en: "Date Difference Calculator" },
+    seoTitle: {
+        fa: "محاسبه فاصله دو تاریخ شمسی و میلادی به روز",
+        en: "Date Difference Calculator for Days Between Dates",
+    },
     description: {
         fa: "فاصله دو تاریخ خورشیدی یا میلادی را به روز، هفته و سال و ماه و روز حساب کنید، و تاریخِ چند روز پس یا پیش از یک روز را پیدا کنید.",
         en: "Count the days, weeks, and years, months, and days between two Persian (Jalali) or Gregorian dates, and find the date a number of days before or after a day.",

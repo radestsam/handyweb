@@ -8,9 +8,10 @@ export const jsonStringMeta: ToolDefinition = {
     alsoIn: ["encoding"],
     related: ["json-formatter", "unicode-escape"],
     tags: ["json", "escape", "string"],
-    title: {
-        fa: "رمزگذاری و رمزگشایی رشته JSON",
-        en: "JSON String Escaper and Unescaper",
+    title: { fa: "رمزگذاری و رمزگشایی رشته JSON", en: "JSON String Escaper and Unescaper" },
+    seoTitle: {
+        fa: "رمزگذاری و رمزگشایی رشته JSON (Escape)",
+        en: "JSON String Escaper and Unescaper Online",
     },
     description: {
         fa: 'نوشته را برای گذاشتن درون یک رشته JSON رمزگذاری کنید، با \\n و \\" و دیگر دنباله‌ها، یا یک رشته JSON را به نوشته خوانا برگردانید.',

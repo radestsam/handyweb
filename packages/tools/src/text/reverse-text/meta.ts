@@ -8,12 +8,13 @@ export const reverseTextMeta: ToolDefinition = {
     alsoIn: [],
     related: ["sort-lines", "case-converter"],
     tags: ["text", "reverse"],
-    title: {
-        fa: "وارونه کردن متن",
-        en: "Reverse Text",
+    title: { fa: "وارونه کردن متن", en: "Reverse Text" },
+    seoTitle: {
+        fa: "وارونه کردن متن، کلمات یا خط‌ها",
+        en: "Reverse Text: Flip Letters, Words, or Lines",
     },
     description: {
-        fa: "نویسه‌های هر خط، ترتیب واژه‌ها یا ترتیب خط‌ها را وارونه کنید. حرف‌های با زیر و زبر و ایموجی‌ها نمی‌شکنند.",
+        fa: "وارونه کردن متن: حروف هر خط، ترتیب کلمه‌ها یا ترتیب خط‌ها را برعکس کنید. حرف‌های با زیر و زبر و ایموجی‌ها نمی‌شکنند.",
         en: "Reverse the characters of each line, the order of the words, or the order of the lines. Letters with diacritics and emoji do not break.",
     },
     keywords: {

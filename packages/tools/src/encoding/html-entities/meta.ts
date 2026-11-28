@@ -8,12 +8,13 @@ export const htmlEntitiesMeta: ToolDefinition = {
     alsoIn: ["developer"],
     related: ["url-encoding", "base64"],
     tags: ["html", "entities", "escape"],
-    title: {
+    title: { fa: "رمزگذاری و رمزگشایی موجودیت‌های HTML", en: "HTML Entity Encoder and Decoder" },
+    seoTitle: {
         fa: "رمزگذاری و رمزگشایی موجودیت‌های HTML",
-        en: "HTML Entity Encoder and Decoder",
+        en: "HTML Entity Encoder and Decoder Online",
     },
     description: {
-        fa: "نویسه‌های ویژه HTML مانند < و & را به &lt; و &amp; برگردانید، یا &nbsp; و &#1587; را دوباره به نوشته خوانا درآورید.",
+        fa: "رمزگذاری HTML: نویسه‌های ویژه مانند < و & را به &lt; و &amp; برگردانید، یا &nbsp; و &#1587; را به متن خوانا درآورید.",
         en: "Convert HTML special characters such as < and & to &lt; and &amp;, or decode references such as &nbsp; and &#1587; back to text.",
     },
     keywords: {

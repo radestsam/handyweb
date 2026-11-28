@@ -13,8 +13,8 @@ export const strings = {
     remaining: { fa: "ثانیه مانده", en: "seconds left" },
     account: { fa: "حساب", en: "Account" },
     warning: {
-        fa: "این کلید دسترسی به حساب شما را می‌دهد. آن را جایی نچسبانید که به آن اعتماد ندارید. این صفحه آن را نگه نمی‌دارد و نمی‌فرستد.",
-        en: "This key gives access to your account. Do not paste it anywhere you do not trust. This page does not store or send it.",
+        fa: "این کلید دسترسی به حساب شما را می‌دهد. آن را جایی نچسبانید که به آن اعتماد ندارید.",
+        en: "This key gives access to your account. Do not paste it anywhere you do not trust.",
     },
     clock: {
         fa: "کد از ساعت این دستگاه ساخته می‌شود. اگر ساعت درست نباشد، کد پذیرفته نمی‌شود.",

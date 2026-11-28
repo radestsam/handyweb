@@ -8,12 +8,13 @@ export const urlParserMeta: ToolDefinition = {
     alsoIn: ["network", "encoding"],
     related: ["url-encoding", "qr-generator"],
     tags: ["url", "link", "parse", "security"],
-    title: {
-        fa: "بررسی و تجزیه نشانی (URL)",
-        en: "URL Parser and Inspector",
+    title: { fa: "بررسی و تجزیه لینک (URL)", en: "URL Parser and Inspector" },
+    seoTitle: {
+        fa: "بررسی و تجزیه لینک (URL) و تشخیص لینک مشکوک",
+        en: "URL Parser and Inspector for Suspicious Links",
     },
     description: {
-        fa: "یک نشانی را به پروتکل، میزبان، مسیر و پارامترها جدا کنید، دامنه‌های فارسی (Punycode) را بخوانید و نشانه‌های پیوند فریب‌دهنده را ببینید.",
+        fa: "بررسی لینک و تجزیه URL به پروتکل، میزبان، مسیر و پارامترها. دامنه‌های فارسی (Punycode) را بخوانید و نشانه‌های لینک مشکوک را ببینید.",
         en: "Split a URL into scheme, host, path, and parameters, read internationalized domains (Punycode), and see the signs of a deceptive link.",
     },
     keywords: {

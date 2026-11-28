@@ -8,10 +8,14 @@ export const imagePixelateMeta: ToolDefinition = {
     alsoIn: [],
     related: ["image-blur", "image-metadata"],
     tags: ["image", "pixelate", "privacy", "censor"],
-    title: { fa: "پیکسلی کردن تصویر", en: "Image Pixelator" },
+    title: { fa: "پیکسلی کردن عکس", en: "Image Pixelator" },
+    seoTitle: {
+        fa: "پیکسلی کردن عکس و شطرنجی کردن چهره",
+        en: "Image Pixelator for Faces, Plates, and Text",
+    },
     description: {
-        fa: "یک ناحیه از عکس، مانند چهره، پلاک یا شماره کارت، یا همه آن را پیکسلی (موزاییکی) کنید تا خوانده نشود. عکس از دستگاه شما بیرون نمی‌رود.",
-        en: "Pixelate one area of a picture, such as a face, a plate, or a card number, or all of it, so it cannot be read. The picture never leaves your device.",
+        fa: "پیکسلی کردن عکس یا یک ناحیه از آن، مانند چهره، پلاک یا شماره کارت، تا خوانده نشود (موزاییکی).",
+        en: "Pixelate one area of a picture, such as a face, a plate, or a card number, or all of it, so it cannot be read.",
     },
     keywords: {
         fa: [

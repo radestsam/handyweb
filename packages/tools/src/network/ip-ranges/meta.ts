@@ -9,6 +9,10 @@ export const ipRangesMeta: ToolDefinition = {
     related: ["ip-calculator", "mac-formatter"],
     tags: ["ip", "private", "reserved", "reference"],
     title: { fa: "بازه‌های IP خصوصی و رزرو", en: "Private and Reserved IP Ranges" },
+    seoTitle: {
+        fa: "بازه‌های IP خصوصی و رزرو در IPv4 و IPv6",
+        en: "Private and Reserved IP Ranges for IPv4 and IPv6",
+    },
     description: {
         fa: "ببینید یک نشانی IPv4 یا IPv6 خصوصی، Loopback، Link-local، CGNAT، برای مستندات یا عمومی است، و فهرست بازه‌های ویژه IANA را بخوانید.",
         en: "See whether an IPv4 or IPv6 address is private, loopback, link-local, CGNAT, for documentation, or public, and read the IANA special ranges.",
@@ -34,8 +38,8 @@ export const ipRangesMeta: ToolDefinition = {
     outputKinds: ["structured"],
     limits: { maxInputBytes: 200 },
     limitations: {
-        fa: "تنها بازه‌های ویژه IANA آمده‌اند. ابزار نمی‌گوید یک نشانی عمومی از آن کدام کشور یا شرکت است و به اینترنت درخواستی نمی‌فرستد.",
-        en: "Only the IANA special ranges are listed. The tool does not say which country or company owns a public address, and it sends no request to the internet.",
+        fa: "تنها بازه‌های ویژه IANA آمده‌اند. ابزار نمی‌گوید یک نشانی عمومی از آن کدام کشور یا شرکت است.",
+        en: "Only the IANA special ranges are listed. The tool does not say which country or company owns a public address.",
     },
     guide: {
         steps: [

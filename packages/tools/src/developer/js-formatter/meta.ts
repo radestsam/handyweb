@@ -8,12 +8,13 @@ export const jsFormatterMeta: ToolDefinition = {
     alsoIn: [],
     related: ["html-formatter", "css-formatter"],
     tags: ["js", "format"],
-    title: {
-        fa: "آراستن کد JavaScript",
-        en: "JavaScript Formatter",
+    title: { fa: "فرمت و مرتب کردن کد JavaScript", en: "JavaScript Formatter" },
+    seoTitle: {
+        fa: "فرمت و مرتب کردن کد JavaScript آنلاین",
+        en: "JavaScript Formatter and Beautifier Online",
     },
     description: {
-        fa: "کد JavaScript فشرده یا درهم را با تورفتگی خوانا بیارایید. JSON هم پذیرفته می‌شود.",
+        fa: "مرتب کردن کد JS فشرده یا درهم با تورفتگی خوانا. کد JSON هم پذیرفته می‌شود.",
         en: "Format minified or messy JavaScript with readable indentation. JSON works too.",
     },
     keywords: {
@@ -40,18 +41,7 @@ export const jsFormatterMeta: ToolDefinition = {
             { fa: "تورفتگی را برگزینید.", en: "Choose the indent." },
             { fa: "خروجی را کپی کنید.", en: "Copy the output." },
         ],
-        faq: [
-            {
-                question: {
-                    fa: "کد من جایی فرستاده می‌شود؟",
-                    en: "Is my code sent anywhere?",
-                },
-                answer: {
-                    fa: "نه. آراستن با کتابخانه js-beautify در مرورگر شما انجام می‌شود.",
-                    en: "No. Formatting runs in your browser with the js-beautify library.",
-                },
-            },
-        ],
+        faq: [],
     },
     example: 'function hello(name){if(name){return "سلام "+name}return "سلام"}',
 };

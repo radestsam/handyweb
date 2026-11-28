@@ -2229,3 +2229,15 @@ test.describe("password strength checker", () => {
         await expect(page.locator("[data-tool-score]")).toHaveText(/ضعیف/);
     });
 });
+
+// The QR tools link to pvnd.io for dynamic QR codes. Other tools have no such link.
+test("the QR tools link to pvnd.io", async ({ page }) => {
+    for (const path of ["/fa/tools/qr-generator/", "/en/tools/code-reader/"]) {
+        await page.goto(path);
+        const link = page.locator("[data-external-link] a");
+        await expect(link).toHaveAttribute("href", "https://pvnd.io");
+        await expect(link).toHaveText("pvnd.io");
+    }
+    await page.goto("/en/tools/base64/");
+    await expect(page.locator("[data-external-link]")).toHaveCount(0);
+});

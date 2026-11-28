@@ -8,9 +8,10 @@ export const fileSignatureMeta: ToolDefinition = {
     alsoIn: ["crypto"],
     related: ["hash", "base64-file"],
     tags: ["file", "magic number", "security"],
-    title: {
-        fa: "تشخیص گونه واقعی فایل",
-        en: "File Type Detector",
+    title: { fa: "تشخیص نوع واقعی فایل", en: "File Type Detector" },
+    seoTitle: {
+        fa: "تشخیص نوع واقعی فایل از روی محتوا (Magic Number)",
+        en: "File Type Detector by Magic Number",
     },
     description: {
         fa: "گونه واقعی یک فایل را از بایت‌های آغاز آن (امضا یا magic number) بیابید، و ببینید آیا پسوند آن گمراه‌کننده است، مانند برنامه‌ای که نامش photo.jpg است.",

@@ -8,12 +8,13 @@ export const removeDuplicateLinesMeta: ToolDefinition = {
     alsoIn: [],
     related: ["sort-lines", "text-counter"],
     tags: ["text", "lines", "duplicates"],
-    title: {
-        fa: "حذف خط‌های تکراری",
-        en: "Remove Duplicate Lines",
+    title: { fa: "حذف خطوط تکراری", en: "Remove Duplicate Lines" },
+    seoTitle: {
+        fa: "حذف خطوط تکراری و موارد تکراری از فهرست",
+        en: "Remove Duplicate Lines from a List Online",
     },
     description: {
-        fa: "خط‌های تکراری یک فهرست را بردارید و تنها نخستین نمونه هر خط را به همان ترتیب نگه دارید. می‌توانید اسپیس‌های آغاز و پایان خط و بزرگی و کوچکی حروف را نادیده بگیرید.",
+        fa: "حذف خطوط تکراری یک فهرست، با نگه داشتن نخستین نمونه هر خط به همان ترتیب. می‌توانید اسپیس آغاز و پایان خط و بزرگی و کوچکی حروف را نادیده بگیرید.",
         en: "Remove repeated lines from a list and keep the first copy of each line in its original order. You can ignore spaces at the start and end of a line, and letter case.",
     },
     keywords: {
