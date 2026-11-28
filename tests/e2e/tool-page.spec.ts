@@ -1858,3 +1858,40 @@ test.describe("pdf metadata", () => {
         expect(document.getCreationDate()).toBeUndefined();
     });
 });
+
+test.describe("pdf text extractor", () => {
+    test("reads the text of each page", async ({ page }) => {
+        const { makeTextPdf } = await import("../support/pdf");
+        await page.goto("/en/tools/pdf-text/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "notes.pdf",
+            mimeType: "application/pdf",
+            buffer: await makeTextPdf(["First page text", "Second page text"]),
+        });
+        const output = page.locator("[data-tool-output]");
+        await expect(output).toHaveValue(
+            "--- Page 1 ---\nFirst page text\n\n--- Page 2 ---\nSecond page text",
+        );
+        await page.getByLabel("Show the page number before the text of each page").uncheck();
+        await expect(output).toHaveValue("First page text\n\nSecond page text");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download TXT" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("notes.txt");
+        const { readFile } = await import("node:fs/promises");
+        expect(await readFile((await file.path()) as string, "utf8")).toBe(
+            "First page text\n\nSecond page text",
+        );
+    });
+
+    test("explains a PDF without text", async ({ page }) => {
+        const { makePdf } = await import("../support/pdf");
+        await page.goto("/fa/tools/pdf-text/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "scan.pdf",
+            mimeType: "application/pdf",
+            buffer: await makePdf(2),
+        });
+        await expect(page.locator("[data-tool-no-text]")).toContainText("OCR");
+    });
+});
