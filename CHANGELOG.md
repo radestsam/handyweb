@@ -106,6 +106,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - PDF Text Extractor, with page headers, copy, and a TXT download.
 - PDF Watermark, with Persian text, color, layout, angle, size, and opacity.
 - PDF Page Organizer: page thumbnails, turn, reorder, remove, extract selected pages, and split into single pages.
+- PDF Compressor (experimental): compresses JPEG images again and removes unused parts. It does not promise a smaller file.
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

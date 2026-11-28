@@ -1,6 +1,6 @@
 import { safeFileName } from "@handyweb/core/files";
-import type { PDFDocument, PDFObject, PDFRef } from "@cantoo/pdf-lib";
-import { openPdf, pdfLib } from "../shared/pdflib";
+import type { PDFDocument, PDFObject } from "@cantoo/pdf-lib";
+import { openPdf, pdfLib, removeUnused } from "../shared/pdflib";
 
 /** The largest PDF file, in bytes. */
 export const MAX_FILE_BYTES = 100_000_000;
@@ -73,37 +73,6 @@ export async function readMetadata(bytes: Uint8Array): Promise<PdfMetadata> {
         hasXmp: document.catalog.has(lib.PDFName.of("Metadata")),
         pages: document.getPageCount(),
     };
-}
-
-/**
- * Deletes every object that the document does not use. pdf-lib keeps all
- * objects that it parsed, so an old information dictionary, an old XMP
- * stream, or an older revision of the file would otherwise stay in the output.
- */
-function removeUnused(lib: Lib, document: PDFDocument): void {
-    const { context } = document;
-    const used = new Set<string>();
-    const stack: PDFObject[] = [];
-    const roots = [context.trailerInfo.Root, context.trailerInfo.Info];
-    for (const root of roots) if (root) stack.push(root);
-    while (stack.length > 0) {
-        const object = stack.pop() as PDFObject;
-        if (object instanceof lib.PDFRef) {
-            const key = object.toString();
-            if (used.has(key)) continue;
-            used.add(key);
-            const target = context.lookup(object);
-            if (target) stack.push(target);
-        } else if (object instanceof lib.PDFDict) {
-            for (const [, value] of object.entries()) stack.push(value);
-        } else if (object instanceof lib.PDFArray) {
-            stack.push(...object.asArray());
-        } else if (object instanceof lib.PDFStream) {
-            stack.push(object.dict);
-        }
-    }
-    for (const [ref] of context.enumerateIndirectObjects())
-        if (!used.has(ref.toString())) context.delete(ref as PDFRef);
 }
 
 /**

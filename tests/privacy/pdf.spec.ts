@@ -136,3 +136,18 @@ test("pdf-pages runs locally and stores nothing", async ({ page, requests, baseU
     expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-tax-return"]);
     await expectCleanStorage(page, ["secret-tax-return"]);
 });
+
+test("pdf-compress runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    const { makePhotoPdf } = await import("../support/pdf");
+    await page.goto("/en/tools/pdf-compress/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-medical-scan.pdf",
+        mimeType: "application/pdf",
+        buffer: await makePhotoPdf(page),
+    });
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue(/^\d+:1$/);
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-medical-scan"]);
+    await expectCleanStorage(page, ["secret-medical-scan"]);
+});

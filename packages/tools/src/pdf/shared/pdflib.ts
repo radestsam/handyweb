@@ -1,3 +1,4 @@
+import type { PDFDocument, PDFObject, PDFRef } from "@cantoo/pdf-lib";
 import { sniffBytes } from "@handyweb/core/files";
 import { ToolFailure } from "@handyweb/core/runtime";
 
@@ -41,4 +42,37 @@ export async function openPdf(bytes: Uint8Array) {
     }
     if (pages === 0) throw notPdf();
     return document;
+}
+
+type Lib = Awaited<ReturnType<typeof pdfLib>>;
+
+/**
+ * Deletes every object that the document does not use. pdf-lib keeps all
+ * objects that it parsed, so an old information dictionary, an old XMP
+ * stream, or an older revision of the file would otherwise stay in the output.
+ */
+export function removeUnused(lib: Lib, document: PDFDocument): void {
+    const { context } = document;
+    const used = new Set<string>();
+    const stack: PDFObject[] = [];
+    const roots = [context.trailerInfo.Root, context.trailerInfo.Info];
+    for (const root of roots) if (root) stack.push(root);
+    while (stack.length > 0) {
+        const object = stack.pop() as PDFObject;
+        if (object instanceof lib.PDFRef) {
+            const key = object.toString();
+            if (used.has(key)) continue;
+            used.add(key);
+            const target = context.lookup(object);
+            if (target) stack.push(target);
+        } else if (object instanceof lib.PDFDict) {
+            for (const [, value] of object.entries()) stack.push(value);
+        } else if (object instanceof lib.PDFArray) {
+            stack.push(...object.asArray());
+        } else if (object instanceof lib.PDFStream) {
+            stack.push(object.dict);
+        }
+    }
+    for (const [ref] of context.enumerateIndirectObjects())
+        if (!used.has(ref.toString())) context.delete(ref as PDFRef);
 }

@@ -1998,3 +1998,41 @@ test.describe("pdf page organizer", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("zip:4");
     });
 });
+
+test.describe("pdf compressor", () => {
+    test("makes a photo PDF smaller and the result still opens", async ({ page }) => {
+        const { makePhotoPdf } = await import("../support/pdf");
+        const { PDFDocument } = await import("@cantoo/pdf-lib");
+        await page.goto("/en/tools/pdf-compress/");
+        const source = await makePhotoPdf(page);
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "photo.pdf",
+            mimeType: "application/pdf",
+            buffer: source,
+        });
+        await page.getByText("Strong (smaller file)", { exact: true }).click();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-result-size]")).toContainText("smaller");
+        await expect(page.locator("[data-tool-result-size]")).toContainText("1 of 1 images");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("photo-compressed.pdf");
+        const { readFile } = await import("node:fs/promises");
+        const bytes = await readFile((await file.path()) as string);
+        expect(bytes.length).toBeLessThan(source.length / 2);
+        expect((await PDFDocument.load(bytes)).getPageCount()).toBe(1);
+    });
+
+    test("says so when a PDF does not get smaller", async ({ page }) => {
+        const { makeTextPdf } = await import("../support/pdf");
+        await page.goto("/fa/tools/pdf-compress/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "text.pdf",
+            mimeType: "application/pdf",
+            buffer: await makeTextPdf(["Only text here"]),
+        });
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-not-smaller]")).toContainText("کوچک‌تر نشد");
+    });
+});
