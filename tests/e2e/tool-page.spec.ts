@@ -1083,6 +1083,9 @@ test.describe("image crop", () => {
 });
 
 test.describe("image converter", () => {
+    // The test reads the result with fetch(blob:). The site never does that, so
+    // its connect-src does not allow it.
+    test.use({ bypassCSP: true });
     test("the png-to-jpg preset writes a JPEG", async ({ page }) => {
         const { makePng } = await import("../support/png");
         await page.goto("/en/tools/image-converter/?preset=png-to-jpg");
