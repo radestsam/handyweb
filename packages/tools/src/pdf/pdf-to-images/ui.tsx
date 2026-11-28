@@ -23,7 +23,7 @@ import {
     zipName,
     type Dpi,
 } from "./logic";
-import { renderPage } from "./render";
+import { renderPage } from "../shared/render";
 
 type Format = "image/png" | "image/jpeg";
 
