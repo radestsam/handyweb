@@ -73,6 +73,8 @@ describe("search ranking", () => {
         expect(top("compare json")).toBe("json-diff");
         expect(top("json schema")).toBe("json-schema-validator");
         expect(top("hex to rgb")).toBe("color-converter");
+        expect(top("url parser")).toBe("url-parser");
+        expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
