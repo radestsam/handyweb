@@ -1,6 +1,14 @@
 ---
+/*
+ * The site footer, at the bottom of the sidebar (Sidebar.astro). It starts
+ * with the promise of the site, marked with the same green dot as the privacy
+ * badge of a tool page. Then come the site links, the credit, and the release
+ * that this build is. The release links to its code on GitHub.
+ */
 import { localePath, type Locale } from "@handyweb/core";
 import { useTranslations } from "../i18n/site";
+import { RELEASE_TAG, REPOSITORY } from "../release";
+import Ltr from "./Ltr.astro";
 
 interface Props {
     locale: Locale;
@@ -13,34 +21,37 @@ const links = [
     { href: localePath(locale, "/privacy"), label: t("nav.privacy") },
     { href: localePath(locale, "/opensource"), label: t("nav.opensource") },
     { href: localePath(locale, "/contribute"), label: t("nav.contribute") },
-    { href: "https://github.com/radestsam/handyweb", label: t("nav.source") },
+    { href: REPOSITORY, label: t("nav.source") },
 ];
 ---
 
-<footer class="mt-16 border-t border-border sm:mt-24">
-    <div class="mx-auto flex max-w-6xl flex-col gap-6 px-safe py-8 text-sm sm:py-10 md:flex-row md:items-start md:justify-between">
-        <div class="max-w-md text-muted">
-            <p>{t("footer.local")}</p>
-            <p class="mt-4" data-credit>
-                {t("footer.creditBefore")}
-                <a href="https://hesamrad.com" class="text-text">
-                    {t("footer.creditName")}
-                </a>
-            </p>
-        </div>
-        <nav aria-label={t("nav.footer")}>
-            <ul class="flex flex-wrap gap-x-5 gap-y-2">
-                {links.map((link) => (
-                    <li>
-                        <a
-                            href={link.href}
-                            class="text-muted no-underline hover:text-text hover:underline"
-                        >
-                            {link.label}
-                        </a>
-                    </li>
-                ))}
-            </ul>
-        </nav>
+<footer class="sidebar-foot">
+    <p class="sidebar-foot-promise">
+        <span aria-hidden="true" class="sidebar-foot-dot"></span>
+        <span>{t("footer.local")}</span>
+    </p>
+    <nav aria-label={t("nav.footer")}>
+        <ul class="sidebar-foot-links">
+            {links.map((link) => (
+                <li>
+                    <a href={link.href}>{link.label}</a>
+                </li>
+            ))}
+        </ul>
+    </nav>
+    <div class="sidebar-foot-meta">
+        <p data-credit>
+            {t("footer.creditBefore")}
+            <a href="https://hesamrad.com" class="sidebar-foot-credit">
+                {t("footer.creditName")}
+            </a>
+        </p>
+        <a
+            href={`${REPOSITORY}/releases/tag/${RELEASE_TAG}`}
+            class="sidebar-foot-release"
+            aria-label={`${t("footer.release")} ${RELEASE_TAG}`}
+        >
+            <Ltr>{RELEASE_TAG}</Ltr>
+        </a>
     </div>
 </footer>

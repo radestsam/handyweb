@@ -7,7 +7,6 @@ import {
     type ToolCategory,
 } from "@handyweb/core";
 import Base from "../../../layouts/Base.astro";
-import Breadcrumbs from "../../../components/Breadcrumbs.astro";
 import ToolList from "../../../components/ToolList.astro";
 import { useTranslations } from "../../../i18n/site";
 import { categories, tools } from "../../../i18n/tools";
@@ -48,13 +47,10 @@ const jsonLd = [
     title={`${category.seoTitle[locale]} | HandyWeb`}
     jsonLd={jsonLd}
     description={category.description[locale]}
+    breadcrumbs={[{ label: t("nav.tools"), path: "/tools" }, { label: category.title[locale] }]}
 >
     <main id="main" class="mx-auto max-w-6xl px-safe pt-8 sm:pt-12">
-        <Breadcrumbs
-            locale={locale}
-            items={[{ label: t("nav.tools"), path: "/tools" }, { label: category.title[locale] }]}
-        />
-        <h1 class="mt-6 text-2xl font-bold">{category.title[locale]}</h1>
+        <h1 class="text-2xl font-bold">{category.title[locale]}</h1>
         <p class="mt-2 max-w-[60ch] text-muted">{category.description[locale]}</p>
         <div class="mt-10">
             <ToolList

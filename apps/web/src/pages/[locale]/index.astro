@@ -1,33 +1,33 @@
 ---
-import { localePath, nonEmptyCategories, toolsInCategory, type Locale } from "@handyweb/core";
+import { localePath, type Locale } from "@handyweb/core";
 import Base from "../../layouts/Base.astro";
-import ToolList from "../../components/ToolList.astro";
+import Unbroken from "../../components/Unbroken.astro";
 import { useTranslations } from "../../i18n/site";
 import { homeJsonLd } from "../../seo";
 import { localeStaticPaths } from "../../i18n/static-paths";
-import { categories, tools } from "../../i18n/tools";
+import { categoryOf, featuredTools, tools } from "../../i18n/tools";
 
 export const getStaticPaths = localeStaticPaths;
 
 const locale = Astro.params.locale as Locale;
 const t = useTranslations(locale);
-const groups = nonEmptyCategories(categories, tools)
-    .map((category) => ({
-        category,
-        // A tool appears once on the home page: under its own category.
-        tools: toolsInCategory(tools, category.id).filter((tool) => tool.category === category.id),
-    }))
-    .filter((group) => group.tools.length > 0);
+const featured = featuredTools();
+const total =
+    locale === "fa" ? new Intl.NumberFormat("fa-IR").format(tools.length) : `${tools.length}`;
 
 const text = {
     fa: {
         title: "ابزارهای آنلاین رایگان، روی دستگاه خودتان",
         lead: "کدگذاری، هش فایل، تبدیل تاریخ و یکسان‌سازی نوشته فارسی را در مرورگر خودتان انجام دهید.",
+        popular: "ابزارهای پرکاربرد",
+        all: `دیدن همه ${total} ابزار`,
         privacy: "حریم خصوصی در HandyWeb",
     },
     en: {
         title: "Free online tools that run on your own device",
         lead: "Encode text, hash files, convert Persian dates, and clean up Persian text in your browser.",
+        popular: "Popular Tools",
+        all: `See all ${total} tools`,
         privacy: "Privacy at HandyWeb",
     },
 }[locale];
@@ -52,7 +52,38 @@ const text = {
             <div class="hero-beam mt-12 sm:mt-16" aria-hidden="true"></div>
         </section>
 
-        <ToolList locale={locale} groups={groups} />
+        <section aria-labelledby="popular">
+            <h2 id="popular" class="pb-3 text-sm font-semibold text-text">
+                {text.popular}
+            </h2>
+            <ul class="border-t border-border" data-tool-list>
+                {featured.map((tool) => (
+                    <li class="border-b border-border" data-tool-row>
+                        <a
+                            href={localePath(locale, `/tools/${tool.slug}`)}
+                            class="group grid gap-1 rounded-lg px-2 py-4 text-text no-underline transition-colors duration-150 hover:bg-surface-2 active:bg-border/40 sm:grid-cols-[minmax(14rem,2fr)_3fr] sm:gap-8 sm:py-5"
+                        >
+                            <span class="flex flex-col">
+                                <span class="font-semibold group-hover:text-primary-text">
+                                    <Unbroken text={tool.title[locale]} />
+                                </span>
+                                <span class="text-xs text-muted">
+                                    {categoryOf(tool)?.title[locale]}
+                                </span>
+                            </span>
+                            <span class="text-sm text-muted sm:line-clamp-2">
+                                {tool.description[locale]}
+                            </span>
+                        </a>
+                    </li>
+                ))}
+            </ul>
+            <p class="mt-6">
+                <a href={localePath(locale, "/tools")} class="font-semibold">
+                    {text.all}
+                </a>
+            </p>
+        </section>
 
         <p class="mt-16 text-sm">
             <a href={localePath(locale, "/privacy")}>{text.privacy}</a>

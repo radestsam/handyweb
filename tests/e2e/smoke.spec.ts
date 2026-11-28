@@ -35,7 +35,7 @@ test("each page links to its counterpart in the other language", async ({ page }
         "https://handyweb.ir/fa/about/",
     );
 
-    await page.locator("[data-locale-switch]").click();
+    await page.locator("[data-locale-switch]:visible").click();
     await page.waitForURL("**/en/about/");
     await expect(page.locator("html")).toHaveAttribute("dir", "ltr");
     expect(await page.evaluate(() => localStorage.getItem("handyweb:locale"))).toBe("en");

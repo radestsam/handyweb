@@ -1028,7 +1028,7 @@ test.describe("totp", () => {
         await page.locator("[data-tool-ready]").waitFor();
         // "12345678901234567890" in Base32.
         await page.locator("[data-tool-input]").fill("GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ");
-        await page.getByText("8", { exact: true }).click();
+        await page.locator("main").getByText("8", { exact: true }).click();
         await expect(page.locator("[data-tool-output]")).toHaveValue("94287082");
     });
 });

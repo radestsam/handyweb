@@ -1,0 +1,188 @@
+---
+/*
+ * The tool sidebar. Every page shows it. It lists all published tools, grouped
+ * by category, and marks the open tool with aria-current="page".
+ *
+ * Wide screens (lg and up): a sticky column at the inline start of the page.
+ * It holds the logo at the top and the footer at the bottom. The header band
+ * (Header.astro) sits beside it, above the content.
+ * Narrow screens: the same element is a drawer. The header button and the
+ * Tools tab open it (see scripts/sidebar.ts). The header shows the logo
+ * there, so the drawer does not repeat it.
+ *
+ * The filter field narrows the list on the device. It sends and stores
+ * nothing. The build writes the normalized search terms of each tool into
+ * data-terms.
+ */
+import {
+    localePath,
+    nonEmptyCategories,
+    normalizeForSearch,
+    toolsInCategory,
+    type Locale,
+} from "@handyweb/core";
+import { categories, tools } from "../i18n/tools";
+import { useTranslations } from "../i18n/site";
+import Icon from "./Icon.astro";
+import Logo from "./Logo.astro";
+import Footer from "./Footer.astro";
+
+interface Props {
+    locale: Locale;
+    /** The locale-neutral path of the page, for example "/tools/base64". */
+    path: string;
+}
+
+const { locale, path } = Astro.props;
+const t = useTranslations(locale);
+const [, section, slug] = path.replace(/\/+$/, "").split("/");
+const toolSlug = section === "tools" ? slug : undefined;
+const categorySlug = section === "categories" ? slug : undefined;
+const onIndex = section === "tools" && slug === undefined;
+
+// A tool shows once: under its own category, as on the home page.
+const groups = nonEmptyCategories(categories, tools)
+    .map((category) => ({
+        category,
+        tools: toolsInCategory(tools, category.id).filter((tool) => tool.category === category.id),
+    }))
+    .filter((group) => group.tools.length > 0);
+
+const count = (n: number) => (locale === "fa" ? new Intl.NumberFormat("fa-IR").format(n) : `${n}`);
+const terms = (tool: (typeof tools)[number]) =>
+    normalizeForSearch(
+        [
+            tool.title.fa,
+            tool.title.en,
+            tool.slug,
+            ...tool.aliases,
+            ...tool.keywords.fa,
+            ...tool.keywords.en,
+        ].join(" "),
+    );
+---
+
+<div data-sidebar-backdrop class="sidebar-backdrop" hidden></div>
+<aside id="tool-sidebar" data-sidebar class="sidebar">
+    <div class="sidebar-brand">
+        <a
+            href={localePath(locale, "/")}
+            class="inline-flex shrink-0 items-center gap-2.5 text-lg font-bold text-text no-underline"
+        >
+            <Logo />
+            <span>{t("site.name")}</span>
+        </a>
+    </div>
+    <div class="sidebar-head">
+        <label for="sidebar-filter" class="sr-only">
+            {t("sidebar.filter")}
+        </label>
+        <div class="relative flex-1">
+            <Icon
+                name="search"
+                class="pointer-events-none absolute start-3 top-1/2 size-4 -translate-y-1/2 text-muted"
+            />
+            <input
+                id="sidebar-filter"
+                type="search"
+                data-sidebar-filter
+                placeholder={t("sidebar.placeholder")}
+                autocomplete="off"
+                spellcheck="false"
+                aria-controls="sidebar-groups"
+                class="h-10 w-full rounded-lg border border-border bg-surface ps-9 pe-3 text-sm placeholder:text-muted focus-visible:outline-2 focus-visible:outline-focus"
+            />
+        </div>
+        <button
+            type="button"
+            data-sidebar-close
+            class="sidebar-close"
+            aria-label={t("sidebar.close")}
+        >
+            <Icon name="close" class="size-5" />
+        </button>
+    </div>
+
+    <div class="sidebar-body">
+        <nav aria-label={t("sidebar.label")}>
+            <a
+                href={localePath(locale, "/tools")}
+                class="sidebar-all"
+                aria-current={onIndex ? "page" : undefined}
+            >
+                <span>{t("nav.tools")}</span>
+                <span class="sidebar-count">{count(tools.length)}</span>
+            </a>
+            <div id="sidebar-groups" data-sidebar-groups>
+                {groups.map(({ category, tools: list }) => {
+                    const active =
+                        category.slug === categorySlug ||
+                        list.some((tool) => tool.slug === toolSlug);
+                    return (
+                        <details
+                            class="sidebar-group"
+                            open={active}
+                            data-sidebar-group
+                            data-active={active ? "" : undefined}
+                        >
+                            <summary>
+                                <span class="flex-1">{category.title[locale]}</span>
+                                <span class="sidebar-count">{count(list.length)}</span>
+                                <svg
+                                    aria-hidden="true"
+                                    viewBox="0 0 24 24"
+                                    class="sidebar-chevron"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                >
+                                    <path d="m6 9 6 6 6-6" />
+                                </svg>
+                            </summary>
+                            <ul>
+                                <li>
+                                    <a
+                                        href={localePath(locale, `/categories/${category.slug}`)}
+                                        class="sidebar-link sidebar-link-category"
+                                        aria-current={
+                                            category.slug === categorySlug ? "page" : undefined
+                                        }
+                                    >
+                                        {t("sidebar.category")}
+                                    </a>
+                                </li>
+                                {list.map((tool) => (
+                                    <li data-terms={terms(tool)}>
+                                        <a
+                                            href={localePath(locale, `/tools/${tool.slug}`)}
+                                            class="sidebar-link"
+                                            title={tool.title[locale]}
+                                            aria-current={
+                                                tool.slug === toolSlug ? "page" : undefined
+                                            }
+                                        >
+                                            {tool.title[locale]}
+                                        </a>
+                                    </li>
+                                ))}
+                            </ul>
+                        </details>
+                    );
+                })}
+            </div>
+            <p
+                role="status"
+                data-sidebar-status
+                data-empty={t("sidebar.empty")}
+                class="px-3 py-4 text-sm text-muted empty:hidden"
+            ></p>
+        </nav>
+        <Footer locale={locale} />
+    </div>
+</aside>
+
+<script>
+    import "../scripts/sidebar";
+</script>

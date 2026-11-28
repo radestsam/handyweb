@@ -75,7 +75,10 @@ Dependabot proposes weekly updates for npm packages and GitHub Actions.
 - Until the fonts load, the text uses system fonts (Arial, Helvetica, or Roboto for Latin; Tahoma, Geeza Pro, or Noto Naskh Arabic for Persian) with `size-adjust` and metric overrides, so the font swap moves almost nothing. `tests/e2e/fonts.spec.ts` measures the layout shift. It skips on a machine without these fonts.
 - The theme follows the system until the visitor picks one. The choice is stored in `handyweb:theme`.
 - Layout CSS uses logical properties only (`ms-*`, `me-*`, `start`, `end`). `scripts/check-logical-css.mjs` stops physical ones.
-- On phones, a bottom tab bar replaces the header links.
+- Every page has the tool sidebar (`apps/web/src/components/Sidebar.astro`). It lists all tools by category and highlights the open tool. Each name is one line, cut with an ellipsis when it is too long, so the list does not move when the web font loads. On wide screens (64rem and up) it is a column at the inline start of the page, with the logo at the top and the footer at the bottom: the on-device promise, the site links, the credit, and the release tag of the build, which links to its GitHub release. Beside it, above the content, a header band holds the breadcrumbs, the language link, and the theme button.
+- On narrower screens the header band also has the logo and the menu button, and the breadcrumbs move to a second row. The sidebar is a drawer with the tool list and the footer. The menu button in the header or the Tools tab opens it. Esc, the close button, or a tap outside closes it. On phones, a bottom tab bar has Home and Tools.
+- The filter field at the top of the sidebar narrows the list as you type. It runs on the device and sends or stores nothing. Enter opens the first match. See [Search](#search).
+- The home page shows a short list of popular tools and links to all tools. The site has no analytics, so the list is chosen by hand: `FEATURED` in `apps/web/src/i18n/tools.ts`. The build fails if an id in it is not a published tool.
 
 ## Languages
 
@@ -272,7 +275,7 @@ The development server does not register the worker. `tests/e2e/offline.spec.ts`
 
 ## Search
 
-Press `/` or `Ctrl+K` (`Cmd+K` on a Mac) to search the tools. The index (`/search-index.json`) is built from the catalog at build time. A query matches tool names, aliases, keywords, and descriptions in both languages. Arabic letters (ي, ك) and Persian or Arabic-Indic digits match their Persian and Latin forms. The search runs in the browser and sends no query anywhere.
+The filter field at the top of the tool sidebar is the site search. Press `/` or `Ctrl+K` (`Cmd+K` on a Mac) to go to it from any page. It matches tool names, aliases, and keywords in both languages. Arabic letters (ي, ك) and Persian or Arabic-Indic digits match their Persian and Latin forms. The build writes the search terms into the page, so the filter loads nothing and sends no query anywhere.
 
 ## Contributing
 

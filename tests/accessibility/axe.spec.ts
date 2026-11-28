@@ -66,7 +66,8 @@ test("every interactive control in the header is reachable by Tab", async ({
     test.skip(browserName === "webkit", "WebKit skips links on Tab unless the OS setting is on.");
     await page.goto("/fa/");
     const reached = new Set<string>();
-    for (let i = 0; i < 12; i++) {
+    // The sidebar comes first in the tab order, so this needs more steps.
+    for (let i = 0; i < 40; i++) {
         await page.keyboard.press("Tab");
         const id = await page.evaluate(() => {
             const el = document.activeElement as HTMLElement | null;

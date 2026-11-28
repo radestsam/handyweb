@@ -28,7 +28,7 @@ test.describe("theme", () => {
         await page.emulateMedia({ colorScheme: "light" });
         await page.addInitScript(recordThemeAtBody);
         await page.goto("/fa/");
-        const toggle = page.locator("[data-theme-toggle]");
+        const toggle = page.locator("[data-theme-toggle]:visible");
         await toggle.click(); // system -> light
         await toggle.click(); // light -> dark
         await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
@@ -54,8 +54,8 @@ test.describe("theme", () => {
         await page.emulateMedia({ colorScheme: "light" });
         await page.goto("/fa/");
         await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-        await page.locator("[data-theme-toggle]").click();
-        await page.locator("[data-theme-toggle]").click();
+        await page.locator("[data-theme-toggle]:visible").click();
+        await page.locator("[data-theme-toggle]:visible").click();
         await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
         expect(errors).toEqual([]);
     });

@@ -3,9 +3,8 @@ import "../styles/global.css";
 import { DIRECTION, LANGUAGE_TAG, LOCALES, localePath, type Locale } from "@handyweb/core";
 import Fonts from "../components/Fonts.astro";
 import Header from "../components/Header.astro";
-import Footer from "../components/Footer.astro";
 import TabBar from "../components/TabBar.astro";
-import Search from "../components/Search.astro";
+import Sidebar from "../components/Sidebar.astro";
 import themeInit from "../scripts/theme-init.js?raw";
 import { useTranslations } from "../i18n/site";
 import { SHARE_IMAGE } from "../seo";
@@ -18,9 +17,11 @@ interface Props {
     description?: string | undefined;
     /** Structured data (schema.org) for this page. */
     jsonLd?: unknown[] | undefined;
+    /** The breadcrumb trail after "Home", shown in the header band. */
+    breadcrumbs?: Array<{ label: string; path?: string }> | undefined;
 }
 
-const { locale, path, title, description, jsonLd = [] } = Astro.props;
+const { locale, path, title, description, jsonLd = [], breadcrumbs } = Astro.props;
 const t = useTranslations(locale);
 const site = Astro.site ?? new URL("https://handyweb.ir");
 const canonical = new URL(localePath(locale, path), site).href;
@@ -76,13 +77,14 @@ const shareImage = new URL(SHARE_IMAGE.path(locale), site).href;
         >
             {t("nav.skip")}
         </a>
-        <Header locale={locale} path={path} />
-        <div class="flex-1">
-            <slot />
+        <div class="shell flex-1">
+            <Sidebar locale={locale} path={path} />
+            <div class="min-w-0 pb-16 sm:pb-24">
+                <Header locale={locale} path={path} breadcrumbs={breadcrumbs} />
+                <slot />
+            </div>
         </div>
-        <Footer locale={locale} />
         <TabBar locale={locale} path={path} />
-        <Search locale={locale} />
         <script>
             import "../scripts/register-sw";
         </script>
