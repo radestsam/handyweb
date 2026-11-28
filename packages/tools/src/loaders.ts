@@ -35,4 +35,7 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "split-join": () => import("./text/split-join/ui"),
     "find-replace": () => import("./text/find-replace/ui"),
     "json-string": () => import("./developer/json-string/ui"),
+    "slug-generator": () => import("./text/slug-generator/ui"),
+    "lorem-ipsum": () => import("./text/lorem-ipsum/ui"),
+    "text-extractor": () => import("./text/text-extractor/ui"),
 };

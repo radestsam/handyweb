@@ -603,3 +603,25 @@ test.describe("json string", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue('a "b"\nc');
     });
 });
+
+test.describe("slug, lorem, and extractor", () => {
+    test("makes Latin and Persian slugs", async ({ page }) => {
+        await page.goto("/en/tools/slug-generator/");
+        await page.locator("[data-tool-input]").fill("Hello, World!\nشیراز زیبا");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("hello-world\nshiraz-ziba");
+        await page.getByText("Keep Persian", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("hello-world\nشیراز-زیبا");
+    });
+
+    test("makes Persian placeholder paragraphs", async ({ page }) => {
+        await page.goto("/fa/tools/lorem-ipsum/");
+        await page.locator("[data-tool-input]").fill("2");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^[^\n]+\n\n[^\n]+$/);
+    });
+
+    test("extracts phone numbers with Persian digits", async ({ page }) => {
+        await page.goto("/fa/tools/text-extractor/?preset=phones");
+        await page.locator("[data-tool-input]").fill("شماره ۰۹۱۲۳۴۵۶۷۸۹ و 09121112233");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("09123456789\n09121112233");
+    });
+});
