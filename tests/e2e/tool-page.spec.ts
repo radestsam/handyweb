@@ -766,3 +766,13 @@ test.describe("json schema validator", () => {
         );
     });
 });
+
+test.describe("color converter", () => {
+    test("converts a color name and shows contrast", async ({ page }) => {
+        await page.goto("/en/tools/color-converter/");
+        await page.locator("[data-tool-input]").fill("tomato");
+        await expect(page.locator("[data-tool-output]")).toHaveValue("#ff6347");
+        await expect(page.locator('[data-format="rgb"]')).toHaveText("rgb(255 99 71)");
+        await expect(page.getByText("On white:")).toBeVisible();
+    });
+});
