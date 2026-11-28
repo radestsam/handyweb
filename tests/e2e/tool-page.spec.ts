@@ -414,3 +414,48 @@ test.describe("uuid generator", () => {
         );
     });
 });
+
+test.describe("text diff", () => {
+    test("shows added and removed lines and a patch", async ({ page }) => {
+        await page.goto("/en/tools/text-diff/");
+        await page.getByLabel("Original text").fill("a\nb\nc");
+        await page.getByLabel("Changed text").fill("a\nB\nc");
+        await expect(page.locator("[data-tool-summary]")).toContainText("+1 added");
+        await expect(page.locator("[data-tool-summary]")).toContainText("−1 removed");
+        await expect(page.locator("[data-tool-diff] del")).toHaveText("b");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/-b\n\+B/);
+    });
+
+    test("compares Persian words and says when texts are the same", async ({ page }) => {
+        await page.goto("/fa/tools/text-diff/");
+        await page.getByText("واژه", { exact: true }).click();
+        await page.getByLabel("نوشته نخست").fill("به کتاب‌خانه رفتم");
+        await page.getByLabel("نوشته دگرگون‌شده").fill("به کتاب‌فروشی رفتم");
+        await expect(page.locator("[data-tool-diff] ins")).toHaveText("کتاب‌فروشی");
+        await page.getByLabel("نوشته دگرگون‌شده").fill("به کتاب‌خانه رفتم");
+        await expect(page.locator("[data-tool-identical]")).toBeVisible();
+    });
+
+    test("compares large texts in a worker", async ({ page }) => {
+        // fill() types the text and is very slow for 100 KB. Set the value and
+        // send one input event, as a paste does.
+        const paste = (label: string, text: string) =>
+            page.getByLabel(label).evaluate((element, value) => {
+                const setter = Object.getOwnPropertyDescriptor(
+                    HTMLTextAreaElement.prototype,
+                    "value",
+                )?.set;
+                setter?.call(element, value);
+                element.dispatchEvent(new Event("input", { bubbles: true }));
+            }, text);
+        await page.goto("/en/tools/text-diff/");
+        const lines = Array.from({ length: 12_000 }, (_, i) => `line ${i}`);
+        await paste("Original text", lines.join("\n"));
+        lines[6_000] = "changed";
+        await paste("Changed text", lines.join("\n"));
+        await expect(page.locator("[data-tool-summary]")).toContainText("+1 added", {
+            timeout: 30_000,
+        });
+        await expect(page.locator("[data-tool-diff]")).toContainText("unchanged lines");
+    });
+});
