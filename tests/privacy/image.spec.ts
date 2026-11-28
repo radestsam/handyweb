@@ -192,3 +192,18 @@ test("favicon-generator runs locally and stores nothing", async ({ page, request
     expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-logo"]);
     await expectCleanStorage(page, ["secret-logo"]);
 });
+
+test("code-reader runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    const { makeQr } = await import("../../packages/tools/src/qr/qr-generator/logic");
+    const { qrPng } = await import("../support/qr-png");
+    await page.goto("/en/tools/code-reader/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-ticket.png",
+        mimeType: "image/png",
+        buffer: qrPng(makeQr("secret-ticket-code-1234", "M")),
+    });
+    await expect(page.locator("[data-tool-output]")).toHaveValue("secret-ticket-code-1234");
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-ticket"]);
+    await expectCleanStorage(page, ["secret-ticket"]);
+});

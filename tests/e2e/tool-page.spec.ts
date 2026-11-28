@@ -1593,3 +1593,31 @@ test.describe("barcode generator", () => {
         }
     });
 });
+
+test.describe("code reader", () => {
+    test("reads a Wi-Fi QR code from a picture and asks for no camera", async ({
+        page,
+        context,
+    }) => {
+        const { makeQr } = await import("../../packages/tools/src/qr/qr-generator/logic");
+        const { qrPng } = await import("../support/qr-png");
+        await page.goto("/en/tools/code-reader/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "wifi.png",
+            mimeType: "image/png",
+            buffer: qrPng(makeQr("WIFI:T:WPA;S:Cafe Net;P:secret123;;", "M")),
+        });
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "WIFI:T:WPA;S:Cafe Net;P:secret123;;",
+        );
+        await expect(page.getByText("Wi-Fi network")).toBeVisible();
+        await expect(page.getByText("Cafe Net", { exact: true })).toBeVisible();
+        // Opening the page and reading a picture must not touch the camera.
+        const asked = await page.evaluate(
+            async () =>
+                (await navigator.permissions.query({ name: "camera" as PermissionName })).state,
+        );
+        expect(asked).toBe("prompt");
+        await context.clearPermissions();
+    });
+});

@@ -119,6 +119,7 @@ describe("search ranking", () => {
         expect(top("contrast checker")).toBe("color-contrast");
         expect(top("اختلاف ساعت")).toBe("time-zone-converter");
         expect(top("ساخت بارکد")).toBe("barcode-generator");
+        expect(top("qr scanner")).toBe("code-reader");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
