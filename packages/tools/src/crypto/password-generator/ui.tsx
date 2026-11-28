@@ -236,7 +236,13 @@ export default function PasswordGenerator({ locale, presetOptions }: ToolUiProps
                         <div className="h-1.5 overflow-hidden rounded-full bg-border">
                             <div
                                 className={cx("h-full rounded-full", STRENGTH_COLORS[level])}
-                                style={{ width: `${Math.min(100, (bits / 128) * 100)}%` }}
+                                // The CSP blocks a style attribute in the static HTML, so
+                                // the width is set after hydration only.
+                                style={
+                                    client
+                                        ? { width: `${Math.min(100, (bits / 128) * 100)}%` }
+                                        : undefined
+                                }
                             />
                         </div>
                     </div>

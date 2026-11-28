@@ -15,6 +15,7 @@ for (const locale of ["fa", "en"] as const) {
         const errors: string[] = [];
         page.on("pageerror", (error) => errors.push(error.message));
         await page.goto(`/${locale}/tools/pdf-merge/`);
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles([
             { name: "secret-contract.pdf", mimeType: "application/pdf", buffer: await makePdf(2) },
             { name: "secret-invoice.pdf", mimeType: "application/pdf", buffer: await makePdf(1) },
@@ -37,6 +38,7 @@ for (const locale of ["fa", "en"] as const) {
 test("images-to-pdf runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     const { makePng } = await import("../support/png");
     await page.goto("/en/tools/images-to-pdf/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles([
         { name: "secret-passport.png", mimeType: "image/png", buffer: makePng(40, 20) },
         { name: "secret-id-card.png", mimeType: "image/png", buffer: makePng(20, 40) },
@@ -56,6 +58,7 @@ test("images-to-pdf runs locally and stores nothing", async ({ page, requests, b
 
 test("pdf-to-images runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/pdf-to-images/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-bank-statement.pdf",
         mimeType: "application/pdf",
@@ -74,6 +77,7 @@ test("pdf-to-images runs locally and stores nothing", async ({ page, requests, b
 test("pdf-metadata runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     const { makePdfWithMetadata } = await import("../support/pdf");
     await page.goto("/en/tools/pdf-metadata/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-merger-plan.pdf",
         mimeType: "application/pdf",
@@ -93,6 +97,7 @@ test("pdf-metadata runs locally and stores nothing", async ({ page, requests, ba
 test("pdf-text runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     const { makeTextPdf } = await import("../support/pdf");
     await page.goto("/en/tools/pdf-text/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-diagnosis.pdf",
         mimeType: "application/pdf",
@@ -109,6 +114,7 @@ test("pdf-text runs locally and stores nothing", async ({ page, requests, baseUR
 
 test("pdf-watermark runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/pdf-watermark/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-contract.pdf",
         mimeType: "application/pdf",
@@ -124,6 +130,7 @@ test("pdf-watermark runs locally and stores nothing", async ({ page, requests, b
 
 test("pdf-pages runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     await page.goto("/en/tools/pdf-pages/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-tax-return.pdf",
         mimeType: "application/pdf",
@@ -140,6 +147,7 @@ test("pdf-pages runs locally and stores nothing", async ({ page, requests, baseU
 test("pdf-compress runs locally and stores nothing", async ({ page, requests, baseURL }) => {
     const { makePhotoPdf } = await import("../support/pdf");
     await page.goto("/en/tools/pdf-compress/");
+    await page.locator("[data-tool-ready]").waitFor();
     await page.locator('input[type="file"]').setInputFiles({
         name: "secret-medical-scan.pdf",
         mimeType: "application/pdf",

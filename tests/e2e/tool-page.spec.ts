@@ -43,6 +43,7 @@ test.describe("tool pages", () => {
 
     test("the report link opens the bug form with the tool filled in", async ({ page }) => {
         await page.goto("/fa/tools/base64/");
+        await page.locator("[data-tool-ready]").waitFor();
         const link = page.locator("[data-tool-issue]");
         await expect(link).toHaveText("گزارش مشکل در GitHub");
         const url = new URL((await link.getAttribute("href")) ?? "");
@@ -1853,6 +1854,7 @@ test.describe("pdf merger", () => {
     test("merges files in the chosen order", async ({ page }) => {
         const { makePdf, pageWidths } = await import("../support/pdf");
         await page.goto("/en/tools/pdf-merge/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles([
             { name: "a.pdf", mimeType: "application/pdf", buffer: await makePdf(2, 0) },
             { name: "b.pdf", mimeType: "application/pdf", buffer: await makePdf(1, 10) },
@@ -1874,6 +1876,7 @@ test.describe("pdf merger", () => {
     test("does not add a file that is not a PDF", async ({ page }) => {
         const { makePdf } = await import("../support/pdf");
         await page.goto("/fa/tools/pdf-merge/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles([
             { name: "a.pdf", mimeType: "application/pdf", buffer: await makePdf(1) },
             { name: "notes.pdf", mimeType: "application/pdf", buffer: Buffer.from("hello") },
@@ -1889,6 +1892,7 @@ test.describe("images to pdf", () => {
         const { makePng } = await import("../support/png");
         const { pageWidths } = await import("../support/pdf");
         await page.goto("/en/tools/images-to-pdf/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles([
             { name: "wide.png", mimeType: "image/png", buffer: makePng(40, 20) },
             { name: "tall.png", mimeType: "image/png", buffer: makePng(20, 40) },
@@ -1912,6 +1916,7 @@ test.describe("images to pdf", () => {
     test("does not add a file that is not an image", async ({ page }) => {
         const { makePng } = await import("../support/png");
         await page.goto("/fa/tools/images-to-pdf/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles([
             { name: "photo.png", mimeType: "image/png", buffer: makePng(10, 10) },
             { name: "notes.jpg", mimeType: "image/jpeg", buffer: Buffer.from("hello") },
@@ -1926,6 +1931,7 @@ test.describe("pdf to images", () => {
         const { makePdf } = await import("../support/pdf");
         const { readStoredZip } = await import("../../packages/core/src/files/zip");
         await page.goto("/en/tools/pdf-to-images/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "report.pdf",
             mimeType: "application/pdf",
@@ -1956,6 +1962,7 @@ test.describe("pdf to images", () => {
         const { makePdf } = await import("../support/pdf");
         const { PDFDocument } = await import("@cantoo/pdf-lib");
         await page.goto("/fa/tools/pdf-to-images/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "a.pdf",
             mimeType: "application/pdf",
@@ -1982,6 +1989,7 @@ test.describe("pdf metadata", () => {
         const { makePdfWithMetadata } = await import("../support/pdf");
         const { PDFDocument } = await import("@cantoo/pdf-lib");
         await page.goto("/en/tools/pdf-metadata/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "plan.pdf",
             mimeType: "application/pdf",
@@ -2012,6 +2020,7 @@ test.describe("pdf text extractor", () => {
     test("reads the text of each page", async ({ page }) => {
         const { makeTextPdf } = await import("../support/pdf");
         await page.goto("/en/tools/pdf-text/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "notes.pdf",
             mimeType: "application/pdf",
@@ -2036,6 +2045,7 @@ test.describe("pdf text extractor", () => {
     test("explains a PDF without text", async ({ page }) => {
         const { makePdf } = await import("../support/pdf");
         await page.goto("/fa/tools/pdf-text/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "scan.pdf",
             mimeType: "application/pdf",
@@ -2050,6 +2060,7 @@ test.describe("pdf watermark", () => {
         const { makePdf } = await import("../support/pdf");
         const { PDFDocument } = await import("@cantoo/pdf-lib");
         await page.goto("/fa/tools/pdf-watermark/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "contract.pdf",
             mimeType: "application/pdf",
@@ -2077,6 +2088,7 @@ test.describe("pdf watermark", () => {
     test("asks for a text", async ({ page }) => {
         const { makePdf } = await import("../support/pdf");
         await page.goto("/en/tools/pdf-watermark/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "a.pdf",
             mimeType: "application/pdf",
@@ -2092,6 +2104,7 @@ test.describe("pdf page organizer", () => {
     async function openPdf(page: Page, locale: "en" | "fa") {
         const { makePdf } = await import("../support/pdf");
         await page.goto(`/${locale}/tools/pdf-pages/`);
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "book.pdf",
             mimeType: "application/pdf",
@@ -2150,6 +2163,7 @@ test.describe("pdf compressor", () => {
         const { makePhotoPdf } = await import("../support/pdf");
         const { PDFDocument } = await import("@cantoo/pdf-lib");
         await page.goto("/en/tools/pdf-compress/");
+        await page.locator("[data-tool-ready]").waitFor();
         const source = await makePhotoPdf(page);
         await page.locator('input[type="file"]').setInputFiles({
             name: "photo.pdf",
@@ -2173,6 +2187,7 @@ test.describe("pdf compressor", () => {
     test("says so when a PDF does not get smaller", async ({ page }) => {
         const { makeTextPdf } = await import("../support/pdf");
         await page.goto("/fa/tools/pdf-compress/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator('input[type="file"]').setInputFiles({
             name: "text.pdf",
             mimeType: "application/pdf",
@@ -2186,6 +2201,7 @@ test.describe("pdf compressor", () => {
 test.describe("password strength checker", () => {
     test("rates a common password and a long passphrase", async ({ page }) => {
         await page.goto("/en/tools/password-strength/");
+        await page.locator("[data-tool-ready]").waitFor();
         const input = page.locator("[data-tool-input]");
         await expect(input).toHaveAttribute("type", "password");
         await input.fill("password");
@@ -2206,6 +2222,7 @@ test.describe("password strength checker", () => {
 
     test("gives Persian feedback", async ({ page }) => {
         await page.goto("/fa/tools/password-strength/");
+        await page.locator("[data-tool-ready]").waitFor();
         await page.locator("[data-tool-input]").fill("qwertyuiop");
         await expect(page.locator("[data-tool-output]")).toHaveValue(/^[01]$/, { timeout: 15_000 });
         await expect(page.locator("[data-tool-warning]")).toContainText("پرکاربرد");
