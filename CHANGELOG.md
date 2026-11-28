@@ -100,6 +100,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - PDF Merger, with reordering. The PDF library loads only when a PDF is opened.
 - Images to PDF (JPEG, PNG, WebP, GIF, BMP), with A4, Letter, or image-sized pages and margins.
 - PDF to Images (PNG or JPEG at 72, 150, or 300 dpi), with a page list and a ZIP download.
+- PDF Metadata Editor: view, edit, or remove the title, author, app, and dates. It also removes XMP metadata and unused objects.
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

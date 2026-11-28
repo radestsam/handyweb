@@ -15,3 +15,13 @@ export async function pageWidths(bytes: Uint8Array): Promise<number[]> {
     const document = await PDFDocument.load(bytes);
     return document.getPages().map((page) => page.getWidth());
 }
+
+/** A one-page PDF with a title and an author, for the metadata tests. */
+export async function makePdfWithMetadata(title: string, author: string): Promise<Buffer> {
+    const document = await PDFDocument.create({ updateMetadata: false });
+    document.addPage();
+    document.setTitle(title);
+    document.setAuthor(author);
+    document.setCreationDate(new Date("2024-03-01T10:00:00Z"));
+    return Buffer.from(await document.save());
+}

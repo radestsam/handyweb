@@ -1827,3 +1827,34 @@ test.describe("pdf to images", () => {
         await expect(page.getByRole("alert")).toContainText("گذرواژه");
     });
 });
+
+test.describe("pdf metadata", () => {
+    test("edits the title and removes the author", async ({ page }) => {
+        const { makePdfWithMetadata } = await import("../support/pdf");
+        const { PDFDocument } = await import("@cantoo/pdf-lib");
+        await page.goto("/en/tools/pdf-metadata/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "plan.pdf",
+            mimeType: "application/pdf",
+            buffer: await makePdfWithMetadata("Draft", "Jane Roe"),
+        });
+        await expect(page.locator('[data-tool-field="Title"]')).toHaveValue("Draft");
+        await expect(page.locator('[data-tool-field="Author"]')).toHaveValue("Jane Roe");
+        await page.locator('[data-tool-field="Title"]').fill("گزارش نهایی");
+        await page.locator('[data-tool-field="Author"]').fill("");
+        await page.getByLabel("Keep").first().uncheck();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("saved");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("plan-metadata.pdf");
+        const { readFile } = await import("node:fs/promises");
+        const document = await PDFDocument.load(await readFile((await file.path()) as string), {
+            updateMetadata: false,
+        });
+        expect(document.getTitle()).toBe("گزارش نهایی");
+        expect(document.getAuthor()).toBeUndefined();
+        expect(document.getCreationDate()).toBeUndefined();
+    });
+});

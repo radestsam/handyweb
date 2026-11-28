@@ -70,3 +70,22 @@ test("pdf-to-images runs locally and stores nothing", async ({ page, requests, b
     expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-bank-statement"]);
     await expectCleanStorage(page, ["secret-bank-statement"]);
 });
+
+test("pdf-metadata runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    const { makePdfWithMetadata } = await import("../support/pdf");
+    await page.goto("/en/tools/pdf-metadata/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-merger-plan.pdf",
+        mimeType: "application/pdf",
+        buffer: await makePdfWithMetadata("Secret merger plan", "Jane Roe"),
+    });
+    await page.locator("[data-tool-clean]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue("cleaned");
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, [
+        "secret-merger-plan",
+        "Secret merger plan",
+        "Jane Roe",
+    ]);
+    await expectCleanStorage(page, ["secret-merger-plan", "Jane Roe"]);
+});
