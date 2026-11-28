@@ -53,6 +53,7 @@ import { userAgentParserMeta } from "./developer/user-agent-parser/meta";
 import { hexMeta } from "./encoding/hex/meta";
 import { binaryMeta } from "./encoding/binary/meta";
 import { base64FileMeta } from "./encoding/base64-file/meta";
+import { gzipMeta } from "./encoding/gzip/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -113,4 +114,5 @@ export const catalog: readonly ToolDefinition[] = [
     hexMeta,
     binaryMeta,
     base64FileMeta,
+    gzipMeta,
 ];

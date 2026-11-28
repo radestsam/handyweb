@@ -59,4 +59,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     hex: () => import("./encoding/hex/ui"),
     binary: () => import("./encoding/binary/ui"),
     "base64-file": () => import("./encoding/base64-file/ui"),
+    gzip: () => import("./encoding/gzip/ui"),
 };

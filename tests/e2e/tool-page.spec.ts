@@ -862,3 +862,15 @@ test.describe("base64 file", () => {
         expect((await download).suggestedFilename()).toBe("file.bin");
     });
 });
+
+test.describe("gzip", () => {
+    test("compresses text and decompresses it again", async ({ page }) => {
+        await page.goto("/en/tools/gzip/");
+        await page.locator("[data-tool-input]").fill("hello hello hello hello");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(/^H4sI/);
+        const base64 = await page.locator("[data-tool-output]").inputValue();
+        await page.getByText("Decompress", { exact: true }).click();
+        await page.locator("[data-tool-input]").fill(base64);
+        await expect(page.locator("[data-tool-output]")).toHaveValue("hello hello hello hello");
+    });
+});
