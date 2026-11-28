@@ -506,3 +506,22 @@ test.describe("unix timestamp", () => {
         await expect(page.locator('[data-row="unixSeconds"]')).toHaveText("1764239400");
     });
 });
+
+test.describe("number base", () => {
+    test("converts a hex number to every base", async ({ page }) => {
+        await page.goto("/en/tools/number-base/");
+        await page.locator("[data-tool-input]").fill("0xFF");
+        await expect(page.locator('[data-base="2"]')).toHaveText("11111111");
+        await expect(page.locator('[data-base="10"]')).toHaveText("255");
+        await expect(page.locator('[data-base="target"]')).toHaveText("73");
+        await expect(page.locator("[data-tool-meta]")).toContainText("8 bits");
+    });
+
+    test("the binary preset reads Persian digits and reports a bad digit", async ({ page }) => {
+        await page.goto("/fa/tools/number-base/?preset=binary");
+        await page.locator("[data-tool-input]").fill("۱۰۱۰");
+        await expect(page.locator('[data-base="10"]')).toHaveText("10");
+        await page.locator("[data-tool-input]").fill("102");
+        await expect(page.getByRole("alert")).toContainText("2");
+    });
+});
