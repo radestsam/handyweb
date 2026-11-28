@@ -8,6 +8,11 @@ export const strings = {
     hex: { fa: "هگز", en: "Hex" },
     base64: { fa: "Base64", en: "Base64" },
     algorithm: { fa: "الگوریتم", en: "Algorithm" },
+    legacy: { fa: "قدیمی", en: "legacy" },
+    legacyWarning: {
+        fa: "MD5 و SHA-1 شکسته‌اند: می‌توان دو فایل با هش یکسان ساخت. آن‌ها را تنها برای سنجیدن checksumهای قدیمی به کار ببرید، نه برای امنیت.",
+        en: "MD5 and SHA-1 are broken: two files with the same hash can be made. Use them only to check old checksums, not for security.",
+    },
     expected: {
         fa: "سنجش با هشی که دارید (دلخواه)",
         en: "Compare with an expected hash (optional)",

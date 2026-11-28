@@ -3,7 +3,17 @@ import type { ToolDefinition } from "@handyweb/core";
 export const hashMeta: ToolDefinition = {
     id: "hash",
     slug: "hash",
-    aliases: ["sha256", "sha-256", "sha384", "sha512", "sha-512", "file-hash", "checksum"],
+    aliases: [
+        "sha256",
+        "sha-256",
+        "sha384",
+        "sha512",
+        "sha-512",
+        "file-hash",
+        "checksum",
+        "md5",
+        "sha1",
+    ],
     category: "crypto",
     alsoIn: ["developer"],
     related: ["base64", "hmac"],
@@ -29,6 +39,8 @@ export const hashMeta: ToolDefinition = {
             "file hash",
             "digest",
             "verify download",
+            "md5",
+            "sha1",
         ],
     },
     presets: [
@@ -43,6 +55,18 @@ export const hashMeta: ToolDefinition = {
             title: { fa: "تولید هش SHA-384", en: "SHA-384 Hash Generator" },
             keywords: { fa: ["sha384"], en: ["sha384", "sha-384"] },
             options: { algorithm: "SHA-384" },
+        },
+        {
+            id: "md5",
+            title: { fa: "تولید هش MD5", en: "MD5 Hash Generator" },
+            keywords: { fa: ["md5"], en: ["md5", "md5 checksum"] },
+            options: { algorithm: "MD5" },
+        },
+        {
+            id: "sha1",
+            title: { fa: "تولید هش SHA-1", en: "SHA-1 Hash Generator" },
+            keywords: { fa: ["sha1"], en: ["sha1", "sha-1"] },
+            options: { algorithm: "SHA-1" },
         },
         {
             id: "sha512",
