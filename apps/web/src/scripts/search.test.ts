@@ -42,6 +42,8 @@ describe("search ranking", () => {
         expect(top("xml validator")).toBe("xml-formatter");
         expect(top("jwt")).toBe("jwt-decoder");
         expect(top("hmac")).toBe("hmac");
+        expect(top("password generator")).toBe("password-generator");
+        expect(top("رمز عبور قوی")).toBe("password-generator");
         expect(top("webhook signature")).toBe("hmac");
         expect(top("نویسه نامرئی")).toBe("unicode-explorer");
         expect(top("حروف بزرگ")).toBe("case-converter");
