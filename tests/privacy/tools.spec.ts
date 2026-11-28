@@ -28,7 +28,7 @@ for (const tool of published) {
                 tool.example as string,
                 result,
             ]);
-            await expectCleanStorage(page);
+            await expectCleanStorage(page, [tool.example as string, result]);
             expect(errors).toEqual([]);
         });
     }
@@ -44,5 +44,26 @@ test("the harness catches a request to another origin", async ({ page, requests,
 test("the harness catches a stored key", async ({ page }) => {
     await page.goto("/en/");
     await page.evaluate(() => localStorage.setItem("history", "secret"));
+    await expect(expectCleanStorage(page)).rejects.toThrow();
+});
+
+test("the harness catches a cache that is not the static file cache", async ({ page }) => {
+    await page.goto("/en/");
+    await page.evaluate(async () => {
+        const cache = await caches.open("history");
+        await cache.put("/history", new Response("secret"));
+    });
+    await expect(expectCleanStorage(page)).rejects.toThrow();
+});
+
+test("the harness catches a cached URL with a query string", async ({ page }) => {
+    await page.goto("/en/");
+    await page.evaluate(async () => {
+        // Wait for the worker, which removes every other handyweb- cache when it starts.
+        await navigator.serviceWorker.ready;
+        const name = (await caches.keys()).find((key) => key.startsWith("handyweb-")) as string;
+        const cache = await caches.open(name);
+        await cache.put("/en/?q=secret", new Response("x"));
+    });
     await expect(expectCleanStorage(page)).rejects.toThrow();
 });

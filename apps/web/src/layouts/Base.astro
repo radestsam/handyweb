@@ -40,6 +40,9 @@ const xDefault = new URL(localePath("fa", path), site).href;
         <title>{title}</title>
         <meta name="description" content={description ?? t("site.description")} />
         <link rel="canonical" href={canonical} />
+        <link rel="manifest" href={`/${locale}/manifest.webmanifest`} />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
         {alternates.map((a) => (
             <link rel="alternate" hreflang={a.hreflang} href={a.href} />
         ))}
@@ -73,5 +76,8 @@ const xDefault = new URL(localePath("fa", path), site).href;
         <Footer locale={locale} />
         <TabBar locale={locale} path={path} />
         <Search locale={locale} />
+        <script>
+            import "../scripts/register-sw";
+        </script>
     </body>
 </html>

@@ -51,8 +51,13 @@ export function expectNoLeak(requests: RecordedRequest[], origin: string, secret
     expect(problems).toEqual([]);
 }
 
-/** Fails when the page stored anything except the allowed preference keys. */
-export async function expectCleanStorage(page: Page): Promise<void> {
+/**
+ * Fails when the page stored anything except the allowed preference keys and
+ * the static file cache of the service worker. That cache may hold only GET
+ * responses of this origin, with no query string and none of the given
+ * secrets in the URL.
+ */
+export async function expectCleanStorage(page: Page, secrets: string[] = []): Promise<void> {
     const stored = await page.evaluate(async () => {
         const databases = "databases" in indexedDB ? await indexedDB.databases() : [];
         return {
@@ -66,8 +71,26 @@ export async function expectCleanStorage(page: Page): Promise<void> {
     expect(stored.session).toEqual([]);
     expect(stored.indexedDB).toEqual([]);
     expect(stored.cookies).toBe("");
-    const caches = await page.evaluate(async () =>
-        "caches" in window ? await window.caches.keys() : [],
-    );
-    expect(caches).toEqual([]);
+    const cached = await page.evaluate(async () => {
+        if (!("caches" in window)) return { names: [] as string[], urls: [] as string[] };
+        const names = await window.caches.keys();
+        const urls: string[] = [];
+        for (const name of names) {
+            const cache = await window.caches.open(name);
+            for (const request of await cache.keys()) urls.push(request.url);
+        }
+        return { names, urls };
+    });
+    expect(cached.names.filter((name) => !/^handyweb-[0-9a-f]{16}$/.test(name))).toEqual([]);
+    const origin = new URL(page.url()).origin;
+    const problems = cached.urls.filter((value) => {
+        const url = new URL(value);
+        const text = decodeURIComponent(value);
+        return (
+            url.origin !== origin ||
+            url.search !== "" ||
+            secrets.some((secret) => secret.length >= 4 && text.includes(secret.slice(0, 64)))
+        );
+    });
+    expect(problems).toEqual([]);
 }

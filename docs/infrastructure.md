@@ -35,6 +35,8 @@ Dependabot (`.github/dependabot.yml`) proposes npm and Actions updates weekly, a
 
 Not deployed yet. The launch gate (T2.1 to T2.4) adds the hosts, DNS, and security headers here.
 
+The headers must allow the service worker and the manifest: `worker-src 'self'` and `manifest-src 'self'` in the Content-Security-Policy. Serve `/sw.js` with `Cache-Control: no-cache`, so that browsers find a new build quickly.
+
 ## Browser Storage
 
 Only `handyweb:theme` and `handyweb:locale` in `localStorage`. `tests/privacy/tools.spec.ts` fails on any other key, on cookies, on IndexedDB, and on Cache Storage.

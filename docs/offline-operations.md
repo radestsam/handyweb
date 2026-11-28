@@ -14,6 +14,8 @@ The outage runbook of HandyWeb. It covers an outage of the international interne
 
 The site itself calls no outside service at runtime. Fonts and all assets are self-hosted.
 
+A visitor who opened the site before an outage can still use it when no host is reachable: the service worker keeps the start pages and every tool page and tool file that the visitor opened. See "Offline Use" in `README.md`.
+
 ## Build During an Outage
 
 1. Install the packages through the npm mirror of the starter kit:
