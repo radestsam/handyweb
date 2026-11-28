@@ -106,3 +106,18 @@ test("pdf-text runs locally and stores nothing", async ({ page, requests, baseUR
     ]);
     await expectCleanStorage(page, ["secret-diagnosis", "Patient record"]);
 });
+
+test("pdf-watermark runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    await page.goto("/en/tools/pdf-watermark/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-contract.pdf",
+        mimeType: "application/pdf",
+        buffer: await makePdf(2),
+    });
+    await page.locator("[data-tool-text]").fill("Draft for Jane Roe");
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue(/^\d+$/);
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-contract", "Jane Roe"]);
+    await expectCleanStorage(page, ["secret-contract", "Jane Roe"]);
+});

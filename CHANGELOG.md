@@ -102,6 +102,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - PDF to Images (PNG or JPEG at 72, 150, or 300 dpi), with a page list and a ZIP download.
 - PDF Metadata Editor: view, edit, or remove the title, author, app, and dates. It also removes XMP metadata and unused objects.
 - PDF Text Extractor, with page headers, copy, and a TXT download.
+- PDF Watermark, with Persian text, color, layout, angle, size, and opacity.
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
