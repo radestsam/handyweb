@@ -913,3 +913,14 @@ test.describe("aes-gcm", () => {
         });
     });
 });
+
+test.describe("totp", () => {
+    test("shows the RFC 6238 code at a fixed time", async ({ page }) => {
+        await page.clock.setFixedTime(new Date(59_000));
+        await page.goto("/en/tools/totp/");
+        // "12345678901234567890" in Base32.
+        await page.locator("[data-tool-input]").fill("GEZDGNBVGY3TQOJQGEZDGNBVGY3TQOJQ");
+        await page.getByText("8", { exact: true }).click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("94287082");
+    });
+});

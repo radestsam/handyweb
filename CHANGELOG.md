@@ -57,5 +57,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Gzip and Deflate Compressor.
 - Subtitle Converter (SRT and VTT), with time shift and Windows-1256 repair.
 - Text Encryption with a Passphrase (AES-256-GCM, PBKDF2).
+- TOTP Code Generator.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

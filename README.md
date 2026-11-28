@@ -122,6 +122,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Password and Passphrase Generator                     | Hashing and Cryptography | `packages/tools/src/crypto/password-generator`       | None (EFF large wordlist, generated)                       |
 | Random Token and Bytes Generator                      | Hashing and Cryptography | `packages/tools/src/crypto/random-token`             | None                                                       |
 | Text Encryption with a Passphrase (AES-GCM)           | Hashing and Cryptography | `packages/tools/src/crypto/aes-gcm`                  | None (Web Crypto)                                          |
+| TOTP Code Generator                                   | Hashing and Cryptography | `packages/tools/src/crypto/totp`                     | None (Web Crypto)                                          |
 | Persian Text Normalizer and Digit Converter           | Persian                  | `packages/tools/src/persian/persian-normalizer`      | `diff` (change view)                                       |
 | Jalali and Gregorian Date Converter                   | Persian                  | `packages/tools/src/persian/jalali-converter`        | `jalaali-js`                                               |
 | Number to Persian Words                               | Persian                  | `packages/tools/src/persian/number-to-words`         | None                                                       |
