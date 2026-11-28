@@ -34,6 +34,8 @@ import { loremIpsumMeta } from "./text/lorem-ipsum/meta";
 import { textExtractorMeta } from "./text/text-extractor/meta";
 import { numberToWordsMeta } from "./persian/number-to-words/meta";
 import { zwnjFixerMeta } from "./persian/zwnj-fixer/meta";
+import { punctuationFixerMeta } from "./persian/punctuation-fixer/meta";
+import { directionFixerMeta } from "./persian/direction-fixer/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -75,4 +77,6 @@ export const catalog: readonly ToolDefinition[] = [
     textExtractorMeta,
     numberToWordsMeta,
     zwnjFixerMeta,
+    punctuationFixerMeta,
+    directionFixerMeta,
 ];

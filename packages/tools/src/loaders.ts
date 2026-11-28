@@ -40,4 +40,6 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "text-extractor": () => import("./text/text-extractor/ui"),
     "number-to-words": () => import("./persian/number-to-words/ui"),
     "zwnj-fixer": () => import("./persian/zwnj-fixer/ui"),
+    "punctuation-fixer": () => import("./persian/punctuation-fixer/ui"),
+    "direction-fixer": () => import("./persian/direction-fixer/ui"),
 };
