@@ -568,9 +568,16 @@
 
     /* A tool link. The open tool gets a brand rail on its start edge, drawn
        over the guide line of the group. */
+    /* A tool link is always one line, cut with an ellipsis when the name is
+       too long. The full name is in the title attribute and in the link text.
+       A name that wraps differently with the web font than with the fallback
+       font would move the list when the font loads. */
     .sidebar-link {
         position: relative;
         display: block;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
         padding: 0.4rem 0.75rem;
         margin-inline-start: 0.375rem;
         border-radius: 0.375rem;

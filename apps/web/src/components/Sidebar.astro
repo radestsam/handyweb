@@ -158,6 +158,7 @@ const terms = (tool: (typeof tools)[number]) =>
                                         <a
                                             href={localePath(locale, `/tools/${tool.slug}`)}
                                             class="sidebar-link"
+                                            title={tool.title[locale]}
                                             aria-current={
                                                 tool.slug === toolSlug ? "page" : undefined
                                             }
