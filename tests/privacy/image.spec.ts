@@ -160,3 +160,23 @@ test("image-pixelate runs locally and stores nothing", async ({ page, requests, 
     expectNoLeak(requests, new URL(baseURL as string).origin, ["secret-holiday-photo"]);
     await expectCleanStorage(page, ["secret-holiday-photo"]);
 });
+
+test("image-watermark runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    await page.goto("/fa/tools/image-watermark/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-holiday-photo.png",
+        mimeType: "image/png",
+        buffer: makePng(80, 40),
+    });
+    await page.locator("[data-watermark-text]").fill("متن پنهان من");
+    await page.locator("[data-tool-run]").click();
+    await expect(page.locator("[data-tool-output]")).toHaveValue(
+        "secret-holiday-photo-watermark.png",
+    );
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, [
+        "secret-holiday-photo",
+        "متن پنهان من",
+    ]);
+    await expectCleanStorage(page, ["secret-holiday-photo", "متن پنهان من"]);
+});

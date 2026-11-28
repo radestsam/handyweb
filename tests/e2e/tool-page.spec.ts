@@ -1293,3 +1293,34 @@ test.describe("image pixelate", () => {
             expect(Math.abs((reds[x] as number) - (x < 16 ? 60 : 188))).toBeLessThanOrEqual(3);
     });
 });
+
+test.describe("image watermark", () => {
+    test("draws white text in the chosen corner only", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-watermark/");
+        // A dark picture: red and green are 0, blue is 128.
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.png",
+            mimeType: "image/png",
+            buffer: makePng(400, 200, true, 0),
+        });
+        await page.locator("[data-watermark-text]").fill("WATERMARK");
+        await page.locator('[data-watermark-field="opacity"]').fill("100");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("a-watermark.png");
+        const bright = await page.locator("section img").evaluate(async (img: HTMLImageElement) => {
+            await img.decode();
+            const canvas = document.createElement("canvas");
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+            context.drawImage(img, 0, 0);
+            const count = (x: number, y: number, w: number, h: number) =>
+                [...context.getImageData(x, y, w, h).data].filter((v, i) => i % 4 === 0 && v > 200)
+                    .length;
+            return { bottomRight: count(200, 100, 200, 100), topLeft: count(0, 0, 200, 100) };
+        });
+        expect(bright.bottomRight).toBeGreaterThan(50);
+        expect(bright.topLeft).toBe(0);
+    });
+});

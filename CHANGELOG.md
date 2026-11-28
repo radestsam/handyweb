@@ -73,6 +73,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Image Comparer (slider, opacity, and pixel difference).
 - Image Blur Tool, for the whole picture or one area.
 - Image Pixelator, for the whole picture or one area.
+- Image Watermark Tool (Persian or English text, or a logo).
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
