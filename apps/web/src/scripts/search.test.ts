@@ -90,6 +90,8 @@ describe("search ranking", () => {
         expect(top("html preview")).toBe("html-preview");
         expect(top("markdown")).toBe("markdown-editor");
         expect(top("کوچک کردن عکس")).toBe("image-resize");
+        expect(top("چرخاندن عکس")).toBe("image-rotate");
+        expect(top("mirror image")).toBe("image-flip");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");

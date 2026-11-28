@@ -1024,3 +1024,34 @@ test.describe("image resize", () => {
         await expect(page.getByRole("alert")).toContainText("50 megapixels");
     });
 });
+
+test.describe("image rotate", () => {
+    test("rotates pixels clockwise", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-rotate/");
+        // Red is 60 x column and green is 60 x row, so each pixel has its own color.
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "a.png",
+            mimeType: "image/png",
+            buffer: makePng(4, 2, true, 60),
+        });
+        await page.locator("[data-tool-rotate-right]").click();
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("2x4");
+        const pixels = await page.locator("section img").evaluate(async (img: HTMLImageElement) => {
+            await img.decode();
+            const canvas = document.createElement("canvas");
+            canvas.width = img.naturalWidth;
+            canvas.height = img.naturalHeight;
+            const context = canvas.getContext("2d") as CanvasRenderingContext2D;
+            context.drawImage(img, 0, 0);
+            return [...context.getImageData(0, 0, 2, 4).data].filter((_, k) => k % 4 < 2);
+        });
+        // A clockwise turn puts the old pixel (x, y) at (1 - y, x). Some
+        // browsers (Brave) add noise of 1 or 2 to read-back pixels.
+        const expected = [0, 60, 0, 0, 60, 60, 60, 0, 120, 60, 120, 0, 180, 60, 180, 0];
+        pixels.forEach((value, index) =>
+            expect(Math.abs(value - (expected[index] as number))).toBeLessThanOrEqual(3),
+        );
+    });
+});
