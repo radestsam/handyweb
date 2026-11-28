@@ -20,7 +20,7 @@ body:
     attributes:
       label: Release
       description: The release that the site runs. The Report a Problem link on a tool page fills this in.
-      placeholder: v0.1.0
+      placeholder: v1.0.0
   - type: textarea
     id: steps
     attributes:

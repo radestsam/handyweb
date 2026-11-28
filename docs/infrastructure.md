@@ -25,17 +25,27 @@ This document describes the system as the code defines it. Update it in the same
 
 ## CI
 
-| Workflow                   | Trigger                                | Jobs                                                                                                                                                                                                         |
-| -------------------------- | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `.github/workflows/ci.yml` | Pull request to `main`, push to `main` | Lint, test and build (`scripts/ci/test.sh`, `audit-js.sh`, `build.sh`); browser tests on Chromium, Firefox, WebKit, and a mobile viewport; shell, workflow (actionlint), and workflow security (zizmor) lint |
+| Workflow                       | Trigger                                | Jobs                                                                                                                                                                                                         |
+| ------------------------------ | -------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `.github/workflows/ci.yml`     | Pull request to `main`, push to `main` | Lint, test and build (`scripts/ci/test.sh`, `audit-js.sh`, `build.sh`); browser tests on Chromium, Firefox, WebKit, and a mobile viewport; shell, workflow (actionlint), and workflow security (zizmor) lint |
+| `.github/workflows/deploy.yml` | Push of a tag `vX.Y.Z`, manual run     | Check the tag is on `main` and matches `package.json`; test and build; GitHub release with the build; deploy to GitHub Pages                                                                                 |
 
 Dependabot (`.github/dependabot.yml`) proposes npm and Actions updates weekly, after a 7-day cooldown.
 
 ## Hosting
 
-Not deployed yet. The launch gate (T2.1 to T2.4) adds the hosts, DNS, and security headers here.
+| Part     | Value                                                                                                                                                              |
+| -------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| Host     | GitHub Pages, source "GitHub Actions". No branch is published.                                                                                                     |
+| Domain   | `handyweb.ir`. The apex `A` records point to GitHub Pages. The custom domain is set in the repository Pages settings.                                              |
+| HTTPS    | GitHub issues the certificate. "Enforce HTTPS" is on.                                                                                                              |
+| Release  | Push a tag `vX.Y.Z` on a commit of `main`. `.github/workflows/deploy.yml` checks, builds, creates the GitHub release, and deploys to the `production` environment. |
+| Rollback | Run the `Deploy` workflow by hand with an older tag.                                                                                                               |
+| Headers  | GitHub Pages sets its own headers. It ignores `dist/_headers` and `dist/_redirects`. The CSP comes from the meta tag in each page.                                 |
 
 The headers come from `apps/web/security-headers.json`. The build writes `dist/_headers` (Cloudflare Pages), nginx snippets in `apps/web/dist-headers/`, and a CSP meta tag in each page. See `security-headers.md`.
+
+Not done yet: a second host in Iran, the reachability test, and a separate origin for the HTML Previewer and Markdown Editor frames. See `TASKS.md`.
 
 ## Browser Storage
 

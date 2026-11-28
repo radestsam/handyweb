@@ -131,6 +131,29 @@ Each tool lives in `packages/tools/src/<category>/<id>/`. [`base64`](packages/to
 | [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)         | See every dependency that ships to the browser                            |
 | [CHANGELOG.md](CHANGELOG.md)                             | See what changed                                                          |
 
+## Releases and Hosting
+
+The site is live at <https://handyweb.ir/>. GitHub Pages serves it.
+
+A release is a tag `vMAJOR.MINOR.PATCH` on a commit of `main`. The version in `package.json` must match the tag. To make a release:
+
+```bash
+git checkout main && git pull
+git tag -a v1.0.0 -m "v1.0.0"
+git push origin v1.0.0
+```
+
+The `Deploy` workflow (`.github/workflows/deploy.yml`) runs the checks, builds the site, attaches the build to a GitHub release, and deploys it. To deploy an older release again (rollback), run the `Deploy` workflow by hand and enter the tag. See [docs/infrastructure.md](docs/infrastructure.md).
+
+## Deviations From the Starter Kit
+
+| Kit rule                                   | What HandyWeb does                                                                                                                                                         | Reason                                                                                                                                      |
+| ------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| Docker image, VPS, deploy key, deploy gate | A static build goes to GitHub Pages. There is no server and no image.                                                                                                      | The site has no backend. The kit stack is Laravel.                                                                                          |
+| Response headers set by the server         | GitHub Pages cannot set custom headers. The Content-Security-Policy is a `<meta>` tag in each page. `_headers` and the nginx snippets are built but not used on this host. | `frame-ancestors` and `Permissions-Policy` do not work in a meta tag. Move to a host with header support to enforce them (task T2.2, T2.3). |
+| `/` answers with a 301                     | `/` is a page with a meta refresh to `/fa/`.                                                                                                                               | GitHub Pages does not read `_redirects`.                                                                                                    |
+| Release deploys to the production server   | The release job attaches the build as `handyweb-vX.Y.Z.tar.gz`. The deploy job uses the `production` environment.                                                          | The same build can go to a second host later.                                                                                               |
+
 ## Privacy Promise
 
 - A tool marked `local` never sends its input, its output, or a file name over the network.
