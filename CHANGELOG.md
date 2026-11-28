@@ -60,5 +60,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - TOTP Code Generator.
 - File Type Detector.
 - Certificate and CSR Decoder.
+- HTML Previewer in a sandboxed frame.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

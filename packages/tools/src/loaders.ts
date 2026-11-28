@@ -65,4 +65,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     totp: () => import("./crypto/totp/ui"),
     "file-signature": () => import("./developer/file-signature/ui"),
     "pem-decoder": () => import("./crypto/pem-decoder/ui"),
+    "html-preview": () => import("./developer/html-preview/ui"),
 };

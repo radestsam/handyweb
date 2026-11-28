@@ -954,3 +954,31 @@ test.describe("pem decoder", () => {
         await expect(page.getByRole("alert")).toContainText("private key");
     });
 });
+
+test.describe("html preview", () => {
+    test("renders HTML in the sandbox and blocks network and scripts", async ({ page }) => {
+        // A request that the CSP blocks fails before it is sent. Count only
+        // requests that finished, that is, that reached a server.
+        const external: string[] = [];
+        page.on("requestfinished", (request) => {
+            if (!request.url().startsWith("http://localhost")) external.push(request.url());
+        });
+        const dialogs: string[] = [];
+        page.on("dialog", (dialog) => {
+            dialogs.push(dialog.message());
+            void dialog.dismiss();
+        });
+        await page.goto("/en/tools/html-preview/");
+        await page
+            .locator("[data-tool-input]")
+            .fill(
+                '<h1 id="t">سلام</h1><img src="https://example.com/x.png"><script>alert(1)</script>',
+            );
+        const frame = page.frameLocator("[data-tool-frame]");
+        await expect(frame.locator("#t")).toHaveText("سلام");
+        await page.waitForTimeout(500);
+        expect(external).toEqual([]);
+        expect(dialogs).toEqual([]);
+        await expect(page.locator("[data-tool-frame]")).toHaveAttribute("sandbox", "");
+    });
+});
