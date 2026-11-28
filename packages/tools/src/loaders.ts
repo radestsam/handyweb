@@ -86,6 +86,7 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "pdf-merge": () => import("./pdf/pdf-merge/ui"),
     "images-to-pdf": () => import("./pdf/images-to-pdf/ui"),
     "pdf-to-images": () => import("./pdf/pdf-to-images/ui"),
+    "pdf-metadata": () => import("./pdf/pdf-metadata/ui"),
     "unit-converter": () => import("./calculators/unit-converter/ui"),
     "percentage-calculator": () => import("./calculators/percentage-calculator/ui"),
     "discount-calculator": () => import("./calculators/discount-calculator/ui"),

@@ -1,5 +1,6 @@
-import { safeFileName, sniffBytes } from "@handyweb/core/files";
+import { safeFileName } from "@handyweb/core/files";
 import { ToolFailure } from "@handyweb/core/runtime";
+import { openPdf, pdfLib } from "../shared/pdflib";
 
 /** The largest number of files in one merge. */
 export const MAX_FILES = 50;
@@ -8,51 +9,9 @@ export const MAX_FILE_BYTES = 100_000_000;
 /** The largest size of all files together, in bytes. */
 export const MAX_TOTAL_BYTES = 200_000_000;
 
-/** The PDF library is large, so it loads only when a PDF is opened. */
-const pdfLib = () => import("@cantoo/pdf-lib");
-
-const notPdf = () =>
-    new ToolFailure("invalid-input", {
-        fa: "این فایل PDF نیست یا آسیب دیده است.",
-        en: "This file is not a PDF, or it is damaged.",
-    });
-
-const encrypted = () =>
-    new ToolFailure("unsupported", {
-        fa: "این PDF با گذرواژه قفل شده است. نخست قفل آن را بردارید.",
-        en: "This PDF is protected with a password. Remove the protection first.",
-    });
-
-/** Opens one PDF. Throws a ToolFailure when the file is not a PDF or is encrypted. */
-async function open(bytes: Uint8Array) {
-    // Do not trust the file name or the MIME type. A PDF starts with "%PDF-".
-    if (sniffBytes(bytes.subarray(0, 16)) !== "pdf") throw notPdf();
-    const { PDFDocument } = await pdfLib();
-    let document;
-    try {
-        // Load an encrypted file too, so that the check below can name the problem.
-        document = await PDFDocument.load(bytes, {
-            updateMetadata: false,
-            ignoreEncryption: true,
-        });
-    } catch {
-        throw notPdf();
-    }
-    if (document.isEncrypted) throw encrypted();
-    // A damaged file can load without a page tree. Reading the pages finds it.
-    let pages = 0;
-    try {
-        pages = document.getPageCount();
-    } catch {
-        throw notPdf();
-    }
-    if (pages === 0) throw notPdf();
-    return document;
-}
-
 /** Counts the pages of one PDF. It also checks that the file can be merged. */
 export async function countPages(bytes: Uint8Array): Promise<number> {
-    return (await open(bytes)).getPageCount();
+    return (await openPdf(bytes)).getPageCount();
 }
 
 /**
@@ -71,7 +30,7 @@ export async function mergePdfs(
     const { PDFDocument } = await pdfLib();
     const merged = await PDFDocument.create({ updateMetadata: false });
     for (const [index, bytes] of sources.entries()) {
-        const source = await open(bytes);
+        const source = await openPdf(bytes);
         const pages = await merged.copyPages(source, source.getPageIndices());
         for (const page of pages) merged.addPage(page);
         onProgress?.(index + 1);
