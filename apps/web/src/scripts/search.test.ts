@@ -124,6 +124,7 @@ describe("search ranking", () => {
         expect(top("mac address")).toBe("mac-formatter");
         expect(top("http status codes")).toBe("http-status");
         expect(top("mime type")).toBe("mime-types");
+        expect(top("private ip ranges")).toBe("ip-ranges");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");

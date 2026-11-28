@@ -102,14 +102,14 @@ export interface Subnet {
     binaryMask: string | null;
 }
 
-interface Special {
+export interface Special {
     version: 4 | 6;
     network: string;
     prefix: number;
     name: LocalizedText;
 }
 
-const SPECIAL: Special[] = [
+export const SPECIAL: Special[] = [
     {
         version: 4,
         network: "0.0.0.0",
