@@ -54,4 +54,6 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "color-converter": () => import("./developer/color-converter/ui"),
     "url-parser": () => import("./developer/url-parser/ui"),
     "cron-parser": () => import("./developer/cron-parser/ui"),
+    "http-header-parser": () => import("./developer/http-header-parser/ui"),
+    "user-agent-parser": () => import("./developer/user-agent-parser/ui"),
 };

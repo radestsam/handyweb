@@ -48,6 +48,8 @@ import { jsonSchemaValidatorMeta } from "./developer/json-schema-validator/meta"
 import { colorConverterMeta } from "./developer/color-converter/meta";
 import { urlParserMeta } from "./developer/url-parser/meta";
 import { cronParserMeta } from "./developer/cron-parser/meta";
+import { httpHeaderParserMeta } from "./developer/http-header-parser/meta";
+import { userAgentParserMeta } from "./developer/user-agent-parser/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -103,4 +105,6 @@ export const catalog: readonly ToolDefinition[] = [
     colorConverterMeta,
     urlParserMeta,
     cronParserMeta,
+    httpHeaderParserMeta,
+    userAgentParserMeta,
 ];

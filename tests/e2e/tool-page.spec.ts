@@ -804,3 +804,24 @@ test.describe("cron parser", () => {
         await expect(page.getByRole("alert")).toContainText("61");
     });
 });
+
+test.describe("header and user-agent parsers", () => {
+    test("checks response security headers", async ({ page }) => {
+        await page.goto("/en/tools/http-header-parser/");
+        await page
+            .locator("[data-tool-input]")
+            .fill("HTTP/1.1 200 OK\nX-Content-Type-Options: nosniff\nSet-Cookie: sid=1; Secure");
+        await expect(page.locator("[data-tool-kind]")).toHaveAttribute(
+            "data-tool-kind",
+            "response",
+        );
+        await expect(page.locator('[data-check="nosniff"]')).toHaveAttribute("data-ok", "true");
+        await expect(page.locator('[data-check="hsts"]')).toHaveAttribute("data-ok", "false");
+    });
+
+    test("reads this browser's User-Agent", async ({ page }) => {
+        await page.goto("/fa/tools/user-agent-parser/");
+        await page.getByRole("button", { name: "User-Agent این مرورگر" }).click();
+        await expect(page.locator('[data-field="browser"]')).not.toHaveText("ناشناخته");
+    });
+});
