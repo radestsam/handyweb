@@ -1,303 +1,151 @@
 # HandyWeb
 
-HandyWeb is a free, open-source collection of browser tools for Persian and English users. Every tool runs on your device. The site has no backend, no accounts, and no analytics.
+Free, open-source browser tools in Persian and English. Every tool runs on your device. The site has no backend and no accounts.
 
-Live site: https://handyweb.ir (not deployed yet)
+## Contents
 
-## Requirements
+- [HandyWeb](#handyweb)
+    - [Contents](#contents)
+    - [What You Get](#what-you-get)
+    - [Run It on Your Machine](#run-it-on-your-machine)
+    - [Make Your First Change](#make-your-first-change)
+        - [Browser Tests](#browser-tests)
+    - [Commands](#commands)
+    - [Project Map](#project-map)
+    - [Documentation](#documentation)
+    - [Privacy Promise](#privacy-promise)
+    - [Get Help or Report a Problem](#get-help-or-report-a-problem)
+    - [License](#license)
 
-- Node 24.22.2 (see `.nvmrc`). Node 26 also works for local development.
-- Yarn 1.22.22: `npm install --global yarn@1.22.22`
+## What You Get
 
-## Setup
+- More than 100 tools: text, developer, image, PDF, calculators, QR codes, network, encoding, hashing, and Persian text. See the [full list](docs/tools.md).
+- Persian (right to left) and English (left to right) on every page.
+- A static site. Nothing runs on a server, and tools keep working offline after the first visit.
 
-```bash
-make install
-make hooks
-make dev
-```
+## Run It on Your Machine
 
-## Commands
+You need [Node](https://nodejs.org) 24.22.2 (Node 26 also works), [Yarn](https://classic.yarnpkg.com) 1.22.22, `make`, and Git.
 
-| Command         | What it does                                                                          |
-| --------------- | ------------------------------------------------------------------------------------- |
-| `make install`  | Installs the packages with the lockfile                                               |
-| `make hooks`    | Turns on the git hooks in `.githooks/`                                                |
-| `make dev`      | Starts the development server at http://localhost:4321                                |
-| `make build`    | Builds the static site into `apps/web/dist/`                                          |
-| `make preview`  | Builds, then serves `apps/web/dist/`                                                  |
-| `make test`     | Runs the unit tests (Vitest)                                                          |
-| `make test-e2e` | Runs the browser tests (Playwright) on the production build                           |
-| `make lint`     | Runs the format check, ESLint, the logical CSS and notices checks, and the type check |
-| `make format`   | Formats every file with Prettier                                                      |
+1. Fork the repository on GitHub, then clone your fork:
 
-### Browser Tests in Iran
+    ```bash
+    git clone https://github.com/<your-name>/handyweb.git
+    cd handyweb
+    ```
 
-The Playwright browser download (`npx playwright install`) returns `403` from Iran. Point the tests at a local Chromium-based browser instead. Only the Chromium projects then run. CI runs every browser. For Brave, the config turns off the fingerprinting protection that blocks system fonts, so the fallback font test works.
+2. Install Yarn if you do not have it:
+
+    ```bash
+    npm install --global yarn@1.22.22
+    ```
+
+3. Install the packages and turn on the git hooks:
+
+    ```bash
+    make install
+    make hooks
+    ```
+
+4. Start the development server:
+
+    ```bash
+    make dev
+    ```
+
+5. Open http://localhost:4321/fa/ for Persian or http://localhost:4321/en/ for English.
+
+The page reloads when you save a file.
+
+## Make Your First Change
+
+1. Create a branch: `git switch -c fix/short-name`.
+2. Change the code. Find the right folder in the [project map](#project-map).
+3. Check your work:
+
+    ```bash
+    make lint
+    make test
+    make test-e2e
+    ```
+
+4. Commit with a short imperative subject, for example `fix: handle empty input in the base64 tool`. No commit body.
+5. Push your branch and open a pull request to `main`. Fill in the checklist. CI must pass before a merge.
+
+Read [CONTRIBUTING.md](CONTRIBUTING.md) for the rules every change follows, and [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) for how we work together.
+
+Want to add a tool? Follow [Add a Tool](docs/tools.md#add-a-tool).
+
+### Browser Tests
+
+`make test-e2e` needs Playwright browsers. Install them once with `npx playwright install`.
+
+If the download is blocked where you live (it returns `403` from Iran), point the tests at a Chromium-based browser you already have. Only the Chromium projects run then. CI runs every browser.
 
 ```bash
 export PW_CHROMIUM_PATH="/Applications/Brave Browser.app/Contents/MacOS/Brave Browser"
 make test-e2e
 ```
 
-## Repository Layout
+## Commands
 
-| Path             | What it holds                                                                         |
-| ---------------- | ------------------------------------------------------------------------------------- |
-| `apps/web`       | The Astro site: routes, layouts, static pages, generated tool pages                   |
-| `packages/core`  | Types, registry helpers, runtime, worker protocol, file helpers, i18n, shared tool UI |
-| `packages/tools` | Every tool: metadata, logic, tests, UI, translations                                  |
-| `tests/`         | Browser tests: end-to-end, privacy, accessibility                                     |
+| Command         | What it does                                                         |
+| --------------- | -------------------------------------------------------------------- |
+| `make install`  | Installs the packages with the lockfile                              |
+| `make hooks`    | Turns on the git hooks in `.githooks/`                               |
+| `make dev`      | Starts the development server at http://localhost:4321               |
+| `make build`    | Builds the static site into `apps/web/dist/`                         |
+| `make preview`  | Builds, then serves `apps/web/dist/`                                 |
+| `make test`     | Runs the unit tests (Vitest)                                         |
+| `make test-e2e` | Runs the browser tests (Playwright) on the production build          |
+| `make lint`     | Runs the format check, ESLint, the CSS and notices checks, and types |
+| `make format`   | Formats every file with Prettier                                     |
 
-The dependency direction is `apps/web` to `packages/tools` to `packages/core`. ESLint stops an import in the other direction.
+## Project Map
 
-## Continuous Integration
+| Path                               | What it holds                                                            |
+| ---------------------------------- | ------------------------------------------------------------------------ |
+| [`apps/web`](apps/web)             | The Astro site: routes, layouts, static pages, generated tool pages      |
+| [`packages/tools`](packages/tools) | Every tool: metadata, logic, tests, UI, translations                     |
+| [`packages/core`](packages/core)   | Types, registry helpers, runtime, workers, file helpers, i18n, shared UI |
+| [`tests`](tests)                   | Browser tests: end-to-end, privacy, accessibility                        |
+| [`docs`](docs)                     | Technical documents                                                      |
+| [`scripts`](scripts)               | Build checks and generators                                              |
 
-`.github/workflows/ci.yml` runs on every push to `main` and on every pull request to `main`. It has three jobs:
+Imports go one way: `apps/web` to `packages/tools` to `packages/core`. ESLint stops the other direction.
 
-- **Lint, Test & Build:** the format check, ESLint, the type check, the unit tests, a package audit, and the static build, with the JavaScript budget check (`scripts/check-budget.mjs`).
+Each tool lives in `packages/tools/src/<category>/<id>/`. [`base64`](packages/tools/src/encoding/base64) is a complete example.
 
-The budget check allows 15 KB of start JavaScript on a page without a tool, 90 KB on a tool page, and 60 KB for each tool chunk (gzip). The PDF library chunk (`pdf-lib.*.js`) has its own budget of 260 KB. No PDF writer fits in 60 KB (`@cantoo/pdf-lib` is about 250 KB). The chunk loads only when a PDF tool opens a file, and the service worker caches it after the first use. The owner approved this budget on 2026-11-27.
+## Documentation
 
-pdf.js (`pdfjs-dist`), the PDF renderer, has two budgets of its own: 150 KB for its main chunk (`pdfjs.*.js`) and 400 KB for its worker (`pdf.worker-*.js`). They are about 130 KB and 360 KB. Both load only when a PDF tool that renders pages opens a file. The owner approved these budgets on 2026-11-28.
+| Read this                                                | When you want to                                                          |
+| -------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [CONTRIBUTING.md](CONTRIBUTING.md)                       | Learn the rules and open a pull request                                   |
+| [docs/tools.md](docs/tools.md)                           | See every tool and add a new one                                          |
+| [docs/architecture.md](docs/architecture.md)             | Understand design, languages, pages, search metadata, search, and offline |
+| [docs/ci.md](docs/ci.md)                                 | Understand the CI jobs and the JavaScript size budgets                    |
+| [docs/security-headers.md](docs/security-headers.md)     | Change the Content-Security-Policy and headers                            |
+| [docs/infrastructure.md](docs/infrastructure.md)         | Learn how the site is built and hosted                                    |
+| [docs/offline-operations.md](docs/offline-operations.md) | Follow the outage runbook                                                 |
+| [docs/reference-data.md](docs/reference-data.md)         | Find the sources of the data tables                                       |
+| [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md)         | See every dependency that ships to the browser                            |
+| [CHANGELOG.md](CHANGELOG.md)                             | See what changed                                                          |
 
-The password strength worker (`zxcvbn.worker-*.js`) has a budget of 870 KB. It holds zxcvbn-ts with all of its common and English dictionaries, about 860 KB. The smaller choice, without the English words and names, was about 250 KB. The owner chose the full set on 2026-11-28 for better detection. The worker loads only on the password strength page.
-
-- **Browser Tests:** Playwright in Chromium, Firefox, and WebKit, on desktop and mobile viewports.
-- **Lint Scripts & Workflows:** shellcheck and shfmt on `scripts/`, actionlint and zizmor on the workflows.
-
-Dependabot proposes weekly updates for npm packages and GitHub Actions.
-
-## Design
-
-- Color tokens are in `apps/web/src/styles/tokens.css`. `tokens.test.ts` checks the contrast of every text and background pair in both themes.
-- The fonts (Noto Sans and Estedad) are self-hosted. The site loads nothing from another origin.
-- Until the fonts load, the text uses system fonts (Arial, Helvetica, or Roboto for Latin; Tahoma, Geeza Pro, or Noto Naskh Arabic for Persian) with `size-adjust` and metric overrides, so the font swap moves almost nothing. `tests/e2e/fonts.spec.ts` measures the layout shift. It skips on a machine without these fonts.
-- The theme follows the system until the visitor picks one. The choice is stored in `handyweb:theme`.
-- Layout CSS uses logical properties only (`ms-*`, `me-*`, `start`, `end`). `scripts/check-logical-css.mjs` stops physical ones.
-- Every page has the tool sidebar (`apps/web/src/components/Sidebar.astro`). It lists all tools by category and highlights the open tool. Each name is one line, cut with an ellipsis when it is too long, so the list does not move when the web font loads. On wide screens (64rem and up) it is a column at the inline start of the page, with the logo at the top and the footer at the bottom: the on-device promise, the site links, the credit, and the release tag of the build, which links to its GitHub release. Beside it, above the content, a header band holds the breadcrumbs, the language link, and the theme button.
-- On narrower screens the header band also has the logo and the menu button, and the breadcrumbs move to a second row. The sidebar is a drawer with the tool list and the footer. The menu button in the header or the Tools tab opens it. Esc, the close button, or a tap outside closes it. On phones, a bottom tab bar has Home and Tools.
-- The filter field at the top of the sidebar narrows the list as you type. It runs on the device and sends or stores nothing. Enter opens the first match. See [Search](#search).
-- The home page shows a short list of popular tools and links to all tools. The site has no analytics, so the list is chosen by hand: `FEATURED` in `apps/web/src/i18n/tools.ts`. The build fails if an id in it is not a published tool.
-
-## Languages
-
-Persian (`fa`, right to left) is the default language. English (`en`, left to right) is the second. Site strings are in `apps/web/src/i18n/site.ts`, with a typed `t(key)`. Show code, hashes, URLs, and file names with the `Ltr` component, so they stay left to right on Persian pages.
-
-Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes to `/fa/` (`apps/web/public/_redirects` on the host, and a meta refresh in the page). Each page lists its other-language version with `hreflang`. The language switcher stores the last choice in `handyweb:locale`. It never redirects a visitor.
-
-## Pages
-
-| Path                           | Page                                                                 |
-| ------------------------------ | -------------------------------------------------------------------- |
-| `/<locale>/`                   | Home: the published tools by category                                |
-| `/<locale>/tools/`             | All tools                                                            |
-| `/<locale>/categories/<slug>/` | One category (only categories with a published tool)                 |
-| `/<locale>/tools/<slug>/`      | One tool                                                             |
-| `/<locale>/about/`             | About the project                                                    |
-| `/<locale>/privacy/`           | What the site stores and sends (nothing but the two preference keys) |
-| `/<locale>/opensource/`        | License and dependencies                                             |
-| `/<locale>/contribute/`        | How to help                                                          |
-
-`/sitemap.xml` lists every canonical page in both languages.
-
-### Search Metadata
-
-- Each page has a canonical URL, `hreflang` links for both languages (`x-default` is Persian), Open Graph and Twitter tags, and a share image per language (`apps/web/public/og/handyweb-<locale>.png`, 1200 × 630).
-- A tool page title is `seoTitle` from `meta.ts` plus ` | HandyWeb`. `seoTitle` starts with `title` (the h1) and has 49 characters or fewer, so the page title has 60 or fewer. A category has a `seoTitle` with the same rules in `packages/tools/src/categories.ts`. `validateRegistry` checks both.
-- Structured data: `WebSite` and `Organization` on the home page; `CollectionPage` with an `ItemList` on the tools page and each category page; `BreadcrumbList` on category and tool pages; `WebApplication`, `BreadcrumbList`, and `FAQPage` (when the tool has questions) on a tool page. The builders are in `apps/web/src/seo.ts`.
-- `tests/e2e/seo.spec.ts` checks every page in the sitemap for these rules.
-
-## Tools
-
-| Tool                                | Category                 | Source                                                 | Libraries                                                                                                   |
-| ----------------------------------- | ------------------------ | ------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------- |
-| Base64 Encoder and Decoder          | Encoding                 | `packages/tools/src/encoding/base64`                   | None                                                                                                        |
-| JSON Formatter and Validator        | Developer                | `packages/tools/src/developer/json-formatter`          | None                                                                                                        |
-| XML Formatter and Validator         | Developer                | `packages/tools/src/developer/xml-formatter`           | None                                                                                                        |
-| YAML Formatter and Validator        | Developer                | `packages/tools/src/developer/yaml-formatter`          | `yaml`                                                                                                      |
-| JSON and YAML Converter             | Developer                | `packages/tools/src/developer/json-yaml`               | `yaml`                                                                                                      |
-| SQL Formatter                       | Developer                | `packages/tools/src/developer/sql-formatter`           | `sql-formatter`                                                                                             |
-| HTML Formatter                      | Developer                | `packages/tools/src/developer/html-formatter`          | `js-beautify`                                                                                               |
-| CSS Formatter                       | Developer                | `packages/tools/src/developer/css-formatter`           | `js-beautify`                                                                                               |
-| JavaScript Formatter                | Developer                | `packages/tools/src/developer/js-formatter`            | `js-beautify`                                                                                               |
-| HTML Previewer                      | Developer                | `packages/tools/src/developer/html-preview`            | None                                                                                                        |
-| Markdown Editor and Preview         | Text                     | `packages/tools/src/developer/markdown-editor`         | `marked`, `dompurify`                                                                                       |
-| Image Resizer                       | Images                   | `packages/tools/src/image/image-resize`                | None                                                                                                        |
-| Image Rotator                       | Images                   | `packages/tools/src/image/image-rotate`                | None                                                                                                        |
-| Image Flipper                       | Images                   | `packages/tools/src/image/image-flip`                  | None                                                                                                        |
-| Image Cropper                       | Images                   | `packages/tools/src/image/image-crop`                  | None                                                                                                        |
-| Image Converter                     | Images                   | `packages/tools/src/image/image-converter`             | None                                                                                                        |
-| Image Compressor                    | Images                   | `packages/tools/src/image/image-compressor`            | None                                                                                                        |
-| Image Metadata Viewer and Remover   | Images                   | `packages/tools/src/image/image-metadata`              | None                                                                                                        |
-| Image Color Picker                  | Images                   | `packages/tools/src/image/image-color-picker`          | None                                                                                                        |
-| Image Palette Extractor             | Images                   | `packages/tools/src/image/image-palette`               | None                                                                                                        |
-| Image Compare Tool                  | Images                   | `packages/tools/src/image/image-compare`               | None                                                                                                        |
-| Image Blur Tool                     | Images                   | `packages/tools/src/image/image-blur`                  | None                                                                                                        |
-| Image Pixelator                     | Images                   | `packages/tools/src/image/image-pixelate`              | None                                                                                                        |
-| Image Watermark Tool                | Images                   | `packages/tools/src/image/image-watermark`             | None                                                                                                        |
-| Favicon Generator                   | Images                   | `packages/tools/src/image/favicon-generator`           | None                                                                                                        |
-| SVG Viewer and SVG to PNG           | Images                   | `packages/tools/src/image/svg-viewer`                  | `dompurify`                                                                                                 |
-| SVG Optimizer                       | Images                   | `packages/tools/src/image/svg-optimizer`               | `dompurify`                                                                                                 |
-| PDF Merger                          | PDF                      | `packages/tools/src/pdf/pdf-merge`                     | `@cantoo/pdf-lib` (loads only when a PDF is opened)                                                         |
-| Image to PDF Converter              | PDF                      | `packages/tools/src/pdf/images-to-pdf`                 | `@cantoo/pdf-lib` (loads only when the PDF is made)                                                         |
-| PDF to Image Converter              | PDF                      | `packages/tools/src/pdf/pdf-to-images`                 | `pdfjs-dist` (loads only when a PDF is opened; runs in a worker)                                            |
-| PDF Metadata Editor                 | PDF                      | `packages/tools/src/pdf/pdf-metadata`                  | `@cantoo/pdf-lib` (loads only when a PDF is opened)                                                         |
-| PDF Text Extractor                  | PDF                      | `packages/tools/src/pdf/pdf-text`                      | `pdfjs-dist` (loads only when a PDF is opened; runs in a worker)                                            |
-| PDF Watermark                       | PDF                      | `packages/tools/src/pdf/pdf-watermark`                 | `@cantoo/pdf-lib` (loads only when a PDF is opened)                                                         |
-| PDF Page Organizer                  | PDF                      | `packages/tools/src/pdf/pdf-pages`                     | `pdfjs-dist` (thumbnails, in a worker) and `@cantoo/pdf-lib` (writing); both load only when a PDF is opened |
-| PDF Compressor                      | PDF                      | `packages/tools/src/pdf/pdf-compress`                  | `@cantoo/pdf-lib` (loads only when the PDF is compressed)                                                   |
-| Unit Converter                      | Calculators              | `packages/tools/src/calculators/unit-converter`        | None                                                                                                        |
-| Percentage Calculator               | Calculators              | `packages/tools/src/calculators/percentage-calculator` | None                                                                                                        |
-| Discount Calculator                 | Calculators              | `packages/tools/src/calculators/discount-calculator`   | None                                                                                                        |
-| VAT Calculator                      | Calculators              | `packages/tools/src/calculators/vat-calculator`        | None                                                                                                        |
-| Date Difference Calculator          | Calculators              | `packages/tools/src/calculators/date-difference`       | None                                                                                                        |
-| Aspect Ratio Calculator             | Calculators              | `packages/tools/src/calculators/aspect-ratio`          | None                                                                                                        |
-| Print Size and DPI Calculator       | Calculators              | `packages/tools/src/calculators/image-resolution`      | None                                                                                                        |
-| CSS Unit Converter                  | Calculators              | `packages/tools/src/calculators/css-units`             | None                                                                                                        |
-| Roman Numeral Converter             | Calculators              | `packages/tools/src/calculators/roman-numerals`        | None                                                                                                        |
-| Binary and Hex Calculator           | Calculators              | `packages/tools/src/calculators/binary-calculator`     | None                                                                                                        |
-| Color Contrast Checker (WCAG)       | Calculators              | `packages/tools/src/calculators/color-contrast`        | None                                                                                                        |
-| Time Zone Converter                 | Calculators              | `packages/tools/src/calculators/time-zone-converter`   | None                                                                                                        |
-| Barcode Generator                   | QR Codes and Barcodes    | `packages/tools/src/qr/barcode-generator`              | None                                                                                                        |
-| QR Code and Barcode Reader          | QR Codes and Barcodes    | `packages/tools/src/qr/code-reader`                    | `jsqr` (QR reading where the browser has no barcode reader)                                                 |
-| IP Subnet Calculator (CIDR)         | Network                  | `packages/tools/src/network/ip-calculator`             | None                                                                                                        |
-| MAC Address Formatter               | Network                  | `packages/tools/src/network/mac-formatter`             | None                                                                                                        |
-| HTTP Status Code Reference          | Network                  | `packages/tools/src/network/http-status`               | None                                                                                                        |
-| MIME Type and File Extension Lookup | Network                  | `packages/tools/src/network/mime-types`                | None                                                                                                        |
-| Private and Reserved IP Ranges      | Network                  | `packages/tools/src/network/ip-ranges`                 | None                                                                                                        |
-| JSON and CSV Converter              | Developer                | `packages/tools/src/developer/json-csv`                | None                                                                                                        |
-| JSON Diff                           | Developer                | `packages/tools/src/developer/json-diff`               | None                                                                                                        |
-| JSON Schema Validator               | Developer                | `packages/tools/src/developer/json-schema-validator`   | `@cfworker/json-schema`                                                                                     |
-| Color Converter (HEX, RGB, HSL)     | Developer                | `packages/tools/src/developer/color-converter`         | None                                                                                                        |
-| URL Parser and Inspector            | Developer                | `packages/tools/src/developer/url-parser`              | None                                                                                                        |
-| Cron Expression Parser              | Developer                | `packages/tools/src/developer/cron-parser`             | None                                                                                                        |
-| HTTP Header Parser                  | Developer                | `packages/tools/src/developer/http-header-parser`      | None                                                                                                        |
-| User-Agent Parser                   | Developer                | `packages/tools/src/developer/user-agent-parser`       | None                                                                                                        |
-| File Type Detector                  | Developer                | `packages/tools/src/developer/file-signature`          | None                                                                                                        |
-| JWT Decoder                         | Developer                | `packages/tools/src/developer/jwt-decoder`             | None                                                                                                        |
-| UUID and ULID Generator             | Developer                | `packages/tools/src/developer/uuid-generator`          | None                                                                                                        |
-| Regex Tester                        | Developer                | `packages/tools/src/developer/regex-tester`            | None                                                                                                        |
-| Unix Timestamp Converter            | Developer                | `packages/tools/src/developer/unix-timestamp`          | `jalaali-js` (Jalali dates)                                                                                 |
-| Number Base Converter               | Developer                | `packages/tools/src/developer/number-base`             | None                                                                                                        |
-| QR Code Generator                   | QR Codes and Barcodes    | `packages/tools/src/qr/qr-generator`                   | `uqr` (QR encoding)                                                                                         |
-| SHA-256 Hash Generator              | Hashing and Cryptography | `packages/tools/src/crypto/hash`                       | `hash-wasm` (file hashing)                                                                                  |
-| HMAC Generator and Verifier         | Hashing and Cryptography | `packages/tools/src/crypto/hmac`                       | None                                                                                                        |
-| Password Generator                  | Hashing and Cryptography | `packages/tools/src/crypto/password-generator`         | None (EFF large wordlist, generated)                                                                        |
-| Password Strength Checker           | Hashing and Cryptography | `packages/tools/src/crypto/password-strength`          | `@zxcvbn-ts/core`, `@zxcvbn-ts/language-common`, `@zxcvbn-ts/language-en` (in a worker)                     |
-| Random Token and API Key Generator  | Hashing and Cryptography | `packages/tools/src/crypto/random-token`               | None                                                                                                        |
-| Text Encryption with a Password     | Hashing and Cryptography | `packages/tools/src/crypto/aes-gcm`                    | None (Web Crypto)                                                                                           |
-| TOTP Code Generator                 | Hashing and Cryptography | `packages/tools/src/crypto/totp`                       | None (Web Crypto)                                                                                           |
-| SSL Certificate and CSR Decoder     | Hashing and Cryptography | `packages/tools/src/crypto/pem-decoder`                | None                                                                                                        |
-| Persian Text Normalizer             | Persian                  | `packages/tools/src/persian/persian-normalizer`        | `diff` (change view)                                                                                        |
-| Jalali and Gregorian Date Converter | Persian                  | `packages/tools/src/persian/jalali-converter`          | `jalaali-js`                                                                                                |
-| Number to Persian Words             | Persian                  | `packages/tools/src/persian/number-to-words`           | None                                                                                                        |
-| Persian Half-Space (ZWNJ) Fixer     | Persian                  | `packages/tools/src/persian/zwnj-fixer`                | `diff` (change view)                                                                                        |
-| Persian Punctuation Fixer           | Persian                  | `packages/tools/src/persian/punctuation-fixer`         | `diff` (change view)                                                                                        |
-| Persian Text Direction Fixer        | Persian                  | `packages/tools/src/persian/direction-fixer`           | None                                                                                                        |
-| Word and Character Counter          | Text                     | `packages/tools/src/text/text-counter`                 | None                                                                                                        |
-| Case Converter                      | Text                     | `packages/tools/src/text/case-converter`               | None                                                                                                        |
-| Remove Duplicate Lines              | Text                     | `packages/tools/src/text/remove-duplicate-lines`       | None                                                                                                        |
-| Sort Lines Alphabetically           | Text                     | `packages/tools/src/text/sort-lines`                   | None                                                                                                        |
-| Text Cleaner                        | Text                     | `packages/tools/src/text/text-cleaner`                 | None                                                                                                        |
-| URL Encoder and Decoder             | Encoding                 | `packages/tools/src/encoding/url-encoding`             | None                                                                                                        |
-| HTML Entity Encoder and Decoder     | Encoding                 | `packages/tools/src/encoding/html-entities`            | None                                                                                                        |
-| Unicode Escape and Unescape         | Encoding                 | `packages/tools/src/encoding/unicode-escape`           | None                                                                                                        |
-| Text to Hex Converter               | Encoding                 | `packages/tools/src/encoding/hex`                      | None                                                                                                        |
-| Text to Binary Converter            | Encoding                 | `packages/tools/src/encoding/binary`                   | None                                                                                                        |
-| File to Base64 and Data URI         | Encoding                 | `packages/tools/src/encoding/base64-file`              | None                                                                                                        |
-| Gzip and Deflate Compressor         | Encoding                 | `packages/tools/src/encoding/gzip`                     | None (`CompressionStream` of the browser)                                                                   |
-| Unicode Character Inspector         | Text                     | `packages/tools/src/text/unicode-explorer`             | None (names generated from the Unicode Character Database)                                                  |
-| Text Diff Checker                   | Text                     | `packages/tools/src/text/text-diff`                    | `diff` (comparison and patch)                                                                               |
-| Reverse Text                        | Text                     | `packages/tools/src/text/reverse-text`                 | None                                                                                                        |
-| Text Repeater                       | Text                     | `packages/tools/src/text/text-repeater`                | None                                                                                                        |
-| Text Splitter and Joiner            | Text                     | `packages/tools/src/text/split-join`                   | None                                                                                                        |
-| Find and Replace Text               | Text                     | `packages/tools/src/text/find-replace`                 | None                                                                                                        |
-| Slug Generator                      | Text                     | `packages/tools/src/text/slug-generator`               | None                                                                                                        |
-| Lorem Ipsum Generator               | Text                     | `packages/tools/src/text/lorem-ipsum`                  | None                                                                                                        |
-| Email, URL, and Phone Extractor     | Text                     | `packages/tools/src/text/text-extractor`               | None                                                                                                        |
-| Subtitle Converter (SRT and VTT)    | Text                     | `packages/tools/src/text/subtitle-converter`           | None                                                                                                        |
-| JSON String Escaper and Unescaper   | Developer                | `packages/tools/src/developer/json-string`             | None                                                                                                        |
-
-### Add a Tool
-
-1. Create `packages/tools/src/<category>/<id>/` with `meta.ts`, `logic.ts`, `logic.test.ts`, `ui.tsx`, and `i18n.ts`.
-2. Add the metadata to `packages/tools/src/catalog.ts` and the loader to `packages/tools/src/loaders.ts`. `catalog.ts` imports only `meta.ts` files.
-3. Run heavy work through the runtime in `packages/core/src/runtime`, or in a worker with `packages/core/src/worker`.
-4. Build the UI from the shared components in `packages/core/src/ui`. Every string has a Persian and an English version.
-5. Give the tool an `example` input in `meta.ts`. The privacy tests run every published tool with it.
-6. Give the tool a `seoTitle` in `meta.ts` with the words that people search for. See [Search Metadata](#search-metadata).
-7. Run `make test` and `make test-e2e`. `packages/tools/src/registry.test.ts` checks the catalog, the categories, and the loaders.
-
-### Tool Pages
-
-Each published tool gets a page per language at `/<locale>/tools/<slug>/`. An alias slug is a redirect page to the canonical one, and the sitemap leaves it out. `?preset=<id>` opens a tool with the options of one of its presets. The tool code loads on demand, so a page never loads the code of another tool.
-
-### Source Links
-
-Each tool page links to the source folder of the tool at the release tag `v<version>`. `<version>` is the `version` field of the root `package.json`. The link is set in `apps/web/src/release.ts`. Tag each release `v<version>` on the commit that is deployed, so every link opens the code that the site runs.
-
-### Problem Reports
-
-Each tool page has a "Report a problem on GitHub" link. It opens the bug form (`.github/ISSUE_TEMPLATE/bug.yml`) with these fields filled in: the title prefix `[<tool id>]`, the page URL, the tool name with its id and privacy mode, and the release tag. The link holds only static facts about the tool. It never holds the input or the output of the tool. `toolIssueUrl` in `apps/web/src/release.ts` makes the link. Each query key is the id of a field in the bug form, so rename both together.
-
-### Links to Other Products
-
-A tool can name one other product of the same creator in `externalLink` in `meta.ts` (`href`, `label`, and a Persian and an English `text`). The tool page shows it as one line under the tool. It is a plain link: the page loads nothing from it. The QR Code Generator and the QR Code and Barcode Reader link to [pvnd.io](https://pvnd.io) for dynamic QR codes with scan statistics.
-
-### Privacy Text
-
-The site says once, in the footer, that the tools run on the device and that input is not stored or sent, and the privacy page explains it in full. Tool descriptions, FAQs, tool notes, and other pages do not repeat it. The privacy badge on a tool page says only where the tool runs.
-
-## Privacy
+## Privacy Promise
 
 - A tool marked `local` never sends its input, its output, or a file name over the network.
-- The site has no analytics, trackers, remote fonts, or third-party scripts.
+- No analytics, trackers, remote fonts, or third-party scripts.
 - The only browser storage keys are `handyweb:theme` and `handyweb:locale`. The site stores no user content.
-- A Content-Security-Policy blocks every script, style, font, and request that does not come from the site. The build writes it as headers for the host and as a meta tag in each page, from `apps/web/security-headers.json`. See `docs/security-headers.md`.
+- A strict Content-Security-Policy blocks everything that does not come from the site.
 
-`tests/privacy/tools.spec.ts` opens every published tool in both languages and runs it with its example input. It fails on a request to another origin, on a request that contains the input or the result, and on any other stored data. The one exception is the static file cache of the service worker (see "Offline Use"): it may hold only files of the site, with no query string and no tool input or output in the URL.
+Tests enforce these rules on every published tool. See [Privacy Checks](docs/architecture.md#privacy-checks).
 
-## Offline Use
+## Get Help or Report a Problem
 
-The site is a Progressive Web App. Each language has a manifest (`/fa/manifest.webmanifest` and `/en/manifest.webmanifest`), so a phone or a desktop browser can install it.
-
-The production build also writes a service worker to `dist/sw.js` (`apps/web/integrations/service-worker.mjs`). It works as follows:
-
-- When it installs, it saves the start pages, the CSS, the main fonts, the icons, and the scripts of the start pages.
-- It saves each page and each tool file when you open it. A tool that you opened once works without a network.
-- It saves only GET requests to the site itself. It never saves a request with a query string.
-- Pages come from the network first, so a new build shows at once. Without a network, the cached copy shows. A page that you never opened shows the start page of its language.
-- Hashed files under `/_astro/` come from the cache first, because they never change.
-- A new build gets a new cache name, and the worker removes the old cache.
-
-The development server does not register the worker. `tests/e2e/offline.spec.ts` checks that a tool works offline after one visit (Chromium only).
-
-## Search
-
-The filter field at the top of the tool sidebar is the site search. Press `/` or `Ctrl+K` (`Cmd+K` on a Mac) to go to it from any page. It matches tool names, aliases, and keywords in both languages. Arabic letters (ي, ك) and Persian or Arabic-Indic digits match their Persian and Latin forms. The build writes the search terms into the page, so the filter loads nothing and sends no query anywhere.
-
-## Contributing
-
-Read `CONTRIBUTING.md` before you open a pull request, and follow `CODE_OF_CONDUCT.md`. Report a security problem privately, as `SECURITY.md` describes. `CHANGELOG.md` lists the changes. `docs/infrastructure.md` describes the build and the hosting, and `docs/offline-operations.md` is the outage runbook, and `docs/reference-data.md` lists the sources of the data tables. `THIRD_PARTY_NOTICES.md` lists every dependency that ships to the browser. `make lint` checks that it is complete.
-
-## Deviations From the Starter Kit
-
-This product follows `radestsam/ai-starter-kit`. The differences are below. Recorded on 2026-11-26.
-
-| Kit rule                                                                                                             | HandyWeb                                                                                                                                                                                                                            | Reason                                                                                                                                           |
-| -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| 1 to 5, 9, 10: Docker Compose on one Ubuntu server, one image, state volumes, reverse proxy                          | No server and no container. The static `dist/` folder is served by managed static hosts.                                                                                                                                            | The product has no backend and no state. A server adds cost and operations work with no benefit.                                                 |
-| 6 to 8: images pinned by digest, CI builds the image, `sha-` tags                                                    | CI builds `dist/` and attaches it to the run and to the GitHub release. The release tag names the commit.                                                                                                                           | There is no image. The build output takes the same role.                                                                                         |
-| 13: blue-green deploy                                                                                                | Atomic deploys of the static host. A rollback redeploys an older tag.                                                                                                                                                               | A static host switches the whole site at once.                                                                                                   |
-| 14: backward-compatible migrations; 19: backups                                                                      | Not applicable.                                                                                                                                                                                                                     | No database and no user data.                                                                                                                    |
-| 15: deploy key with a forced command                                                                                 | Host API tokens with the smallest scope that can deploy one project.                                                                                                                                                                | There is no SSH server.                                                                                                                          |
-| 16: works in Iran during an outage                                                                                   | The Iranian static host serves the site during an outage. The offline deploy is a manual upload of a locally built `dist/`. The host renews the certificate.                                                                        | There is no server to connect to over SSH.                                                                                                       |
-| 17, 18: health checks, watcher every 5 minutes                                                                       | A scheduled CI job requests the site from each host and opens an issue on failure. Optional until launch.                                                                                                                           | There are no containers to check.                                                                                                                |
-| Formatting: no JavaScript linter by default                                                                          | ESLint for the package boundaries and the React hooks rules.                                                                                                                                                                        | The package boundaries need an automated check.                                                                                                  |
-| Node 24.22.2 everywhere                                                                                              | CI uses Node 24.22.2. `engines` allows `>=24.22.2 <27`, so local development also works on Node 26.                                                                                                                                 | Yarn 1 stops on an `engines` mismatch, and Node 26 ships no Corepack.                                                                            |
-| Security headers: CSP report-only, `X-Frame-Options: SAMEORIGIN`, `Referrer-Policy: strict-origin-when-cross-origin` | An enforced CSP with script and style hashes, `X-Frame-Options: DENY` and `frame-ancestors 'none'`, `Referrer-Policy: no-referrer`, `camera=(self)`. One source, `apps/web/security-headers.json` (see `docs/security-headers.md`). | The site has no inline script except hashed ones and no third-party code, so it can enforce the policy now. The QR code reader needs the camera. |
+- Found a bug? Use the "Report a problem on GitHub" link on the tool page, or [open an issue](https://github.com/radestsam/handyweb/issues/new/choose).
+- Want a new tool or a better translation? The issue forms cover both.
+- Found a security problem? Do not open a public issue. Read [SECURITY.md](SECURITY.md).
 
 ## License
 
-Apache License 2.0. See `LICENSE`.
+Apache License 2.0. See [LICENSE](LICENSE).

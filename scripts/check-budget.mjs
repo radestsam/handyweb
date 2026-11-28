@@ -18,7 +18,7 @@ const BUDGET = {
     // One tool chunk, loaded on demand.
     chunk: 60 * KB,
     // The PDF library chunk (pdf-lib.*.js). Only PDF tool pages load it, on
-    // demand. Owner decision of 2026-11-27, see README.md ("Deviations").
+    // demand. Owner decision of 2026-11-27, see docs/ci.md.
     pdfLib: 260 * KB,
     // pdf.js, the PDF renderer: the main chunk (pdfjs.*.js) and its worker
     // (pdf.worker-*.js). Owner decision of 2026-11-28.
