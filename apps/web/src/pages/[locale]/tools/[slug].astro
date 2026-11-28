@@ -6,7 +6,7 @@ import PrivacyBadge from "../../../components/tool/PrivacyBadge.astro";
 import Unbroken from "../../../components/Unbroken.astro";
 import ToolIsland from "../../../components/tool/ToolIsland";
 import { useTranslations } from "../../../i18n/site";
-import { toolSourceUrl } from "../../../release";
+import { toolIssueUrl, toolSourceUrl } from "../../../release";
 import { categoryOf, toolStaticPaths, tools } from "../../../i18n/tools";
 
 export const getStaticPaths = toolStaticPaths;
@@ -25,6 +25,12 @@ const canonical = new URL(localePath(locale, path), Astro.site).href;
 const heading = { fa: "آنچه باید بدانید", en: "Good to Know" }[locale];
 const source = toolSourceUrl(tool.category, tool.id);
 const site = Astro.site ?? new URL("https://handyweb.ir");
+const issue = toolIssueUrl({
+    id: tool.id,
+    title: tool.title.en,
+    privacy: tool.privacy,
+    page: canonical,
+});
 const related = tool.related
     .map((id) => tools.find((other) => other.id === id))
     .filter((other): other is ToolDefinition => other !== undefined);
@@ -226,9 +232,12 @@ const jsonLd: unknown[] = [
                 </section>
             )}
 
-            <p class="mt-10 text-sm">
+            <p class="mt-10 flex flex-wrap gap-x-6 gap-y-2 text-sm">
                 <a href={source}>
                     {locale === "fa" ? "کد این ابزار در GitHub" : "Source code of this tool"}
+                </a>
+                <a href={issue} data-tool-issue>
+                    {locale === "fa" ? "گزارش مشکل در GitHub" : "Report a problem on GitHub"}
                 </a>
             </p>
         </main>

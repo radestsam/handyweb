@@ -226,6 +226,10 @@ Each published tool gets a page per language at `/<locale>/tools/<slug>/`. An al
 
 Each tool page links to the source folder of the tool at the release tag `v<version>`. `<version>` is the `version` field of the root `package.json`. The link is set in `apps/web/src/release.ts`. Tag each release `v<version>` on the commit that is deployed, so every link opens the code that the site runs.
 
+### Problem Reports
+
+Each tool page has a "Report a problem on GitHub" link. It opens the bug form (`.github/ISSUE_TEMPLATE/bug.yml`) with these fields filled in: the title prefix `[<tool id>]`, the page URL, the tool name with its id and privacy mode, and the release tag. The link holds only static facts about the tool. It never holds the input or the output of the tool. `toolIssueUrl` in `apps/web/src/release.ts` makes the link. Each query key is the id of a field in the bug form, so rename both together.
+
 ## Privacy
 
 - A tool marked `local` never sends its input, its output, or a file name over the network.

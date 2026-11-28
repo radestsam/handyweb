@@ -41,6 +41,21 @@ test.describe("tool pages", () => {
         ]);
     });
 
+    test("the report link opens the bug form with the tool filled in", async ({ page }) => {
+        await page.goto("/fa/tools/base64/");
+        const link = page.locator("[data-tool-issue]");
+        await expect(link).toHaveText("گزارش مشکل در GitHub");
+        const url = new URL((await link.getAttribute("href")) ?? "");
+        expect(`${url.origin}${url.pathname}`).toBe(
+            "https://github.com/radestsam/handyweb/issues/new",
+        );
+        expect(url.searchParams.get("template")).toBe("bug.yml");
+        expect(url.searchParams.get("title")).toBe("[base64] ");
+        expect(url.searchParams.get("page")).toMatch(/\/fa\/tools\/base64\/$/);
+        expect(url.searchParams.get("tool")).toBe("Base64 Encoder and Decoder (base64, local)");
+        expect(url.searchParams.get("version")).toMatch(/^v\d+\.\d+\.\d+$/);
+    });
+
     test("a tool page loads only its own tool chunk", async ({ page }) => {
         const scripts: string[] = [];
         page.on("request", (request) => {
