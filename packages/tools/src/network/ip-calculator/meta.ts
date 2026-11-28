@@ -6,7 +6,7 @@ export const ipCalculatorMeta: ToolDefinition = {
     aliases: ["subnet-calculator", "cidr-calculator", "ipv4-calculator", "ipv6-calculator"],
     category: "network",
     alsoIn: ["developer"],
-    related: ["url-parser"],
+    related: ["mac-formatter", "url-parser"],
     tags: ["ip", "subnet", "cidr", "network"],
     title: { fa: "محاسبه زیرشبکه IP (CIDR)", en: "IP Subnet Calculator (CIDR)" },
     description: {

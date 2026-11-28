@@ -136,6 +136,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Barcode Generator                                     | QR Codes and Barcodes    | `packages/tools/src/qr/barcode-generator`              | None                                                        |
 | QR Code and Barcode Reader                            | QR Codes and Barcodes    | `packages/tools/src/qr/code-reader`                    | `jsqr` (QR reading where the browser has no barcode reader) |
 | IP Subnet Calculator (CIDR)                           | Network                  | `packages/tools/src/network/ip-calculator`             | None                                                        |
+| MAC Address Formatter                                 | Network                  | `packages/tools/src/network/mac-formatter`             | None                                                        |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`                | None                                                        |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`               | None                                                        |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator`   | `@cfworker/json-schema`                                     |
