@@ -746,3 +746,23 @@ test.describe("json diff", () => {
         await expect(page.locator("[data-tool-identical]")).toBeVisible();
     });
 });
+
+test.describe("json schema validator", () => {
+    test("lists errors with their paths", async ({ page }) => {
+        await page.goto("/en/tools/json-schema-validator/");
+        await page
+            .getByLabel("Schema (JSON Schema)")
+            .fill('{"type":"object","properties":{"age":{"type":"integer","minimum":0}}}');
+        await page.getByLabel("JSON data").fill('{"age":-5}');
+        await expect(page.locator("[data-tool-status]")).toHaveAttribute(
+            "data-tool-status",
+            "invalid",
+        );
+        await expect(page.locator("[data-tool-output]")).toHaveValue("/age: -5 is less than 0.");
+        await page.getByLabel("JSON data").fill('{"age":5}');
+        await expect(page.locator("[data-tool-status]")).toHaveAttribute(
+            "data-tool-status",
+            "valid",
+        );
+    });
+});
