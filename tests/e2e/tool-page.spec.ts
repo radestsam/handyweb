@@ -1,4 +1,4 @@
-import { expect, test } from "@playwright/test";
+import { expect, test, type Download, type Page } from "@playwright/test";
 
 test.describe("tool pages", () => {
     test("the base64 tool encodes, swaps, and decodes", async ({ page }) => {
@@ -1936,5 +1936,62 @@ test.describe("pdf watermark", () => {
         await page.locator("[data-tool-text]").fill("   ");
         await page.locator("[data-tool-run]").click();
         await expect(page.getByRole("alert")).toContainText("Write the watermark text.");
+    });
+});
+
+test.describe("pdf page organizer", () => {
+    async function openPdf(page: Page, locale: "en" | "fa") {
+        const { makePdf } = await import("../support/pdf");
+        await page.goto(`/${locale}/tools/pdf-pages/`);
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "book.pdf",
+            mimeType: "application/pdf",
+            buffer: await makePdf(4),
+        });
+        await expect(page.locator("[data-tool-pages] li")).toHaveCount(4);
+        await expect(page.locator("[data-tool-pages] img")).toHaveCount(4);
+    }
+
+    async function pagesOf(download: Download) {
+        const { PDFDocument } = await import("@cantoo/pdf-lib");
+        const { readFile } = await import("node:fs/promises");
+        const document = await PDFDocument.load(await readFile((await download.path()) as string));
+        return document.getPages().map((item) => [item.getWidth(), item.getRotation().angle]);
+    }
+
+    test("turns, moves, and removes pages, then saves", async ({ page }) => {
+        await openPdf(page, "en");
+        await page.getByRole("button", { name: "Turn right: Page 2", exact: true }).click();
+        await page.getByRole("button", { name: "Move earlier: Page 3", exact: true }).click();
+        await page.getByRole("button", { name: "Remove page: Page 1", exact: true }).click();
+        await expect(page.locator("[data-tool-pages] li")).toHaveCount(3);
+        await expect(page.locator("[data-tool-summary]")).toContainText("1 removed");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("pdf:3");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("book-edited.pdf");
+        // makePdf: page i is 100 + i points wide.
+        expect(await pagesOf(file)).toEqual([
+            [102, 0],
+            [101, 90],
+            [103, 0],
+        ]);
+    });
+
+    test("extracts the selected pages and splits", async ({ page }) => {
+        await openPdf(page, "fa");
+        await page.getByRole("checkbox", { name: "گزینش: برگه ۲", exact: true }).check();
+        await page.getByRole("checkbox", { name: "گزینش: برگه ۴", exact: true }).check();
+        await page.locator("[data-tool-extract]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("pdf:2");
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "دانلود" }).click();
+        const file = await download;
+        expect(file.suggestedFilename()).toBe("book-selected.pdf");
+        expect((await pagesOf(file)).map(([width]) => width)).toEqual([101, 103]);
+        await page.locator("[data-tool-split]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("zip:4");
     });
 });

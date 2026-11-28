@@ -9,10 +9,6 @@ export const MAX_PAGES = 100;
 export const DPI_OPTIONS = [72, 150, 300] as const;
 export type Dpi = (typeof DPI_OPTIONS)[number];
 
-/** Limits of a canvas in every browser (Safari on iOS is the smallest). */
-const MAX_CANVAS_PIXELS = 16_777_216;
-const MAX_SIDE = 16_384;
-
 const faDigits = (value: number) => new Intl.NumberFormat("fa-IR").format(value);
 
 const badRange = () =>
@@ -52,20 +48,6 @@ export function parsePages(text: string, count: number): number[] {
     }
     if (pages.size === 0) throw badRange();
     return [...pages].sort((x, y) => x - y);
-}
-
-/**
- * The scale for pdf.js (1 = 72 dpi) at the chosen resolution. A page that
- * would be larger than a canvas can be is scaled down to the largest size
- * that fits.
- */
-export function renderScale(widthPt: number, heightPt: number, dpi: number): number {
-    let scale = dpi / 72;
-    const side = Math.max(widthPt, heightPt) * scale;
-    if (side > MAX_SIDE) scale *= MAX_SIDE / side;
-    const area = widthPt * heightPt * scale * scale;
-    if (area > MAX_CANVAS_PIXELS) scale *= Math.sqrt(MAX_CANVAS_PIXELS / area);
-    return scale;
 }
 
 /** The name of one page image: "report-page-03.png". The number has as many digits as the last page. */

@@ -1,6 +1,23 @@
 import { ToolFailure } from "@handyweb/core/runtime";
 import type { PDFDocumentProxy } from "pdfjs-dist";
-import { renderScale } from "./logic";
+
+/** Limits of a canvas in every browser (Safari on iOS is the smallest). */
+const MAX_CANVAS_PIXELS = 16_777_216;
+const MAX_SIDE = 16_384;
+
+/**
+ * The scale for pdf.js (1 = 72 dpi) at the chosen resolution. A page that
+ * would be larger than a canvas can be is scaled down to the largest size
+ * that fits.
+ */
+export function renderScale(widthPt: number, heightPt: number, dpi: number): number {
+    let scale = dpi / 72;
+    const side = Math.max(widthPt, heightPt) * scale;
+    if (side > MAX_SIDE) scale *= MAX_SIDE / side;
+    const area = widthPt * heightPt * scale * scale;
+    if (area > MAX_CANVAS_PIXELS) scale *= Math.sqrt(MAX_CANVAS_PIXELS / area);
+    return scale;
+}
 
 /**
  * Draws one page on a canvas at the chosen resolution and encodes it. The page
@@ -12,6 +29,7 @@ export async function renderPage(
     pageNumber: number,
     dpi: number,
     type: "image/png" | "image/jpeg",
+    quality = 0.92,
 ): Promise<{ blob: Blob; width: number; height: number; scaled: boolean }> {
     const page = await pdf.getPage(pageNumber);
     try {
@@ -31,7 +49,7 @@ export async function renderPage(
         context.fillRect(0, 0, canvas.width, canvas.height);
         await page.render({ canvas, viewport }).promise;
         const blob = await new Promise<Blob | null>((resolve) =>
-            canvas.toBlob(resolve, type, 0.92),
+            canvas.toBlob(resolve, type, quality),
         );
         const size = { width: canvas.width, height: canvas.height };
         canvas.width = 0;
