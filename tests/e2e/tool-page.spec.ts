@@ -1681,3 +1681,21 @@ test.describe("ip ranges", () => {
         await expect(page.locator("[data-range-answer]")).toContainText("public");
     });
 });
+
+test.describe("qr generator presets", () => {
+    test("the Wi-Fi preset makes a code that the reader reads back", async ({ page }) => {
+        const { parseWifi } = await import("../../packages/tools/src/qr/code-reader/logic");
+        await page.goto("/en/tools/qr-generator/?preset=wifi");
+        await page.locator('[data-qr-field="ssid"]').fill("Cafe;Net");
+        await page.locator('[data-qr-field="password"]').fill("p@ss:1");
+        await page.getByText("Code content").click();
+        const payload = (await page.locator("[data-qr-payload]").textContent()) ?? "";
+        expect(parseWifi(payload)).toEqual({
+            ssid: "Cafe;Net",
+            password: "p@ss:1",
+            security: "WPA",
+            hidden: false,
+        });
+        await expect(page.locator("[data-tool-qr]")).toBeVisible();
+    });
+});

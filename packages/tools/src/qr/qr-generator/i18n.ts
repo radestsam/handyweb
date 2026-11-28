@@ -21,6 +21,28 @@ export const strings = {
         en: "The two colors are too close, and the code may not scan. Use a darker dark color.",
     },
     empty: { fa: "نوشته‌ای بنویسید تا کد QR ساخته شود.", en: "Type some text to make a QR code." },
+    kind: { fa: "نوع محتوا", en: "Content type" },
+    text: { fa: "متن یا پیوند", en: "Text or link" },
+    wifi: { fa: "Wi-Fi", en: "Wi-Fi" },
+    email: { fa: "ایمیل", en: "Email" },
+    contact: { fa: "کارت تماس", en: "Contact" },
+    ssid: { fa: "نام شبکه (SSID)", en: "Network name (SSID)" },
+    password: { fa: "رمز", en: "Password" },
+    security: { fa: "امنیت", en: "Security" },
+    open: { fa: "بدون رمز", en: "No password" },
+    hidden: { fa: "شبکه پنهان است", en: "The network is hidden" },
+    to: { fa: "نشانی گیرنده", en: "To" },
+    subject: { fa: "موضوع", en: "Subject" },
+    body: { fa: "متن", en: "Message" },
+    name: { fa: "نام", en: "Name" },
+    phone: { fa: "تلفن", en: "Phone" },
+    organization: { fa: "سازمان", en: "Organization" },
+    url: { fa: "وب‌سایت", en: "Website" },
+    payload: { fa: "محتوای کد", en: "Code content" },
+    wifiNote: {
+        fa: "رمز Wi-Fi درون کد نوشته می‌شود. هر کس کد را ببیند، می‌تواند رمز را بخواند.",
+        en: "The Wi-Fi password is written inside the code. Anyone who sees the code can read the password.",
+    },
 } as const satisfies Record<string, LocalizedText>;
 
 export const eccLabels: Record<Ecc, LocalizedText> = {
