@@ -6,7 +6,7 @@ export const percentageCalculatorMeta: ToolDefinition = {
     aliases: ["percent-calculator", "percentage-change", "percent-of-number"],
     category: "calculators",
     alsoIn: [],
-    related: ["unit-converter"],
+    related: ["discount-calculator", "unit-converter"],
     tags: ["percent", "calculator"],
     title: { fa: "محاسبه درصد", en: "Percentage Calculator" },
     description: {
