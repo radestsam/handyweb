@@ -1055,3 +1055,29 @@ test.describe("image rotate", () => {
         );
     });
 });
+
+test.describe("image crop", () => {
+    test("drags the area, keeps the ratio, and crops", async ({ page }) => {
+        const { makePng } = await import("../support/png");
+        await page.goto("/en/tools/image-crop/");
+        await page
+            .locator('input[type="file"]')
+            .setInputFiles({ name: "a.png", mimeType: "image/png", buffer: makePng(400, 200) });
+        await page.locator("[data-crop-ratio]").selectOption("1:1");
+        await expect(page.locator('[data-crop-field="x"]')).toHaveValue("100");
+        await expect(page.locator('[data-crop-field="width"]')).toHaveValue("200");
+        // Drag the area to the left edge: it stops at x = 0.
+        const area = page.locator("[data-crop-area]");
+        const box = (await area.boundingBox())!;
+        await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+        await page.mouse.down();
+        await page.mouse.move(box.x - 500, box.y + box.height / 2, { steps: 5 });
+        await page.mouse.up();
+        await expect(page.locator('[data-crop-field="x"]')).toHaveValue("0");
+        // Typing the width keeps the square.
+        await page.locator('[data-crop-field="width"]').fill("50");
+        await expect(page.locator('[data-crop-field="height"]')).toHaveValue("50");
+        await page.locator("[data-tool-run]").click();
+        await expect(page.locator("[data-tool-output]")).toHaveValue("0,0,50x50");
+    });
+});

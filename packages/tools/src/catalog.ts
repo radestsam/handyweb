@@ -64,6 +64,7 @@ import { markdownEditorMeta } from "./developer/markdown-editor/meta";
 import { imageResizeMeta } from "./image/image-resize/meta";
 import { imageRotateMeta } from "./image/image-rotate/meta";
 import { imageFlipMeta } from "./image/image-flip/meta";
+import { imageCropMeta } from "./image/image-crop/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -135,4 +136,5 @@ export const catalog: readonly ToolDefinition[] = [
     imageResizeMeta,
     imageRotateMeta,
     imageFlipMeta,
+    imageCropMeta,
 ];
