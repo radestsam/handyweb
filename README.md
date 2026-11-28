@@ -131,6 +131,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Images to PDF                                         | PDF                      | `packages/tools/src/pdf/images-to-pdf`                 | `@cantoo/pdf-lib` (loads only when the PDF is made)              |
 | PDF to Images                                         | PDF                      | `packages/tools/src/pdf/pdf-to-images`                 | `pdfjs-dist` (loads only when a PDF is opened; runs in a worker) |
 | PDF Metadata Editor                                   | PDF                      | `packages/tools/src/pdf/pdf-metadata`                  | `@cantoo/pdf-lib` (loads only when a PDF is opened)              |
+| PDF Text Extractor                                    | PDF                      | `packages/tools/src/pdf/pdf-text`                      | `pdfjs-dist` (loads only when a PDF is opened; runs in a worker) |
 | Unit Converter                                        | Calculators              | `packages/tools/src/calculators/unit-converter`        | None                                                             |
 | Percentage Calculator                                 | Calculators              | `packages/tools/src/calculators/percentage-calculator` | None                                                             |
 | Discount Calculator                                   | Calculators              | `packages/tools/src/calculators/discount-calculator`   | None                                                             |

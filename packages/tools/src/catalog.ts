@@ -81,6 +81,7 @@ import { pdfMergeMeta } from "./pdf/pdf-merge/meta";
 import { imagesToPdfMeta } from "./pdf/images-to-pdf/meta";
 import { pdfToImagesMeta } from "./pdf/pdf-to-images/meta";
 import { pdfMetadataMeta } from "./pdf/pdf-metadata/meta";
+import { pdfTextMeta } from "./pdf/pdf-text/meta";
 import { unitConverterMeta } from "./calculators/unit-converter/meta";
 import { percentageCalculatorMeta } from "./calculators/percentage-calculator/meta";
 import { discountCalculatorMeta } from "./calculators/discount-calculator/meta";
@@ -188,6 +189,7 @@ export const catalog: readonly ToolDefinition[] = [
     imagesToPdfMeta,
     pdfToImagesMeta,
     pdfMetadataMeta,
+    pdfTextMeta,
     unitConverterMeta,
     percentageCalculatorMeta,
     discountCalculatorMeta,

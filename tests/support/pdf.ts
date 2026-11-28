@@ -1,4 +1,4 @@
-import { PDFDocument } from "@cantoo/pdf-lib";
+import { PDFDocument, StandardFonts } from "@cantoo/pdf-lib";
 
 /**
  * A small PDF for the browser tests. Page i has a width of 100 + start + i
@@ -23,5 +23,14 @@ export async function makePdfWithMetadata(title: string, author: string): Promis
     document.setTitle(title);
     document.setAuthor(author);
     document.setCreationDate(new Date("2024-03-01T10:00:00Z"));
+    return Buffer.from(await document.save());
+}
+
+/** A PDF with one line of text on each page. */
+export async function makeTextPdf(lines: string[]): Promise<Buffer> {
+    const document = await PDFDocument.create();
+    const font = await document.embedFont(StandardFonts.Helvetica);
+    for (const line of lines)
+        document.addPage([300, 200]).drawText(line, { x: 20, y: 150, size: 14, font });
     return Buffer.from(await document.save());
 }

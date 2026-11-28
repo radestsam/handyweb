@@ -89,3 +89,20 @@ test("pdf-metadata runs locally and stores nothing", async ({ page, requests, ba
     ]);
     await expectCleanStorage(page, ["secret-merger-plan", "Jane Roe"]);
 });
+
+test("pdf-text runs locally and stores nothing", async ({ page, requests, baseURL }) => {
+    const { makeTextPdf } = await import("../support/pdf");
+    await page.goto("/en/tools/pdf-text/");
+    await page.locator('input[type="file"]').setInputFiles({
+        name: "secret-diagnosis.pdf",
+        mimeType: "application/pdf",
+        buffer: await makeTextPdf(["Patient record 4471"]),
+    });
+    await expect(page.locator("[data-tool-output]")).toHaveValue(/Patient record 4471/);
+    await page.waitForLoadState("networkidle");
+    expectNoLeak(requests, new URL(baseURL as string).origin, [
+        "secret-diagnosis",
+        "Patient record",
+    ]);
+    await expectCleanStorage(page, ["secret-diagnosis", "Patient record"]);
+});
