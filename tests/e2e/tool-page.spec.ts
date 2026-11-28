@@ -924,3 +924,16 @@ test.describe("totp", () => {
         await expect(page.locator("[data-tool-output]")).toHaveValue("94287082");
     });
 });
+
+test.describe("file signature", () => {
+    test("flags a program named as an image", async ({ page }) => {
+        await page.goto("/en/tools/file-signature/");
+        await page.locator('input[type="file"]').setInputFiles({
+            name: "photo.jpg",
+            mimeType: "image/jpeg",
+            buffer: Buffer.from([0x4d, 0x5a, 0x90, 0x00, 0x03]),
+        });
+        await expect(page.locator("[data-tool-type]")).toContainText("Windows program");
+        await expect(page.locator("[data-tool-warning]")).toContainText("does not match");
+    });
+});
