@@ -1,0 +1,26 @@
+import type { LocalizedText } from "@handyweb/core";
+
+export const strings = {
+    input: { fa: "برچسب زمانی یا تاریخ", en: "Timestamp or date" },
+    hint: { fa: "نمونه‌ها:", en: "Examples:" },
+    now: { fa: "اکنون", en: "Now" },
+    unit: { fa: "یکای برچسب زمانی", en: "Timestamp unit" },
+    auto: { fa: "خودکار", en: "Auto" },
+    zone: { fa: "منطقه زمانی تاریخ ورودی", en: "Time zone of a typed date" },
+    local: { fa: "این دستگاه", en: "This device" },
+    utc: { fa: "UTC", en: "UTC" },
+    detected: { fa: "خوانده شد به شکل", en: "Read as" },
+    seconds: { fa: "ثانیه", en: "seconds" },
+    milliseconds: { fa: "میلی‌ثانیه", en: "milliseconds" },
+    microseconds: { fa: "میکروثانیه", en: "microseconds" },
+    nanoseconds: { fa: "نانوثانیه", en: "nanoseconds" },
+    jalaliDate: { fa: "تاریخ شمسی", en: "Jalali date" },
+    gregorianDate: { fa: "تاریخ", en: "Date" },
+    unixSeconds: { fa: "Unix (ثانیه)", en: "Unix (seconds)" },
+    unixMs: { fa: "Unix (میلی‌ثانیه)", en: "Unix (milliseconds)" },
+    iso: { fa: "ISO 8601 (UTC)", en: "ISO 8601 (UTC)" },
+    zoneName: { fa: "منطقه زمانی این دستگاه", en: "Time zone of this device" },
+    jalaliTime: { fa: "شمسی", en: "Jalali" },
+    gregorianTime: { fa: "میلادی", en: "Gregorian" },
+    relative: { fa: "نسبت به اکنون", en: "From now" },
+} as const satisfies Record<string, LocalizedText>;
