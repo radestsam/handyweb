@@ -97,6 +97,8 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Base64 Encoder and Decoder                            | Encoding                 | `packages/tools/src/encoding/base64`             | None                                                       |
 | JSON Formatter and Validator                          | Developer                | `packages/tools/src/developer/json-formatter`    | None                                                       |
 | XML Formatter and Validator                           | Developer                | `packages/tools/src/developer/xml-formatter`     | None                                                       |
+| YAML Formatter and Validator                          | Developer                | `packages/tools/src/developer/yaml-formatter`    | `yaml`                                                     |
+| JSON and YAML Converter                               | Developer                | `packages/tools/src/developer/json-yaml`         | `yaml`                                                     |
 | JWT Decoder                                           | Developer                | `packages/tools/src/developer/jwt-decoder`       | None                                                       |
 | UUID and ULID Generator                               | Developer                | `packages/tools/src/developer/uuid-generator`    | None                                                       |
 | Regex Tester                                          | Developer                | `packages/tools/src/developer/regex-tester`      | None                                                       |

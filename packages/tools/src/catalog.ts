@@ -36,6 +36,8 @@ import { numberToWordsMeta } from "./persian/number-to-words/meta";
 import { zwnjFixerMeta } from "./persian/zwnj-fixer/meta";
 import { punctuationFixerMeta } from "./persian/punctuation-fixer/meta";
 import { directionFixerMeta } from "./persian/direction-fixer/meta";
+import { yamlFormatterMeta } from "./developer/yaml-formatter/meta";
+import { jsonYamlMeta } from "./developer/json-yaml/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -79,4 +81,6 @@ export const catalog: readonly ToolDefinition[] = [
     zwnjFixerMeta,
     punctuationFixerMeta,
     directionFixerMeta,
+    yamlFormatterMeta,
+    jsonYamlMeta,
 ];

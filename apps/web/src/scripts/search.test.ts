@@ -63,6 +63,8 @@ describe("search ranking", () => {
         expect(top("نیم فاصله")).toBe("zwnj-fixer");
         expect(top("ویرگول فارسی")).toBe("punctuation-fixer");
         expect(top("rtl fix")).toBe("direction-fixer");
+        expect(top("yaml validator")).toBe("yaml-formatter");
+        expect(top("json to yaml")).toBe("json-yaml");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("باینری")).toBe("number-base");
         expect(top("تایم استمپ")).toBe("unix-timestamp");
