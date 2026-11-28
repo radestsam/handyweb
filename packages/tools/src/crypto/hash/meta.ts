@@ -6,7 +6,7 @@ export const hashMeta: ToolDefinition = {
     aliases: ["sha256", "sha-256", "sha384", "sha512", "sha-512", "file-hash", "checksum"],
     category: "crypto",
     alsoIn: ["developer"],
-    related: ["base64"],
+    related: ["base64", "hmac"],
     tags: ["hash", "sha256", "sha512", "checksum"],
     title: {
         fa: "تولید هش SHA-256 و SHA-512 برای متن و فایل",

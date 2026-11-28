@@ -24,5 +24,6 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Unicode Character Inspector.
 - XML Formatter and Validator.
 - JWT Decoder, with a clear note that it does not verify the signature.
+- HMAC Generator and Verifier.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.

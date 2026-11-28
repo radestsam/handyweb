@@ -325,3 +325,24 @@ test.describe("jwt decoder", () => {
         await expect(page.getByText("الگوریتم none است")).toBeVisible();
     });
 });
+
+test.describe("hmac", () => {
+    test("generates an HMAC and verifies a webhook signature", async ({ page }) => {
+        await page.goto("/en/tools/hmac/");
+        await page.getByLabel("Message").fill("what do ya want for nothing?");
+        await page.getByLabel("Secret key").fill("Jefe");
+        const mac = "5bdcc146bf60754e6a042426089575c75a003f089d2739839dec58b964ec3843";
+        await expect(page.locator("[data-tool-output]")).toHaveValue(mac);
+        await page.getByText("Verify", { exact: true }).click();
+        await page.getByLabel("The HMAC you received").fill(`sha256=${mac}`);
+        await expect(page.locator("[data-tool-verdict]")).toHaveAttribute(
+            "data-tool-verdict",
+            "yes",
+        );
+        await page.getByLabel("Message").fill("changed");
+        await expect(page.locator("[data-tool-verdict]")).toHaveAttribute(
+            "data-tool-verdict",
+            "no",
+        );
+    });
+});

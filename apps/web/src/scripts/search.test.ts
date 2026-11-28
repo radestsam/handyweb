@@ -41,6 +41,8 @@ describe("search ranking", () => {
         expect(top("unicode escape")).toBe("unicode-escape");
         expect(top("xml validator")).toBe("xml-formatter");
         expect(top("jwt")).toBe("jwt-decoder");
+        expect(top("hmac")).toBe("hmac");
+        expect(top("webhook signature")).toBe("hmac");
         expect(top("نویسه نامرئی")).toBe("unicode-explorer");
         expect(top("حروف بزرگ")).toBe("case-converter");
         expect(top("شمارش کلمات")).toBe("text-counter");

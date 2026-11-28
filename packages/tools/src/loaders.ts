@@ -21,4 +21,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "unicode-explorer": () => import("./text/unicode-explorer/ui"),
     "xml-formatter": () => import("./developer/xml-formatter/ui"),
     "jwt-decoder": () => import("./developer/jwt-decoder/ui"),
+    hmac: () => import("./crypto/hmac/ui"),
 };
