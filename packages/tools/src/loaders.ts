@@ -75,4 +75,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "image-compressor": () => import("./image/image-compressor/ui"),
     "image-metadata": () => import("./image/image-metadata/ui"),
     "image-color-picker": () => import("./image/image-color-picker/ui"),
+    "image-palette": () => import("./image/image-palette/ui"),
 };

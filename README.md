@@ -113,6 +113,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | Image Compressor                                      | Images                   | `packages/tools/src/image/image-compressor`          | None                                                       |
 | Image Metadata Viewer and Remover                     | Images                   | `packages/tools/src/image/image-metadata`            | None                                                       |
 | Image Color Picker                                    | Images                   | `packages/tools/src/image/image-color-picker`        | None                                                       |
+| Image Palette Extractor                               | Images                   | `packages/tools/src/image/image-palette`             | None                                                       |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`              | None                                                       |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`             | None                                                       |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator` | `@cfworker/json-schema`                                    |

@@ -97,6 +97,7 @@ describe("search ranking", () => {
         expect(top("کم کردن حجم عکس")).toBe("image-compressor");
         expect(top("remove exif")).toBe("image-metadata");
         expect(top("گرفتن رنگ از عکس")).toBe("image-color-picker");
+        expect(top("color palette from image")).toBe("image-palette");
         expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
