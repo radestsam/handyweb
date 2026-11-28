@@ -93,6 +93,7 @@ import { barcodeGeneratorMeta } from "./qr/barcode-generator/meta";
 import { codeReaderMeta } from "./qr/code-reader/meta";
 import { ipCalculatorMeta } from "./network/ip-calculator/meta";
 import { macFormatterMeta } from "./network/mac-formatter/meta";
+import { httpStatusMeta } from "./network/http-status/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -193,4 +194,5 @@ export const catalog: readonly ToolDefinition[] = [
     codeReaderMeta,
     ipCalculatorMeta,
     macFormatterMeta,
+    httpStatusMeta,
 ];

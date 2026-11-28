@@ -1648,3 +1648,16 @@ test.describe("mac formatter", () => {
         await expect(page.locator('[data-mac="origin"]')).toContainText("Local or random");
     });
 });
+
+test.describe("http status", () => {
+    test("finds a code and filters by class", async ({ page }) => {
+        await page.goto("/fa/tools/http-status/");
+        await page.locator("[data-tool-input]").fill("۴۲۹");
+        await expect(page.locator("[data-status-list] li")).toHaveCount(1);
+        await expect(page.locator('[data-status="429"]')).toContainText("درخواست بیش از اندازه");
+        await page.locator("[data-tool-input]").fill("");
+        await page.getByRole("radio", { name: "5xx" }).check({ force: true });
+        await expect(page.locator('[data-status="503"]')).toBeVisible();
+        await expect(page.locator('[data-status="404"]')).toHaveCount(0);
+    });
+});
