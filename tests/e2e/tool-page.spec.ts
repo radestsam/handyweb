@@ -715,3 +715,22 @@ test.describe("web formatters", () => {
         );
     });
 });
+
+test.describe("json csv", () => {
+    test("converts JSON to CSV and downloads it", async ({ page }) => {
+        await page.goto("/en/tools/json-csv/");
+        await page.locator("[data-tool-input]").fill('[{"a":"x, y","b":1}]');
+        await expect(page.locator("[data-tool-output]")).toHaveValue('a,b\n"x, y",1');
+        const download = page.waitForEvent("download");
+        await page.getByRole("button", { name: "Download file" }).click();
+        expect((await download).suggestedFilename()).toBe("data.csv");
+    });
+
+    test("the CSV preset reads a semicolon file", async ({ page }) => {
+        await page.goto("/fa/tools/json-csv/?preset=csv-to-json");
+        await page.locator("[data-tool-input]").fill("name;age\nسارا;30");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            '[\n  {\n    "name": "سارا",\n    "age": 30\n  }\n]',
+        );
+    });
+});

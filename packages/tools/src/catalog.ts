@@ -42,6 +42,7 @@ import { sqlFormatterMeta } from "./developer/sql-formatter/meta";
 import { htmlFormatterMeta } from "./developer/html-formatter/meta";
 import { cssFormatterMeta } from "./developer/css-formatter/meta";
 import { jsFormatterMeta } from "./developer/js-formatter/meta";
+import { jsonCsvMeta } from "./developer/json-csv/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -91,4 +92,5 @@ export const catalog: readonly ToolDefinition[] = [
     htmlFormatterMeta,
     cssFormatterMeta,
     jsFormatterMeta,
+    jsonCsvMeta,
 ];
