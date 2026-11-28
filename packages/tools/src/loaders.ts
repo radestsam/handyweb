@@ -86,4 +86,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "unit-converter": () => import("./calculators/unit-converter/ui"),
     "percentage-calculator": () => import("./calculators/percentage-calculator/ui"),
     "discount-calculator": () => import("./calculators/discount-calculator/ui"),
+    "vat-calculator": () => import("./calculators/vat-calculator/ui"),
 };
