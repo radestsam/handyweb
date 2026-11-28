@@ -91,4 +91,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "aspect-ratio": () => import("./calculators/aspect-ratio/ui"),
     "image-resolution": () => import("./calculators/image-resolution/ui"),
     "css-units": () => import("./calculators/css-units/ui"),
+    "roman-numerals": () => import("./calculators/roman-numerals/ui"),
 };

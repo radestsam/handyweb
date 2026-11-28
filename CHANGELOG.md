@@ -85,6 +85,7 @@ All notable changes to HandyWeb are listed here. The project uses [Semantic Vers
 - Aspect Ratio Calculator.
 - Image Resolution and Print Size Calculator.
 - CSS Unit Converter.
+- Roman Numeral Converter.
 - Installable app (web app manifest per language) and a service worker that keeps the site and opened tools working offline.
 - About, Privacy, Open Source, and Contribute pages.
 - Privacy, accessibility, and end-to-end tests.
