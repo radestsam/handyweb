@@ -23,9 +23,8 @@ export default defineConfig({
             assetsInlineLimit: 0,
             rollupOptions: {
                 output: {
-                    // The PDF library and the packages that only it uses go into
-                    // one named chunk. Only PDF tools load it, and
-                    // scripts/check-budget.mjs gives it its own budget.
+                    // The PDF libraries go into named chunks. Only PDF tools load
+                    // them, and scripts/check-budget.mjs gives them their own budgets.
                     manualChunks(id) {
                         if (
                             /[\\/]node_modules[\\/](@cantoo[\\/]pdf-lib|fflate|culori|node-html-better-parser|html-entities)[\\/]/.test(
@@ -33,6 +32,8 @@ export default defineConfig({
                             )
                         )
                             return "pdf-lib";
+                        // pdf.js (the PDF renderer). Its worker is a separate file.
+                        if (/[\\/]node_modules[\\/]pdfjs-dist[\\/]/.test(id)) return "pdfjs";
                         return undefined;
                     },
                 },

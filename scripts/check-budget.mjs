@@ -20,7 +20,19 @@ const BUDGET = {
     // The PDF library chunk (pdf-lib.*.js). Only PDF tool pages load it, on
     // demand. Owner decision of 2026-11-27, see README.md ("Deviations").
     pdfLib: 260 * KB,
+    // pdf.js, the PDF renderer: the main chunk (pdfjs.*.js) and its worker
+    // (pdf.worker-*.js). Owner decision of 2026-11-28.
+    pdfjs: 150 * KB,
+    pdfjsWorker: 400 * KB,
 };
+
+/** The budget of an on-demand chunk, by its file name. */
+function chunkBudget(path) {
+    if (/[\/]pdf-lib\.[\w-]+\.js$/.test(path)) return BUDGET.pdfLib;
+    if (/[\/]pdfjs\.[\w-]+\.js$/.test(path)) return BUDGET.pdfjs;
+    if (/[\/]pdf\.worker-[\w-]+\.js$/.test(path)) return BUDGET.pdfjsWorker;
+    return BUDGET.chunk;
+}
 
 const gz = (path) => gzipSync(readFileSync(path)).length;
 const files = (dir) =>
@@ -71,7 +83,7 @@ for (const chunk of files(join(DIST, "_astro")).filter(
     (f) => f.endsWith(".js") && !startFiles.has(f) && !/[\/]client\.[\w-]+\.js$/.test(f),
 )) {
     const size = gz(chunk);
-    const budget = /[\/]pdf-lib\.[\w-]+\.js$/.test(chunk) ? BUDGET.pdfLib : BUDGET.chunk;
+    const budget = chunkBudget(chunk);
     if (size > budget)
         failures.push(`${relative(DIST, chunk)}: ${(size / KB).toFixed(1)} KB > ${budget / KB} KB`);
 }
