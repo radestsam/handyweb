@@ -81,6 +81,8 @@ describe("search ranking", () => {
         expect(top("text to binary")).toBe("binary");
         expect(top("image to base64")).toBe("base64-file");
         expect(top("gunzip")).toBe("gzip");
+        expect(top("srt to vtt")).toBe("subtitle-converter");
+        expect(top("زیرنویس")).toBe("subtitle-converter");
         expect(top("لینک مشکوک")).toBe("url-parser");
         expect(top("کیو آر کد")).toBe("qr-generator");
         expect(top("تبدیل مبنا")).toBe("number-base");
