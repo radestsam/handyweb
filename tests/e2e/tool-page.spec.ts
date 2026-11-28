@@ -283,3 +283,21 @@ test.describe("unicode tools", () => {
         await expect(page.locator('[data-stat="codePoints"]')).toHaveText("10");
     });
 });
+
+test.describe("xml formatter", () => {
+    test("formats XML and keeps Persian text", async ({ page }) => {
+        await page.goto("/en/tools/xml-formatter/");
+        await page.locator("[data-tool-input]").fill("<a><b>سلام</b><c/></a>");
+        await expect(page.locator("[data-tool-output]")).toHaveValue(
+            "<a>\n  <b>سلام</b>\n  <c/>\n</a>\n",
+        );
+    });
+
+    test("the validate preset shows the line and column of an error", async ({ page }) => {
+        await page.goto("/en/tools/xml-formatter/?preset=validate");
+        await page.locator("[data-tool-input]").fill("<a>\n  <b></a>");
+        await expect(page.getByRole("alert")).toContainText("line 2");
+        await page.locator("[data-tool-input]").fill("<a><b/></a>");
+        await expect(page.locator("[data-tool-status]")).toContainText("Root: a, 2 elements");
+    });
+});
