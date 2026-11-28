@@ -104,6 +104,7 @@ Every page has a Persian and an English URL: `/fa/...` and `/en/...`. `/` goes t
 | CSS Formatter                                         | Developer                | `packages/tools/src/developer/css-formatter`         | `js-beautify`                                              |
 | JavaScript Formatter                                  | Developer                | `packages/tools/src/developer/js-formatter`          | `js-beautify`                                              |
 | HTML Previewer                                        | Developer                | `packages/tools/src/developer/html-preview`          | None                                                       |
+| Markdown Editor and Preview                           | Text                     | `packages/tools/src/developer/markdown-editor`       | `marked`, `dompurify`                                      |
 | JSON and CSV Converter                                | Developer                | `packages/tools/src/developer/json-csv`              | None                                                       |
 | JSON Diff                                             | Developer                | `packages/tools/src/developer/json-diff`             | None                                                       |
 | JSON Schema Validator                                 | Developer                | `packages/tools/src/developer/json-schema-validator` | `@cfworker/json-schema`                                    |

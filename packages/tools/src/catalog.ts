@@ -60,6 +60,7 @@ import { totpMeta } from "./crypto/totp/meta";
 import { fileSignatureMeta } from "./developer/file-signature/meta";
 import { pemDecoderMeta } from "./crypto/pem-decoder/meta";
 import { htmlPreviewMeta } from "./developer/html-preview/meta";
+import { markdownEditorMeta } from "./developer/markdown-editor/meta";
 
 /*
  * The metadata of every tool. Import only meta.ts files here: this module is
@@ -127,4 +128,5 @@ export const catalog: readonly ToolDefinition[] = [
     fileSignatureMeta,
     pemDecoderMeta,
     htmlPreviewMeta,
+    markdownEditorMeta,
 ];

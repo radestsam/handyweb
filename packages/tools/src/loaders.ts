@@ -66,4 +66,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "file-signature": () => import("./developer/file-signature/ui"),
     "pem-decoder": () => import("./crypto/pem-decoder/ui"),
     "html-preview": () => import("./developer/html-preview/ui"),
+    "markdown-editor": () => import("./developer/markdown-editor/ui"),
 };
