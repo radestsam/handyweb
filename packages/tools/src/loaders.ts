@@ -64,4 +64,5 @@ export const loaders: Readonly<Record<string, ToolLoader>> = {
     "aes-gcm": () => import("./crypto/aes-gcm/ui"),
     totp: () => import("./crypto/totp/ui"),
     "file-signature": () => import("./developer/file-signature/ui"),
+    "pem-decoder": () => import("./crypto/pem-decoder/ui"),
 };
